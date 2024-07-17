@@ -16,5 +16,6 @@ class Lokasi extends Model
         'lebar',
         'provinsi',
         'kabupaten',
+        'status'
     ];
 }

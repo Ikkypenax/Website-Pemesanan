@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lokasis', function (Blueprint $table) {
-            $table->id();
-            $table->string('provinsi');
-            $table->string('kabupaten');
-            // $table->string('kecamatan');
-            $table->timestamps();
+        Schema::table('lokasis', function (Blueprint $table) {
+            $table->string('status')->default('pending');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lokasis');
+        Schema::table('lokasis', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 };

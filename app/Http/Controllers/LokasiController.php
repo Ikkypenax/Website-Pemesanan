@@ -19,14 +19,15 @@ class LokasiController extends Controller
     public function create()
     {
         // dd('lorem');
-    $hargaPerMeter = HargaPerMeter::first(); // Misalnya, ambil harga pertama\
-    $provinces = Province::all();
-        return view('lokasi.create' ,compact('hargaPerMeter','provinces'));
+        $hargaPerMeter = HargaPerMeter::first(); // Misalnya, ambil harga pertama\
+        $provinces = Province::all();
+        return view('lokasi.create', compact('hargaPerMeter', 'provinces'));
     }
-    public function getkabupaten(request $request){
+    public function getkabupaten(request $request)
+    {
         $id_provinsi = $request->id_provinsi;
         $kabupatens = Regency::where('province_id', $id_provinsi)->get();
-        foreach($kabupatens as $kabupaten){
+        foreach ($kabupatens as $kabupaten) {
             echo "<option value='$kabupaten->id'>$kabupaten->name</option>";
         }
     }
@@ -60,7 +61,7 @@ class LokasiController extends Controller
         ]);
 
         return redirect()->route('lokasi.index')
-                        ->with('success', 'Lokasi created successfully.');
+            ->with('success', 'Lokasi created successfully.');
     }
 
     public function show(Lokasi $lokasi)
@@ -83,7 +84,7 @@ class LokasiController extends Controller
         $lokasi->update($request->all());
 
         return redirect()->route('lokasi.index')
-                        ->with('success', 'Lokasi updated successfully');
+            ->with('success', 'Lokasi updated successfully');
     }
 
     public function destroy(Lokasi $lokasi)
@@ -91,6 +92,21 @@ class LokasiController extends Controller
         $lokasi->delete();
 
         return redirect()->route('lokasi.index')
-                        ->with('success', 'Lokasi deleted successfully');
+            ->with('success', 'Lokasi deleted successfully');
+    }
+
+    public function status(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|string|max:255',
+        ]);
+
+        $status = Lokasi::find($id);
+        $status->update(['status' => $request->status]);
+
+        return back()->with('success', 'Updated successfully.');
     }
 }
+
+
+// onchange -> sumbmit pilihan selcet 
