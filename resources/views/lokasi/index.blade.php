@@ -26,10 +26,10 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Wa</th>
+                <th>Kategori</th>
+                <th>Jenis</th>
                 <th>Panjang</th>
                 <th>Lebar</th>
-                <th>Jenis</th>
-                <th>Kategori</th>
                 <th>Provinsi</th>
                 <th>Kabupaten</th>
                 <th>Harga</th>
@@ -41,13 +41,13 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $l->nama }}</td>
                     <td>{{ $l->wa }}</td>
-                    {{-- <td>{{ $l->nama }}</td> --}}
                     <td>{{ $l->kategori }}</td>
+                    <td>{{ $l->jenis }}</td>
                     <td>{{ $l->panjang }}</td>
                     <td>{{ $l->lebar }}</td>
                     <td>{{ $l->provinsi }}</td>
                     <td>{{ $l->kabupaten }}</td>
-                    <td>{{ $l->harga }}</td>
+                    <td>{{ $l->result }}</td>
                     <td>
 
                         <form action="{{ route('lokasi.status', $l->id) }}" method="POST"

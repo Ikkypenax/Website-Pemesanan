@@ -10,9 +10,9 @@ class HargaPerMeterController extends Controller
 {
 public function create()
 {
-    $hargaPerMeter = HargaPerMeter::first(); // Misalnya, ambil harga pertama\
+    $hargaPerMeter = HargaPerMeter::all(); // Misalnya, ambil harga pertama\
 
-    dd($hargaPerMeter);
+    // dd($hargaPerMeter);
     return view('lokasi.create', compact('hargaPerMeter'));
 }
 }

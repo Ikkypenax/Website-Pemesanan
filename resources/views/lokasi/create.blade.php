@@ -37,16 +37,6 @@
                 <label for="wa" class="form-label">WA</label>
                 <input type="text" class="form-control" id="wa" name="wa" required>
             </div>
-            <div class="mb-3 row">
-                <div class="col">
-                    <label for="panjang" class="form-label">Panjang</label>
-                    <input type="number" class="form-control" id="panjang" name="panjang" required>
-                </div>
-                <div class="col">
-                    <label for="lebar" class="form-label">Lebar</label>
-                    <input type="number" class="form-control" id="lebar" name="lebar" required>
-                </div>
-            </div>
             <div class="mb-3">
                 <label for="kategori" class="form-label">Kategori</label>
                 <select class="form-control" id="kategori" name="kategori" required>
@@ -65,9 +55,21 @@
             </div>
             <div class="mb-3">
                 <label for="harga" class="form-label">Harga per Meter</label>
-                <p class="form-control-plaintext" id="harga" data-harga="0">-</p>
+                <p class="form-control-plaintext" id="harga" name="harga" data-harga="0">-</p>
             </div>
-            <span for="result" id="result" name="result" class="ms-3"></span>
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="panjang" class="form-label">Panjang</label>
+                    <input type="number" class="form-control" id="panjang" name="panjang" required>
+                </div>
+                <div class="col">
+                    <label for="lebar" class="form-label">Lebar</label>
+                    <input type="number" class="form-control" id="lebar" name="lebar" required>
+                </div>
+            </div>
+            <span for="result" id="result" name="result" class="ms-3">Total: Rp. 0</span>
+
+            <input type="hidden" id="result_hidden" name="result">
 
             <div class="mb-3">
                 <label for="provinsi" class="form-label">Provinsi</label>
@@ -94,70 +96,6 @@
 
 
     {{-- <script>
-        $(document).ready(function() {
-            $('#kategori').on('change', function() {
-                var kategori = $(this).val();
-                if (kategori) {
-                    $.ajax({
-                        url: '/getJenis/' + kategori,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            $('#jenis').empty().append(
-                                '<option selected>Pilih Jenis Barang</option>');
-                            if (data.length > 0) {
-                                $.each(data, function(key, item) {
-                                    $('#jenis').append('<option value="' + item.jenis +
-                                        '">' + item.jenis + '</option>');
-                                });
-                            }
-                        }
-                    });
-                } else {
-                    $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
-                }
-            });
-
-            $('#jenis').on('change', function() {
-                var jenis = $(this).val();
-                if (jenis) {
-                    $.ajax({
-                        url: '/getHarga/' + jenis,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            if (data) {
-                                $('#harga').text(data.harga);
-                            } else {
-                                $('#harga').text('-');
-                            }
-                        }
-                    });
-                } else {
-                    $('#harga').text('-');
-                }
-            });
-            $('#panjang, #lebar').on('input', function() {
-            var panjang = parseFloat($('#panjang').val()) || 0;
-            var lebar = parseFloat($('#lebar').val()) || 0;
-            var harga = parseFloat($('#harga').data('harga')) || 0;
-            var result = panjang * lebar * harga;
-            $('#result').text(`Total: Rp. ${result.toLocaleString()}`);
-        });
-
-        $('#kategori').on('change', function() {
-            var selectedOption = $(this).find('option:selected');
-            var harga = parseFloat(selectedOption.data('harga')) || 0;
-            $('#harga').text(harga.toLocaleString()).data('harga', harga);
-
-            // Trigger input event to recalculate the total price
-            $('#panjang, #lebar').trigger('input');
-        });
-        });
-    </script> --}}
-
-
-<script>
     $(document).ready(function() {
     $('#kategori').on('change', function() {
         var kategori = $(this).val();
@@ -220,7 +158,63 @@
         $('#panjang, #lebar').trigger('input');
     });
 });
-</script>
+</script> --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#kategori').on('change', function() {
+                var kategori = $(this).val();
+                if (kategori) {
+                    $.ajax({
+                        url: '/getJenis/' + kategori,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('#jenis').empty().append(
+                                '<option selected>Pilih Jenis Barang</option>');
+                            if (data.length > 0) {
+                                $.each(data, function(key, item) {
+                                    $('#jenis').append('<option value="' + item.jenis +
+                                        '" data-harga="' + item.harga + '">' + item
+                                        .jenis + '</option>');
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
+                    $('#harga').text('-').data('harga', 0);
+                    $('#result').text('Total: Rp. 0');
+                }
+            });
+
+            $('#jenis').on('change', function() {
+                var selectedOption = $(this).find('option:selected');
+                var harga = parseFloat(selectedOption.data('harga')) || 0;
+                $('#harga').text(harga.toLocaleString()).data('harga', harga);
+
+                // Trigger input event to recalculate the total price
+                $('#panjang, #lebar').trigger('input');
+            });
+
+            $('#panjang, #lebar').on('input', function() {
+                var panjang = parseFloat($('#panjang').val()) || 0;
+                var lebar = parseFloat($('#lebar').val()) || 0;
+                var harga = parseFloat($('#harga').data('harga')) || 0;
+                var result = panjang * lebar * harga;
+                $('#result').text(`Total: Rp. ${result.toLocaleString()}`);
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const resultSpan = document.getElementById('result');
+            const resultHiddenInput = document.getElementById('result_hidden');
+
+            form.addEventListener('submit', function() {
+                resultHiddenInput.value = resultSpan.textContent.replace('Total: Rp. ', '').trim();
+            });
+        });
+    </script>
 
     {{-- 
     <script>

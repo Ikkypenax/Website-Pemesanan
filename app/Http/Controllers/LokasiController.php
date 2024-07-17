@@ -47,39 +47,38 @@ class LokasiController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
-        $namaJenis = HargaPerMeter::find($request->jenis)->name;
-        $namaKategori = HargaPerMeter::find($request->kategori)->name;
-        $namaHarga = HargaPerMeter::find($request->harga)->name;
+        
 
-
-
-        // dd($namaKabupaten);
         $request->validate([
             "nama" => "required",
             "wa" => "required",
             "kategori" => "required",
             "jenis" => "required",
-            "harga" => "required",
             "panjang" => "required",
             "lebar" => "required",
             "provinsi" => "required",
-            "kabupaten" => "required"
+            "kabupaten" => "required",
+            "result" => "required"
 
         ]);
 
+        // $namaJenis = HargaPerMeter::find($request->jenis)->name;
+        // $namaKategori = HargaPerMeter::find($request->kategori)->name;
+        // $namaHarga = HargaPerMeter::find($request->harga);
 
         Lokasi::create([
-            "nama" => $request->nama,
+            "nama" => ($request->nama),
             "wa" => ($request->wa),
-            "jenis" => ($namaJenis),
-            "kategori" => ($namaKategori),
-            "harga" => ($namaHarga),
+            "jenis" => ($request->jenis),
+            "kategori" => ($request->kategori),
             "panjang" => ($request->panjang),
             "lebar" => ($request->lebar),
             "provinsi" => ($namaProvinsi),
-            "kabupaten" => ($namaKabupaten)
+            "kabupaten" => ($namaKabupaten),
+            "result" => ($request->result)
         ]);
 
         return redirect()->route('lokasi.index')

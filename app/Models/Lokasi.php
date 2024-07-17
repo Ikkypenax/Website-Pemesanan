@@ -16,6 +16,7 @@ class Lokasi extends Model
         'jenis',
         'panjang',
         'lebar',
+        'result',
         'provinsi',
         'kabupaten',
         'status'

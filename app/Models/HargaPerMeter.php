@@ -14,7 +14,7 @@ class HargaPerMeter extends Model
     protected $fillable = [
         'jenis',
         'harga',
-        'kategori',
+        'kategori'
     ];
 }
 
