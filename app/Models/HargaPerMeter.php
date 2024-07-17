@@ -12,7 +12,9 @@ class HargaPerMeter extends Model
     protected $table = 'harga_per_meter';
 
     protected $fillable = [
+        'jenis',
         'harga',
+        'kategori',
     ];
 }
 

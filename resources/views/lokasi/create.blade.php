@@ -48,15 +48,33 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="harga_per_meter" class="form-label">Harga per Meter</label>
-                <p class="form-control-plaintext" id="harga_per_meter">{{ $hargaPerMeter->harga }}</p>
+                <label for="kategori" class="form-label">Kategori</label>
+                <select class="form-control" id="kategori" name="kategori" required>
+                    <option selected>Pilih kategori</option>
+                    @foreach ($hargaPerMeter as $item)
+                        <option value="{{ $item->kategori }}" data-harga="{{ $item->harga }}">{{ $item->kategori }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
+            <div class="mb-3">
+                <label for="jenis" class="form-label">Nama Barang</label>
+                <select class="form-control" id="jenis" name="jenis" required>
+                    <option selected>Pilih Jenis Barang</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="harga" class="form-label">Harga per Meter</label>
+                <p class="form-control-plaintext" id="harga" data-harga="0">-</p>
+            </div>
+            <span for="result" id="result" name="result" class="ms-3"></span>
+
             <div class="mb-3">
                 <label for="provinsi" class="form-label">Provinsi</label>
                 <select class="form-control" id="provinsi" name="provinsi" required>
                     <option selected>Pilih Provinsi</option>
                     @foreach ($provinces as $provinsi)
-                        <option value="{{$provinsi->id}}">{{$provinsi->name}}</option>
+                        <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -64,30 +82,163 @@
                 <label for="kabupaten" class="form-label">Kabupaten</label>
                 <select class="form-control" id="kabupaten" name="kabupaten" required>
                     <option selected>Pilih Kabupaten</option>
-                   
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <span id="result" class="ms-3"></span>
         </form>
+
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    {{-- <script>
+        $(document).ready(function() {
+            $('#kategori').on('change', function() {
+                var kategori = $(this).val();
+                if (kategori) {
+                    $.ajax({
+                        url: '/getJenis/' + kategori,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('#jenis').empty().append(
+                                '<option selected>Pilih Jenis Barang</option>');
+                            if (data.length > 0) {
+                                $.each(data, function(key, item) {
+                                    $('#jenis').append('<option value="' + item.jenis +
+                                        '">' + item.jenis + '</option>');
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
+                }
+            });
+
+            $('#jenis').on('change', function() {
+                var jenis = $(this).val();
+                if (jenis) {
+                    $.ajax({
+                        url: '/getHarga/' + jenis,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#harga').text(data.harga);
+                            } else {
+                                $('#harga').text('-');
+                            }
+                        }
+                    });
+                } else {
+                    $('#harga').text('-');
+                }
+            });
+            $('#panjang, #lebar').on('input', function() {
+            var panjang = parseFloat($('#panjang').val()) || 0;
+            var lebar = parseFloat($('#lebar').val()) || 0;
+            var harga = parseFloat($('#harga').data('harga')) || 0;
+            var result = panjang * lebar * harga;
+            $('#result').text(`Total: Rp. ${result.toLocaleString()}`);
+        });
+
+        $('#kategori').on('change', function() {
+            var selectedOption = $(this).find('option:selected');
+            var harga = parseFloat(selectedOption.data('harga')) || 0;
+            $('#harga').text(harga.toLocaleString()).data('harga', harga);
+
+            // Trigger input event to recalculate the total price
+            $('#panjang, #lebar').trigger('input');
+        });
+        });
+    </script> --}}
+
+
+<script>
+    $(document).ready(function() {
+    $('#kategori').on('change', function() {
+        var kategori = $(this).val();
+        if (kategori) {
+            $.ajax({
+                url: '/getJenis/' + kategori,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
+                    if (data.length > 0) {
+                        $.each(data, function(key, item) {
+                            $('#jenis').append('<option value="' + item.jenis + '">' + item.jenis + '</option>');
+                        });
+                    }
+                }
+            });
+        } else {
+            $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
+        }
+    });
+
+    $('#jenis').on('change', function() {
+        var jenis = $(this).val();
+        if (jenis) {
+            $.ajax({
+                url: '/getHarga/' + jenis,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    if (data) {
+                        $('#harga').text(data.harga).data('harga', data.harga);
+                    } else {
+                        $('#harga').text('-').data('harga', 0);
+                    }
+                    // Trigger input event to recalculate the total price
+                    $('#panjang, #lebar').trigger('input');
+                }
+            });
+        } else {
+            $('#harga').text('-').data('harga', 0);
+            $('#panjang, #lebar').trigger('input');
+        }
+    });
+
+    $('#panjang, #lebar').on('input', function() {
+        var panjang = parseFloat($('#panjang').val()) || 0;
+        var lebar = parseFloat($('#lebar').val()) || 0;
+        var harga = parseFloat($('#harga').data('harga')) || 0;
+        var result = panjang * lebar * harga;
+        $('#result').text(`Total: Rp. ${result.toLocaleString()}`);
+    });
+
+    $('#kategori').on('change', function() {
+        var selectedOption = $(this).find('option:selected');
+        var harga = parseFloat(selectedOption.data('harga')) || 0;
+        $('#harga').text(harga.toLocaleString()).data('harga', harga);
+
+        // Trigger input event to recalculate the total price
+        $('#panjang, #lebar').trigger('input');
+    });
+});
+</script>
+
+    {{-- 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const panjangInput = document.getElementById('panjang');
             const lebarInput = document.getElementById('lebar');
-            const hargaPerMeter = {{ $hargaPerMeter->harga }};
+            const harga = {{ harga }};
             const resultSpan = document.getElementById('result');
 
             function calculateResult() {
                 const panjang = parseFloat(panjangInput.value) || 0;
                 const lebar = parseFloat(lebarInput.value) || 0;
-                const result = panjang * lebar * hargaPerMeter;
+                const result = panjang * lebar * harga;
                 resultSpan.textContent = `Total: Rp. ${result.toLocaleString()}`;
             }
 
             panjangInput.addEventListener('input', calculateResult);
             lebarInput.addEventListener('input', calculateResult);
         });
-    </script>
+    </script> --}}
 @endsection

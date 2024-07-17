@@ -19,9 +19,22 @@ class LokasiController extends Controller
     public function create()
     {
         // dd('lorem');
-        $hargaPerMeter = HargaPerMeter::first(); // Misalnya, ambil harga pertama\
+        $hargaPerMeter = HargaPerMeter::all(); // Misalnya, ambil harga pertama\
         $provinces = Province::all();
         return view('lokasi.create', compact('hargaPerMeter', 'provinces'));
+    }
+
+    public function getHarga($jenis)
+    {
+        $harga = HargaPerMeter::where('jenis', $jenis)->first();
+        return response()->json($harga);
+        
+    }
+
+    public function getJenis($kategori)
+    {
+        $jenis = HargaPerMeter::where('kategori', $kategori)->get();
+        return response()->json($jenis);
     }
     public function getkabupaten(request $request)
     {
@@ -36,24 +49,33 @@ class LokasiController extends Controller
         // dd($request->all());
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
+        $namaJenis = HargaPerMeter::find($request->jenis)->name;
+        $namaKategori = HargaPerMeter::find($request->kategori)->name;
+        $namaHarga = HargaPerMeter::find($request->harga)->name;
 
 
-        // $nama = $request->nama;
 
         // dd($namaKabupaten);
         $request->validate([
             "nama" => "required",
             "wa" => "required",
+            "kategori" => "required",
+            "jenis" => "required",
+            "harga" => "required",
             "panjang" => "required",
             "lebar" => "required",
             "provinsi" => "required",
             "kabupaten" => "required"
+
         ]);
 
 
         Lokasi::create([
             "nama" => $request->nama,
             "wa" => ($request->wa),
+            "jenis" => ($namaJenis),
+            "kategori" => ($namaKategori),
+            "harga" => ($namaHarga),
             "panjang" => ($request->panjang),
             "lebar" => ($request->lebar),
             "provinsi" => ($namaProvinsi),

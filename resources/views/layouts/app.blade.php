@@ -57,33 +57,11 @@
 
         select[name=status] {
             width: 200px;
-            /* Lebar dropdown */
             padding: 5px;
-            /* Padding untuk tampilan */
             font-size: 16px;
-            /* Ukuran font */
         }
 
-        select[name=status] option[value=pending] {
-            background-color: #f7b731;
-            /* Warna latar belakang untuk "pending" */
-            color: #ffffff;
-            /* Warna teks untuk "pending" */
-        }
-
-        select[name=status] option[value=approved] {
-            background-color: #20bf6b;
-            /* Warna latar belakang untuk "approved" */
-            color: #ffffff;
-            /* Warna teks untuk "approved" */
-        }
-
-        select[name=status] option[value=rejected] {
-            background-color: #eb3b5a;
-            /* Warna latar belakang untuk "rejected" */
-            color: #ffffff;
-            /* Warna teks untuk "rejected" */
-        }
+        
     </style>
 </head>
 
@@ -104,7 +82,7 @@
                 <a href="/lokasi">Lokasi</a>
             </li>
             <li>
-                <a href="#">Profile</a>
+                <a href="/barang">Barang</a>
             </li>
             <li>
                 <a href="#">Settings</a>
@@ -177,7 +155,18 @@
     </script>
 
     {{-- script form status --}}
-    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Tanggapi perubahan pada dropdown
+            $('select[name=status]').change(function() {
+                var selectedColor = $(this).find('option:selected').css('background-color');
+                $(this).css('background-color', selectedColor);
+            });
+        });
+    </script>
+
 </body>
 
 </html>

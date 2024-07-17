@@ -28,8 +28,11 @@
                 <th>Wa</th>
                 <th>Panjang</th>
                 <th>Lebar</th>
+                <th>Jenis</th>
+                <th>Kategori</th>
                 <th>Provinsi</th>
                 <th>Kabupaten</th>
+                <th>Harga</th>
                 <th>Status</th>
                 <th width="280px">Action</th>
             </tr>
@@ -38,41 +41,33 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $l->nama }}</td>
                     <td>{{ $l->wa }}</td>
+                    {{-- <td>{{ $l->nama }}</td> --}}
+                    <td>{{ $l->kategori }}</td>
                     <td>{{ $l->panjang }}</td>
                     <td>{{ $l->lebar }}</td>
                     <td>{{ $l->provinsi }}</td>
                     <td>{{ $l->kabupaten }}</td>
+                    <td>{{ $l->harga }}</td>
                     <td>
-                        {{-- <form action="{{ route('lokasi.status', $l->id) }}" method="POST" id="status-form-{{ $l->id }}">
-                            @csrf
-                            @method('PUT')
-                            <select name="status" onchange="updateFormColorAndSubmit(this);">
-                                <option value="pending" {{ $l->status == 'pending' ? 'selected' : '' }}>Diproses</option>
-                                <option value="approved" {{ $l->status == 'approved' ? 'selected' : '' }}>Approved</option>
-                                <option value="rejected" {{ $l->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
-                            </select>
-                        </form> --}}
 
-                        <form action="{{ route('lokasi.status', $l->id) }}" method="POST" id="status-form-{{ $l->id }}">
+                        <form action="{{ route('lokasi.status', $l->id) }}" method="POST"
+                            id="status-form-{{ $l->id }}">
                             @csrf
                             @method('PUT')
-                            <select name="status" onchange="document.getElementById('status-form-{{ $l->id }}').submit();">
-                                <option value="pending" {{ $l->status == 'pending' ? 'selected' : '' }}>Diproses</option>
-                                <option value="approved" {{ $l->status == 'approved' ? 'selected' : '' }}>Approved</option>
-                                <option value="rejected" {{ $l->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                            <select name="status"
+                                onchange="document.getElementById('status-form-{{ $l->id }}').submit();"
+                                style="background-color: {{ $l->status == 'pending' ? '#f7b731' : ($l->status == 'approved' ? '#20bf6b' : ($l->status == 'rejected' ? '#eb3b5a' : '#ffffff')) }}">
+                                <option value="pending" style="background-color: #f7b731; color: #ffffff;"
+                                    {{ $l->status == 'pending' ? 'selected' : '' }}>Diproses</option>
+                                <option value="approved" style="background-color: #20bf6b; color: #ffffff;"
+                                    {{ $l->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                <option value="rejected" style="background-color: #eb3b5a; color: #ffffff;"
+                                    {{ $l->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
                             </select>
+
+
                         </form>
 
-                        <script>
-                            // Script untuk mengatur warna pada tampilan awal
-                            document.addEventListener("DOMContentLoaded", function() {
-                                var selectElement = document.querySelector('select[name=status]');
-                                var selectedValue = selectElement.value;
-                                var selectedOption = selectElement.querySelector('option[value="' + selectedValue + '"]');
-                                selectedOption.style.backgroundColor = '#3498db'; // Warna latar belakang saat tampilan awal
-                                selectedOption.style.color = '#ffffff'; // Warna teks saat tampilan awal
-                            });
-                        </script>
 
                     </td>
                     <td>
