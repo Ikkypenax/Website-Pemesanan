@@ -26,7 +26,7 @@ class Lokasi extends Model
 
     public function hargaPerMeter()
     {
-        return $this->belongsTo(HargaPerMeter::class, 'jenis', 'id');
+        return $this->belongsTo(HargaPerMeter::class, 'jenis', 'jenis');
     }
 
     public function kategori()

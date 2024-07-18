@@ -53,7 +53,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Jenis:</strong>
-                        <span>{{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->jenis : 'No Jenis' }}</span>
+                        <span>{{ $lokasi->jenis }}</span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -61,7 +61,8 @@
                         <span class="ms-3">Harga per Meter</span>
                         <p class="form-control-plaintext" id="harga" name="harga"
                             data-harga="{{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 0 }}">
-                            {{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 'Rp. 0' }}</p>
+                            {{ $lokasi->hargaPerMeter ? 'Rp. ' . number_format($lokasi->hargaPerMeter->harga, 0, ',', '.') : 'Rp. 0' }}
+                        </p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -73,16 +74,20 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Lebar:</strong>
-                        <span id="lebar">{{ $lokasi->lebar }}</span>
+                        <span id="lebar">{{ $lokasi->lebar }}</span> meter
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <span class="ms-3">Total:</span>
-                        {{-- <span for="result" id="result" name="result" class="ms-3">{{ $lokasi->result }}</span> --}}
+                        {{-- <p for="result" id="result" name="result" class="form-control-plaintext">
+                            {{ 'Rp. ' . number_format(floatval($lokasi->result), 0, ',', '.') }}</p>
                         <p for="result" id="result" name="result" class="form-control-plaintext">
-                            {{ $lokasi->result }}</p>
+                            {{ 'Rp. ' . number_format((float) str_replace(',', '.', str_replace('.', '', $lokasi->result)), 0, ',', '.') }}
+                        </p> --}}
+                        <p for="result" id="result" name="result" class="form-control-plaintext">
+                            {{ $lokasi->result }}</p> 
                         <input type="hidden" id="result_hidden" name="result">
                     </div>
                 </div>
@@ -126,9 +131,9 @@
                         <form>
                             <span class="ms-3">Harga per Meter</span>
                             <p class="form-control-plaintext" id="harga" name="harga"
-                            data-harga="{{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 0 }}">
-                            {{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 'Rp. 0' }}</p>
-                            
+                                data-harga="{{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 0 }}">
+                                {{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 'Rp. 0' }}</p>
+
                             <span class="ms-3">Total</span>
                             <p for="result" id="result" name="result" class="form-control-plaintext">
                                 {{ $lokasi->result }}</p>
@@ -152,7 +157,7 @@
                             </div>
                             <span class="ms-3">Total Keseluruhan</span>
                             <p for="result" id="result" name="result" class="form-control-plaintext">
-                                {{ "" }}</p>
+                                {{ '' }}</p>
                             <input type="hidden" id="result_hidden" name="result">
 
                             <div class="modal-footer">

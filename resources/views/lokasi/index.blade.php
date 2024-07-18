@@ -43,7 +43,7 @@
                     <td>{{ $l->wa }}</td>
                     <td>{{ $l->kategori }}</td>
                     {{-- <td>{{ $l->kategori ? $l->kategori->nama_kategori : 'No Category' }}</td> --}}
-                    <td>{{ $l->hargaPerMeter ? $l->hargaPerMeter->jenis : 'No Jenis' }}</td>
+                    <td>{{ $l->jenis }}</td>
                     <td>{{ $l->panjang }} x {{ $l->lebar }}</td>
                     {{-- <td>{{ $l->lebar }}</td> --}}
                     <td>{{ $l->provinsi }}</td>

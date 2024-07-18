@@ -101,31 +101,40 @@ class LokasiController extends Controller
         $barang = HargaPerMeter::all();
         $kategori = Kategori::all();
         return view('lokasi.edit', compact('barang', 'lokasi', 'kategori'));
-        
     }
 
     public function update(Request $request, Lokasi $lokasi)
     {
 
-        $lokasi = Lokasi::all();
+        // $lokasi = Lokasi::all();
 
         $request->validate([
-            "nama" => "nullable",
-            "wa" => "nullable",
-            "kategori" => "nullable",
-            "jenis" => "nullable",
-            "panjang" => "nullable",
-            "lebar" => "nullable",
-            "provinsi" => "nullable",
-            "kabupaten" => "nullable",
-            "result" => "nullable",
+            "nama" => "required",
+            "wa" => "required",
+            "kategori" => "required",
+            "jenis" => "required",
+            "panjang" => "required",
+            "lebar" => "required",
+            "provinsi" => "required",
+            "kabupaten" => "required",
+            "result" => "required",
         ]);
 
+        $lokasi->nama = $request->input('nama', $lokasi->nama);
+        $lokasi->wa = $request->input('wa', $lokasi->wa);
+        $lokasi->kategori = $request->input('kategori', $lokasi->kategori);
+        $lokasi->jenis = $request->input('jenis', $lokasi->jenis);
+        $lokasi->panjang = $request->input('panjang', $lokasi->panjang);
+        $lokasi->lebar = $request->input('lebar', $lokasi->lebar);
+        $lokasi->provinsi = $request->input('provinsi', $lokasi->provinsi);
+        $lokasi->kabupaten = $request->input('kabupaten', $lokasi->kabupaten);
+        $lokasi->result = $request->input('result', $lokasi->result);
 
+        $lokasi->save();
         // $lokasi->update($request->all());
 
-        
-        
+
+
 
         return redirect()->route('lokasi.index')
             ->with('success', 'Lokasi updated successfully');
@@ -157,6 +166,3 @@ class LokasiController extends Controller
         return view('tambah_rp.update', compact('tambahRp'));
     }
 }
-
-
- 
