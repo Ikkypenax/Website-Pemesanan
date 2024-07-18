@@ -56,7 +56,7 @@
 
 
         select[name=status] {
-            width: 200px;
+            width: 100px;
             padding: 5px;
             font-size: 16px;
         }

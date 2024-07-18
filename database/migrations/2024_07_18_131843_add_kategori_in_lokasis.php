@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('harga_per_meter', function (Blueprint $table) {
-            $table->renameColumn('nama', 'jenis');
+        Schema::table('lokasis', function (Blueprint $table) {
+            $table->string('kategori')->after('nama')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('harga_per_meter', function (Blueprint $table) {
-            $table->renameColumn('nama', 'jenis');
+        Schema::table('lokasis', function (Blueprint $table) {
+            $table->dropColumn('kategori');
         });
     }
 };

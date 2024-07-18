@@ -21,10 +21,11 @@
                 <input type="number" class="form-control" id="harga" name="harga" required>
             </div>
             <div class="form-group">
-                <label for="kategori">Kategori</label>
-                <select id="kategori" name="kategori" class="form-control">
-                    <option value="indoor">Indoor</option>
-                    <option value="outdoor">Outdoor</option>
+                <label for="kategori_id">Kategori</label>
+                <select id="kategori_id" name="kategori_id" class="form-control">
+                    @foreach ($barang as $b)
+                    <option value="{{ $b->id }}">{{ $b->nama_kategori }}</option>
+                    @endforeach
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>

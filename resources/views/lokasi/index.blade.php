@@ -28,8 +28,8 @@
                 <th>Wa</th>
                 <th>Kategori</th>
                 <th>Jenis</th>
-                <th>Panjang</th>
-                <th>Lebar</th>
+                <th>P x L</th>
+                {{-- <th>Lebar</th> --}}
                 <th>Provinsi</th>
                 <th>Kabupaten</th>
                 <th>Harga</th>
@@ -42,9 +42,10 @@
                     <td>{{ $l->nama }}</td>
                     <td>{{ $l->wa }}</td>
                     <td>{{ $l->kategori }}</td>
-                    <td>{{ $l->jenis }}</td>
-                    <td>{{ $l->panjang }}</td>
-                    <td>{{ $l->lebar }}</td>
+                    {{-- <td>{{ $l->kategori ? $l->kategori->nama_kategori : 'No Category' }}</td> --}}
+                    <td>{{ $l->hargaPerMeter ? $l->hargaPerMeter->jenis : 'No Jenis' }}</td>
+                    <td>{{ $l->panjang }} x {{ $l->lebar }}</td>
+                    {{-- <td>{{ $l->lebar }}</td> --}}
                     <td>{{ $l->provinsi }}</td>
                     <td>{{ $l->kabupaten }}</td>
                     <td>{{ $l->result }}</td>
@@ -72,7 +73,7 @@
                     </td>
                     <td>
                         <form action="{{ route('lokasi.destroy', $l->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('lokasi.show', $l->id) }}">Show</a>
+                            {{-- <a class="btn btn-info" href="{{ route('lokasi.show', $l->id) }}">Show</a> --}}
                             <a class="btn btn-primary" href="{{ route('lokasi.edit', $l->id) }}">Edit</a>
                             @csrf
                             @method('DELETE')

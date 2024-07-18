@@ -14,7 +14,11 @@ class HargaPerMeter extends Model
     protected $fillable = [
         'jenis',
         'harga',
-        'kategori'
+        'kategori_id'
     ];
-}
 
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
+}

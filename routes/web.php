@@ -9,15 +9,16 @@ Route::resource('lokasi', LokasiController::class);
 
 Route::resource('barang', BarangController::class);
 
-
 Route::put('/lokasi/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
 
+Route::get('/getJenis/{kategori_id}', [LokasiController::class, 'getJenis']);
+Route::get('/getHarga/{jenis}', [LokasiController::class, 'getHarga']);
 
 Route::get('/form', [WilayahController::class,'form'])->name('form');
 Route::post('/getkabupaten', [WilayahController::class,'getkabupaten'])->name('getkabupaten');
 
-Route::get('/getJenis/{kategori}', [LokasiController::class, 'getJenis']);
-Route::get('/getHarga/{jenis}', [LokasiController::class, 'getHarga']);
+// Route::get('/getJenis/{kategori}', [LokasiController::class, 'getJenis']);
+
 
 
 // Route::get('/barang/create', [BarangController::class, 'create']);

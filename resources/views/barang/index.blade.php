@@ -32,7 +32,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $b->jenis }}</td>
                             <td>{{ $b->harga }}</td>
-                            <td>{{ $b->kategori }}</td>
+                            <td>{{ $b->kategori->nama_kategori ?? 'Tidak Ada Kategori' }}</td>
                             <td>
                                 <form action="{{ route('barang.destroy', $b->id) }}" method="POST" style="display:inline-block;">
                                 <a href="{{ route('barang.show', $b->id) }}" class="btn btn-info">Detail</a>

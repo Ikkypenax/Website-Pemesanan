@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('lokasis', function (Blueprint $table) {
-            // $table->string('kategori')->after('nama')->nullable();
-            $table->string('jenis')->after('kategori')->nullable();
-            $table->decimal('harga', 15, 2)->after('lebar')->nullable();
+            $table->unsignedBigInteger('id_harga_per_meter')->nullable();
+
+            $table->foreign('id_harga_per_meter')->references('id')->on('harga_per_meter')->onDelete('set null');
         });
     }
 
@@ -24,8 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('lokasis', function (Blueprint $table) {
-            // $table->dropColumn(['kategori', 'jenis', 'harga']);
-            $table->dropColumn([ 'jenis', 'harga']);
+            $table->dropForeign(['id_harga_per_meter']);
+            
+            $table->dropColumn('id_harga_per_meter');
         });
     }
 };

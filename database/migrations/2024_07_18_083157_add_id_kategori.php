@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('lokasis', function (Blueprint $table) {
-            $table->renameColumn('harga', 'result');
+        Schema::table('harga_per_meter', function (Blueprint $table) {
+            $table->foreignId('kategori_id')->after('id')->constrained();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('lokasis', function (Blueprint $table) {
-            $table->renameColumn('harga', 'result');
+        Schema::table('harga_per_meter', function (Blueprint $table) {
+            $table->dropColumn('kategori_id');
         });
     }
 };

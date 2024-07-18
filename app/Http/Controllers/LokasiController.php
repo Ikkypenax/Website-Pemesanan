@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lokasi;
 use App\Models\Regency;
+use App\Models\Kategori;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Models\HargaPerMeter;
@@ -12,30 +13,34 @@ class LokasiController extends Controller
 {
     public function index()
     {
-        $lokasi = Lokasi::all();
-        return view('lokasi.index', compact('lokasi'));
+        $lokasi = Lokasi::with(['hargaPerMeter', 'kategori'])->get();
+        $barang = HargaPerMeter::all();
+        $kategori = Kategori::all();
+        return view('lokasi.index', compact('lokasi', 'barang', 'kategori'));
     }
 
     public function create()
     {
-        // dd('lorem');
-        $hargaPerMeter = HargaPerMeter::all(); // Misalnya, ambil harga pertama\
+        $barang = HargaPerMeter::with('kategori')->get();
+        $kategori = Kategori::whereIn('id', [1, 2])->get();
         $provinces = Province::all();
-        return view('lokasi.create', compact('hargaPerMeter', 'provinces'));
+        return view('lokasi.create', compact('barang', 'kategori', 'provinces'));
+    }
+
+    public function getJenis($kategori_nama)
+    {
+        $kategori = Kategori::where('nama_kategori', $kategori_nama)->first();
+        $jenis = HargaPerMeter::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
+        return response()->json($jenis);
     }
 
     public function getHarga($jenis)
     {
         $harga = HargaPerMeter::where('jenis', $jenis)->first();
         return response()->json($harga);
-        
     }
 
-    public function getJenis($kategori)
-    {
-        $jenis = HargaPerMeter::where('kategori', $kategori)->get();
-        return response()->json($jenis);
-    }
+
     public function getkabupaten(request $request)
     {
         $id_provinsi = $request->id_provinsi;
@@ -44,13 +49,62 @@ class LokasiController extends Controller
             echo "<option value='$kabupaten->id'>$kabupaten->name</option>";
         }
     }
+
+
     public function store(Request $request)
     {
-        // dd($request->all());
-        
+        // Ambil nama provinsi dan kabupaten berdasarkan ID yang diterima
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
-        
+
+        // Validasi input
+        $request->validate([
+            "nama" => "required",
+            "wa" => "required",
+            "kategori" => "required",
+            "jenis" => "required",
+            "panjang" => "required",
+            "lebar" => "required",
+            "provinsi" => "required",
+            "kabupaten" => "required",
+            "result" => "required",
+        ]);
+
+        // Buat entri baru di database
+        Lokasi::create([
+            "nama" => $request->nama,
+            "wa" => $request->wa,
+            "jenis" => $request->jenis,
+            "kategori" => $request->kategori,
+            "panjang" => $request->panjang,
+            "lebar" => $request->lebar,
+            "provinsi" => $namaProvinsi,
+            "kabupaten" => $namaKabupaten,
+            "result" => $request->result,
+        ]);
+
+        // Redirect ke halaman indeks dengan pesan sukses
+        return redirect()->route('lokasi.index')
+            ->with('success', 'Lokasi created successfully.');
+    }
+
+
+
+    public function show(Lokasi $lokasi)
+    {
+        return view('lokasi.show', compact('lokasi'));
+    }
+
+    public function edit(Lokasi $lokasi, HargaPerMeter $barang)
+    {
+        $barang = HargaPerMeter::all();
+        return view('lokasi.edit', compact('barang', 'lokasi'));
+    }
+
+    public function update(Request $request, Lokasi $lokasi)
+    {
+
+        $lokasi = Lokasi::all();
 
         $request->validate([
             "nama" => "required",
@@ -62,45 +116,8 @@ class LokasiController extends Controller
             "provinsi" => "required",
             "kabupaten" => "required",
             "result" => "required"
-
         ]);
 
-        // $namaJenis = HargaPerMeter::find($request->jenis)->name;
-        // $namaKategori = HargaPerMeter::find($request->kategori)->name;
-        // $namaHarga = HargaPerMeter::find($request->harga);
-
-        Lokasi::create([
-            "nama" => ($request->nama),
-            "wa" => ($request->wa),
-            "jenis" => ($request->jenis),
-            "kategori" => ($request->kategori),
-            "panjang" => ($request->panjang),
-            "lebar" => ($request->lebar),
-            "provinsi" => ($namaProvinsi),
-            "kabupaten" => ($namaKabupaten),
-            "result" => ($request->result)
-        ]);
-
-        return redirect()->route('lokasi.index')
-            ->with('success', 'Lokasi created successfully.');
-    }
-
-    public function show(Lokasi $lokasi)
-    {
-        return view('lokasi.show', compact('lokasi'));
-    }
-
-    public function edit(Lokasi $lokasi)
-    {
-        return view('lokasi.edit', compact('lokasi'));
-    }
-
-    public function update(Request $request, Lokasi $lokasi)
-    {
-        $request->validate([
-            'provinsi' => 'required',
-            'kabupaten' => 'required',
-        ]);
 
         $lokasi->update($request->all());
 

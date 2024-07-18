@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\HargaPerMeter;
 
@@ -12,8 +13,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = HargaPerMeter::all();
-        return view('barang.index', compact('barang'));
+        $barang = HargaPerMeter::with('kategori')->get();
+        $kategori = Kategori::all();
+        return view('barang.index', compact('barang', 'kategori'));
     }
 
     /**
@@ -21,7 +23,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        return view('barang.create');
+        return view('barang.create', [
+            'barang' => Kategori::get(),
+        ]);
     }
 
     /**
@@ -29,16 +33,24 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        // $kategori_id = Kategori::find($request->nama_kategori)->nama_kategori;
+
         $request->validate([
             'jenis' => 'required',
             'harga' => 'required|numeric',
-            'kategori' => 'required',
-            
+            'kategori_id' => 'required',
+
         ]);
 
-        HargaPerMeter::create($request->all());
+        HargaPerMeter::create([
+            "jenis" => $request->jenis,
+            "harga" => $request->harga,
+            "kategori_id" => $request->kategori_id,
+
+        ]);
+        // dd($kategori_id);
         return redirect()->route('barang.index')
-                         ->with('success', 'Barang berhasil ditambahkan.');
+            ->with('success', 'Barang berhasil ditambahkan.');
     }
 
     /**
@@ -52,9 +64,10 @@ class BarangController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(HargaPerMeter $barang )
+    public function edit(HargaPerMeter $barang)
     {
-        return view('barang.edit', compact('barang'));
+        $kategori = Kategori::all();
+        return view('barang.edit', compact('barang', 'kategori'));
     }
 
     /**
@@ -65,12 +78,12 @@ class BarangController extends Controller
         $request->validate([
             'jenis' => 'required',
             'harga' => 'required|numeric',
-            'kategori' => 'required',
+            'kategori_id' => 'required',
         ]);
 
         $barang->update($request->all());
         return redirect()->route('barang.index')
-                         ->with('success', 'Barang berhasil diperbarui.');
+            ->with('success', 'Barang berhasil diperbarui.');
     }
 
     /**
@@ -80,6 +93,6 @@ class BarangController extends Controller
     {
         $barang->delete();
         return redirect()->route('barang.index')
-                         ->with('success', 'Barang berhasil dihapus.');
+            ->with('success', 'Barang berhasil dihapus.');
     }
 }
