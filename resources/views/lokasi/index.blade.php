@@ -28,7 +28,7 @@
                 <th>Wa</th>
                 <th>Kategori</th>
                 <th>Jenis</th>
-                <th>P x L</th>
+                <th width="320px">P x L</th>
                 {{-- <th>Lebar</th> --}}
                 <th>Provinsi</th>
                 <th>Kabupaten</th>
@@ -83,5 +83,6 @@
                 </tr>
             @endforeach
         </table>
-    </div>
+
+        
 @endsection

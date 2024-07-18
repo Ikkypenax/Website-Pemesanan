@@ -13,16 +13,17 @@
             top: 0;
             left: 0;
             height: 100%;
-            width: 250px;
+            width: 200px;
             z-index: 1000;
             background: #343a40;
             color: #fff;
             transition: all 0.3s;
             overflow-y: auto;
         }
+        
 
         #content {
-            margin-left: 250px;
+            margin-left: 50px;
             transition: all 0.3s;
         }
 

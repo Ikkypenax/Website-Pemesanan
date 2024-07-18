@@ -6,6 +6,7 @@ use App\Models\Lokasi;
 use App\Models\Regency;
 use App\Models\Kategori;
 use App\Models\Province;
+use App\Models\TambahRp;
 use Illuminate\Http\Request;
 use App\Models\HargaPerMeter;
 
@@ -14,9 +15,7 @@ class LokasiController extends Controller
     public function index()
     {
         $lokasi = Lokasi::with(['hargaPerMeter', 'kategori'])->get();
-        $barang = HargaPerMeter::all();
-        $kategori = Kategori::all();
-        return view('lokasi.index', compact('lokasi', 'barang', 'kategori'));
+        return view('lokasi.index', compact('lokasi'));
     }
 
     public function create()
@@ -57,6 +56,8 @@ class LokasiController extends Controller
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
 
+        $namaJenis = HargaPerMeter::find($request->jenis)->jenis;
+
         // Validasi input
         $request->validate([
             "nama" => "required",
@@ -74,7 +75,7 @@ class LokasiController extends Controller
         Lokasi::create([
             "nama" => $request->nama,
             "wa" => $request->wa,
-            "jenis" => $request->jenis,
+            "jenis" => $namaJenis,
             "kategori" => $request->kategori,
             "panjang" => $request->panjang,
             "lebar" => $request->lebar,
@@ -98,7 +99,9 @@ class LokasiController extends Controller
     public function edit(Lokasi $lokasi, HargaPerMeter $barang)
     {
         $barang = HargaPerMeter::all();
-        return view('lokasi.edit', compact('barang', 'lokasi'));
+        $kategori = Kategori::all();
+        return view('lokasi.edit', compact('barang', 'lokasi', 'kategori'));
+        
     }
 
     public function update(Request $request, Lokasi $lokasi)
@@ -107,19 +110,22 @@ class LokasiController extends Controller
         $lokasi = Lokasi::all();
 
         $request->validate([
-            "nama" => "required",
-            "wa" => "required",
-            "kategori" => "required",
-            "jenis" => "required",
-            "panjang" => "required",
-            "lebar" => "required",
-            "provinsi" => "required",
-            "kabupaten" => "required",
-            "result" => "required"
+            "nama" => "nullable",
+            "wa" => "nullable",
+            "kategori" => "nullable",
+            "jenis" => "nullable",
+            "panjang" => "nullable",
+            "lebar" => "nullable",
+            "provinsi" => "nullable",
+            "kabupaten" => "nullable",
+            "result" => "nullable",
         ]);
 
 
-        $lokasi->update($request->all());
+        // $lokasi->update($request->all());
+
+        
+        
 
         return redirect()->route('lokasi.index')
             ->with('success', 'Lokasi updated successfully');
@@ -144,7 +150,13 @@ class LokasiController extends Controller
 
         return back()->with('success', 'Updated successfully.');
     }
+
+    public function nota()
+    {
+        $tambahRp = TambahRp::all();
+        return view('tambah_rp.update', compact('tambahRp'));
+    }
 }
 
 
-// onchange -> sumbmit pilihan selcet 
+ 
