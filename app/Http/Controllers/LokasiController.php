@@ -160,9 +160,9 @@ class LokasiController extends Controller
         return back()->with('success', 'Updated successfully.');
     }
 
-    public function nota()
-    {
-        $tambahRp = TambahRp::all();
-        return view('tambah_rp.update', compact('tambahRp'));
-    }
+    // public function nota()
+    // {
+    //     $tambahRp = TambahRp::all();
+    //     return view('tambah_rp.update', compact('tambahRp'));
+    // }
 }

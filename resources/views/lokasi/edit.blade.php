@@ -3,14 +3,67 @@
 @section('title', 'Edit Lokasi')
 
 @section('content')
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/add-biaya-lain/{{$lokasi->id}}" method="POST">
+                            @csrf
+                            <div>
+                                <label for="biaya_transportasi">Biaya Transportasi:</label>
+                                <input class="form-control" type="number" name="biaya_transportasi" id="biaya_transportasi">
+                            </div>
+                            <div>
+                                <label for="biaya_pemasangan">Biaya Pemasangan:</label>
+                                <input class="form-control" type="number" name="biaya_pemasangan" id="biaya_pemasangan">
+                            </div>
+                            <div>
+                                <label for="biaya_jasa">Biaya Jasa:</label>
+                                <input class="form-control" type="number" name="biaya_jasa" id="biaya_jasa">
+                            </div>
+                            <div>
+                                <label for="biaya_service">Biaya Service:</label>
+                                <input class="form-control" type="number" name="biaya_service" id="biaya_service">
+                            </div>
+                            {{-- <span class="ms-3">Total Keseluruhan</span>
+                            <p for="result" id="result" name="result" class="form-control-plaintext">
+                                {{ '' }}</p>
+                            <input type="hidden" id="result_hidden" name="result"> --}}
+
+                            <div class="modal-footer">
+                                <button type="submit" class="w-100 btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Edit Lokasi</h2>
-                </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('lokasi.index') }}"> Back</a>
+                <div class="pull-left w-100 d-flex justify-content-between">
+                    <div>
+                        <div class="d-flex">
+                            <div class="pull-right">
+                                <a class="btn" href="{{ route('lokasi.index') }}"><b><</b></a>
+                            </div>
+                            <h2>Edit Lokasi</h2>
+                        </div>
+                    </div>
+                    {{-- triger modal --}}
+                    <div>
+                     
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,7 +79,57 @@
             </div>
         @endif
 
-        <form action="{{ route('lokasi.update', $lokasi->id) }}" method="POST">
+        <div>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <td>Nama</td>
+                        <td>{{ $lokasi->nama }}</td>
+                    </tr>
+                    <tr>
+                        <td>WA</td>
+                        <td>{{ $lokasi->wa }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kategori</td>
+                        <td>{{ $lokasi->kategori }}</td>
+                    </tr>
+                    <tr>
+                        <td>Jenis</td>
+                        <td>{{ $lokasi->jenis }}</td>
+                    </tr>
+                    <tr>
+                        <td>Harga Per Meter</td>
+                        <td>{{ $lokasi->hargaPerMeter ? 'Rp. ' . number_format($lokasi->hargaPerMeter->harga, 0, ',', '.') : 'Rp. 0' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Panjang x Lebar</td>
+                        <td>{{ $lokasi->panjang }} x {{ $lokasi->lebar }} Meter</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>{{ $lokasi->result }}</td>
+                    </tr>
+                    <tr>
+                        <td>Provinsi</td>
+                        <td>{{ $lokasi->provinsi }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kabupaten</td>
+                        <td>{{ $lokasi->kabupaten }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                                + Biaya Lain
+                            </button>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        {{-- <form action="{{ route('lokasi.update', $lokasi->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -81,11 +184,6 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <span class="ms-3">Total:</span>
-                        {{-- <p for="result" id="result" name="result" class="form-control-plaintext">
-                            {{ 'Rp. ' . number_format(floatval($lokasi->result), 0, ',', '.') }}</p>
-                        <p for="result" id="result" name="result" class="form-control-plaintext">
-                            {{ 'Rp. ' . number_format((float) str_replace(',', '.', str_replace('.', '', $lokasi->result)), 0, ',', '.') }}
-                        </p> --}}
                         <p for="result" id="result" name="result" class="form-control-plaintext">
                             {{ $lokasi->result }}</p> 
                         <input type="hidden" id="result_hidden" name="result">
@@ -107,68 +205,13 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Launch demo modal
-                    </button>
+
                 </div>
             </div>
-        </form>
+        </form> --}}
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <span class="ms-3">Harga per Meter</span>
-                            <p class="form-control-plaintext" id="harga" name="harga"
-                                data-harga="{{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 0 }}">
-                                {{ $lokasi->hargaPerMeter ? $lokasi->hargaPerMeter->harga : 'Rp. 0' }}</p>
 
-                            <span class="ms-3">Total</span>
-                            <p for="result" id="result" name="result" class="form-control-plaintext">
-                                {{ $lokasi->result }}</p>
-                            <input type="hidden" id="result_hidden" name="result">
-
-                            <div>
-                                <label for="biaya_transportasi">Biaya Transportasi:</label>
-                                <input type="number" name="biaya_transportasi" id="biaya_transportasi">
-                            </div>
-                            <div>
-                                <label for="biaya_pemasangan">Biaya Pemasangan:</label>
-                                <input type="number" name="biaya_pemasangan" id="biaya_pemasangan">
-                            </div>
-                            <div>
-                                <label for="biaya_jasa">Biaya Jasa:</label>
-                                <input type="number" name="biaya_jasa" id="biaya_jasa">
-                            </div>
-                            <div>
-                                <label for="biaya_service">Biaya Service:</label>
-                                <input type="number" name="biaya_service" id="biaya_service">
-                            </div>
-                            <span class="ms-3">Total Keseluruhan</span>
-                            <p for="result" id="result" name="result" class="form-control-plaintext">
-                                {{ '' }}</p>
-                            <input type="hidden" id="result_hidden" name="result">
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
     </div>

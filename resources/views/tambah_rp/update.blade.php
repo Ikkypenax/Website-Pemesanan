@@ -68,6 +68,7 @@
             </div>
             <div class="modal-body">
                 <form>
+                    <p>{{$lokasi->id}}</p>
                     <div>
                         <label for="biaya_transportasi">Biaya Transportasi:</label>
                         <input type="text" name="biaya_transportasi" id="biaya_transportasi">
