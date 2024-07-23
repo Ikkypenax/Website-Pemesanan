@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('lokasis', function (Blueprint $table) {
-            $table->string('kategori')->after('nama')->nullable();
-            $table->string('jenis')->nullable();
-            $table->decimal('harga', 15, 2)->after('lebar')->nullable();
+            // $table->string('kategori')->after('nama')->nullable();
+            $table->string('jenis')->after('kategori')->nullable();
+            // $table->decimal('harga', 15, 2)->after('lebar')->nullable();
         });
     }
 
@@ -25,7 +25,8 @@ return new class extends Migration
     {
         Schema::table('lokasis', function (Blueprint $table) {
             // $table->dropColumn(['kategori', 'jenis', 'harga']);
-            $table->dropColumn([ 'jenis', 'harga']);
+            // $table->dropColumn([ 'jenis', 'harga']);
+            $table->dropColumn([ 'jenis']);
         });
     }
 };

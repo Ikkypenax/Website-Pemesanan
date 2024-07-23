@@ -28,7 +28,7 @@
                 <th>Wa</th>
                 <th>Kategori</th>
                 <th>Jenis</th>
-                <th>P x L</th>
+                <th width="320px">P x L</th>
                 {{-- <th>Lebar</th> --}}
                 <th>Provinsi</th>
                 <th>Kabupaten</th>
@@ -43,7 +43,7 @@
                     <td>{{ $l->wa }}</td>
                     <td>{{ $l->kategori }}</td>
                     {{-- <td>{{ $l->kategori ? $l->kategori->nama_kategori : 'No Category' }}</td> --}}
-                    <td>{{ $l->hargaPerMeter ? $l->hargaPerMeter->jenis : 'No Jenis' }}</td>
+                    <td>{{ $l->jenis }}</td>
                     <td>{{ $l->panjang }} x {{ $l->lebar }}</td>
                     {{-- <td>{{ $l->lebar }}</td> --}}
                     <td>{{ $l->provinsi }}</td>
@@ -83,5 +83,6 @@
                 </tr>
             @endforeach
         </table>
-    </div>
+
+        
 @endsection

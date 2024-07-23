@@ -124,7 +124,7 @@
                     $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
                 }
             });
-
+ 
             $('#jenis').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
                 var harga = parseFloat(selectedOption.data('harga')) || 0;
