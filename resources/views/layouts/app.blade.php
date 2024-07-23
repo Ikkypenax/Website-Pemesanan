@@ -20,15 +20,14 @@
             transition: all 0.3s;
             overflow-y: auto;
         }
-        
 
         #content {
-            margin-left: 50px;
+            margin-left: 200px; /* Set margin-left to the width of the sidebar */
             transition: all 0.3s;
         }
 
         #sidebar.active {
-            margin-left: -250px;
+            margin-left: -200px; /* Adjust to match sidebar width */
         }
 
         #content.active {
@@ -54,15 +53,11 @@
             background: #232931;
         }
 
-
-
         select[name=status] {
             width: 100px;
             padding: 5px;
             font-size: 16px;
         }
-
-        
     </style>
 </head>
 
@@ -86,7 +81,7 @@
                 <a href="/barang">Barang</a>
             </li>
             <li>
-                <a href="#">Settings</a>
+                <a href="/catalog">Catalog</a>
             </li>
         </ul>
     </div>
@@ -95,10 +90,10 @@
     <div id="content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                {{-- <button type="button" id="sidebarCollapse" class="btn btn-info">
                     <i class="fas fa-align-left"></i>
                     <span>Toggle Sidebar</span>
-                </button>
+                </button> --}}
             </div>
         </nav>
 
@@ -107,19 +102,18 @@
             @yield('content')
         </div>
     </div>
+{{-- bootstrap js --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 
     <!-- jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function() {
-
-            $('#sidebarCollapse').on('click', function() {
-                $('#sidebar').toggleClass('active');
-                $('#content').toggleClass('active');
-            });
-
+        document.getElementById('sidebarCollapse').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('content').classList.toggle('active');
         });
     </script>
     <script>
