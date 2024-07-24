@@ -115,7 +115,7 @@
                 <a href="/barang">Barang</a>
             </li>
             <li>
-                <a href="#">Settings</a>
+                <a href="/catalog">Catalog</a>
             </li>
         </ul>
     </div>
