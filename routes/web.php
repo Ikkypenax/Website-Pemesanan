@@ -14,9 +14,11 @@ Route::resource('lokasi', LokasiController::class);
 Route::put('/lokasi/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
 
 Route::resource('barang', BarangController::class);
+Route::put('biaya/{id}', [BarangController::class, 'update'])->name('biaya.update');
+
 
 Route::resource('biaya', BiayaLainController::class);
-
+Route::put('/biaya/{id}', [BiayaLainController::class, 'update'])->name('biaya.update');
 
 
 Route::get('/getJenis/{kategori_id}', [LokasiController::class, 'getJenis']);

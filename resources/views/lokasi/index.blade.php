@@ -3,15 +3,14 @@
 @section('title', 'List Lokasi')
 
 @section('content')
-    <div class="container mt-5">
+
+    <div class="container mt-3">
         <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Lokasi</h2>
-                </div>
-                <div class="pull-right mb-2">
-                    <a class="btn btn-success" href="{{ route('lokasi.create') }}"> Create New Lokasi</a>
-                </div>
+            <div class="col-md-12">
+                <h2>Lokasi</h2>
+                <a class="btn btn-success" href="{{ route('lokasi.create') }}">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                </a>
             </div>
         </div>
 
@@ -21,7 +20,7 @@
             </div>
         @endif
 
-        <table class="table table-bordered ">
+        <table class="table table-bordered mt-3">
             <tr>
                 <th>No</th>
                 <th>Nama</th>

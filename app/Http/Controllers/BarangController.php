@@ -8,9 +8,6 @@ use App\Models\HargaPerMeter;
 
 class BarangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $barang = HargaPerMeter::with('kategori')->get();
@@ -18,9 +15,6 @@ class BarangController extends Controller
         return view('barang.index', compact('barang', 'kategori'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('barang.create', [
@@ -28,13 +22,8 @@ class BarangController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // $kategori_id = Kategori::find($request->nama_kategori)->nama_kategori;
-
         $request->validate([
             'jenis' => 'required',
             'harga' => 'required|numeric',
@@ -53,26 +42,17 @@ class BarangController extends Controller
             ->with('success', 'Barang berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         return view('barang.show', compact('barang'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(HargaPerMeter $barang)
     {
         $kategori = Kategori::all();
         return view('barang.edit', compact('barang', 'kategori'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, HargaPerMeter $barang)
     {
         $request->validate([
@@ -86,9 +66,6 @@ class BarangController extends Controller
             ->with('success', 'Barang berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(HargaPerMeter $barang)
     {
         $barang->delete();

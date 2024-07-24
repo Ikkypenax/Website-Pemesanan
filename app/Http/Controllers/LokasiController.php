@@ -102,7 +102,7 @@ class LokasiController extends Controller
         $lokasi = Lokasi::with('tambahRp')->find($id);
         $barang = HargaPerMeter::all();
         $kategori = Kategori::all();
-        // dd($biaya);
+        // dd($lokasi->tambahRp);
         return view('lokasi.edit', compact('barang', 'kategori', 'lokasi'));
     }
 

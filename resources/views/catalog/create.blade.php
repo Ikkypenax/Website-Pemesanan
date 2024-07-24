@@ -3,8 +3,30 @@
 @section('title', 'List Cataloge')
 
 @section('content')
-    <div class="container mt-5">
-        <h2>Tambah Catalog</h2>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-left w-100 d-flex justify-content-between">
+                    <div>
+                        <div class="d-flex">
+                            <div class="pull-right" style="margin-right: 16px">
+                                <a class="btn btn-primary" href="{{ route('catalog.index') }}">
+                                    <i class="bi bi-arrow-left-square"></i>
+                                </a>
+                            </div>
+                            <h2>Tambah Catalog</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -34,4 +56,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
-    @endsection
+
+    </div>
+@endsection

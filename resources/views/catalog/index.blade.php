@@ -5,7 +5,6 @@
 @section('content')
 <div class="container">
 
-    <!-- Button trigger modal -->
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -24,10 +23,12 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top: 8px">
         <div class="col-md-12">
-            <h1>Catalog Display</h1>
-            <a href="{{ route('catalog.create') }}" class="btn btn-primary">Tambah Display</a>
+            <h2>Catalog Display</h2>
+            <a href="{{ route('catalog.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle-dotted"></i>
+            </a>
 
             @if ($message = Session::get('success'))
                 <div class="alert alert-success mt-2">
@@ -35,7 +36,7 @@
                 </div>
             @endif
 
-            <table class="table">
+            <table class="table mt-3">
                 <thead>
                     <tr>
                         <th>Nama</th>
