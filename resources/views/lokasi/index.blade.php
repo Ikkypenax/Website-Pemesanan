@@ -21,36 +21,36 @@
             </div>
         @endif
 
-        <table class="table table-bordered">
+        <table class="table table-bordered ">
             <tr>
                 <th>No</th>
                 <th>Nama</th>
                 <th>Wa</th>
                 <th>Kategori</th>
                 <th>Jenis</th>
-                <th width="320px">P x L</th>
-                {{-- <th>Lebar</th> --}}
+                <th>P x L</th>
                 <th>Provinsi</th>
                 <th>Kabupaten</th>
                 <th>Harga</th>
+                <th>Total</th>
                 <th>Status</th>
-                <th width="280px">Action</th>
+                <th>Action</th>
             </tr>
             @foreach ($lokasi as $l)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $l->nama }}</td>
-                    <td>{{ $l->wa }}</td>
-                    <td>{{ $l->kategori }}</td>
-                    {{-- <td>{{ $l->kategori ? $l->kategori->nama_kategori : 'No Category' }}</td> --}}
-                    <td>{{ $l->jenis }}</td>
-                    <td>{{ $l->panjang }} x {{ $l->lebar }}</td>
-                    {{-- <td>{{ $l->lebar }}</td> --}}
-                    <td>{{ $l->provinsi }}</td>
-                    <td>{{ $l->kabupaten }}</td>
-                    <td>{{ $l->result }}</td>
-                    <td>
-
+                    <td data-label="No">{{ $loop->iteration }}</td>
+                    <td data-label="Nama">{{ $l->nama }}</td>
+                    <td data-label="Wa">{{ $l->wa }}</td>
+                    <td data-label="Kategori">{{ $l->kategori }}</td>
+                    <td data-label="Jenis">{{ $l->jenis }}</td>
+                    <td data-label="P x L">{{ $l->panjang }} x {{ $l->lebar }}</td>
+                    <td data-label="Provinsi">{{ $l->provinsi }}</td>
+                    <td data-label="Kabupaten">{{ $l->kabupaten }}</td>
+                    <td data-label="Harga">{{ $l->result ? 'Rp. ' . number_format($l->result, 0, ',', '.') : 'Rp. 0' }}
+                    </td>
+                    <td data-label="Total">
+                        {{ $l->tambahRp ? 'Rp. ' . number_format($l->tambahRp->total_biaya, 0, ',', '.') : 'Rp. 0' }}</td>
+                    <td data-label="Status">
                         <form action="{{ route('lokasi.status', $l->id) }}" method="POST"
                             id="status-form-{{ $l->id }}">
                             @csrf
@@ -65,15 +65,10 @@
                                 <option value="rejected" style="background-color: #eb3b5a; color: #ffffff;"
                                     {{ $l->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
                             </select>
-
-
                         </form>
-
-
                     </td>
-                    <td>
+                    <td data-label="Action">
                         <form action="{{ route('lokasi.destroy', $l->id) }}" method="POST">
-                            {{-- <a class="btn btn-info" href="{{ route('lokasi.show', $l->id) }}">Show</a> --}}
                             <a class="btn btn-primary" href="{{ route('lokasi.edit', $l->id) }}">Edit</a>
                             @csrf
                             @method('DELETE')
@@ -84,5 +79,5 @@
             @endforeach
         </table>
 
-        
-@endsection
+
+    @endsection

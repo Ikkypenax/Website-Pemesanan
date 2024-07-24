@@ -52,13 +52,13 @@ class LokasiController extends Controller
 
     public function store(Request $request)
     {
-        // Ambil nama provinsi dan kabupaten berdasarkan ID yang diterima
+        
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
 
         $namaJenis = HargaPerMeter::find($request->jenis)->jenis;
 
-        // Validasi input
+        
         $request->validate([
             "nama" => "required",
             "wa" => "required",
@@ -71,7 +71,6 @@ class LokasiController extends Controller
             "result" => "required",
         ]);
 
-        // Buat entri baru di database
         Lokasi::create([
             "nama" => $request->nama,
             "wa" => $request->wa,
@@ -84,7 +83,7 @@ class LokasiController extends Controller
             "result" => $request->result,
         ]);
 
-        // Redirect ke halaman indeks dengan pesan sukses
+    
         return redirect()->route('lokasi.index')
             ->with('success', 'Lokasi created successfully.');
     }
@@ -96,17 +95,18 @@ class LokasiController extends Controller
         return view('lokasi.show', compact('lokasi'));
     }
 
-    public function edit(Lokasi $lokasi, HargaPerMeter $barang)
+    public function edit($id)
     {
+        // dd($id);
+        $lokasi = Lokasi::with('tambahRp')->find($id);
         $barang = HargaPerMeter::all();
         $kategori = Kategori::all();
-        return view('lokasi.edit', compact('barang', 'lokasi', 'kategori'));
+        // dd($biaya);
+        return view('lokasi.edit', compact('barang', 'kategori', 'lokasi'));
     }
 
     public function update(Request $request, Lokasi $lokasi)
     {
-
-        // $lokasi = Lokasi::all();
 
         $request->validate([
             "nama" => "required",

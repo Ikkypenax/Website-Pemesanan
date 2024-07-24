@@ -15,5 +15,12 @@ class TambahRp extends Model
         'biaya_pemasangan',
         'biaya_jasa',
         'biaya_service',
+        'total_biaya',
+        'lokasi_id',
     ];
+
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class);
+    }
 }

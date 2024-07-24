@@ -4,7 +4,27 @@
 
 @section('content')
     <div class="container mt-5">
-        <h2>Tambah Barang</h2>
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-left w-100 d-flex justify-content-between">
+                    <div>
+                        <div class="d-flex">
+                            <div class="pull-right mr-3">
+                                <a class="btn btn-success" href="{{ route('barang.index') }}"><b>
+                                    <i class="bi bi-arrow-left-square"></i>
+                                </a>
+                            </div>
+                            <h2>Add Barang</h2>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

@@ -7,11 +7,16 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\TambahRpController;
 
+
+
 Route::resource('lokasi', LokasiController::class);
+Route::put('/lokasi/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
 
 Route::resource('barang', BarangController::class);
 
-Route::put('/lokasi/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
+Route::resource('biaya', BiayaLainController::class);
+
+
 
 Route::get('/getJenis/{kategori_id}', [LokasiController::class, 'getJenis']);
 Route::get('/getHarga/{jenis}', [LokasiController::class, 'getHarga']);
@@ -19,10 +24,13 @@ Route::get('/getHarga/{jenis}', [LokasiController::class, 'getHarga']);
 Route::get('/form', [WilayahController::class,'form'])->name('form');
 Route::post('/getkabupaten', [WilayahController::class,'getkabupaten'])->name('getkabupaten');
 
-// Route::resource('tambah_rp', [TambahRpController::class]);
-Route::get('/lokasi/nota', [LokasiController::class, 'nota'])->name('lokasi.nota');
+Route::get('lokasi/{id}/edit', [LokasiController::class, 'edit'])->name('lokasi.edit');
 
-Route::post('/add-biaya-lain/{id}', [BiayaLainController::class, 'biaya'])->name('tambah-biaya-lain');
+
+
+Route::get('/lokasi/nota', [LokasiController::class, 'nota'])->name('lokasi.nota');
+// Route::post('/add-biaya-lain/{id}', [BiayaLainController::class, 'biaya'])->name('tambah-biaya-lain');
+
 
 
 

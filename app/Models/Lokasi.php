@@ -33,4 +33,9 @@ class Lokasi extends Model
     {
         return $this->belongsTo(Kategori::class, 'nama_kategori', 'id');
     }
+
+    public function tambahRp()
+    {
+        return $this->hasOne(tambahRp::class);
+    }
 }

@@ -6,11 +6,20 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Add New Lokasi</h2>
-                </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('lokasi.index') }}"> Back</a>
+                <div class="pull-left w-100 d-flex justify-content-between">
+                    <div>
+                        <div class="d-flex">
+                            <div class="pull-right">
+                                <a class="btn" href="{{ route('lokasi.index') }}"><b>
+                                        <<< </a>
+                            </div>
+                            <h2>Add Lokasi</h2>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,7 +133,7 @@
                     $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
                 }
             });
- 
+
             $('#jenis').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
                 var harga = parseFloat(selectedOption.data('harga')) || 0;
@@ -139,14 +148,18 @@
                 var lebar = parseFloat($('#lebar').val()) || 0;
                 var harga = parseFloat($('#harga').data('harga')) || 0;
                 var result = panjang * lebar * harga;
-                $('#result').text(`Total: Rp. ${result.toLocaleString()}`);
-                $('#result_hidden').val(result);
+
+                
+                var formattedResult = result.toFixed(2);
+
+                $('#result').text(`Total: Rp. ${parseFloat(formattedResult).toLocaleString()}`);
+                $('#result_hidden').val(formattedResult);
             });
 
-            // Ensure the form submission includes the correct total price
+            
             $('form').on('submit', function() {
-                var total = $('#result').text().replace('Total: Rp. ', '').trim();
-                $('#result_hidden').val(total);
+                var total = $('#result_hidden').val();
+                $('#result_hidden').val(parseFloat(total).toFixed(2));
             });
         });
     </script>
