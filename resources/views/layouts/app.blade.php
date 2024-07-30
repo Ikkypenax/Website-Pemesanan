@@ -126,7 +126,7 @@
 
         .table th,
         .table td {
-            padding: 12px;
+            padding: 8px;
             text-align: left;
             border: 1px solid #ddd;
         }
@@ -173,7 +173,7 @@
 </head>
 
 <body>
-    
+
 
     <!-- Sidebar -->
     <div class="p-4" id="sidebar">

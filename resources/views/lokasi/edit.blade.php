@@ -5,110 +5,6 @@
 @section('content')
 
 
-    <!-- Modal -->
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Rincian biaya lain</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
-                        </button>
-                </div>
-            </div>
-          
-        </div>
-    </div> --}}
-
-    <!-- + Tambah Biaya-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('biaya.store') }}" method="POST">
-                        @csrf
-                        <div>
-                            <label for="transportasi">Biaya Transportasi:</label>
-                            <input class="form-control" type="number" name="transportasi" id="transportasi">
-                        </div>
-                        <div>
-                            <label for="pemasangan">Biaya Pemasangan:</label>
-                            <input class="form-control" type="number" name="pemasangan" id="pemasangan">
-                        </div>
-                        <div>
-                            <label for="jasa">Biaya Jasa:</label>
-                            <input class="form-control" type="number" name="jasa" id="jasa">
-                        </div>
-                        <div>
-                            <label for="service">Biaya Service:</label>
-                            <input class="form-control" type="number" name="service" id="service">
-                        </div>
-                        <div>
-                            <input type="hidden" name="lokasi_id" value="{{ $lokasi->id }}" id="lokasi_id">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="w-100 btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- + Edit Biaya -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel2">Edit Biaya</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('biaya.update', $lokasi->id) }}" method="POST">
-                        @csrf
-                        @method('PUT') <!-- Tambahkan metode spoofing -->
-                        <div>
-                            <label for="transportasi">Biaya Transportasi:</label>
-                            <input class="form-control" type="text" name="transportasi" id="transportasi"
-                                value="{{ number_format($lokasi->tambahRp->biaya_transportasi, 0, ',', '.') }}">
-                        </div>
-                        <div>
-                            <label for="pemasangan">Biaya Pemasangan:</label>
-                            <input class="form-control" type="text" name="pemasangan" id="pemasangan"
-                                value="{{ number_format($lokasi->tambahRp->biaya_pemasangan, 0, ',', '.') }}">
-                        </div>
-                        <div>
-                            <label for="jasa">Biaya Jasa:</label>
-                            <input class="form-control" type="text" name="jasa" id="jasa"
-                                value="{{ number_format($lokasi->tambahRp->biaya_jasa, 0, ',', '.') }}">
-                        </div>
-                        
-                        <div>
-                            <label for="service">Biaya Service:</label>
-                            <input class="form-control" type="text" name="service" id="service"
-                                value="{{ number_format($lokasi->tambahRp->biaya_service, 0, ',', '.') }}">
-                        </div>
-                        <div>
-                            <input type="hidden" name="lokasi_id" value="{{ $lokasi->id }}" id="lokasi_id">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="w-100 btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
     {{-- Tabel pesanan --}}
     <div class="container mt-3">
         <div class="row">
@@ -252,6 +148,95 @@
                     </tr>
                 </thead>
             </table>
+        </div>
+    </div>
+
+
+    <!-- + Tambah Biaya-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('biaya.store') }}" method="POST">
+                        @csrf
+                        <div>
+                            <label for="transportasi">Biaya Transportasi:</label>
+                            <input class="form-control" type="number" name="transportasi" id="transportasi">
+                        </div>
+                        <div>
+                            <label for="pemasangan">Biaya Pemasangan:</label>
+                            <input class="form-control" type="number" name="pemasangan" id="pemasangan">
+                        </div>
+                        <div>
+                            <label for="jasa">Biaya Jasa:</label>
+                            <input class="form-control" type="number" name="jasa" id="jasa">
+                        </div>
+                        <div>
+                            <label for="service">Biaya Service:</label>
+                            <input class="form-control" type="number" name="service" id="service">
+                        </div>
+                        <div>
+                            <input type="hidden" name="lokasi_id" value="{{ $lokasi->id }}" id="lokasi_id">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="w-100 btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- + Edit Biaya -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel2">Edit Biaya</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('biaya.update', $lokasi->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div>
+                            <label for="transportasi">Biaya Transportasi:</label>
+                            <input class="form-control" type="text" name="transportasi" id="transportasi"
+                                value="">
+                        </div>
+                        <div>
+                            <label for="pemasangan">Biaya Pemasangan:</label>
+                            <input class="form-control" type="text" name="pemasangan" id="pemasangan"
+                                value="">
+                        </div>
+                        <div>
+                            <label for="jasa">Biaya Jasa:</label>
+                            <input class="form-control" type="text" name="jasa" id="jasa"
+                                value="">
+                        </div>
+
+                        <div>
+                            <label for="service">Biaya Service:</label>
+                            <input class="form-control" type="text" name="service" id="service"
+                                value="">
+                        </div>
+                        <div>
+                            <input type="hidden" name="total_biaya" value="" id="total_biaya">
+                        </div>
+                        <div>
+                            <input type="hidden" name="lokasi_id" value="{{ $lokasi->id }}" id="lokasi_id">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="w-100 btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

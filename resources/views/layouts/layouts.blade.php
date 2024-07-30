@@ -133,9 +133,9 @@
         <div class="navbar">
             <div class="logo"><a href="#">Sadjiwa Mitra Sembada</a></div>
             <ul class="menu">
-                <li><a href="#Home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="#About">About</a></li>
-                <li><a href="#Category">Catalog</a></li>
+                <li><a href="/catalog/list">Catalog</a></li>
                 <li><a href="#Contact">Contact</a></li>
                 <li><a href="#Feedback">Feedback</a></li>
             </ul>
