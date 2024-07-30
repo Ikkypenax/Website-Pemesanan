@@ -158,7 +158,7 @@
             background-color: #dc3545;
             color: white;
         }
-        
+
         .btn-success {
             background-color: #19d900;
             color: white;
@@ -169,14 +169,16 @@
         }
 
     </style>
+
 </head>
 
 <body>
+    
 
     <!-- Sidebar -->
     <div class="p-4" id="sidebar">
         <div class="sidebar-header">
-            <h3>Markotol</h3>
+            <h3>Dashboard</h3>
         </div>
 
         <ul class="list-unstyled components">

@@ -9,6 +9,10 @@ use App\Http\Controllers\TambahRpController;
 use App\Http\Controllers\BiayaLainController;
 
 
+Route::get('/', function () {
+    return view('home');
+});
+
 
 Route::resource('lokasi', LokasiController::class);
 Route::put('/lokasi/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
@@ -32,16 +36,7 @@ Route::get('lokasi/{id}/edit', [LokasiController::class, 'edit'])->name('lokasi.
 
 
 Route::get('/lokasi/nota', [LokasiController::class, 'nota'])->name('lokasi.nota');
-// Route::post('/add-biaya-lain/{id}', [BiayaLainController::class, 'biaya'])->name('tambah-biaya-lain');
 
-
-
-
-
-
-// Route::get('/getJenis/{kategori}', [LokasiController::class, 'getJenis']);
-// Route::get('/barang/create', [BarangController::class, 'create']);
-// Route::post('/barang/store', [BarangController::class, 'store']);
 
 //Catalog
 Route::get('/catalog', [CatalogController::class, 'index']);
