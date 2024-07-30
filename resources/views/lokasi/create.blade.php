@@ -144,7 +144,11 @@
                 var harga = parseFloat(selectedOption.data('harga')) || 0;
                 $('#harga').text(harga.toLocaleString()).data('harga', harga);
 
+<<<<<<< HEAD
                
+=======
+
+>>>>>>> fa0752ab492037faa48025b0db249aec3adf84be
                 $('#panjang, #lebar').trigger('input');
             });
 

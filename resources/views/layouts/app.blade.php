@@ -158,7 +158,7 @@
             background-color: #dc3545;
             color: white;
         }
-        
+
         .btn-success {
             background-color: #19d900;
             color: white;
@@ -169,14 +169,20 @@
         }
 
     </style>
+
 </head>
 
 <body>
 
+
     <!-- Sidebar -->
     <div class="p-4" id="sidebar">
         <div class="sidebar-header">
+<<<<<<< HEAD
             <h3>CV</h3>
+=======
+            <h3>Dashboard</h3>
+>>>>>>> fa0752ab492037faa48025b0db249aec3adf84be
         </div>
 
         <ul class="list-unstyled components">

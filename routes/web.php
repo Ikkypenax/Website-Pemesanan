@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\CatalogController;
@@ -8,6 +9,17 @@ use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\TambahRpController;
 use App\Http\Controllers\BiayaLainController;
 
+
+Route::get('/', function () {
+    return view('home');
+});
+
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/lokasi', [LokasiController::class, 'index'])->name('lokasi');
 
 
 Route::resource('lokasi', LokasiController::class);
@@ -32,23 +44,16 @@ Route::get('lokasi/{id}/edit', [LokasiController::class, 'edit'])->name('lokasi.
 
 
 Route::get('/lokasi/nota', [LokasiController::class, 'nota'])->name('lokasi.nota');
-// Route::post('/add-biaya-lain/{id}', [BiayaLainController::class, 'biaya'])->name('tambah-biaya-lain');
 
-
-
-
-
-
-// Route::get('/getJenis/{kategori}', [LokasiController::class, 'getJenis']);
-// Route::get('/barang/create', [BarangController::class, 'create']);
-// Route::post('/barang/store', [BarangController::class, 'store']);
 
 //Catalog
 Route::get('/catalog', [CatalogController::class, 'index']);
 Route::get('/catalog/create', [CatalogController::class, 'create'])->name('catalog.create');
 Route::post('/catalog', [CatalogController::class, 'store'])->name('catalog.store');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
-Route::get('/catalog/{catalog}', [CatalogController::class, 'show'])->name('catalog.show');
+// Route::get('/catalog/{catalog}', [CatalogController::class, 'show'])->name('catalog.show');
 Route::get('/catalog/{catalog}/edit', [CatalogController::class, 'edit'])->name('catalog.edit');
 Route::delete('/catalog/{catalog}', [CatalogController::class, 'destroy'])->name('catalog.destroy');
 Route::put('/catalog/{catalog}', [CatalogController::class, 'update'])->name('catalog.update');
+
+Route::get('/catalog/list', [CatalogController::class, 'list'])->name('catalog.list');

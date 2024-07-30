@@ -15,7 +15,12 @@ class CatalogController extends Controller
         // dd($catalog);
         return view('catalog.index', compact('catalog'));
     }
-
+    public function list()
+    {
+        $catalog = Catalog::all();
+        // dd($catalog);
+        return view('catalog.list', compact('catalog'));
+    }
     public function create()
     {
         return view('catalog.create');
@@ -50,12 +55,12 @@ class CatalogController extends Controller
     }
 
 
-    public function show($id)
-    {
+    // public function show($id)
+    // {
 
-        $catalog = Catalog::find($id);
-        return view('catalog.show', compact('catalog'));
-    }
+    //     $catalog = Catalog::find($id);
+    //     return view('catalog.show', compact('catalog'));
+    // }
 
     public function edit($id)
     {
