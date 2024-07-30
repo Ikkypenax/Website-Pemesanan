@@ -144,7 +144,7 @@
                 var harga = parseFloat(selectedOption.data('harga')) || 0;
                 $('#harga').text(harga.toLocaleString()).data('harga', harga);
 
-                // Trigger input event to recalculate the total price
+               
                 $('#panjang, #lebar').trigger('input');
             });
 
@@ -170,26 +170,4 @@
     </script>
 
 
-
-
-
-    {{-- 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const panjangInput = document.getElementById('panjang');
-            const lebarInput = document.getElementById('lebar');
-            const harga = {{ harga }};
-            const resultSpan = document.getElementById('result');
-
-            function calculateResult() {
-                const panjang = parseFloat(panjangInput.value) || 0;
-                const lebar = parseFloat(lebarInput.value) || 0;
-                const result = panjang * lebar * harga;
-                resultSpan.textContent = `Total: Rp. ${result.toLocaleString()}`;
-            }
-
-            panjangInput.addEventListener('input', calculateResult);
-            lebarInput.addEventListener('input', calculateResult);
-        });
-    </script> --}}
 @endsection

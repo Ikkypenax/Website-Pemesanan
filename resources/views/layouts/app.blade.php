@@ -126,7 +126,7 @@
 
         .table th,
         .table td {
-            padding: 12px;
+            padding: 8px;
             text-align: left;
             border: 1px solid #ddd;
         }
@@ -176,7 +176,7 @@
     <!-- Sidebar -->
     <div class="p-4" id="sidebar">
         <div class="sidebar-header">
-            <h3>Markotol</h3>
+            <h3>CV</h3>
         </div>
 
         <ul class="list-unstyled components">
@@ -185,13 +185,13 @@
                 <a href="#">Home</a>
             </li>
             <li>
-                <a href="/lokasi">Lokasi</a>
+                <a href="/lokasi">Pesanan</a>
             </li>
             <li>
                 <a href="/barang">Barang</a>
             </li>
             <li>
-                <a href="/catalog">Catalog</a>
+                <a href="/catalog">Katalog</a>
             </li>
         </ul>
     </div>

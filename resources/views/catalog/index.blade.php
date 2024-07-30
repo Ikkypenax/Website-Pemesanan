@@ -3,7 +3,7 @@
 @section('title', 'Catalog')
 
 @section('content')
-<div class="container">
+<div class="container mt-3">
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,11 +54,15 @@
                         <td>{{ $c->freshrate }}</td>
                         <td><img src="{{ asset('storage/images/' . $c->image) }}" width="100"></td>
                         <td>
-                            <a href="{{ route('catalog.edit', $c->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ route('catalog.edit', $c->id) }}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
                             <form action="{{ route('catalog.destroy', $c->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                             </form>
                             <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">Preview</button>
                         </td>
