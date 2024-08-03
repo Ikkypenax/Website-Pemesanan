@@ -43,7 +43,7 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
-                                <th>RereshRate</th>
+                                <th>RefreshRate</th>
                                 <th>Gambar</th>
                                 <th>Aksi</th>
                             </tr>
