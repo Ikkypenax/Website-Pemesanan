@@ -5,8 +5,8 @@
 @section('content')
 <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s" style="height: 100vh">
     <div class="container">
-        <div class="d-flex">
-            <div class="w-50 d-flex flex-column justify-content-center">
+        <div class="row">
+            <div class="col-6 d-flex flex-column justify-content-center">
                 <div class=" left-content show-up header-text wow fadeInLeft" data-wow-duration="1s"
                     data-wow-delay="1s">
                     <div class="w-100">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-50">
+            <div class="col-6">
                 <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
                     <img src="{{asset('assets/images/home_31.png')}}" alt="Logo">
                 </div>
