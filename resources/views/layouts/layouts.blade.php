@@ -194,26 +194,6 @@
 
     <footer>
         <div class="footer-content socials">
-<<<<<<< Updated upstream
-            <div class="w-100">
-                <h3>Sadjiwa Mitra Sembada</h3>
-                <p class="text-white opacity-75">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel
-                    ligula
-                    nunc. Duis
-                    interdum lacus sit
-                    amet arcu egestas, at sodales orci feugiat.</p>
-                <div class="d-flex opacity-25 justify-content-center" style="gap:8px">
-                    <div>
-                        <a href="">
-                            <i class="text-white fa-brands fa-instagram"></i>
-                        </a>
-                    </div>
-                    <div>
-                        <i class="text-white fa-regular fa-envelope"></i>
-                    </div>
-                    <div>
-                        <i class="text-white fa-brands fa-whatsapp"></i>
-=======
             <div class="">
                 <div class="col-12">
                     <h3>Sadjiwa Mitra Sembada</h3>
@@ -234,7 +214,6 @@
                         <div>
                             <i class="text-white fa-brands fa-whatsapp"></i>
                         </div>
->>>>>>> Stashed changes
                     </div>
                 </div>
                 <p class="mt-2 text-white opacity-25">© 2024 Sadjiwa Mitra Sembada</p>

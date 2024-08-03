@@ -77,14 +77,14 @@
 {{-- about --}}
 <div id="about" class="about-us section">
     <div class="container">
-        <div class="d-flex">
+        <div class="d-flex ">
             <div class="w-50 align-self-center">
                 <div class="section-heading">
                     <h4>About <em>What We Do</em> &amp; Who We Are</h4>
                     {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eismod tempor incididunt ut
                         labore et dolore magna.</p> --}}
                 </div>
-                <div class="d-flex">
+                <div class="d-flex ">
                     <div class="w-50">
                         <div class="box-item p-4">
                             <h4><a href="#">Maintance Problems</a></h4>
