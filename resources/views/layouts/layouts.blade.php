@@ -10,14 +10,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
         #content {
-            margin-left: 8px;
-            margin-right: 8px;
-            margin-top: 100px;
+            /* margin-left: 200px; */
             transition: all 0.3s;
         }
+
         * {
             margin: 0;
             padding: 0;
@@ -64,10 +66,14 @@
         }
 
         nav .navbar .menu li a {
-            color: #AD3B45;
+            color: #C3444F;
             font-size: 17px;
             font-weight: 500;
             text-decoration: none;
+        }
+
+        nav .navbar .menu li a:hover {
+            color: #96c7e8;
         }
 
         .menu-trigger {
@@ -135,7 +141,6 @@
             display: flex;
             justify-content: center;
             padding: 0;
-            margin: 20px 0 0;
         }
 
         .socials li {
@@ -156,6 +161,8 @@
             margin: 0;
             font-size: 1em;
         }
+
+        
     </style>
 </head>
 
@@ -176,40 +183,52 @@
     </nav>
 
     <div id="content">
-        <!-- Page Content -->
-        <div class="container">
-            @yield('content')
+        <div class="container" style="background-color: ;">
+            <div style="padding:100px 0px">
+                @yield('content')
+            </div>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-    <script>
-        new WOW().init();
-
-        document.querySelector('.menu-trigger').addEventListener('click', function() {
-            document.querySelector('.menu').classList.toggle('open');
-        });
-    </script>
 
     <div class="button">
         <a href="#Home"><i class="fas fa-arrow-up"></i></a>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <h3>Sadjiwa Mitra Sembada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel ligula nunc. Duis interdum lacus sit amet arcu egestas, at sodales orci feugiat.</p>
-            <ul class="socials">
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-            </ul>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Sadjiwa Mitra Sembada. All Rights Reserved.</p>
+        <div class="footer-content socials">
+            <div class="w-100">
+                <h3>Sadjiwa Mitra Sembada</h3>
+                <p class="text-white opacity-75">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel
+                    ligula
+                    nunc. Duis
+                    interdum lacus sit
+                    amet arcu egestas, at sodales orci feugiat.</p>
+                <div class="d-flex opacity-25 justify-content-center" style="gap:8px">
+                    <div>
+                        <a href="">
+                            <i class="text-white fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <i class="text-white fa-regular fa-envelope"></i>
+                    </div>
+                    <div>
+                        <i class="text-white fa-brands fa-whatsapp"></i>
+                    </div>
+                </div>
+                <p class="mt-2 text-white opacity-25">© 2024 Sadjiwa Mitra Sembada</p>
+            </div>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+
+        document.querySelector('.menu-trigger').addEventListener('click', function () {
+            document.querySelector('.menu').classList.toggle('open');
+        });
+    </script>
 </body>
 
 </html>
