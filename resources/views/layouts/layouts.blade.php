@@ -161,8 +161,6 @@
             margin: 0;
             font-size: 1em;
         }
-
-        
     </style>
 </head>
 
@@ -183,10 +181,8 @@
     </nav>
 
     <div id="content">
-        <div class="container" style="background-color: ;">
-            <div style="padding:100px 0px">
-                @yield('content')
-            </div>
+        <div class="container">
+            @yield('content')
         </div>
     </div>
 
