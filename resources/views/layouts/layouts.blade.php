@@ -181,7 +181,7 @@
     </nav>
 
     <div id="content">
-        <div class="container" style="background-color: ;">
+        <div class="container bg-danger">
             <div style="padding:100px 0px">
                 @yield('content')
             </div>
