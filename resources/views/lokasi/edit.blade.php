@@ -151,14 +151,9 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-     <!-- + Tambah Biaya-->
-     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
 
     <!-- + Tambah Biaya-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
->>>>>>> fa0752ab492037faa48025b0db249aec3adf84be
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -208,11 +203,7 @@
                 <div class="modal-body">
                     <form action="{{ route('biaya.update', $lokasi->id) }}" method="POST">
                         @csrf
-<<<<<<< HEAD
-                        @method('PUT') 
-=======
                         @method('PUT')
->>>>>>> fa0752ab492037faa48025b0db249aec3adf84be
                         <div>
                             <label for="transportasi">Biaya Transportasi:</label>
                             <input class="form-control" type="text" name="transportasi" id="transportasi"
@@ -228,11 +219,6 @@
                             <input class="form-control" type="text" name="jasa" id="jasa"
                                 value="">
                         </div>
-<<<<<<< HEAD
-                        
-=======
-
->>>>>>> fa0752ab492037faa48025b0db249aec3adf84be
                         <div>
                             <label for="service">Biaya Service:</label>
                             <input class="form-control" type="text" name="service" id="service"
@@ -253,8 +239,4 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fa0752ab492037faa48025b0db249aec3adf84be
 @endsection

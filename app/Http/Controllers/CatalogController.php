@@ -28,39 +28,27 @@ class CatalogController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi inputan
+        
         $data = $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk gambar
-            // tambahkan validasi sesuai kebutuhan untuk deskripsi, harga, dll.
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',  
         ]);
 
-        // dd($data['image']);
-
-        // dd($data, $request->all());
-        // path
-        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension(); // nama file
+        
+        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension(); 
         $data['image']->storeAs('public/images', $path);
 
-        // Simpan data produk ke dalam database
+        
         $catalog = new Catalog();
         $catalog->name = $request->name;
         $catalog->description = $request->description;
-        $catalog->image = $path; // Simpan nama file gambar ke dalam kolom 'image'
+        $catalog->image = $path; 
         $catalog->freshrate = $request->freshrate;
-        // tambahkan kolom lainnya sesuai kebutuhan
+        
         $catalog->save();
 
         return redirect()->route('catalog.index')->with('success', 'Produk berhasil ditambahkan');
     }
-
-
-    // public function show($id)
-    // {
-
-    //     $catalog = Catalog::find($id);
-    //     return view('catalog.show', compact('catalog'));
-    // }
 
     public function edit($id)
     {

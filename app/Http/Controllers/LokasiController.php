@@ -91,8 +91,10 @@ class LokasiController extends Controller
 
 
 
-    public function show(Lokasi $lokasi)
+    public function show($id)
     {
+        $lokasi = Lokasi::with('tambahRp')->find($id);
+        
         return view('lokasi.show', compact('lokasi'));
     }
 

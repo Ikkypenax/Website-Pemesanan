@@ -30,7 +30,6 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    // Method untuk proses logout
     public function logout(Request $request)
     {
         Auth::logout();

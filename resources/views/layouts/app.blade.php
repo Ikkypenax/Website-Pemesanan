@@ -9,267 +9,215 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 200px;
-            z-index: 1000;
-            background: #343a40;
-            color: #fff;
-            transition: all 0.3s;
-            overflow-y: auto;
-        }
-
-        #content {
-            margin-left: 200px;
-            transition: all 0.3s;
-        }
-
-        #sidebar.active {
-            margin-left: -200px;
-        }
-
-        #content.active {
-            margin-left: 0;
-        }
-
-        #sidebarCollapse {
-            position: absolute;
-            top: 0;
-            right: -45px;
-            width: 40px;
-            height: 40px;
-            background: #343a40;
-            color: #fff;
-            border-radius: 3px;
-            text-align: center;
-            line-height: 40px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        #sidebarCollapse:hover {
-            background: #232931;
-        }
-
-        select[name=status] {
-            width: 100px;
-            padding: 5px;
-            font-size: 16px;
-        }
-
-        /* Form */
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-        }
-
-        .form-container .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-container input,
-        {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        }
-
-        .form-container select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            appearance: none;
-            background-color: #fff;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="5" viewBox="0 0 4 5"><path fill="%23ccc" d="M2 0L0 2h4L2 0zm0 5L0 3h4l-2 2z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 10px 10px;
-        }
-
-        .form-container button {
-            background-color: #26e03b;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 120px;
-            font-size: 16px;
-        }
-
-        .form-container button:hover {
-            background-color: #17ac28;
-        }
-
-        /* Table */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table th,
-        .table td {
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        .table th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-
-        .table tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        .btn {
-            padding: 8px 12px;
-            margin: 2px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .btn-warning {
-            background-color: #ffc107;
-            color: white;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-success {
-            background-color: #19d900;
-            color: white;
-        }
-
-        .btn i {
-            margin-right: 4px;
-        }
-
-    </style>
-
+    <link href="{{ asset('sb_admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<style>
+
+</style>
 
 
-    <!-- Sidebar -->
-    <div class="p-4" id="sidebar">
-        <div class="sidebar-header">
-<<<<<<< HEAD
-            <h3>CV</h3>
-=======
-            <h3>Dashboard</h3>
->>>>>>> fa0752ab492037faa48025b0db249aec3adf84be
+<body id="page-top">
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button class="btn btn-primary" type="submit">Logout</button>
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <ul class="list-unstyled components">
-            <p>Main Menu</p>
-            <li>
-                <a href="#">Home</a>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+        <!-- Sidebar -->
+
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion">
+
+            <!-- Sidebar - Brand -->
+            <li class="nav-item m-2">
+                <h4 class="navbar d-flex align-items-center justify-content-center">
+                    <strong style="font-size: 20pt; font-weight: bold; color: white">SJM</strong>
+                </h4>
             </li>
-            <li>
-                <a href="/lokasi">Pesanan</a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-speedometer2" style="font-size: 17pt"></i>
+                    <span style="font-size: 14pt">Home</span></a>
             </li>
-            <li>
-                <a href="/barang">Barang</a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 8pt">
+                Main Menu
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="/lokasi">
+                    <i class="bi bi-list-check" style="font-size: 16pt"></i>
+                    <span style="font-size: 12pt">Pesanan</span>
+                </a>
             </li>
-            <li>
-                <a href="/catalog">Katalog</a>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/barang">
+                    <i class="bi bi-boxes" style="font-size: 16pt"></i>
+                    <span style="font-size: 12pt">Barang</span>
+                </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/catalog">
+                    <i class="bi bi-images" style="font-size: 16pt"></i>
+                    <span style="font-size: 12pt">Katalog</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <div class="mt-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="bi bi-door-open" style="font-size: 16pt"></i>
+                        <span style="font-size: 12pt">Logout</span>
+                    </a>
+                </li>
+            </div>
+
         </ul>
-    </div>
 
-    <!-- Page Content -->
-    <div id="content">
 
-        <!-- Page Content -->
-        <div class="container">
-            @yield('content')
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggle" class="btn btn-link">
+                        <i class="bi bi-list" style="font-size: 16pt"></i>
+                    </button>
+                    <!-- Topbar Navbar -->
+                    <div class="navbar-nav ml-auto">
+
+                        <li class="nav-item">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                @auth
+                                    {{ Auth::user()->name }}
+                                @endauth
+                            </span>
+                        </li>
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
         </div>
-    </div>
+        <!-- End of Content Wrapper -->
 
-    <script>
-        document.getElementById('sidebarCollapse').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('content').classList.toggle('active');
-        });
-    </script>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('sb_admin2/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('sb_admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('sb_admin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('sb_admin2/js/sb-admin-2.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
-</body>
 
-</html>
-
-<script>
-    $(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('toggled');
+            document.getElementById('content-wrapper').classList.toggle('toggled');
         });
+    </script>
+
+    <script>
         $(function() {
-            $('#provinsi').on('change', function() {
-                let id_provinsi = $('#provinsi').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(function() {
+                $('#provinsi').on('change', function() {
+                    let id_provinsi = $('#provinsi').val();
 
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('getkabupaten') }}",
-                    data: {
-                        id_provinsi: id_provinsi
-                    },
-                    cache: false,
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('getkabupaten') }}",
+                        data: {
+                            id_provinsi: id_provinsi
+                        },
+                        cache: false,
 
-                    success: function(msg) {
-                        $('#kabupaten').html(msg);
-                    },
-                    error: function(data) {
-                        console.log('error:', data)
-                    },
-
-
+                        success: function(msg) {
+                            $('#kabupaten').html(msg);
+                        },
+                        error: function(data) {
+                            console.log('error:', data)
+                        },
+                    })
                 })
             })
-        })
-    });
-</script>
-
-{{-- script form status --}}
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Tanggapi perubahan pada dropdown
-        $('select[name=status]').change(function() {
-            var selectedColor = $(this).find('option:selected').css('background-color');
-            $(this).css('background-color', selectedColor);
         });
-    });
-</script>
+    </script>
+
+    <!-- script form status -->
+    <script>
+        $(document).ready(function() {
+            // Tanggapi perubahan pada dropdown
+            $('select[name=status]').change(function() {
+                var selectedColor = $(this).find('option:selected').css('background-color');
+                $(this).css('background-color', selectedColor);
+            });
+        });
+    </script>
+
 
 </body>
 
