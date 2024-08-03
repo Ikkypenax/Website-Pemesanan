@@ -3,11 +3,30 @@
 @section('title', 'Galery')
 
 @section('content')
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
+    {{-- <section class="section-card"> --}}
+        <div class="container mt-5">
+
+            <div class="row">
+                @foreach ($catalog as $c)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ asset('storage/images/' . $c->image) }}" class="card-img-top"
+                                alt="{{ $c->name }}" onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $c->name }}</h5>
+                                <p class="card-text">{{ $c->description }}</p>
+                                <p class="card-text"><strong>Refresh Rate:</strong> {{ $c->freshrate }} Hz</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </section>
+@endsection
+    <script>
+        function showImage(url) {
+            window.open(url, '_blank');
+        }
+    </script>
