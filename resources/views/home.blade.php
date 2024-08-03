@@ -36,7 +36,7 @@
             Videotron kami menawarkan kejernihan gambar dan warna yang superior.
         </p>
     </div>
-    <div class="row">
+    <div class="row" style="">
         <div class="col-md-3 col-sm-12">
             <div class="h-100 service-item d-flex flex-column justify-content-center first-service">
                 <div class="icon"></div>
@@ -77,14 +77,14 @@
 {{-- about --}}
 <div id="about" class="about-us section">
     <div class="container">
-        <div class="row" >
+        <div class="row" style="">
             <div class="col-md-6 col-sm-12 align-self-center">
                 <div class="section-heading">
                     <h4>About <em>What We Do</em> &amp; Who We Are</h4>
                     {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eismod tempor incididunt ut
                         labore et dolore magna.</p> --}}
                 </div>
-                <div class="row mb-2" >
+                <div class="row mb-2" style="">
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4">
                             <h4><a href="#">Maintance Problems</a></h4>
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" >
+                <div class="row" style="">
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4">
                             <h4><a href="#">Fixing Issues About</a></h4>
