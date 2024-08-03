@@ -20,18 +20,18 @@
                     <i class="bi bi-plus fa-sm text-white-50"></i> Pesanan
                 </a>
             </div>
-            <div class="card-body">
+            <div class="card-body pt-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Wa</th>
-                                <th>Kategori</th>
+                                {{-- <th>Kategori</th> --}}
                                 <th>Jenis</th>
-                                <th>PxL</th>
-                                <th>Provinsi</th>
+                                {{-- <th>PxL</th> --}}
+                                {{-- <th>Provinsi</th> --}}
                                 <th>Kabupaten</th>
                                 <th>Harga</th>
                                 <th>Total</th>
@@ -45,10 +45,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $l->nama }}</td>
                                     <td>{{ $l->wa }}</td>
-                                    <td>{{ $l->kategori }}</td>
+                                    {{-- <td>{{ $l->kategori }}</td> --}}
                                     <td>{{ $l->jenis }}</td>
-                                    <td>{{ $l->panjang }}x{{ $l->lebar }}</td>
-                                    <td>{{ $l->provinsi }}</td>
+                                    {{-- <td>{{ $l->panjang }}x{{ $l->lebar }}</td> --}}
+                                    {{-- <td>{{ $l->provinsi }}</td> --}}
                                     <td>{{ $l->kabupaten }}</td>
                                     <td>
                                         {{ $l->result ? 'Rp. ' . number_format($l->result, 0, ',', '.') : 'Rp. 0' }}
@@ -65,9 +65,9 @@
                                                 onchange="document.getElementById('status-form-{{ $l->id }}').submit();"
                                                 style="background-color: {{ $l->status == 'pending' ? '#f7b731' : ($l->status == 'approved' ? '#20bf6b' : ($l->status == 'rejected' ? '#eb3b5a' : '#ffffff')) }};">
                                                 <option value="pending" style="background-color: #f7b731; color: #ffffff;"
-                                                    {{ $l->status == 'pending' ? 'selected' : '' }}>Proses</option>
+                                                    {{ $l->status == 'pending' ? 'selected' : '' }}>Diproses</option>
                                                 <option value="approved" style="background-color: #20bf6b; color: #ffffff;"
-                                                    {{ $l->status == 'approved' ? 'selected' : '' }}>Approv</option>
+                                                    {{ $l->status == 'approved' ? 'selected' : '' }}>Approved</option>
                                                 <option value="rejected" style="background-color: #eb3b5a; color: #ffffff;"
                                                     {{ $l->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
                                             </select>
@@ -81,7 +81,7 @@
                                                         <i class="bi bi-pencil-square"></i>
                                                     </a>
                                                 </li>
-                                                <li class="list-inline-item mb-1">
+                                                <li class="list-inline-item mb-1 mr-0">
                                                     <a class="btn btn-secondary btn-sm" href="{{ route('lokasi.show', $l->id) }}">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
@@ -89,9 +89,9 @@
                                                 <li class="list-inline-item">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a type="submit" class="btn btn-danger btn-sm">
+                                                    <button type="submit" class="btn btn-danger btn-sm">
                                                         <i class="bi bi-trash"></i>
-                                                    </a>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </form>
