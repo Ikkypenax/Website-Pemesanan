@@ -28,23 +28,23 @@ class CatalogController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $data = $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',  
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        
-        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension(); 
+
+        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension();
         $data['image']->storeAs('public/images', $path);
 
-        
+
         $catalog = new Catalog();
         $catalog->name = $request->name;
         $catalog->description = $request->description;
-        $catalog->image = $path; 
+        $catalog->image = $path;
         $catalog->freshrate = $request->freshrate;
-        
+
         $catalog->save();
 
         return redirect()->route('catalog.index')->with('success', 'Produk berhasil ditambahkan');
@@ -59,10 +59,19 @@ class CatalogController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+
+        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension();
+        $data['image']->storeAs('public/images', $path);
+
         $catalog = Catalog::find($id);
         $catalog->name = $request->name;
         $catalog->description = $request->description;
-        $catalog->image = $request->image;
+        $catalog->image = $path ;
         $catalog->freshrate = $request->freshrate;
         $catalog->save();
 

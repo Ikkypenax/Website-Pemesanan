@@ -165,26 +165,43 @@ body {
   }
 
 #Catalog{
-  background: #e6e6e6;
+  background: #05414C;
 }
-.section-card {
+.row {
     display: flex;
-    height: 80vh;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    color: #96c7e8;
-    font-size: 70px;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }
     /* Custom CSS */
-.card {
+/* .card {
+    flex: 0 0 25%;
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
 
+} */
+.card {
+    flex: 0 0 25%; /* Setiap card memiliki lebar 25% agar muat 4 card per baris */
+    max-width: 25%;
+    box-sizing: border-box;
+    padding: 15px;
 }
 
+/* Tambahkan beberapa gaya dasar untuk card */
+.card-inner {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card-inner:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
 .card:hover {
     transform: translateY(-5px);
 }
