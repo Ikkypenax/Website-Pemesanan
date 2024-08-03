@@ -31,18 +31,6 @@ body {
     padding: 0 20px;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.col-lg-12,
-.col-lg-6 {
-    flex: 1;
-    padding: 15px;
-}
-
 .left-content {
     text-align: left;
 }
@@ -225,9 +213,6 @@ font-size: 35px;
 .card-text strong {
     color: #dc3545;
 }
-.content {
-    /* padding-top: 100px; */
-}
 
 #about {
     background: #fff;
@@ -289,7 +274,6 @@ font-size: 35px;
     background-image: url(../images/about-bg.jpg);
     width: 777px;
     height: 1132px;
-    content: "";
     /* position: absolute; */
     background-repeat: no-repeat;
     right: 0;
@@ -326,4 +310,14 @@ font-size: 35px;
     .navbar {
         flex-direction: column;
     }
+
+    /* responsif */
+    .section-card .card-item{
+        width: 100%!important;
+    }
+    
+    .main-banner{
+        padding-top: 200px;
+    }
+
 }
