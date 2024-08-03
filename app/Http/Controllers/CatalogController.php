@@ -59,10 +59,18 @@ class CatalogController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',  
+        ]);
+
+        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension(); 
+        $data['image']->storeAs('public/images', $path);
+
         $catalog = Catalog::find($id);
         $catalog->name = $request->name;
         $catalog->description = $request->description;
-        $catalog->image = $request->image;
+        $catalog->image = $path; 
         $catalog->freshrate = $request->freshrate;
         $catalog->save();
 

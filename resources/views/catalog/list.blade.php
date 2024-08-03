@@ -4,7 +4,8 @@
 
 @section('content')
     {{-- <section class="section-card"> --}}
-        <div class="container mt-5">
+    <div id="Catalog" class="catalog service">
+        <div class="container">
 
             <div class="row">
                 @foreach ($catalog as $c)
@@ -23,10 +24,11 @@
 
             </div>
         </div>
-    </section>
+    </div>
+    {{-- </section> --}}
 @endsection
-    <script>
-        function showImage(url) {
-            window.open(url, '_blank');
-        }
-    </script>
+<script>
+    function showImage(url) {
+        window.open(url, '_blank');
+    }
+</script>
