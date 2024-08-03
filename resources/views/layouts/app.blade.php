@@ -10,10 +10,45 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="{{ asset('sb_admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" />
+
 </head>
 
 <style>
+    .sidebar {
+        width: 250px;
+        /* Lebar sidebar */
+        background-color: rgb(16, 15, 15);
+        transition: width 0.3s ease;
+    }
 
+    .content-wrapper {
+        margin-left: 250px;
+        /* Lebar sidebar */
+        transition: margin-left 0.3s ease;
+    }
+
+    .sidebar.toggled {
+        width: 0;
+    }
+
+    .content-wrapper.toggled {
+        margin-left: 0;
+    }
+
+    .table-container {
+        display: flex;
+        gap: 20px;
+    }
+
+    .table-container-edit {
+        display: flex;
+        margin-bottom: -17px;
+    }
+
+    .table-container .table-detail {
+        flex: 1;
+    }
 </style>
 
 
@@ -48,7 +83,7 @@
 
         <!-- Sidebar -->
 
-        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion">
+        <ul class="navbar-nav sidebar sidebar-dark accordion">
 
             <!-- Sidebar - Brand -->
             <li class="nav-item m-2">
@@ -165,6 +200,8 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('sb_admin2/js/sb-admin-2.min.js') }}"></script>
 
+    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
@@ -173,6 +210,15 @@
         document.getElementById('sidebarToggle').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('toggled');
             document.getElementById('content-wrapper').classList.toggle('toggled');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                
+                lengthMenu: [5, 10, 25, 50]
+            });
         });
     </script>
 
