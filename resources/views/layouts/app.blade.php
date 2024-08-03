@@ -217,7 +217,7 @@
         $(document).ready(function() {
             $('#myTable').DataTable({
                 
-                lengthMenu: [5, 10, 25, 50]
+                lengthMenu: [3, 6, 9, 12]
             });
         });
     </script>
