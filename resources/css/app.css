@@ -318,9 +318,7 @@ font-size: 35px;
   color: #AD3B45!important;
 }
 
-.socials i{
-  /* font-size: 30px; */
-}
+
 
 @media (max-width: 768px) {
     .navbar {
