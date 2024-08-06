@@ -112,7 +112,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="/lokasi">
+                <a class="nav-link" href="/pesanan">
                     <i class="bi bi-list-check" style="font-size: 16pt"></i>
                     <span style="font-size: 12pt">Pesanan</span>
                 </a>

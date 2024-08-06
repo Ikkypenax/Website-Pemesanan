@@ -20,10 +20,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Role Admin
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('lokasi', LokasiController::class);
-    Route::put('/lokasi/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
-    Route::get('lokasi/{id}/edit', [LokasiController::class, 'edit'])->name('lokasi.edit');
-    Route::get('lokasi/{id}/send-invoice', [LokasiController::class, 'sendInvoice'])->name('lokasi.sendInvoice');
+    Route::resource('pesanan', LokasiController::class);
+    
+    Route::put('/pesanan/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
+    Route::get('pesanan/{id}/send-invoice', [LokasiController::class, 'sendInvoice'])->name('lokasi.sendInvoice');
 
     Route::resource('barang', BarangController::class);
     Route::put('biaya/{id}', [BarangController::class, 'update'])->name('biaya.update');

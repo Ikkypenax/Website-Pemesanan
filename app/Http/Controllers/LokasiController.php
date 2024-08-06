@@ -85,8 +85,8 @@ class LokasiController extends Controller
         ]);
 
     
-        return redirect()->route('lokasi.index')
-            ->with('success', 'Lokasi created successfully.');
+        return redirect()->route('pesanan.index')
+            ->with('success', 'Pesanan created successfully.');
     }
 
     public function edit($id)
@@ -127,7 +127,7 @@ class LokasiController extends Controller
         $lokasi->save();
 
         return redirect()->route('lokasi.index')
-            ->with('success', 'Lokasi updated successfully');
+            ->with('success', 'Pesanan updated successfully');
     }
 
     public function show($id)
@@ -180,12 +180,13 @@ class LokasiController extends Controller
     return redirect($whatsappUrl);
 }
 
-    public function destroy(Lokasi $lokasi)
+    public function destroy($id)
     {
+        $lokasi = Lokasi::findOrFail($id);
         $lokasi->delete();
-
-        return redirect()->route('lokasi.index')
-            ->with('success', 'Lokasi deleted successfully');
+        
+        return redirect()->route('pesanan.index')
+            ->with('success', 'Pesanan deleted successfully');
     }
 
     public function status(Request $request, $id)
@@ -197,6 +198,6 @@ class LokasiController extends Controller
         $status = Lokasi::find($id);
         $status->update(['status' => $request->status]);
 
-        return back()->with('success', 'Updated successfully.');
+        return back()->with('success', 'Status Updated successfully.');
     }
 }

@@ -16,7 +16,7 @@
         <div class="card shadow mb-4">
             <div class="card-header d-flex align-items-center justify-content-between py-3">
                 <h3 class="m-0 font-weight-bold text-primary">Daftar Pesanan</h3>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ route('lokasi.create') }}">
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ route('pesanan.create') }}">
                     <i class="bi bi-plus fa-sm text-white-50"></i> Pesanan
                 </a>
             </div>
@@ -68,28 +68,32 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="{{ route('lokasi.destroy', $l->id) }}" method="POST" class="action-buttons">
+                                        <form action="{{ route('pesanan.destroy', $l->id) }}" method="POST"
+                                            class="action-buttons">
+                                            @csrf
+                                            @method('DELETE')
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item mb-1 mr-0">
-                                                    <a class="btn btn-primary btn-sm" href="{{ route('lokasi.edit', $l->id) }}">
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('pesanan.edit', $l->id) }}">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item mb-1 mr-0">
-                                                    <a class="btn btn-secondary btn-sm" href="{{ route('lokasi.show', $l->id) }}">
+                                                    <a class="btn btn-secondary btn-sm"
+                                                        href="{{ route('pesanan.show', $l->id) }}">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    @csrf
-                                                    @method('DELETE')
+
                                                     <button type="submit" class="btn btn-danger btn-sm">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </li>
                                             </ul>
                                         </form>
-                                        
+
                                     </td>
                                 </tr>
                             @endforeach
