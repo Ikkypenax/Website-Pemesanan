@@ -306,9 +306,12 @@ font-size: 35px;
     .section-card .card-item{
         width: 100%!important;
     }
-    
+
     .main-banner{
         padding-top: 200px;
     }
 
+}
+.carousel.inter{
+    
 }

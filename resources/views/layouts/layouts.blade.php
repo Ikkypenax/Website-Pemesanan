@@ -11,6 +11,8 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -19,7 +21,25 @@
             /* margin-left: 200px; */
             transition: all 0.3s;
         }
+        .order-button {
+            background: none;
+            border: 2px solid currentColor;
+            color: #C3444F;
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 5px 15px;
+            border-radius: 15px; /* Membuat sudut membulat */
+            transition: background-color 0.3s, color 0.3s;
 
+        }
+
+        .order-button:hover {
+            background-color: #C3444F;
+            color: #022833;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -161,6 +181,7 @@
             margin: 0;
             font-size: 1em;
         }
+
     </style>
 </head>
 
@@ -175,7 +196,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/catalog/list">Catalog</a></li>
                 <li><a href="#About">About</a></li>
-                <li><a href="#Feedback">Feedback</a></li>
+                <li><button onclick="location.href='#Feedback'" class="order-button">Order Now</button></li>
             </ul>
         </div>
     </nav>
@@ -227,6 +248,7 @@
             document.querySelector('.menu').classList.toggle('open');
         });
     </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
