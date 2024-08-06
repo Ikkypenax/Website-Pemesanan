@@ -91,11 +91,11 @@ class LokasiController extends Controller
 
     public function edit($id)
     {
-        // dd($id);
+        
         $lokasi = Lokasi::with('tambahRp')->find($id);
         $barang = HargaPerMeter::all();
         $kategori = Kategori::all();
-        // dd($lokasi->tambahRp);
+
         return view('lokasi.edit', compact('barang', 'kategori', 'lokasi'));
     }
 
@@ -199,10 +199,4 @@ class LokasiController extends Controller
 
         return back()->with('success', 'Updated successfully.');
     }
-
-    // public function nota()
-    // {
-    //     $tambahRp = TambahRp::all();
-    //     return view('tambah_rp.update', compact('tambahRp'));
-    // }
 }

@@ -83,8 +83,6 @@
                 <div class="col-md-6 col-sm-12 align-self-center">
                     <div class="section-heading">
                         <h4>Apa saja sih yang<em> Kami Tawarkan</em></h4>
-                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eismod tempor incididunt ut
-                        labore et dolore magna.</p> --}}
                     </div>
                     <div class="row mb-2" style="">
                         <div class="col-md-6 col-sm-12">

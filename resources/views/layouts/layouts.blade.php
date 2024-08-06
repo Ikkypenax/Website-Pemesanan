@@ -14,175 +14,255 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-        #content {
-            /* margin-left: 200px; */
-            transition: all 0.3s;
-        }
-        .order-button {
-            background: none;
-            border: 2px solid currentColor;
-            color: #C3444F;
-            font-family: 'Poppins', sans-serif;
-            font-size: 17px;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            padding: 5px 15px;
-            border-radius: 15px; /* Membuat sudut membulat */
-            transition: background-color 0.3s, color 0.3s;
+    #content {
+        /* margin-left: 200px; */
+        transition: all 0.3s;
+    }
 
-        }
+    .order-button {
+        background: none;
+        border: 2px solid currentColor;
+        color: #C3444F;
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        padding: 5px 15px;
+        border-radius: 15px;
+        /* Membuat sudut membulat */
+        transition: background-color 0.3s, color 0.3s;
 
-        .order-button:hover {
-            background-color: #C3444F;
-            color: #022833;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    }
 
-        nav {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 75px;
-            background: #022833;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            z-index: 99999;
-        }
+    .order-button:hover {
+        background-color: #C3444F;
+        color: #022833;
+    }
 
-        nav .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            max-width: 90%;
-            background: #022833;
-            margin: auto;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        nav .navbar .logo a {
-            color: #C3444F;
-            font-size: 27px;
-            font-weight: 600;
-            text-decoration: none;
-        }
+    nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 75px;
+        background: #022833;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        z-index: 99999;
+    }
 
+    nav .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 90%;
+        background: #022833;
+        margin: auto;
+    }
+
+    nav .navbar .logo a {
+        color: #C3444F;
+        font-size: 27px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    nav .navbar .menu {
+        display: flex;
+    }
+
+    nav .navbar .menu li {
+        list-style: none;
+        margin: 0 15px;
+        margin-top: 15px;
+    }
+
+    nav .navbar .menu li a {
+        color: #C3444F;
+        font-size: 17px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    nav .navbar .menu li a:hover {
+        color: #96c7e8;
+    }
+
+    .menu-trigger {
+        display: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
         nav .navbar .menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 75px;
+            left: 0;
+            width: 100%;
+            background: #022833;
+        }
+
+        nav .navbar .menu.open {
             display: flex;
-        }
-
-        nav .navbar .menu li {
-            list-style: none;
-            margin: 0 15px;
-            margin-top: 15px;
-        }
-
-        nav .navbar .menu li a {
-            color: #C3444F;
-            font-size: 17px;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        nav .navbar .menu li a:hover {
-            color: #96c7e8;
         }
 
         .menu-trigger {
-            display: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
+            display: block;
         }
+    }
 
-        @media (max-width: 768px) {
-            nav .navbar .menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background: #022833;
-            }
+    section {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        color: #96c7e8;
+        font-size: 70px;
+    }
 
-            nav .navbar .menu.open {
-                display: flex;
-            }
+    footer {
+        background: #022833;
+        color: #C3444F;
+        padding: 20px 0;
+        text-align: center;
+    }
 
-            .menu-trigger {
-                display: block;
-            }
-        }
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        section {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            color: #96c7e8;
-            font-size: 70px;
-        }
+    .footer-content h3 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
 
-        footer {
-            background: #022833;
-            color: #C3444F;
-            padding: 20px 0;
-            text-align: center;
-        }
+    .footer-content p {
+        max-width: 600px;
+        margin: 0 auto 20px;
+        font-size: 1.1em;
+    }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .socials {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
 
-        .footer-content h3 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
+    .socials li {
+        margin: 0 10px;
+    }
 
-        .footer-content p {
-            max-width: 600px;
-            margin: 0 auto 20px;
-            font-size: 1.1em;
-        }
+    .socials a {
+        color: white;
+        font-size: 1.5em;
+        text-decoration: none;
+    }
 
-        .socials {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            padding: 0;
-        }
+    .footer-bottom {
+        margin-top: 20px;
+    }
 
-        .socials li {
-            margin: 0 10px;
-        }
+    .footer-bottom p {
+        margin: 0;
+        font-size: 1em;
+    }
 
-        .socials a {
-            color: white;
-            font-size: 1.5em;
-            text-decoration: none;
-        }
+    /* Form pesanan */
 
-        .footer-bottom {
-            margin-top: 20px;
-        }
+    .card-order {
+        max-width: 600px;
+        margin: auto;
+        margin-top: 130px;
+        margin-bottom: 50px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .footer-bottom p {
-            margin: 0;
-            font-size: 1em;
-        }
+    .card-order .form-group {
+        margin-bottom: 15px;
+    }
 
-    </style>
+    .card-order .form-label {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .card-order .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        font-size: 14px;
+        color: #495057;
+    }
+
+    .card-order .form-control-plaintext {
+        padding: 10px;
+        font-size: 14px;
+        color: #495057;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    .card-order .form-group.row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card-order .form-group.row .col {
+        flex: 1;
+        min-width: 0;
+        padding-right: 10px;
+    }
+
+    .card-order .form-group.row .col:last-child {
+        padding-right: 0;
+    }
+
+    .card-order .btn-success {
+        background-color: #28a745;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .card-order .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .card-order #result {
+        font-size: 16px;
+        font-weight: bold;
+        color: #28a745;
+        margin-top: 10px;
+    }
+</style>
 </head>
 
 <body>
@@ -196,7 +276,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/catalog/list">Catalog</a></li>
                 <li><a href="#About">About</a></li>
-                <li><button onclick="location.href='#Feedback'" class="order-button">Order Now</button></li>
+                <li><a href="{{ route('order.create') }}" class="order-button">Order Now</a></li>
             </ul>
         </div>
     </nav>
@@ -244,7 +324,7 @@
     <script>
         new WOW().init();
 
-        document.querySelector('.menu-trigger').addEventListener('click', function () {
+        document.querySelector('.menu-trigger').addEventListener('click', function() {
             document.querySelector('.menu').classList.toggle('open');
         });
     </script>

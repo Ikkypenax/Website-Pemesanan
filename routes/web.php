@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\CatalogController;
@@ -44,3 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
 // Role User
 Route::get('/form', [WilayahController::class, 'form'])->name('form');
 Route::get('/catalog/list', [CatalogController::class, 'list'])->name('catalog.list');
+Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
+Route::get('/getJenis/{kategori_id}', [OrderController::class, 'getJenis']);
+Route::get('/getKabupaten/{id_provinsi}', [OrderController::class, 'getkabupaten']);
+Route::get('/getHarga/{jenis}', [OrderController::class, 'getHarga']);
+Route::post('/order', [OrderController::class, 'store'])->name('order.store');
