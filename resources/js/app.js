@@ -12,3 +12,7 @@ import './bootstrap';
 //     el: '#app',
 // });
 
+$('.bxslider').bxSlider({
+    adaptiveHeight: true,
+    mode: 'fade'
+  });
