@@ -97,7 +97,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                     <i class="bi bi-speedometer2" style="font-size: 17pt"></i>
                     <span style="font-size: 14pt">Home</span></a>
             </li>
@@ -216,7 +216,7 @@
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable({
-                
+
                 lengthMenu: [3, 6, 9, 12]
             });
         });
