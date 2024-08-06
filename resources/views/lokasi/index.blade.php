@@ -28,10 +28,7 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Wa</th>
-                                {{-- <th>Kategori</th> --}}
                                 <th>Jenis</th>
-                                {{-- <th>PxL</th> --}}
-                                {{-- <th>Provinsi</th> --}}
                                 <th>Kabupaten</th>
                                 <th>Harga</th>
                                 <th>Total</th>
@@ -45,10 +42,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $l->nama }}</td>
                                     <td>{{ $l->wa }}</td>
-                                    {{-- <td>{{ $l->kategori }}</td> --}}
                                     <td>{{ $l->jenis }}</td>
-                                    {{-- <td>{{ $l->panjang }}x{{ $l->lebar }}</td> --}}
-                                    {{-- <td>{{ $l->provinsi }}</td> --}}
                                     <td>{{ $l->kabupaten }}</td>
                                     <td>
                                         {{ $l->result ? 'Rp. ' . number_format($l->result, 0, ',', '.') : 'Rp. 0' }}
