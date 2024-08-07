@@ -3,7 +3,7 @@
 --hijauMuda: #05414C
 --merahTua: #6D3947
 --merahMuda: #AD3B45
---merahBayi: #C3444F 
+--merahBayi: #C3444F
 }
 
 #Home {
@@ -14,6 +14,14 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+.carousel-item {
+    padding: 0 15px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #05414c; /* Warna tombol navigasi */
 }
 
 .main-banner {
@@ -167,14 +175,7 @@ font-size: 35px;
 #Catalog {
     background: #05414c;
 }
-.section-card {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    color: #96c7e8;
-    font-size: 70px;
-}
+
 /* Custom CSS */
 .card {
     border: none;
@@ -302,9 +303,7 @@ font-size: 35px;
   color: #AD3B45!important;
 }
 
-.socials i{
-  font-size: 30px;
-}
+
 
 @media (max-width: 768px) {
     .navbar {
@@ -315,8 +314,28 @@ font-size: 35px;
     .section-card .card-item{
         width: 100%!important;
     }
-    
+
     .main-banner{
         padding-top: 200px;
+    }
+}
+
+
+.swiper-slide .card-body img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+.swiper-slide .card-body {
+    display: flex;
+    align-items: center;
+}
+@media (max-width: 767px) {
+    .swiper-slide .card-body {
+        flex-direction: column;
+        text-align: center;
+    }
+    .swiper-slide .card-body img {
+        margin-bottom: 10px;
     }
 }

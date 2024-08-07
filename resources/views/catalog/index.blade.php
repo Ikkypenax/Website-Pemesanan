@@ -43,7 +43,7 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
-                                <th>RereshRate</th>
+                                <th>RefreshRate</th>
                                 <th>Gambar</th>
                                 <th>Aksi</th>
                             </tr>
@@ -56,31 +56,40 @@
                                     <td>{{ $c->freshrate }}</td>
                                     <td><img src="{{ asset('storage/images/' . $c->image) }}" width="100"></td>
                                     <td>
-                                        <a href="{{ route('catalog.edit', $c->id) }}" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal"
-                                            onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
                                         <form action="{{ route('catalog.destroy', $c->id) }}" method="POST"
                                             class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item mb-1 mr-0">
+                                                    <a href="{{ route('catalog.edit', $c->id) }}"
+                                                        class="btn btn-warning btn-sm ">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item mb-1 mr-0">
+                                                    <button type="button" class="btn btn-secondary btn-sm"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                        onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm "
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
                                         </form>
-                                        
+
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
-                    
+
                 </div>
             </div>
         </div>

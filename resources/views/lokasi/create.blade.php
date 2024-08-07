@@ -7,7 +7,7 @@
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center py-3">
                 <div class="pull-right" style="margin-right: 16px">
-                    <a class="btn btn-primary" href="{{ route('lokasi.index') }}">
+                    <a class="btn btn-primary" href="{{ route('pesanan.index') }}">
                         <i class="bi bi-arrow-left-square"></i>
                     </a>
                 </div>
@@ -27,7 +27,7 @@
 
 
             <div class="card-body">
-                <form action="{{ route('lokasi.store') }}" method="POST">
+                <form action="{{ route('pesanan.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="nama" class="form-label">Nama</label>

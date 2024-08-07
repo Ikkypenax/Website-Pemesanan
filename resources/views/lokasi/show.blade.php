@@ -8,7 +8,7 @@
         <div class="card shadow mb-4">
             <div class="card-header d-flex align-items-center py-3">
                 <div class="pull-right" style="margin-right: 16px">
-                    <a class="btn btn-primary" href="{{ route('lokasi.index') }}">
+                    <a class="btn btn-primary" href="{{ route('pesanan.index') }}">
                         <i class="bi bi-arrow-left-square"></i>
                     </a>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="table-responsive">
 
 
-                    <div class="table-container">
+                    <div class="table-container gap-0">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -115,6 +115,11 @@
                         </table>
                     </div>
 
+                    <div>
+                        <a class="btn btn-success" href="{{ route('lokasi.sendInvoice', $lokasi->id) }}">
+                            <i class="bi bi-whatsapp"></i> Kirim Invoice ke WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
