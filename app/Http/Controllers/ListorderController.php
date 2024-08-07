@@ -14,7 +14,7 @@ use App\Models\Province;
 use Illuminate\Http\Request;
 
 
-class LokasiController extends Controller
+class ListorderController extends Controller
 {
     public function index()
     {

@@ -5,11 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\LokasiController;
+// use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\BiayaLainController;
+use App\Http\Controllers\ListorderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about_us.index');
@@ -19,13 +20,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Role Admin
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('pesanan', LokasiController::class);
+    Route::resource('pesanan', ListorderController::class);
 
-    Route::put('/pesanan/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
-    Route::get('pesanan/{id}/send-invoice', [LokasiController::class, 'sendInvoice'])->name('lokasi.sendInvoice');
+    Route::put('/pesanan/{id}/status', [ListorderController::class, 'status'])->name('lokasi.status');
+    Route::get('pesanan/{id}/send-invoice', [ListorderController::class, 'sendInvoice'])->name('lokasi.sendInvoice');
     
-    Route::get('/getJenis/{kategori_id}', [LokasiController::class, 'getJenis']);
-    Route::get('/getHarga/{jenis}', [LokasiController::class, 'getHarga']);
+    Route::get('/getJenis/{kategori_id}', [ListorderController::class, 'getJenis']);
+    Route::get('/getHarga/{jenis}', [ListorderController::class, 'getHarga']);
     Route::post('/getkabupaten', [WilayahController::class, 'getkabupaten'])->name('getkabupaten');
 
     Route::resource('barang', BarangController::class);
