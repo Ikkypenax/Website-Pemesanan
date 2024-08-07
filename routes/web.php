@@ -2,17 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\BiayaLainController;
-use App\Http\Controllers\AboutUsController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about_us.index');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');

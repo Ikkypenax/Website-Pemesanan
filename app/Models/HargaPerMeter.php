@@ -9,7 +9,7 @@ class HargaPerMeter extends Model
 {
     use HasFactory;
 
-    protected $table = 'harga_per_meter';
+    protected $table = 'panel';
 
     protected $fillable = [
         'jenis',

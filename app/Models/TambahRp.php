@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TambahRp extends Model
 {
     use HasFactory;
-    protected $table = 'tambah_rp';
+    protected $table = 'add_fee';
 
     protected $fillable = [
         'biaya_transportasi',

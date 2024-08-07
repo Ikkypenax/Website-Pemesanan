@@ -22,7 +22,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect('lokasi');
+            return redirect('pesanan');
         }
 
         return back()->withErrors([

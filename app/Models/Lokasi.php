@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lokasi extends Model
 {
     use HasFactory;
-    protected $table = 'lokasis';
+    protected $table = 'list_order';
     protected $fillable = [
         'nama',
         'wa',
