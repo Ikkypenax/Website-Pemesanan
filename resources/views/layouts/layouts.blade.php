@@ -166,17 +166,20 @@
 
 <body>
     <nav>
-        <div class="navbar">
+        <div class="navbar d-flex">
             <div class="logo"><a href="/">Sadjiwa Mitra Sembada</a></div>
-            <a class="menu-trigger">
-                <i class="bi bi-list"></i>
-            </a>
-            <ul class="menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/catalog/list">Catalog</a></li>
-                <li><a href="#About">About</a></li>
-                <li><a href="#Feedback">Feedback</a></li>
-            </ul>
+            <div>
+                <a class="menu-trigger">
+                    <i class="bi bi-list"></i>
+                </a>
+                <ul class="menu absolute">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/catalog/list">Catalog</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Feedback">Feedback</a></li>
+                </ul>
+            </div>
+
         </div>
     </nav>
 
