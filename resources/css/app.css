@@ -95,25 +95,18 @@ body {
     margin-bottom: 40px;
 }
 
-.section-heading h4 {
-font-weight: 600;
-font-size: 35px;
-    margin-bottom: 20px;
-    color: #AD3B45;
-}
-
 .section-heading img {
     margin-bottom: 20px;
 }
 
-.section-heading p {
+/* .section-heading p {
     color: var(--merahBayi)!important;
 
     font-size: 10pt;
     max-width: 800px;
     margin: 0 auto;
     color: #f4f4f4;
-}
+} */
 
 .service-item {
     background: white;
@@ -161,14 +154,6 @@ font-size: 35px;
 @media (max-width: 768px) {
     .service-item {
         margin-bottom: 20px;
-    }
-
-    .section-heading h4 {
-        font-size: 24pt;
-    }
-
-    .section-heading p {
-        font-size: 1em;
     }
 }
 
@@ -239,33 +224,22 @@ font-size: 35px;
     border-radius: 16px;
 }
 
-.about-us .box-item h4 a {
+/* .about-us .box-item h4 a {
     text-decoration:none;
     font-size: 20px;
     font-weight: 700;
     margin-top: 8px;
     color: #2a2a2a;
     transition: all 0.3s;
-}
+} */
 
 
-.about-us .box-item p {
-    margin-bottom: 0px;
-}
-
-.about-us .box-item:hover h4 a {
-    color: #4b8ef1;
-}
 
 .about-us .gradient-button {
     margin-top: 30px;
     margin-bottom: 10px;
 }
 
-.about-us span {
-    font-size: 14px;
-    color: #7a7a7a;
-}
 
 .about-us .right-image {
     position: relative;

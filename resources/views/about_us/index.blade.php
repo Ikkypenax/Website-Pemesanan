@@ -11,19 +11,22 @@
 
     <section class="mt-5">
         <h2 class="mb-4">Profil Perusahaan</h2>
-        <div class="row mb-2    ">
+        <div class="row mb-2">
             <div class="col-md-6 col-sm-12">
-                <p>CV. Sadjiwa Mitra Sembada bergerak di bidang fotografi dan pengadaan videotron, dengan fokus utama pada pengadaan videotron berkualitas tinggi untuk berbagai kebutuhan.</p>
+                <p>CV. Sadjiwa Mitra Sembada bergerak di bidang fotografi dan pengadaan videotron, dengan fokus utama
+                    pada pengadaan videotron berkualitas tinggi untuk berbagai kebutuhan.</p>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('images/company_profile.jpg') }}" alt="Company Profile" class="img-fluid rounded shadow-sm">
+                <img src="{{ asset('images/company_profile.jpg') }}" alt="Company Profile"
+                    class="img-fluid rounded shadow-sm">
             </div>
         </div>
     </section>
 
     <section class="mt-5">
         <h3 class="mb-4">Visi</h3>
-        <p>Menjadi perusahaan terdepan dalam pengadaan videotron dan layanan fotografi yang berkualitas dan terpercaya di Indonesia.</p>
+        <p>Menjadi perusahaan terdepan dalam pengadaan videotron dan layanan fotografi yang berkualitas dan terpercaya
+            di Indonesia.</p>
     </section>
 
     <section class="mt-5">

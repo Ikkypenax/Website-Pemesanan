@@ -237,7 +237,7 @@
         }
     }
 
-    section {
+    /* section {
         display: flex;
         height: 100vh;
         width: 100%;
@@ -255,7 +255,7 @@
         justify-content: center;
         color: #96c7e8;
         font-size: 70px;
-    }
+    } */
 
     footer {
         background: #022833;
