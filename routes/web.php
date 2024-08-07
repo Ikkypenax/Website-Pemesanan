@@ -8,12 +8,12 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\BiayaLainController;
-
+use App\Http\Controllers\AboutUsController;
 
 Route::get('/', function () {
     return view('home');
 });
-
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('about_us.index');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -21,7 +21,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Role Admin
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('pesanan', LokasiController::class);
-    
+
     Route::put('/pesanan/{id}/status', [LokasiController::class, 'status'])->name('lokasi.status');
     Route::get('pesanan/{id}/send-invoice', [LokasiController::class, 'sendInvoice'])->name('lokasi.sendInvoice');
 

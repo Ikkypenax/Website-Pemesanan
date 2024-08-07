@@ -53,13 +53,13 @@ class LokasiController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
 
         $namaJenis = HargaPerMeter::find($request->jenis)->jenis;
 
-        
+
         $request->validate([
             "nama" => "required",
             "wa" => "required",
@@ -84,14 +84,14 @@ class LokasiController extends Controller
             "result" => $request->result,
         ]);
 
-    
+
         return redirect()->route('pesanan.index')
             ->with('success', 'Pesanan created successfully.');
     }
 
     public function edit($id)
     {
-        
+
         $lokasi = Lokasi::with('tambahRp')->find($id);
         $barang = HargaPerMeter::all();
         $kategori = Kategori::all();
@@ -133,14 +133,14 @@ class LokasiController extends Controller
     public function show($id)
     {
         $lokasi = Lokasi::with('tambahRp')->find($id);
-        
+
         return view('lokasi.show', compact('lokasi'));
     }
 
     public function sendInvoice($id)
 {
     $lokasi = Lokasi::with('tambahRp')->find($id);
-    
+
     $nama = $lokasi->nama;
     $wa = $lokasi->wa;
     $kategori = $lokasi->kategori;
@@ -184,7 +184,7 @@ class LokasiController extends Controller
     {
         $lokasi = Lokasi::findOrFail($id);
         $lokasi->delete();
-        
+
         return redirect()->route('pesanan.index')
             ->with('success', 'Pesanan deleted successfully');
     }

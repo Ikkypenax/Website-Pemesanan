@@ -419,7 +419,7 @@
             <ul class="menu">
                 <li><a href="/">Home</a></li>
                 <li><a href="/catalog/list">Catalog</a></li>
-                <li><a href="#About">About</a></li>
+                <li><a href="/about-us">About</a></li>
                 <li><a href="{{ route('order.create') }}" class="order-button">Order Now</a></li>
             </ul>
         </div>
