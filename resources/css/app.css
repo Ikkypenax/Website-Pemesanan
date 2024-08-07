@@ -194,6 +194,7 @@ font-size: 35px;
     max-height: 200px;
     object-fit: cover;
     cursor: pointer;
+    object-position: top;
 }
 
 .card-body {
@@ -320,6 +321,13 @@ font-size: 35px;
     }
 }
 
+.swiper-slide{
+    height:100%!important;
+}
+
+.swiper-slide .card{
+    height:100%!important;
+}
 
 .swiper-slide .card-body img {
     width: 50px;
@@ -330,6 +338,12 @@ font-size: 35px;
     display: flex;
     align-items: center;
 }
+.mySwiper{
+    padding-top:10px;
+    max-height: 200px;
+    height: 100%;
+}
+
 @media (max-width: 767px) {
     .swiper-slide .card-body {
         flex-direction: column;
@@ -338,4 +352,12 @@ font-size: 35px;
     .swiper-slide .card-body img {
         margin-bottom: 10px;
     }
+.swiper-slide{
+    width: 100%!important;
+}
+
+.mySwiper{
+    height: fit-content;
+    padding-bottom: 20px
+}
 }
