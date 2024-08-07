@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
+use App\Models\Panel;
+use App\Models\Category;
+// use App\Models\HargaPerMeter;
+// use App\Models\Kategori;
 use Illuminate\Http\Request;
-use App\Models\HargaPerMeter;
 
 class BarangController extends Controller
 {
     public function index()
     {
-        $barang = HargaPerMeter::with('kategori')->get();
-        $kategori = Kategori::all();
+        $barang = Panel::with('kategori')->get();
+        $kategori = Category::all();
         return view('barang.index', compact('barang', 'kategori'));
     }
 
     public function create()
     {
         return view('barang.create', [
-            'barang' => Kategori::get(),
+            'barang' => Category::get(),
         ]);
     }
 
@@ -31,7 +33,7 @@ class BarangController extends Controller
 
         ]);
 
-        HargaPerMeter::create([
+        Panel::create([
             "jenis" => $request->jenis,
             "harga" => $request->harga,
             "kategori_id" => $request->kategori_id,
@@ -47,13 +49,13 @@ class BarangController extends Controller
         return view('barang.show', compact('barang'));
     }
 
-    public function edit(HargaPerMeter $barang)
+    public function edit(Panel $barang)
     {
-        $kategori = Kategori::all();
+        $kategori = Category::all();
         return view('barang.edit', compact('barang', 'kategori'));
     }
 
-    public function update(Request $request, HargaPerMeter $barang)
+    public function update(Request $request, Panel $barang)
     {
         $request->validate([
             'jenis' => 'required',
@@ -66,7 +68,7 @@ class BarangController extends Controller
             ->with('success', 'Barang berhasil diperbarui.');
     }
 
-    public function destroy(HargaPerMeter $barang)
+    public function destroy(Panel $barang)
     {
         $barang->delete();
         return redirect()->route('barang.index')

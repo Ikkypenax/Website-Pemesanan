@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lokasi;
+use App\Models\Listorder;
+// use App\Models\Lokasi;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
@@ -13,7 +14,7 @@ class StatusController extends Controller
             'status' => 'required|string|max:255',
         ]);
 
-        $status = Lokasi::find($id);
+        $status = Listorder::find($id);
         $status->update(['status' => $request->status]);
         return back()->with('success', 'Updated successfully.');
     }

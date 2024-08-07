@@ -48,7 +48,7 @@
                                         {{ $l->result ? 'Rp. ' . number_format($l->result, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                     <td>
-                                        {{ $l->tambahRp ? 'Rp. ' . number_format($l->tambahRp->total_biaya, 0, ',', '.') : 'Rp. 0' }}
+                                        {{ $l->addfee ? 'Rp. ' . number_format($l->addfee->total_biaya, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                     <td>
                                         <form action="{{ route('lokasi.status', $l->id) }}" method="POST"

@@ -2,41 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lokasi;
+use App\Models\Panel;
+use App\Models\Addfee;
+use App\Models\Listorder;
+// use App\Models\Lokasi;
+// use App\Models\Kategori;
+// use App\Models\HargaPerMeter;
 use App\Models\Regency;
-use App\Models\Kategori;
+use App\Models\Category;
 use App\Models\Province;
-use App\Models\TambahRp;
 use Illuminate\Http\Request;
-use App\Models\HargaPerMeter;
 
 
 class LokasiController extends Controller
 {
     public function index()
     {
-        $lokasi = Lokasi::with(['hargaPerMeter', 'kategori'])->orderBy('created_at', 'desc')->get();
+        $lokasi = Listorder::with(['panel', 'kategori'])->orderBy('created_at', 'desc')->get();
         return view('lokasi.index', compact('lokasi'));
     }
 
     public function create()
     {
-        $barang = HargaPerMeter::with('kategori')->get();
-        $kategori = Kategori::whereIn('id', [1, 2])->get();
+        $barang = Panel::with('kategori')->get();
+        $kategori = Category::whereIn('id', [1, 2])->get();
         $provinces = Province::all();
         return view('lokasi.create', compact('barang', 'kategori', 'provinces'));
     }
 
     public function getJenis($kategori_nama)
     {
-        $kategori = Kategori::where('nama_kategori', $kategori_nama)->first();
-        $jenis = HargaPerMeter::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
+        $kategori = Category::where('nama_kategori', $kategori_nama)->first();
+        $jenis = Panel::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
         return response()->json($jenis);
     }
 
     public function getHarga($jenis)
     {
-        $harga = HargaPerMeter::where('jenis', $jenis)->first();
+        $harga = Panel::where('jenis', $jenis)->first();
         return response()->json($harga);
     }
 
@@ -57,7 +60,7 @@ class LokasiController extends Controller
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
 
-        $namaJenis = HargaPerMeter::find($request->jenis)->jenis;
+        $namaJenis = Panel::find($request->jenis)->jenis;
 
 
         $request->validate([
@@ -72,7 +75,7 @@ class LokasiController extends Controller
             "result" => "required",
         ]);
 
-        Lokasi::create([
+        Listorder::create([
             "nama" => $request->nama,
             "wa" => $request->wa,
             "jenis" => $namaJenis,
@@ -92,14 +95,14 @@ class LokasiController extends Controller
     public function edit($id)
     {
 
-        $lokasi = Lokasi::with('tambahRp')->find($id);
-        $barang = HargaPerMeter::all();
-        $kategori = Kategori::all();
+        $lokasi = Listorder::with('addfee')->find($id);
+        $barang = Panel::all();
+        $kategori = Category::all();
 
         return view('lokasi.edit', compact('barang', 'kategori', 'lokasi'));
     }
 
-    public function update(Request $request, Lokasi $lokasi)
+    public function update(Request $request, Listorder $lokasi)
     {
 
         $request->validate([
@@ -132,29 +135,29 @@ class LokasiController extends Controller
 
     public function show($id)
     {
-        $lokasi = Lokasi::with('tambahRp')->find($id);
+        $lokasi = Listorder::with('addfee')->find($id);
 
         return view('lokasi.show', compact('lokasi'));
     }
 
     public function sendInvoice($id)
 {
-    $lokasi = Lokasi::with('tambahRp')->find($id);
+    $lokasi = Listorder::with('addfee')->find($id);
 
     $nama = $lokasi->nama;
     $wa = $lokasi->wa;
     $kategori = $lokasi->kategori;
     $jenis = $lokasi->jenis;
-    $hargaPerMeter = $lokasi->hargaPerMeter ? 'Rp. ' . number_format($lokasi->hargaPerMeter->harga, 0, ',', '.') : 'Rp. 0';
+    $hargaPerMeter = $lokasi->panel ? 'Rp. ' . number_format($lokasi->panel->harga, 0, ',', '.') : 'Rp. 0';
     $panjangLebar = $lokasi->panjang . ' x ' . $lokasi->lebar . ' Meter';
     $harga = $lokasi->result ? 'Rp. ' . number_format($lokasi->result, 0, ',', '.') : 'Rp. 0';
     $provinsi = $lokasi->provinsi;
     $kabupaten = $lokasi->kabupaten;
-    $transportasi = $lokasi->tambahRp->biaya_transportasi ? 'Rp. ' . number_format($lokasi->tambahRp->biaya_transportasi, 0, ',', '.') : '-';
-    $pemasangan = $lokasi->tambahRp->biaya_pemasangan ? 'Rp. ' . number_format($lokasi->tambahRp->biaya_pemasangan, 0, ',', '.') : '-';
-    $jasa = $lokasi->tambahRp->biaya_jasa ? 'Rp. ' . number_format($lokasi->tambahRp->biaya_jasa, 0, ',', '.') : '-';
-    $service = $lokasi->tambahRp->biaya_service ? 'Rp. ' . number_format($lokasi->tambahRp->biaya_service, 0, ',', '.') : '-';
-    $total = $lokasi->tambahRp->total_biaya ? 'Rp. ' . number_format($lokasi->tambahRp->total_biaya, 0, ',', '.') : '-';
+    $transportasi = $lokasi->addfee->biaya_transportasi ? 'Rp. ' . number_format($lokasi->addfee->biaya_transportasi, 0, ',', '.') : '-';
+    $pemasangan = $lokasi->addfee->biaya_pemasangan ? 'Rp. ' . number_format($lokasi->addfee->biaya_pemasangan, 0, ',', '.') : '-';
+    $jasa = $lokasi->addfee->biaya_jasa ? 'Rp. ' . number_format($lokasi->addfee->biaya_jasa, 0, ',', '.') : '-';
+    $service = $lokasi->addfee->biaya_service ? 'Rp. ' . number_format($lokasi->addfee->biaya_service, 0, ',', '.') : '-';
+    $total = $lokasi->addfee->total_biaya ? 'Rp. ' . number_format($lokasi->addfee->total_biaya, 0, ',', '.') : '-';
 
     if (substr($wa, 0, 1) === '0') {
         $wa = '+62' . substr($wa, 1);
@@ -182,7 +185,7 @@ class LokasiController extends Controller
 
     public function destroy($id)
     {
-        $lokasi = Lokasi::findOrFail($id);
+        $lokasi = Listorder::findOrFail($id);
         $lokasi->delete();
 
         return redirect()->route('pesanan.index')
@@ -195,7 +198,7 @@ class LokasiController extends Controller
             'status' => 'required|string|max:255',
         ]);
 
-        $status = Lokasi::find($id);
+        $status = Listorder::find($id);
         $status->update(['status' => $request->status]);
 
         return back()->with('success', 'Status Updated successfully.');

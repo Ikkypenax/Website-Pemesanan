@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Listorder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class TambahRp extends Model
+class Addfee extends Model
 {
     use HasFactory;
     protected $table = 'add_fee';
@@ -19,8 +20,8 @@ class TambahRp extends Model
         'lokasi_id',
     ];
 
-    public function lokasi()
+    public function listorder()
     {
-        return $this->belongsTo(Lokasi::class);
+        return $this->belongsTo(Listorder::class);
     }
 }

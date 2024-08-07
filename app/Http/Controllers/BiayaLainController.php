@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lokasi;
-use App\Models\TambahRp;
+use App\Models\Addfee;
+use App\Models\Listorder;
+// use App\Models\Lokasi;
+// use App\Models\TambahRp;
 use Illuminate\Http\Request;
 
 class BiayaLainController extends Controller
@@ -20,14 +22,14 @@ class BiayaLainController extends Controller
         ]);
 
 
-        $lokasi = Lokasi::findOrFail($request->lokasi_id);
+        $lokasi = Listorder::findOrFail($request->lokasi_id);
 
         $harga = $lokasi->result;
 
         $total_biaya = $harga + $request->transportasi + $request->pemasangan + $request->jasa + $request->service;
 
 
-        TambahRp::create([
+        Addfee::create([
             "biaya_transportasi" => $request->transportasi,
             "biaya_pemasangan" => $request->pemasangan,
             "biaya_jasa" => $request->jasa,
@@ -51,13 +53,13 @@ class BiayaLainController extends Controller
             "lokasi_id" => "required",
         ]);
 
-        $lokasi = Lokasi::findOrFail($request->lokasi_id);
+        $lokasi = Listorder::findOrFail($request->lokasi_id);
 
         $harga = $lokasi->result;
 
         $total_biaya = $harga + $request->transportasi + $request->pemasangan + $request->jasa + $request->service;
 
-        $biaya = TambahRp::where('lokasi_id', $id)->firstOrFail();
+        $biaya = Addfee::where('lokasi_id', $id)->firstOrFail();
         
         $biaya->update([
             "biaya_transportasi" => $request->transportasi,

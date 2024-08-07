@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lokasi;
+use App\Models\Panel;
+// use App\Models\Lokasi;
 use Illuminate\Http\Request;
-use App\Models\HargaPerMeter;
+// use App\Models\HargaPerMeter;
 
 class HargaPerMeterController extends Controller
 {
 public function create()
 {
-    $hargaPerMeter = HargaPerMeter::all(); 
+    $hargaPerMeter = Panel::all(); 
     return view('lokasi.create', compact('hargaPerMeter'));
 }
 }

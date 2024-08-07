@@ -2,33 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lokasi;
+use App\Models\Panel;
 use App\Models\Regency;
-use App\Models\Kategori;
+use App\Models\Listorder;
+// use App\Models\Lokasi;
+// use App\Models\Kategori;
+// use App\Models\HargaPerMeter;
+use App\Models\Category;
 use App\Models\Province;
 use Illuminate\Http\Request;
-use App\Models\HargaPerMeter;
 
 class OrderController extends Controller
 {
     public function create()
     {
-        $barang = HargaPerMeter::with('kategori')->get();
-        $kategori = Kategori::whereIn('id', [1, 2])->get();
+        $barang = Panel::with('kategori')->get();
+        $kategori = Category::whereIn('id', [1, 2])->get();
         $provinces = Province::all();
         return view('order', compact('barang', 'kategori', 'provinces'));
     }
 
     public function getJenis($kategori_nama)
     {
-        $kategori = Kategori::where('nama_kategori', $kategori_nama)->first();
-        $jenis = HargaPerMeter::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
+        $kategori = Category::where('nama_kategori', $kategori_nama)->first();
+        $jenis = Panel::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
         return response()->json($jenis);
     }
 
     public function getHarga($jenis)
     {
-        $harga = HargaPerMeter::where('jenis', $jenis)->first();
+        $harga = Panel::where('jenis', $jenis)->first();
         return response()->json($harga);
     }
 
@@ -45,7 +48,7 @@ class OrderController extends Controller
         $namaProvinsi = Province::find($request->provinsi)->name;
         $namaKabupaten = Regency::find($request->kabupaten)->name;
 
-        $namaJenis = HargaPerMeter::find($request->jenis)->jenis;
+        $namaJenis = Panel::find($request->jenis)->jenis;
 
 
         $request->validate([
@@ -60,7 +63,7 @@ class OrderController extends Controller
             "result" => "required",
         ]);
 
-        Lokasi::create([
+        Listorder::create([
             "nama" => $request->nama,
             "wa" => $request->wa,
             "jenis" => $namaJenis,

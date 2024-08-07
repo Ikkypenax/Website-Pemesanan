@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class HargaPerMeter extends Model
+class Panel extends Model
 {
     use HasFactory;
 
@@ -19,6 +20,6 @@ class HargaPerMeter extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        return $this->belongsTo(Category::class, 'kategori_id');
     }
 }

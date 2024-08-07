@@ -64,8 +64,8 @@
                             <tr>
                                 <th>Transportasi</th>
                                 <td>
-                                    @isset($lokasi->tambahRp->biaya_transportasi)
-                                        Rp. {{ number_format($lokasi->tambahRp->biaya_transportasi, 0, ',', '.') }}
+                                    @isset($lokasi->addfee->biaya_transportasi)
+                                        Rp. {{ number_format($lokasi->addfee->biaya_transportasi, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -74,8 +74,8 @@
                             <tr>
                                 <th>Pemasangan</th>
                                 <td>
-                                    @isset($lokasi->tambahRp->biaya_pemasangan)
-                                        Rp. {{ number_format($lokasi->tambahRp->biaya_pemasangan, 0, ',', '.') }}
+                                    @isset($lokasi->addfee->biaya_pemasangan)
+                                        Rp. {{ number_format($lokasi->addfee->biaya_pemasangan, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -84,8 +84,8 @@
                             <tr>
                                 <th>Jasa</th>
                                 <td>
-                                    @isset($lokasi->tambahRp->biaya_jasa)
-                                        Rp. {{ number_format($lokasi->tambahRp->biaya_jasa, 0, ',', '.') }}
+                                    @isset($lokasi->addfee->biaya_jasa)
+                                        Rp. {{ number_format($lokasi->addfee->biaya_jasa, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -94,8 +94,8 @@
                             <tr>
                                 <th>Service</th>
                                 <td>
-                                    @isset($lokasi->tambahRp->biaya_service)
-                                        Rp. {{ number_format($lokasi->tambahRp->biaya_service, 0, ',', '.') }}
+                                    @isset($lokasi->addfee->biaya_service)
+                                        Rp. {{ number_format($lokasi->addfee->biaya_service, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -104,8 +104,8 @@
                             <tr>
                                 <th>Total Keseluruhan</th>
                                 <td>
-                                    @isset($lokasi->tambahRp->total_biaya)
-                                        Rp. {{ number_format($lokasi->tambahRp->total_biaya, 0, ',', '.') }}
+                                    @isset($lokasi->addfee->total_biaya)
+                                        Rp. {{ number_format($lokasi->addfee->total_biaya, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
