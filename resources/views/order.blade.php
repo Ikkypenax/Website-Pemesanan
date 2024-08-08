@@ -52,6 +52,7 @@
                 <label for="harga" class="form-label">Harga per Meter</label>
                 <p class="form-control-plaintext" id="harga" name="harga" data-harga="0">-</p>
             </div>
+            
             <div class="form-group row">
                 <div class="col">
                     <label for="panjang" class="form-label">Panjang</label>
@@ -65,9 +66,9 @@
 
             <div class="form-group">
                 <div class="col">
-                    <label for="result" id="result" name="result" class="ms-3" style="font-size: 14pt">Total: Rp.
+                    <label for="hasil" id="hasil" name="hasil" class="ms-3" style="font-weight: bold; font-size: 16pt; color: green">Total: Rp.
                         0</label>
-                    <input type="hidden" id="result_hidden" name="result">
+                    <input type="hidden" id="hasil_hidden" name="hasil">
                 </div>
                 <span>*Belum termasuk biaya lainnya</span>
             </div>
@@ -161,15 +162,15 @@
                 var panjang = parseFloat($('#panjang').val()) || 0;
                 var lebar = parseFloat($('#lebar').val()) || 0;
                 var harga = parseFloat($('#harga').data('harga')) || 0;
-                var result = panjang * lebar * harga;
-                var formattedResult = result.toFixed(2);
-                $('#result').text(`Total: Rp. ${parseFloat(formattedResult).toLocaleString()}`);
-                $('#result_hidden').val(formattedResult);
+                var hasil = panjang * lebar * harga;
+                var formattedhasil = hasil.toFixed(2);
+                $('#hasil').text(`Total: Rp. ${parseFloat(formattedhasil).toLocaleString()}`);
+                $('#hasil_hidden').val(formattedhasil);
             });
 
             $('form').on('submit', function() {
-                var total = $('#result_hidden').val();
-                $('#result_hidden').val(parseFloat(total).toFixed(2));
+                var total = $('#hasil_hidden').val();
+                $('#hasil_hidden').val(parseFloat(total).toFixed(2));
             });
         });
     </script>
