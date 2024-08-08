@@ -87,7 +87,8 @@
                                                 </li>
                                                 <li class="list-inline-item">
 
-                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </li>

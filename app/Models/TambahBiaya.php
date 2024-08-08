@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Listorder;
+use App\Models\Pesanan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Addfee extends Model
+class TambahBiaya extends Model
 {
     use HasFactory;
-    protected $table = 'add_fee';
+    protected $table = 'tambah_biaya';
 
     protected $fillable = [
         'biaya_transportasi',
@@ -22,6 +22,6 @@ class Addfee extends Model
 
     public function listorder()
     {
-        return $this->belongsTo(Listorder::class);
+        return $this->belongsTo(Pesanan::class);
     }
 }

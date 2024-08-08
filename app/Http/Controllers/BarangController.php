@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Panel;
-use App\Models\Category;
+use App\Models\Kategori;
+// use App\Models\Category;
 // use App\Models\HargaPerMeter;
-// use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -13,14 +13,14 @@ class BarangController extends Controller
     public function index()
     {
         $barang = Panel::with('kategori')->get();
-        $kategori = Category::all();
+        $kategori = Kategori::all();
         return view('barang.index', compact('barang', 'kategori'));
     }
 
     public function create()
     {
         return view('barang.create', [
-            'barang' => Category::get(),
+            'barang' => Kategori::get(),
         ]);
     }
 
@@ -51,7 +51,7 @@ class BarangController extends Controller
 
     public function edit(Panel $barang)
     {
-        $kategori = Category::all();
+        $kategori = Kategori::all();
         return view('barang.edit', compact('barang', 'kategori'));
     }
 

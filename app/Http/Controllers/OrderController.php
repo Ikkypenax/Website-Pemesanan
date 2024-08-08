@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Panel;
 use App\Models\Regency;
-use App\Models\Listorder;
+// use App\Models\Listorder;
 // use App\Models\Lokasi;
 // use App\Models\Kategori;
 // use App\Models\HargaPerMeter;
-use App\Models\Category;
+use App\Models\Kategori;
+use App\Models\Pesanan;
 use App\Models\Province;
 use Illuminate\Http\Request;
 
@@ -17,14 +18,14 @@ class OrderController extends Controller
     public function create()
     {
         $barang = Panel::with('kategori')->get();
-        $kategori = Category::whereIn('id', [1, 2])->get();
+        $kategori = Kategori::whereIn('id', [1, 2])->get();
         $provinces = Province::all();
         return view('order', compact('barang', 'kategori', 'provinces'));
     }
 
     public function getJenis($kategori_nama)
     {
-        $kategori = Category::where('nama_kategori', $kategori_nama)->first();
+        $kategori = Kategori::where('nama_kategori', $kategori_nama)->first();
         $jenis = Panel::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
         return response()->json($jenis);
     }
@@ -63,7 +64,7 @@ class OrderController extends Controller
             "result" => "required",
         ]);
 
-        Listorder::create([
+        Pesanan::create([
             "nama" => $request->nama,
             "wa" => $request->wa,
             "jenis" => $namaJenis,

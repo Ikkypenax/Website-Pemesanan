@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Category;
+use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,6 +20,6 @@ class Panel extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(Category::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }

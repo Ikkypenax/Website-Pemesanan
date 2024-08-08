@@ -51,10 +51,10 @@
                         <tbody>
                             @foreach ($catalog as $c)
                                 <tr>
-                                    <td>{{ $c->name }}</td>
-                                    <td>{{ $c->description }}</td>
+                                    <td>{{ $c->nama }}</td>
+                                    <td>{{ $c->deskripsi }}</td>
                                     <td>{{ $c->freshrate }}</td>
-                                    <td><img src="{{ asset('storage/images/' . $c->image) }}" width="100"></td>
+                                    <td><img src="{{ asset('storage/images/' . $c->gambar) }}" width="100"></td>
                                     <td>
                                         <form action="{{ route('catalog.destroy', $c->id) }}" method="POST"
                                             class="d-inline">
@@ -68,7 +68,7 @@
                                                 <li class="list-inline-item mb-1 mr-0">
                                                     <button type="button" class="btn btn-secondary btn-sm"
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                        onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">
+                                                        onclick="showImage('{{ asset('storage/images/' . $c->gambar) }}')">
                                                         <i class="bi bi-eye"></i>
                                                     </button>
                                                 </li>

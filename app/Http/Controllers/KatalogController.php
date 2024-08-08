@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Catalog;
+// use App\Models\Catalog;
+use App\Models\Katalog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-
-class CatalogController extends Controller
+class KatalogController extends Controller
 {
     public function index()
     {
-        $catalog = Catalog::all();
-        // dd($catalog);
+        $catalog = Katalog::all();
+
         return view('catalog.index', compact('catalog'));
     }
     public function list()
     {
-        $catalog = Catalog::all();
-        // dd($catalog);
+        $catalog = Katalog::all();
+        
         return view('catalog.list', compact('catalog'));
     }
     public function create()
@@ -30,19 +30,19 @@ class CatalogController extends Controller
     {
 
         $data = $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
 
-        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension();
-        $data['image']->storeAs('public/images', $path);
+        $path = $data['nama'].'.'.$data['gambar']->getClientOriginalExtension();
+        $data['gambar']->storeAs('public/images', $path);
 
 
-        $catalog = new Catalog();
-        $catalog->name = $request->name;
-        $catalog->description = $request->description;
-        $catalog->image = $path;
+        $catalog = new Katalog();
+        $catalog->nama = $request->nama;
+        $catalog->deskripsi = $request->deskripsi;
+        $catalog->gambar = $path;
         $catalog->freshrate = $request->freshrate;
 
         $catalog->save();
@@ -53,24 +53,24 @@ class CatalogController extends Controller
     public function edit($id)
     {
 
-        $catalog = Catalog::find($id);
+        $catalog = Katalog::find($id);
         return view('catalog.edit', compact('catalog'));
     }
 
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension();
-        $data['image']->storeAs('public/images', $path);
+        $path = $data['nama'].'.'.$data['gambar']->getClientOriginalExtension();
+        $data['gambar']->storeAs('public/images', $path);
 
-        $catalog = Catalog::find($id);
-        $catalog->name = $request->name;
-        $catalog->description = $request->description;
-        $catalog->image = $path;
+        $catalog = Katalog::find($id);
+        $catalog->nama = $request->nama;
+        $catalog->deskripsi = $request->deskripsi;
+        $catalog->gambar = $path;
         $catalog->freshrate = $request->freshrate;
         $catalog->save();
 
@@ -79,7 +79,7 @@ class CatalogController extends Controller
 
     public function destroy($id)
     {
-        $catalog = Catalog::find($id);
+        $catalog = Katalog::find($id);
         $catalog->delete();
 
         return redirect()->route('catalog.index');

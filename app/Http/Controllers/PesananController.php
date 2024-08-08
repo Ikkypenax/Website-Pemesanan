@@ -4,35 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Models\Panel;
 use App\Models\Addfee;
-use App\Models\Listorder;
+use App\Models\Pesanan;
 // use App\Models\Lokasi;
 // use App\Models\Kategori;
 // use App\Models\HargaPerMeter;
+// use App\Models\Listorder;
 use App\Models\Regency;
-use App\Models\Category;
+use App\Models\Kategori;
 use App\Models\Province;
 use Illuminate\Http\Request;
 
 
-class ListorderController extends Controller
+class PesananController extends Controller
 {
     public function index()
     {
-        $lokasi = Listorder::with(['panel', 'kategori'])->orderBy('created_at', 'desc')->get();
+        $lokasi = Pesanan::with(['panel', 'kategori'])->orderBy('created_at', 'desc')->get();
         return view('lokasi.index', compact('lokasi'));
     }
 
     public function create()
     {
         $barang = Panel::with('kategori')->get();
-        $kategori = Category::whereIn('id', [1, 2])->get();
+        $kategori = Kategori::whereIn('id', [1, 2])->get();
         $provinces = Province::all();
         return view('lokasi.create', compact('barang', 'kategori', 'provinces'));
     }
 
     public function getJenis($kategori_nama)
     {
-        $kategori = Category::where('nama_kategori', $kategori_nama)->first();
+        $kategori = Kategori::where('nama_kategori', $kategori_nama)->first();
         $jenis = Panel::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
         return response()->json($jenis);
     }
@@ -48,7 +49,7 @@ class ListorderController extends Controller
     {
         $id_provinsi = $request->id_provinsi;
         $kabupatens = Regency::where('province_id', $id_provinsi)->get();
-        foreach ($kabupatens as $kabupaten) {
+        foreach($kabupatens as $kabupaten){
             echo "<option value='$kabupaten->id'>$kabupaten->name</option>";
         }
     }
@@ -75,7 +76,7 @@ class ListorderController extends Controller
             "result" => "required",
         ]);
 
-        Listorder::create([
+        Pesanan::create([
             "nama" => $request->nama,
             "wa" => $request->wa,
             "jenis" => $namaJenis,
@@ -95,14 +96,14 @@ class ListorderController extends Controller
     public function edit($id)
     {
 
-        $lokasi = Listorder::with('addfee')->find($id);
+        $lokasi = Pesanan::with('addfee')->find($id);
         $barang = Panel::all();
-        $kategori = Category::all();
+        $kategori = Kategori::all();
 
         return view('lokasi.edit', compact('barang', 'kategori', 'lokasi'));
     }
 
-    public function update(Request $request, Listorder $lokasi)
+    public function update(Request $request, Pesanan $lokasi)
     {
 
         $request->validate([
@@ -135,14 +136,14 @@ class ListorderController extends Controller
 
     public function show($id)
     {
-        $lokasi = Listorder::with('addfee')->find($id);
+        $lokasi = Pesanan::with('addfee')->find($id);
 
         return view('lokasi.show', compact('lokasi'));
     }
 
     public function sendInvoice($id)
 {
-    $lokasi = Listorder::with('addfee')->find($id);
+    $lokasi = Pesanan::with('addfee')->find($id);
 
     $nama = $lokasi->nama;
     $wa = $lokasi->wa;
@@ -185,7 +186,7 @@ class ListorderController extends Controller
 
     public function destroy($id)
     {
-        $lokasi = Listorder::findOrFail($id);
+        $lokasi = Pesanan::findOrFail($id);
         $lokasi->delete();
 
         return redirect()->route('pesanan.index')
@@ -198,7 +199,7 @@ class ListorderController extends Controller
             'status' => 'required|string|max:255',
         ]);
 
-        $status = Listorder::find($id);
+        $status = Pesanan::find($id);
         $status->update(['status' => $request->status]);
 
         return back()->with('success', 'Status Updated successfully.');

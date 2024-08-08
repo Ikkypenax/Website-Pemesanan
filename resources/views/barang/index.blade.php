@@ -44,6 +44,8 @@
                                     <td data-label="Aksi">
                                         <form action="{{ route('barang.destroy', $b->id) }}" method="POST"
                                             style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item mb-1 mr-0">
                                                     <a href="{{ route('barang.edit', $b->id) }}" class="btn btn-warning">
@@ -51,9 +53,9 @@
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
+
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </li>

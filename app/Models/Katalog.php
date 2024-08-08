@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Catalog extends Model
+class Katalog extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description', 'image', 'freshrate'];
-    protected $table = 'catalogs';
+    protected $fillable = ['nama', 'deskripsi', 'gambar', 'freshrate'];
+    protected $table = 'katalog';
 }

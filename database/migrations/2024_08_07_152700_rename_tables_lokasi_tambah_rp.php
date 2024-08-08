@@ -13,8 +13,9 @@ class RenameTablesLokasiTambahRp extends Migration
      */
     public function up()
     {
-        Schema::rename('lokasis', 'list_order');
-        Schema::rename('tambah_rp', 'add_fee');
+        Schema::rename('lokasis', 'pesanan');
+        Schema::rename('tambah_rp', 'tambah_biaya');
+        Schema::rename('catalogs', 'katalog');
     }
 
     /**
@@ -24,7 +25,8 @@ class RenameTablesLokasiTambahRp extends Migration
      */
     public function down()
     {
-        Schema::rename('list_order', 'lokasis');
-        Schema::rename('add_fee', 'tambah_rp');
+        Schema::rename('pesanan', 'lokasis');
+        Schema::rename('tambah_biaya', 'tambah_rp');
+        Schema::rename('katalog', 'catalogs');
     }
 }
