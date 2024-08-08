@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Province Model.
  */
-class Province extends Model
+class Provinsi extends Model
 {
     use ProvinceTrait;
     /**
@@ -23,7 +23,7 @@ class Province extends Model
      *
      * @var string
      */
-    protected $table = 'provinces';
+    protected $table = 'provinsi';
 
     /**
      * Province has many regencies.
@@ -32,6 +32,6 @@ class Province extends Model
      */
     public function regencies()
     {
-        return $this->hasMany(Regency::class);
+        return $this->hasMany(Kabupaten::class);
     }
 }

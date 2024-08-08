@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Panel;
 use App\Models\Kategori;
-// use App\Models\Category;
-// use App\Models\HargaPerMeter;
+
 use Illuminate\Http\Request;
 
 class BarangController extends Controller

@@ -30,7 +30,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/getJenis/{kategori_id}', [PesananController::class, 'getJenis']);
     Route::get('/getHarga/{jenis}', [PesananController::class, 'getHarga']);
     Route::post('/getkabupaten', [PesananController::class, 'getkabupaten'])->name('getkabupaten');
-    // Route::post('/getkabupaten', [WilayahController::class, 'getkabupaten'])->name('getkabupaten');
 
     Route::resource('barang', BarangController::class);
     Route::put('biaya/{id}', [BarangController::class, 'update'])->name('biaya.update');

@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Panel;
-use App\Models\Addfee;
+use App\Models\Kabupaten;
 use App\Models\Pesanan;
-// use App\Models\Lokasi;
-// use App\Models\Kategori;
-// use App\Models\HargaPerMeter;
-// use App\Models\Listorder;
-use App\Models\Regency;
 use App\Models\Kategori;
-use App\Models\Province;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
+
 
 
 class PesananController extends Controller
@@ -27,7 +23,7 @@ class PesananController extends Controller
     {
         $barang = Panel::with('kategori')->get();
         $kategori = Kategori::whereIn('id', [1, 2])->get();
-        $provinces = Province::all();
+        $provinces = Provinsi::all();
         return view('lokasi.create', compact('barang', 'kategori', 'provinces'));
     }
 
@@ -48,7 +44,7 @@ class PesananController extends Controller
     public function getkabupaten(request $request)
     {
         $id_provinsi = $request->id_provinsi;
-        $kabupatens = Regency::where('province_id', $id_provinsi)->get();
+        $kabupatens =Kabupaten::where('province_id', $id_provinsi)->get();
         foreach($kabupatens as $kabupaten){
             echo "<option value='$kabupaten->id'>$kabupaten->name</option>";
         }
@@ -58,8 +54,8 @@ class PesananController extends Controller
     public function store(Request $request)
     {
 
-        $namaProvinsi = Province::find($request->provinsi)->name;
-        $namaKabupaten = Regency::find($request->kabupaten)->name;
+        $namaProvinsi = Provinsi::find($request->provinsi)->name;
+        $namaKabupaten = Kabupaten::find($request->kabupaten)->name;
 
         $namaJenis = Panel::find($request->jenis)->jenis;
 

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Regency Model.
  */
-class Regency extends Model
+class Kabupaten extends Model
 {
     use RegencyTrait;
 
@@ -24,7 +24,7 @@ class Regency extends Model
      *
      * @var string
      */
-    protected $table = 'regencies';
+    protected $table = 'kabupaten';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -42,7 +42,7 @@ class Regency extends Model
      */
     public function province()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Provinsi::class);
     }
 
     /**

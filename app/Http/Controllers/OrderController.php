@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kabupaten;
 use App\Models\Panel;
 use App\Models\Regency;
-// use App\Models\Listorder;
-// use App\Models\Lokasi;
-// use App\Models\Kategori;
-// use App\Models\HargaPerMeter;
 use App\Models\Kategori;
 use App\Models\Pesanan;
 use App\Models\Province;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,7 +17,7 @@ class OrderController extends Controller
     {
         $barang = Panel::with('kategori')->get();
         $kategori = Kategori::whereIn('id', [1, 2])->get();
-        $provinces = Province::all();
+        $provinces = Provinsi::all();
         return view('order', compact('barang', 'kategori', 'provinces'));
     }
 
@@ -38,7 +36,7 @@ class OrderController extends Controller
 
     public function getkabupaten($id_provinsi)
     {
-        $kabupatens = Regency::where('province_id', $id_provinsi)->get();
+        $kabupatens = Kabupaten::where('province_id', $id_provinsi)->get();
         return response()->json($kabupatens);
     }
 
@@ -46,8 +44,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        $namaProvinsi = Province::find($request->provinsi)->name;
-        $namaKabupaten = Regency::find($request->kabupaten)->name;
+        $namaProvinsi = Provinsi::find($request->provinsi)->name;
+        $namaKabupaten = Kabupaten::find($request->kabupaten)->name;
 
         $namaJenis = Panel::find($request->jenis)->jenis;
 
@@ -61,7 +59,7 @@ class OrderController extends Controller
             "lebar" => "required",
             "provinsi" => "required",
             "kabupaten" => "required",
-            "result" => "required",
+            "hasil" => "required",
         ]);
 
         Pesanan::create([
@@ -73,7 +71,7 @@ class OrderController extends Controller
             "lebar" => $request->lebar,
             "provinsi" => $namaProvinsi,
             "kabupaten" => $namaKabupaten,
-            "result" => $request->result,
+            "hasil" => $request->hasil,
         ]);
 
 

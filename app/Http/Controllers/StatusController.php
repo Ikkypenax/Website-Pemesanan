@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
-// use App\Models\Listorder;
-// use App\Models\Lokasi;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller

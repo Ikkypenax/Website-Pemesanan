@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Catalog;
+
 use App\Models\Katalog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
