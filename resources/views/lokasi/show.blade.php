@@ -48,7 +48,7 @@
                                 </tr>
                                 <tr>
                                     <th>Harga</th>
-                                    <td>{{ $lokasi->result ? 'Rp. ' . number_format($lokasi->result, 0, ',', '.') : 'Rp. 0' }}
+                                    <td>{{ $lokasi->hasil ? 'Rp. ' . number_format($lokasi->hasil, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                 </tr>
                         </table>

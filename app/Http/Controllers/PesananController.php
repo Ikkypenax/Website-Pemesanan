@@ -73,7 +73,7 @@ class PesananController extends Controller
             "lebar" => "required",
             "provinsi" => "required",
             "kabupaten" => "required",
-            "result" => "required",
+            "hasil" => "required",
         ]);
 
         Pesanan::create([
@@ -85,7 +85,7 @@ class PesananController extends Controller
             "lebar" => $request->lebar,
             "provinsi" => $namaProvinsi,
             "kabupaten" => $namaKabupaten,
-            "result" => $request->result,
+            "hasil" => $request->hasil,
         ]);
 
 
@@ -115,7 +115,7 @@ class PesananController extends Controller
             "lebar" => "required",
             "provinsi" => "required",
             "kabupaten" => "required",
-            "result" => "required",
+            "hasil" => "required",
         ]);
 
         $lokasi->nama = $request->input('nama', $lokasi->nama);
@@ -126,7 +126,7 @@ class PesananController extends Controller
         $lokasi->lebar = $request->input('lebar', $lokasi->lebar);
         $lokasi->provinsi = $request->input('provinsi', $lokasi->provinsi);
         $lokasi->kabupaten = $request->input('kabupaten', $lokasi->kabupaten);
-        $lokasi->result = $request->input('result', $lokasi->result);
+        $lokasi->hasil = $request->input('hasil', $lokasi->hasil);
 
         $lokasi->save();
 
@@ -151,7 +151,7 @@ class PesananController extends Controller
     $jenis = $lokasi->jenis;
     $hargaPerMeter = $lokasi->panel ? 'Rp. ' . number_format($lokasi->panel->harga, 0, ',', '.') : 'Rp. 0';
     $panjangLebar = $lokasi->panjang . ' x ' . $lokasi->lebar . ' Meter';
-    $harga = $lokasi->result ? 'Rp. ' . number_format($lokasi->result, 0, ',', '.') : 'Rp. 0';
+    $harga = $lokasi->hasil ? 'Rp. ' . number_format($lokasi->hasil, 0, ',', '.') : 'Rp. 0';
     $provinsi = $lokasi->provinsi;
     $kabupaten = $lokasi->kabupaten;
     $transportasi = $lokasi->addfee->biaya_transportasi ? 'Rp. ' . number_format($lokasi->addfee->biaya_transportasi, 0, ',', '.') : '-';

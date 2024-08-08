@@ -20,7 +20,7 @@ class Pesanan extends Model
         'jenis',
         'panjang',
         'lebar',
-        'result',
+        'hasil',
         'provinsi',
         'kabupaten',
         'status',

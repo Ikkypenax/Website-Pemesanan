@@ -26,7 +26,7 @@ class BiayaLainController extends Controller
 
         $lokasi = Pesanan::findOrFail($request->lokasi_id);
 
-        $harga = $lokasi->result;
+        $harga = $lokasi->hasil;
 
         $total_biaya = $harga + $request->transportasi + $request->pemasangan + $request->jasa + $request->service;
 
@@ -57,7 +57,7 @@ class BiayaLainController extends Controller
 
         $lokasi = Pesanan::findOrFail($request->lokasi_id);
 
-        $harga = $lokasi->result;
+        $harga = $lokasi->hasil;
 
         $total_biaya = $harga + $request->transportasi + $request->pemasangan + $request->jasa + $request->service;
 

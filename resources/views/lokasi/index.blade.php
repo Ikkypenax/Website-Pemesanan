@@ -45,7 +45,7 @@
                                     <td>{{ $l->jenis }}</td>
                                     <td>{{ $l->kabupaten }}</td>
                                     <td>
-                                        {{ $l->result ? 'Rp. ' . number_format($l->result, 0, ',', '.') : 'Rp. 0' }}
+                                        {{ $l->hasil ? 'Rp. ' . number_format($l->hasil, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                     <td>
                                         {{ $l->addfee ? 'Rp. ' . number_format($l->addfee->total_biaya, 0, ',', '.') : 'Rp. 0' }}
