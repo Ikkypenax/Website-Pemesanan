@@ -32,7 +32,7 @@ class Kabupaten extends Model
      * @var array
      */
     protected $hidden = [
-        'province_id'
+        'provinsi_id'
     ];
 
     /**

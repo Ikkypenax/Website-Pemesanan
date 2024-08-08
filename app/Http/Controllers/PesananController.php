@@ -44,9 +44,9 @@ class PesananController extends Controller
     public function getkabupaten(request $request)
     {
         $id_provinsi = $request->id_provinsi;
-        $kabupatens =Kabupaten::where('province_id', $id_provinsi)->get();
+        $kabupatens =Kabupaten::where('provinsi_id', $id_provinsi)->get();
         foreach($kabupatens as $kabupaten){
-            echo "<option value='$kabupaten->id'>$kabupaten->name</option>";
+            echo "<option value='$kabupaten->id'>$kabupaten->nama</option>";
         }
     }
 
@@ -54,8 +54,8 @@ class PesananController extends Controller
     public function store(Request $request)
     {
 
-        $namaProvinsi = Provinsi::find($request->provinsi)->name;
-        $namaKabupaten = Kabupaten::find($request->kabupaten)->name;
+        $namaProvinsi = Provinsi::find($request->provinsi)->nama;
+        $namaKabupaten = Kabupaten::find($request->kabupaten)->nama;
 
         $namaJenis = Panel::find($request->jenis)->jenis;
 
@@ -175,7 +175,8 @@ class PesananController extends Controller
              . "Service: $service\n"
              . "Total Keseluruhan: $total\n";
 
-             $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message);
+             $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message);// wa web
+            //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message);//aplikasi wa
 
     return redirect($whatsappUrl);
 }

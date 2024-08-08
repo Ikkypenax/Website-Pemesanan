@@ -36,7 +36,7 @@ class OrderController extends Controller
 
     public function getkabupaten($id_provinsi)
     {
-        $kabupatens = Kabupaten::where('province_id', $id_provinsi)->get();
+        $kabupatens = Kabupaten::where('provinsi_id', $id_provinsi)->get();
         return response()->json($kabupatens);
     }
 
@@ -44,8 +44,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        $namaProvinsi = Provinsi::find($request->provinsi)->name;
-        $namaKabupaten = Kabupaten::find($request->kabupaten)->name;
+        $namaProvinsi = Provinsi::find($request->provinsi)->nama;
+        $namaKabupaten = Kabupaten::find($request->kabupaten)->nama;
 
         $namaJenis = Panel::find($request->jenis)->jenis;
 
