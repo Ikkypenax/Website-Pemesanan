@@ -2,76 +2,71 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kabupaten;
-use App\Models\Panel;
-use App\Models\Regency;
-use App\Models\Kategori;
-use App\Models\Pesanan;
-use App\Models\Province;
-use App\Models\Provinsi;
+use App\Models\Orders;
+use App\Models\Panels;
+use App\Models\Provinces;
+use App\Models\Regencies;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function create()
     {
-        $barang = Panel::with('kategori')->get();
-        $kategori = Kategori::whereIn('id', [1, 2])->get();
-        $provinces = Provinsi::all();
-        return view('order', compact('barang', 'kategori', 'provinces'));
+        $panel = Panels::select('category')->distinct()->get();
+        $provinces = Provinces::all();
+        return view('order', compact('panel', 'provinces'));
     }
 
-    public function getJenis($kategori_nama)
+    public function getType($category_name)
     {
-        $kategori = Kategori::where('nama_kategori', $kategori_nama)->first();
-        $jenis = Panel::where('kategori_id', $kategori->id)->get(['id', 'harga', 'jenis']);
-        return response()->json($jenis);
+        $types = Panels::where('category', $category_name)->get();
+        return response()->json($types);
     }
 
-    public function getHarga($jenis)
-    {
-        $harga = Panel::where('jenis', $jenis)->first();
-        return response()->json($harga);
-    }
 
-    public function getkabupaten($id_provinsi)
+    public function getRegencies(Request $request)
     {
-        $kabupatens = Kabupaten::where('provinsi_id', $id_provinsi)->get();
-        return response()->json($kabupatens);
+        $province_id = $request->province_id;
+        $regencies = Regencies::where('province_id', $province_id)->get();
+
+        if ($regencies->isEmpty()) {
+            return response()->json(['message' => 'No regencies found'], 404);
+        }
+
+        $options = '';
+        foreach ($regencies as $regency) {
+            $options .= "<option value='{$regency->id}'>{$regency->name}</option>";
+        }
+
+        return response()->json($options);
     }
 
 
     public function store(Request $request)
     {
-
-        $namaProvinsi = Provinsi::find($request->provinsi)->nama;
-        $namaKabupaten = Kabupaten::find($request->kabupaten)->nama;
-
-        $namaJenis = Panel::find($request->jenis)->jenis;
-
-
         $request->validate([
-            "nama" => "required",
+            "name" => "required",
             "wa" => "required",
-            "kategori" => "required",
-            "jenis" => "required",
-            "panjang" => "required",
-            "lebar" => "required",
-            "provinsi" => "required",
-            "kabupaten" => "required",
-            "hasil" => "required",
+            'regency' => "required|exists:regencies,id",
+            "length" => "required|numeric",
+            "width" => "required|numeric",
+            "result" => "required|numeric",
+            'provinces_id' => "required|exists:provinces,id",
+            'panel_id' => "required|exists:panels,id",
         ]);
 
-        Pesanan::create([
-            "nama" => $request->nama,
+        $regency = Regencies::find($request->input('regency'))->name;
+
+        Orders::create([
+            "name" => $request->name,
             "wa" => $request->wa,
-            "jenis" => $namaJenis,
-            "kategori" => $request->kategori,
-            "panjang" => $request->panjang,
-            "lebar" => $request->lebar,
-            "provinsi" => $namaProvinsi,
-            "kabupaten" => $namaKabupaten,
-            "hasil" => $request->hasil,
+            "regency" => $regency,
+            "length" => $request->length,
+            "width" => $request->width,
+            "result" => $request->result,
+            "status" => 'Prosses',
+            "provinces_id" => $request->provinces_id,
+            "panel_id" => $request->panel_id,
         ]);
 
 

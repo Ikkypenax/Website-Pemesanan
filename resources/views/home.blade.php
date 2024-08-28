@@ -10,10 +10,10 @@
                 <div class=" left-content show-up header-text wow fadeInLeft" data-wow-duration="1s"
                     data-wow-delay="1s">
                     <div class="w-100">
-                        <h2>Get The Latest App From App Stores</h2>
-                        <p class="opacity-50">Chain App Dev is an app landing page HTML5 template based on
-                            Bootstrap v5.1.3 CSS
-                            layout provided by TemplateMo, a great website to download free CSS templates.
+                        <h2>Dapatkan Produk Berkualitas Bersama Kami</h2>
+                        <p class="opacity-50">Kami bergerak dalam bidang layanan fotografi dan pengadaan vvideotron.
+                            Dengan dedikasi dan komitmen tinggi, kami menyediakan solusi visual berkualitas tinggi yang dirancang
+                            untuk memenuhi kebutuhan anda.
                         </p>
                     </div>
                 </div>

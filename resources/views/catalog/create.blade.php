@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'List Catalog')
+@section('title', 'Add Catalog')
 
 @section('content')
 
@@ -25,20 +25,20 @@
                 <form action="{{ route('catalog.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="nama">Nama:</label>
-                        <input type="text" name="nama" id="nama" class="form-control">
+                        <label for="name">Nama:</label>
+                        <input type="text" name="name" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="deskripsi">Deskripsi:</label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
+                        <label for="description">Deskripsi:</label>
+                        <textarea name="description" id="description" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="freshrate">Fresh Rate:</label>
-                        <input type="text" name="freshrate" id="freshrate" class="form-control">
+                        <label for="refreshrate">Fresh Rate:</label>
+                        <input type="text" name="refreshrate" id="refreshrate" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="gambar">Gambar:</label>
-                        <input type="file" name="gambar" id="gambar" class="form-control-file">
+                        <label for="image">Gambar:</label>
+                        <input type="file" name="image" id="image" class="form-control-file">
                     </div>
                     <button type="submit" class="btn btn-success">Simpan</button>
                 </form>

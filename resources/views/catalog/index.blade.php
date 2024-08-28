@@ -41,6 +41,7 @@
                     <table id="myTable" class="table table-bordered">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
                                 <th>RefreshRate</th>
@@ -51,10 +52,11 @@
                         <tbody>
                             @foreach ($catalog as $c)
                                 <tr>
-                                    <td>{{ $c->nama }}</td>
-                                    <td>{{ $c->deskripsi }}</td>
-                                    <td>{{ $c->freshrate }}</td>
-                                    <td><img src="{{ asset('storage/images/' . $c->gambar) }}" width="100"></td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td data-label='Nama'>{{ $c->name }}</td>
+                                    <td data-label='Deskripsi'>{{ $c->description }}</td>
+                                    <td data-label='Refreshrate'>{{ $c->refreshrate }} Hz</td>
+                                    <td><img src="{{ asset('storage/images/' . $c->image) }}" width="100"></td>
                                     <td>
                                         <form action="{{ route('catalog.destroy', $c->id) }}" method="POST"
                                             class="d-inline">
@@ -68,7 +70,7 @@
                                                 <li class="list-inline-item mb-1 mr-0">
                                                     <button type="button" class="btn btn-secondary btn-sm"
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                        onclick="showImage('{{ asset('storage/images/' . $c->gambar) }}')">
+                                                        onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">
                                                         <i class="bi bi-eye"></i>
                                                     </button>
                                                 </li>

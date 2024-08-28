@@ -30,24 +30,24 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="nama">Nama:</label>
-                        <input type="text" name="nama" id="nama" class="form-control"
-                            value="{{ $catalog->nama }}">
+                        <label for="name">Nama:</label>
+                        <input type="text" name="name" id="name" class="form-control"
+                            value="{{ $catalog->name }}">
                     </div>
                     <div class="form-group">
-                        <label for="deskripsi">Deskripsi:</label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-control">{{ $catalog->deskripsi }}</textarea>
+                        <label for="description">Deskripsi:</label>
+                        <textarea name="description" id="description" class="form-control">{{ $catalog->description }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="freshrate">Fresh Rate:</label>
-                        <input type="text" name="freshrate" id="freshrate" class="form-control"
-                            value="{{ $catalog->freshrate }}">
+                        <label for="refreshrate">Fresh Rate:</label>
+                        <input type="text" name="refreshrate" id="refreshrate" class="form-control"
+                            value="{{ $catalog->refreshrate }}">
                     </div>
                     <div class="form-group">
-                        <label for="gambar">Gambar:</label>
-                        <input type="file" name="gambar" id="gambar" class="form-control-file">
-                        <img src="{{ $catalog->gambar }}" alt="">
-                        <p>{{ $catalog->gambar }}</p>
+                        <label for="image">Gambar:</label>
+                        <input type="file" name="image" id="image" class="form-control-file">
+                        <img src="{{ $catalog->image }}" alt="">
+                        <p>{{ $catalog->image }}</p>
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>

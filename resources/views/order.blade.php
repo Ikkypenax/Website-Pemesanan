@@ -25,68 +25,72 @@
             @endif
             @csrf
             <div class="form-group">
-                <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" required>
+                <label for="name" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
                 <label for="wa" class="form-label">WA</label>
                 <input type="text" class="form-control" id="wa" name="wa" required>
             </div>
             <div class="form-group">
-                <label for="kategori" class="form-label">Kategori</label>
-                <select class="form-control" id="kategori" name="kategori" required>
+                <label for="category" class="form-label">Kategori</label>
+                <select class="form-control" id="category" name="category" required>
                     <option value="" selected>Pilih kategori</option>
-                    @foreach ($kategori as $item)
-                        <option value="{{ $item->nama_kategori }}">{{ $item->nama_kategori }}</option>
+                    @foreach ($panel as $p)
+                        <option value="{{ $p->category }}">{{ $p->category }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group">
-                <label for="jenis" class="form-label">Nama Barang</label>
-                <select class="form-control" id="jenis" name="jenis" required>
+                <label for="type" class="form-label">Panel</label>
+                <select class="form-control" id="type" name="panel_id" required>
                     <option value="" selected>Pilih Jenis Barang</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="harga" class="form-label">Harga per Meter</label>
-                <p class="form-control-plaintext" id="harga" name="harga" data-harga="0">-</p>
+                <label for="price" class="form-label">Harga per Meter</label>
+                <p class="form-control-plaintext" id="price" name="price" data-price="0">-</p>
             </div>
-            
+
             <div class="form-group row">
                 <div class="col">
-                    <label for="panjang" class="form-label">Panjang</label>
-                    <input type="number" class="form-control" id="panjang" name="panjang" required>
+                    <label for="length" class="form-label">Panjang</label>
+                    <input type="number" class="form-control" id="length" name="length" required>
                 </div>
                 <div class="col">
-                    <label for="lebar" class="form-label">Lebar</label>
-                    <input type="number" class="form-control" id="lebar" name="lebar" required>
+                    <label for="width" class="form-label">Lebar</label>
+                    <input type="number" class="form-control" id="width" name="width" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col">
-                    <label for="hasil" id="hasil" name="hasil" class="ms-3" style="font-weight: bold; font-size: 16pt; color: green">Total: Rp.
+                    <label for="result" id="result" name="result" class="ms-3"
+                        style="font-weight: bold; font-size: 16pt; color: green">Total: Rp.
                         0</label>
-                    <input type="hidden" id="hasil_hidden" name="hasil">
+                    <input type="hidden" id="result_hidden" name="result">
                 </div>
                 <span>*Belum termasuk biaya lainnya</span>
             </div>
 
 
             <div class="form-group">
-                <label for="provinsi" class="form-label">Provinsi</label>
-                <select class="form-control" id="provinsi" name="provinsi" required>
+                <label for="provinces" class="form-label">Provinsi</label>
+                <select class="form-control" id="provinces" name="provinces_id" required>
                     <option value="" selected>Pilih Provinsi</option>
-                    @foreach ($provinces as $provinsi)
-                        <option value="{{ $provinsi->id }}">{{ $provinsi->nama }}</option>
+                    @foreach ($provinces as $prov)
+                        <option value="{{ $prov->id }}">{{ $prov->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group">
-                <label for="kabupaten" class="form-label">Kabupaten</label>
-                <select class="form-control" id="kabupaten" name="kabupaten" required>
-                    <option value="" selected>Pilih Kabupaten</option>
+                <label for="regency" class="form-label">Kabupaten</label>
+                <select name="regency" id="regencies" class="form-control">
+                    {{-- @foreach ($regency as $reg) --}}
+                        {{-- <option value="{{ $reg->id }}">Pilih Kabupaten</option> --}}
+                        {{-- @endforeach --}}
+                        <option value="">Pilih Kabupaten</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Pesan</button>
@@ -98,74 +102,69 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#kategori').on('change', function() {
-                var kategori_nama = $(this).val();
-                if (kategori_nama) {
+            $('#category').on('change', function() {
+                var category_name = $(this).val();
+                if (category_name) {
                     $.ajax({
-                        url: '/getJenis/' + kategori_nama,
+                        url: '/getType/' + category_name,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            $('#jenis').empty().append(
+                            $('#type').empty().append(
                                 '<option selected>Pilih Jenis Barang</option>');
-                            if (data.length > 0) {
-                                $.each(data, function(key, item) {
-                                    $('#jenis').append('<option value="' + item.id +
-                                        '" data-harga="' + item.harga + '">' + item
-                                        .jenis + '</option>');
-                                });
-                            }
+                            $.each(data, function(key, item) {
+                                $('#type').append('<option value="' + item.id +
+                                    '" data-price="' + item.price + '">' + item
+                                    .type + '</option>');
+                            });
                         },
                         error: function(xhr, status, error) {
                             console.log(xhr.responseText);
                         }
                     });
                 } else {
-                    $('#jenis').empty().append('<option selected>Pilih Jenis Barang</option>');
+                    $('#type').empty().append('<option selected>Pilih Jenis Barang</option>');
                 }
             });
 
-            $('#provinsi').on('change', function() {
-                var id_provinsi = $(this).val();
-                if (id_provinsi) {
-                    $.ajax({
-                        url: '/getKabupaten/' + id_provinsi,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            $('#kabupaten').empty().append(
-                                '<option selected>Pilih Kabupaten</option>');
-                            if (data.length > 0) {
-                                $.each(data, function(key, kabupaten) {
-                                    $('#kabupaten').append('<option value="' + kabupaten
-                                        .id + '">' + kabupaten.nama + '</option>');
-                                });
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.log(xhr.responseText);
-                        }
-                    });
-                } else {
-                    $('#kabupaten').empty().append('<option selected>Pilih Kabupaten</option>');
-                }
-            });
-
-            $('#jenis').on('change', function() {
+            $('#type').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
-                var harga = parseFloat(selectedOption.data('harga')) || 0;
-                $('#harga').text(harga.toLocaleString()).data('harga', harga);
-                $('#panjang, #lebar').trigger('input');
+                var price = parseFloat(selectedOption.data('price')) || 0;
+                $('#price').text(price.toLocaleString()).data('price', price);
+                $('#length, #width').trigger('input');
             });
 
-            $('#panjang, #lebar').on('input', function() {
-                var panjang = parseFloat($('#panjang').val()) || 0;
-                var lebar = parseFloat($('#lebar').val()) || 0;
-                var harga = parseFloat($('#harga').data('harga')) || 0;
-                var hasil = panjang * lebar * harga;
-                var formattedhasil = hasil.toFixed(2);
-                $('#hasil').text(`Total: Rp. ${parseFloat(formattedhasil).toLocaleString()}`);
-                $('#hasil_hidden').val(formattedhasil);
+            $('#length, #width').on('input', function() {
+                var length = parseFloat($('#length').val()) || 0;
+                var width = parseFloat($('#width').val()) || 0;
+                var price = parseFloat($('#price').data('price')) || 0;
+                var result = length * width * price;
+                $('#result').text(`Total: Rp. ${result.toLocaleString('id-ID')}`);
+                $('#result_hidden').val(result.toFixed(2));
+            });
+
+            $('#provinces').on('change', function() {
+                var province_id = $(this).val();
+                if (province_id) {
+                    $.ajax({
+                        url: "{{ route('getRegencies') }}",
+                        type: "POST",
+                        data: {
+                            province_id: province_id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(data) {
+                            $('#regencies').empty().append(
+                                '<option selected>Pilih Kabupaten</option>');
+                            $('#regencies').append(data);
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                        }
+                    });
+                } else {
+                    $('#regencies').empty().append('<option selected>Pilih Kabupaten</option>');
+                }
             });
 
             $('form').on('submit', function() {

@@ -237,26 +237,6 @@
         }
     }
 
-    /* section {
-        display: flex;
-        height: 100vh;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        color: #96c7e8;
-        font-size: 70px;
-    }
-
-    section {
-        display: flex;
-        height: 100vh;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        color: #96c7e8;
-        font-size: 70px;
-    } */
-
     footer {
         background: #022833;
         color: #C3444F;
@@ -358,12 +338,14 @@
         margin-top: 130px;
         margin-bottom: 50px;
         padding: 20px;
-        background-color: #ffffff;
+        font-family: 'Poppins', 'sans-serif';
+        background-color: #f3f3f3;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .card-order .form-group {
+        
         margin-bottom: 15px;
     }
 
