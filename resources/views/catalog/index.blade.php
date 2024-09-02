@@ -5,6 +5,12 @@
 @section('content')
     <div class="container-fluid">
 
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success mt-2">
+                {{ $message }}
+            </div>
+        @endif
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -23,11 +29,7 @@
             </div>
         </div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success mt-2">
-                {{ $message }}
-            </div>
-        @endif
+
         <div class="card shadow mb-0">
             <div class="card-header d-flex align-items-center justify-content-between py-3">
                 <h3 class="m-0 font-weight-bold text-primary">Daftar Katalog</h3>
@@ -58,35 +60,56 @@
                                     <td data-label='Refreshrate'>{{ $c->refreshrate }} Hz</td>
                                     <td><img src="{{ asset('storage/images/' . $c->image) }}" width="100"></td>
                                     <td>
-                                        <form action="{{ route('catalog.destroy', $c->id) }}" method="POST"
-                                            class="d-inline">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item mb-1 mr-0">
-                                                    <a href="{{ route('catalog.edit', $c->id) }}"
-                                                        class="btn btn-warning btn-sm ">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item mb-1 mr-0">
-                                                    <button type="button" class="btn btn-secondary btn-sm"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                        onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm "
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </form>
-
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item mb-1 mr-0">
+                                                <a href="{{ route('catalog.edit', $c->id) }}"
+                                                    class="btn btn-warning btn-sm ">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item mb-1 mr-0">
+                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                    onclick="showImage('{{ asset('storage/images/' . $c->image) }}')">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal1">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </td>
                                 </tr>
+
+                                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Alert !!!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('catalog.destroy', $c->id) }}" method="POST"
+                                                    class="action-buttons">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <p>Apakah anda yakin ingin menghapus?</p>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Back</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             @endforeach
                         </tbody>
                     </table>

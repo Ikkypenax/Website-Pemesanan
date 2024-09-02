@@ -8,6 +8,12 @@
     {{-- Tabel pesanan --}}
     <div class="container mt-3">
 
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
         <div class="card shadow mb-4">
             <div class="card-header d-flex align-items-center py-3">
                 <div class="pull-right" style="margin-right: 16px">
@@ -38,32 +44,32 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <td>{{ $lokasi->name }}</td>
+                                    <td>{{ $order->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>WA</th>
-                                    <td>{{ $lokasi->wa }}</td>
+                                    <td>{{ $order->wa }}</td>
                                 </tr>
                                 <tr>
                                     <th>Kategori</th>
-                                    <td>{{ $lokasi->panel->category }}</td>
+                                    <td>{{ $order->panel->category }}</td>
                                 </tr>
                                 <tr>
                                     <th>Jenis</th>
-                                    <td>{{ $lokasi->panel->type }}</td>
+                                    <td>{{ $order->panel->type }}</td>
                                 </tr>
                                 <tr>
                                     <th>Harga Per Meter</th>
-                                    <td>{{ $lokasi->panel ? 'Rp. ' . number_format($lokasi->panel->price, 0, ',', '.') : 'Rp. 0' }}
+                                    <td>{{ $order->panel ? 'Rp. ' . number_format($order->panel->price, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Panjang x Lebar</th>
-                                    <td>{{ intval($lokasi->length) }} x {{ intval($lokasi->width) }} Meter</td>
+                                    <td>{{ intval($order->length) }} x {{ intval($order->width) }} Meter</td>
                                 </tr>
                                 <tr>
                                     <th>Harga</th>
-                                    <td>{{ $lokasi->result ? 'Rp. ' . number_format($lokasi->result, 0, ',', '.') : 'Rp. 0' }}
+                                    <td>{{ $order->result ? 'Rp. ' . number_format($order->result, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                 </tr>
                             </thead>
@@ -72,18 +78,18 @@
                             <thead>
                                 <tr>
                                     <th>Provinsi</th>
-                                    <td>{{ $lokasi->provinces->name }}</td>
+                                    <td>{{ $order->provinces->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>Kabupaten</th>
-                                    <td>{{ $lokasi->regency }}</td>
+                                    <td>{{ $order->regency }}</td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>Transportasi</th>
                                     <td>
-                                        @isset($lokasi->addfee->fee_transport)
-                                            Rp. {{ number_format($lokasi->addfee->fee_transport, 0, ',', '.') }}
+                                        @isset($order->addfee->fee_transport)
+                                            Rp. {{ number_format($order->addfee->fee_transport, 0, ',', '.') }}
                                         @else
                                             -
                                         @endisset
@@ -92,8 +98,8 @@
                                 <tr>
                                     <th>Pemasangan</th>
                                     <td>
-                                        @isset($lokasi->addfee->fee_install)
-                                            Rp. {{ number_format($lokasi->addfee->fee_install, 0, ',', '.') }}
+                                        @isset($order->addfee->fee_install)
+                                            Rp. {{ number_format($order->addfee->fee_install, 0, ',', '.') }}
                                         @else
                                             -
                                         @endisset
@@ -102,8 +108,8 @@
                                 <tr>
                                     <th>Jasa</th>
                                     <td>
-                                        @isset($lokasi->addfee->fee_service)
-                                            Rp. {{ number_format($lokasi->addfee->fee_service, 0, ',', '.') }}
+                                        @isset($order->addfee->fee_service)
+                                            Rp. {{ number_format($order->addfee->fee_service, 0, ',', '.') }}
                                         @else
                                             -
                                         @endisset
@@ -112,8 +118,8 @@
                                 <tr>
                                     <th>Service</th>
                                     <td>
-                                        @isset($lokasi->addfee->fee_repair)
-                                            Rp. {{ number_format($lokasi->addfee->fee_repair, 0, ',', '.') }}
+                                        @isset($order->addfee->fee_repair)
+                                            Rp. {{ number_format($order->addfee->fee_repair, 0, ',', '.') }}
                                         @else
                                             -
                                         @endisset
@@ -122,8 +128,8 @@
                                 <tr>
                                     <th>Total Keseluruhan</th>
                                     <td>
-                                        @isset($lokasi->addfee->fee_total)
-                                            Rp. {{ number_format($lokasi->addfee->fee_total, 0, ',', '.') }}
+                                        @isset($order->addfee->fee_total)
+                                            Rp. {{ number_format($order->addfee->fee_total, 0, ',', '.') }}
                                         @else
                                             -
                                         @endisset
@@ -138,13 +144,13 @@
                         <tr>
                             <td colspan="2">
 
-                                @if ($lokasi->addfee === null)
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                @if ($order->addfee === null)
+                                    <button type="button" class="mt-1 pt-1 btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
                                         + Tambah Biaya
                                     </button>
                                 @else
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    <button type="button" class="mt-1 pt-1 btn btn-warning" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal2">
                                         + Edit Biaya
                                     </button>
@@ -165,11 +171,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Biaya</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('biaya.store') }}" method="POST">
+                    <form action="{{ route('fee.store') }}" method="POST">
                         @csrf
                         <div>
                             <label for="transport">Biaya Transportasi:</label>
@@ -188,7 +194,7 @@
                             <input class="form-control" type="number" name="repair" id="repair">
                         </div>
                         <div>
-                            <input type="hidden" name="order_id" value="{{ $lokasi->id }}" id="order_id">
+                            <input type="hidden" name="order_id" value="{{ $order->id }}" id="order_id">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="w-100 btn btn-primary">Submit</button>
@@ -209,34 +215,34 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('biaya.update', $lokasi->id) }}" method="POST">
+                    <form action="{{ route('fee.update', $order->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div>
                             <label for="transport">Biaya Transportasi:</label>
                             <input class="form-control" type="text" name="transport" id="transport"
-                             value="{{ intval($lokasi->addfee->fee_transport ?? 0)  }}">
+                                value="{{ intval($order->addfee->fee_transport ?? 0) }}">
                         </div>
                         <div>
                             <label for="install">Biaya Pemasangan:</label>
                             <input class="form-control" type="text" name="install" id="install"
-                             value="{{ intval($lokasi->addfee->fee_install ?? 0) }}">
+                                value="{{ intval($order->addfee->fee_install ?? 0) }}">
                         </div>
                         <div>
                             <label for="service">Biaya Jasa:</label>
                             <input class="form-control" type="text" name="service" id="service"
-                             value="{{ intval($lokasi->addfee->fee_service ?? 0) }}">
+                                value="{{ intval($order->addfee->fee_service ?? 0) }}">
                         </div>
                         <div>
                             <label for="repair">Biaya Service:</label>
                             <input class="form-control" type="text" name="repair" id="repair"
-                             value="{{ intval($lokasi->addfee->fee_repair ?? 0) }}">
+                                value="{{ intval($order->addfee->fee_repair ?? 0) }}">
                         </div>
                         <div>
                             <input type="hidden" name="fee_total" value="" id="fee_total">
                         </div>
                         <div>
-                            <input type="hidden" name="order_id" value="{{ $lokasi->id }}" id="order_id">
+                            <input type="hidden" name="order_id" value="{{ $order->id }}" id="order_id">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="w-100 btn btn-primary">Submit</button>

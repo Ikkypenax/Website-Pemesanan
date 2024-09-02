@@ -20,9 +20,9 @@ class AddfeeController extends Controller
         ]);
 
 
-        $lokasi = Orders::findOrFail($request->order_id);
+        $order = Orders::findOrFail($request->order_id);
 
-        $price = $lokasi->result;
+        $price = $order->result;
 
         $fee_total = $price + $request->transport + $request->install + $request->service + $request->repair;
 
@@ -37,7 +37,7 @@ class AddfeeController extends Controller
         ]);
 
         return redirect()->back()
-            ->with('success', 'Lokasi created successfully.');
+            ->with('success', 'Biaya berhasil ditambahkan');
     }
 
 
@@ -51,15 +51,15 @@ class AddfeeController extends Controller
             "order_id" => "required",
         ]);
 
-        $lokasi = Orders::findOrFail($request->order_id);
+        $order = Orders::findOrFail($request->order_id);
 
-        $price = $lokasi->result;
+        $price = $order->result;
 
         $fee_total = $price + $request->transport + $request->install + $request->service + $request->repair;
 
-        $biaya = AddFee::where('order_id', $id)->firstOrFail();
+        $fee = AddFee::where('order_id', $id)->firstOrFail();
         
-        $biaya->update([
+        $fee->update([
             "fee_transport" => $request->transport,
             "fee_install" => $request->install,
             "fee_service" => $request->service,
@@ -69,6 +69,6 @@ class AddfeeController extends Controller
         ]);
 
         return redirect()->back()
-            ->with('success', 'Lokasi updated successfully.');
+            ->with('success', 'Biaya berhasil diperbarui');
     }
 }

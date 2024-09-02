@@ -5,6 +5,8 @@
 @section('content')
 
     <div class="container mt-3">
+
+
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center py-3">
                 <div class="pull-right" style="margin-right: 16px">
@@ -26,6 +28,13 @@
             @endif
 
             <div class="card-body">
+
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+                
                 <form action="{{ route('catalog.update', $catalog->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

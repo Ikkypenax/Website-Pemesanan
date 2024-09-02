@@ -23,49 +23,49 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <td>{{ $lokasi->name }}</td>
+                                    <td>{{ $order->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>WA</th>
-                                    <td>{{ $lokasi->wa }}</td>
+                                    <td>{{ $order->wa }}</td>
                                 </tr>
                                 <tr>
                                     <th>Kategori</th>
-                                    <td>{{ $lokasi->panel->category }}</td>
+                                    <td>{{ $order->panel->category }}</td>
                                 </tr>
                                 <tr>
                                     <th>Jenis</th>
-                                    <td>{{ $lokasi->panel->type }}</td>
+                                    <td>{{ $order->panel->type }}</td>
                                 </tr>
                                 <tr>
                                     <th>Harga Per Meter</th>
-                                    <td>{{ $lokasi->panel ? 'Rp. ' . number_format($lokasi->panel->price, 0, ',', '.') : 'Rp. 0' }}
+                                    <td>{{ $order->panel ? 'Rp. ' . number_format($order->panel->price, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Panjang x Lebar</th>
-                                    <td>{{ $lokasi->length }} x {{ $lokasi->width }} Meter</td>
+                                    <td>{{ $order->length }} x {{ $order->width }} Meter</td>
                                 </tr>
                                 <tr>
                                     <th>Harga</th>
-                                    <td>{{ $lokasi->result ? 'Rp. ' . number_format($lokasi->result, 0, ',', '.') : 'Rp. 0' }}
+                                    <td>{{ $order->result ? 'Rp. ' . number_format($order->result, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                 </tr>
                         </table>
                         <table class="table table-bordered">
                             <tr>
                                 <th>Provinsi</th>
-                                <td>{{ $lokasi->provinces->name }}</td>
+                                <td>{{ $order->provinces->name }}</td>
                             </tr>
                             <tr>
                                 <th>Kabupaten</th>
-                                <td>{{ $lokasi->regency }}</td>
+                                <td>{{ $order->regency }}</td>
                             </tr>
                             <tr>
                                 <th>Transportasi</th>
                                 <td>
-                                    @isset($lokasi->addfee->fee_transport)
-                                        Rp. {{ number_format($lokasi->addfee->fee_transport, 0, ',', '.') }}
+                                    @isset($order->addfee->fee_transport)
+                                        Rp. {{ number_format($order->addfee->fee_transport, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -74,8 +74,8 @@
                             <tr>
                                 <th>Pemasangan</th>
                                 <td>
-                                    @isset($lokasi->addfee->fee_install)
-                                        Rp. {{ number_format($lokasi->addfee->fee_install, 0, ',', '.') }}
+                                    @isset($order->addfee->fee_install)
+                                        Rp. {{ number_format($order->addfee->fee_install, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -84,8 +84,8 @@
                             <tr>
                                 <th>Jasa</th>
                                 <td>
-                                    @isset($lokasi->addfee->fee_service)
-                                        Rp. {{ number_format($lokasi->addfee->fee_service, 0, ',', '.') }}
+                                    @isset($order->addfee->fee_service)
+                                        Rp. {{ number_format($order->addfee->fee_service, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -94,8 +94,8 @@
                             <tr>
                                 <th>Service</th>
                                 <td>
-                                    @isset($lokasi->addfee->fee_repair)
-                                        Rp. {{ number_format($lokasi->addfee->fee_repair, 0, ',', '.') }}
+                                    @isset($order->addfee->fee_repair)
+                                        Rp. {{ number_format($order->addfee->fee_repair, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -104,8 +104,8 @@
                             <tr>
                                 <th>Total Keseluruhan</th>
                                 <td>
-                                    @isset($lokasi->addfee->fee_total)
-                                        Rp. {{ number_format($lokasi->addfee->fee_total, 0, ',', '.') }}
+                                    @isset($order->addfee->fee_total)
+                                        Rp. {{ number_format($order->addfee->fee_total, 0, ',', '.') }}
                                     @else
                                         -
                                     @endisset
@@ -116,7 +116,7 @@
                     </div>
 
                     <div>
-                        <a class="btn btn-success" href="{{ route('orders.sendInvoice', $lokasi->id) }}">
+                        <a class="btn btn-success" href="{{ route('orders.sendInvoice', $order->id) }}">
                             <i class="bi bi-whatsapp"></i> Kirim Invoice ke WhatsApp
                         </a>
                     </div>

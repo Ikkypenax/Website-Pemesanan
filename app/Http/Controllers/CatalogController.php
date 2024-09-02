@@ -68,7 +68,7 @@ class CatalogController extends Controller
         $catalog->refreshrate = $request->refreshrate;
         $catalog->save();
 
-        return redirect()->route('catalog.index');
+        return redirect()->route('catalog.index')->with('success', 'Produk berhasil diperbarui');
     }
 
     public function destroy($id)
@@ -76,6 +76,6 @@ class CatalogController extends Controller
         $catalog = Catalog::find($id);
         $catalog->delete();
 
-        return redirect()->route('catalog.index');
+        return redirect()->route('catalog.index')->with('success', 'Produk berhasil dihapus');
     }
 }
