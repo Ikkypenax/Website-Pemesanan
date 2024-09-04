@@ -25,11 +25,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Role Admin
 Route::group(['middleware' => ['auth']], function () {
-    // Route::resource('pesanan', PesananController::class);
-    
-    // Route::get('/getJenis/{kategori_id}', [PesananController::class, 'getJenis']);
-    // Route::get('/getHarga/{jenis}', [PesananController::class, 'getHarga']);
-    // Route::post('/getkabupaten', [PesananController::class, 'getkabupaten'])->name('getkabupaten');
 
     Route::resource('orders', OrdersController::class);
 
@@ -40,25 +35,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/orders/{id}/status', [OrdersController::class, 'status'])->name('orders.status');
     Route::get('orders/{id}/send-invoice', [OrdersController::class, 'sendInvoice'])->name('orders.sendInvoice');
     
-    
-    // Route::resource('barang', BarangController::class);
-    // Route::put('biaya/{id}', [BarangController::class, 'update'])->name('biaya.update');
-    
     Route::resource('panel', PanelsController::class);
-    // Route::put('biaya/{id}', [PanelsController::class, 'update'])->name('biaya.update');
     
-    // Route::resource('biaya', BiayaLainController::class);
-    // Route::put('/biaya/{id}', [BiayaLainController::class, 'update'])->name('biaya.update');
-    
-    Route::resource('biaya', AddfeeController::class);
-    Route::put('/biaya/{id}', [AddfeeController::class, 'update'])->name('biaya.update');
-    
-    // Route::get('/catalog/create', [KatalogController::class, 'create'])->name('catalog.create');
-    // Route::post('/catalog', [KatalogController::class, 'store'])->name('catalog.store');
-    // Route::get('/catalog', [KatalogController::class, 'index'])->name('catalog.index');
-    // Route::get('/catalog/{catalog}/edit', [KatalogController::class, 'edit'])->name('catalog.edit');
-    // Route::delete('/catalog/{catalog}', [KatalogController::class, 'destroy'])->name('catalog.destroy');
-    // Route::put('/catalog/{catalog}', [KatalogController::class, 'update'])->name('catalog.update');
+    Route::post('fee', [AddfeeController::class, 'store'])->name('fee.store');
+    Route::put('/fee/{id}', [AddfeeController::class, 'update'])->name('fee.update');
     
     Route::get('/catalog/create', [CatalogController::class, 'create'])->name('catalog.create');
     Route::post('/catalog', [CatalogController::class, 'store'])->name('catalog.store');

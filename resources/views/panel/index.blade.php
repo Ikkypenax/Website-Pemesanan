@@ -43,28 +43,49 @@
                                     <td data-label="Harga">
                                         {{ $p->price ? 'Rp. ' . number_format($p->price, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
-                                    <td data-label="Aksi">
-                                        <form action="{{ route('panel.destroy', $p->id) }}" method="POST"
-                                            style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item mb-1 mr-0">
-                                                    <a href="{{ route('panel.edit', $p->id) }}" class="btn btn-warning">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </form>
+                                    <td>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item mb-1 mr-0">
+                                                <a href="{{ route('panel.edit', $p->id) }}" class="btn btn-warning btn-sm">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </td>
                                 </tr>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Alert !!!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('panel.destroy', $p->id) }}" method="POST"
+                                                    class="action-buttons">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <p>Apakah anda yakin ingin menghapus?</p>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Back</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             @endforeach
                         </tbody>
                     </table>

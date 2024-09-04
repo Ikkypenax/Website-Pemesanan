@@ -40,74 +40,95 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($lokasi as $l)
+                            @foreach ($order as $ord)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $l->name }}</td>
-                                    <td>{{ $l->wa }}</td>
-                                    <td>{{ $l->panel->category ?? 'kosong' }}</td>
-                                    <td>{{ $l->panel->type ?? 'kosong' }}</td>
-                                    <td>{{ $l->panel->price ? 'Rp. ' . number_format($l->panel->price, 0, ',', '.') : 'Rp. 0' }}
+                                    <td>{{ $ord->name }}</td>
+                                    <td>{{ $ord->wa }}</td>
+                                    <td>{{ $ord->panel->category ?? 'kosong' }}</td>
+                                    <td>{{ $ord->panel->type ?? 'kosong' }}</td>
+                                    <td>{{ $ord->panel->price ? 'Rp. ' . number_format($ord->panel->price, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
-                                    <td>{{ $l->provinces->name ?? 'kosong' }}</td>
-                                    <td>{{ $l->regency ?? 'kosong' }}</td>
+                                    <td>{{ $ord->provinces->name ?? 'kosong' }}</td>
+                                    <td>{{ $ord->regency ?? 'kosong' }}</td>
 
                                     <td>
-                                        {{ $l->result ? 'Rp. ' . number_format($l->result, 0, ',', '.') : 'Rp. 0' }}
-                                    </td>
-
-                                    <td>
-                                        {{ isset($l->addfee->fee_total) ? 'Rp. ' . number_format($l->addfee->fee_total, 0, ',', '.') : 'Rp. 0' }}
+                                        {{ $ord->result ? 'Rp. ' . number_format($ord->result, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
 
                                     <td>
-                                        <form action="{{ route('orders.status', $l->id) }}" method="POST"
-                                            id="status-form-{{ $l->id }}">
+                                        {{ isset($ord->addfee->fee_total) ? 'Rp. ' . number_format($ord->addfee->fee_total, 0, ',', '.') : 'Rp. 0' }}
+                                    </td>
+
+                                    <td>
+                                        <form action="{{ route('orders.status', $ord->id) }}" method="POST"
+                                            id="status-form-{{ $ord->id }}">
                                             @csrf
                                             @method('PUT')
                                             <select name="status" class="form-control width: 200px"
-                                                onchange="document.getElementById('status-form-{{ $l->id }}').submit();"
-                                                id="status-select-{{ $l->id }}">
+                                                onchange="document.getElementById('status-form-{{ $ord->id }}').submit();"
+                                                id="status-select-{{ $ord->id }}">
                                                 <option value="Prosses" class="status-prosses"
-                                                    {{ $l->status == 'Prosses' ? 'selected' : '' }}>Prosses</option>
+                                                    {{ $ord->status == 'Prosses' ? 'selected' : '' }}>Prosses</option>
                                                 <option value="Approve" class="status-approve"
-                                                    {{ $l->status == 'Approve' ? 'selected' : '' }}>Approve</option>
+                                                    {{ $ord->status == 'Approve' ? 'selected' : '' }}>Approve</option>
                                                 <option value="Reject" class="status-reject"
-                                                    {{ $l->status == 'Reject' ? 'selected' : '' }}>Reject</option>
+                                                    {{ $ord->status == 'Reject' ? 'selected' : '' }}>Reject</option>
                                             </select>
                                         </form>
                                     </td>
 
                                     <td>
-                                        <form action="{{ route('orders.destroy', $l->id) }}" method="POST"
-                                            class="action-buttons">
-                                            @csrf
-                                            @method('DELETE')
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item mb-1 mr-0">
                                                     <a class="btn btn-primary btn-sm"
-                                                        href="{{ route('orders.edit', $l->id) }}">
+                                                        href="{{ route('orders.edit', $ord->id) }}">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item mb-1 mr-0">
                                                     <a class="btn btn-secondary btn-sm"
-                                                        href="{{ route('orders.show', $l->id) }}">
+                                                        href="{{ route('orders.show', $ord->id) }}">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item">
-
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
+                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </li>
                                             </ul>
-                                        </form>
-
+                                        
                                     </td>
                                 </tr>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Alert !!!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('orders.destroy', $ord->id) }}" method="POST"
+                                                    class="action-buttons">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <p>Apakah anda yakin ingin menghapus?</p>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Back</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             @endforeach
                         </tbody>
                     </table>

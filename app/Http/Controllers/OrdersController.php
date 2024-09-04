@@ -12,8 +12,8 @@ class OrdersController extends Controller
 {   
     public function index()
     {
-        $lokasi = Orders::with(['panel', 'provinces', 'regency', 'addfee'])->orderBy('created_at', 'desc')->get();
-        return view('orders.index', compact('lokasi'));
+        $order = Orders::with(['panel', 'provinces', 'regency', 'addfee'])->orderBy('created_at', 'desc')->get();
+        return view('orders.index', compact('order'));
     }
 
     public function create()
@@ -80,13 +80,13 @@ class OrdersController extends Controller
     public function edit($id)
     {
 
-        $lokasi = Orders::with('addfee')->find($id);
+        $order = Orders::with('addfee')->find($id);
         $panel = Panels::all();
 
-        return view('orders.edit', compact('panel', 'lokasi'));
+        return view('orders.edit', compact('panel', 'order'));
     }
 
-    public function update(Request $request, Orders $lokasi)
+    public function update(Request $request, Orders $order)
     {
 
         $request->validate([
@@ -101,47 +101,47 @@ class OrdersController extends Controller
             "result" => "required",
         ]);
 
-        $lokasi->name = $request->input('name', $lokasi->name);
-        $lokasi->wa = $request->input('wa', $lokasi->wa);
-        $lokasi->category = $request->input('category', $lokasi->category);
-        $lokasi->type = $request->input('type', $lokasi->type);
-        $lokasi->length = $request->input('length', $lokasi->length);
-        $lokasi->width = $request->input('width', $lokasi->width);
-        $lokasi->province_id = $request->input('province_id', $lokasi->province_id);
-        $lokasi->regency = $request->input('regency', $lokasi->regency);
-        $lokasi->result = $request->input('result', $lokasi->result);
+        $order->name = $request->input('name', $order->name);
+        $order->wa = $request->input('wa', $order->wa);
+        $order->category = $request->input('category', $order->category);
+        $order->type = $request->input('type', $order->type);
+        $order->length = $request->input('length', $order->length);
+        $order->width = $request->input('width', $order->width);
+        $order->province_id = $request->input('province_id', $order->province_id);
+        $order->regency = $request->input('regency', $order->regency);
+        $order->result = $request->input('result', $order->result);
 
-        $lokasi->save();
+        $order->save();
 
         return redirect()->route('orders.index')
-            ->with('success', 'Orders updated successfully');
+            ->with('success', 'Pesanan berhasil diperbarui');
     }
 
     public function show($id)
     {
-        $lokasi = Orders::with('addfee')->find($id);
+        $order = Orders::with('addfee')->find($id);
 
-        return view('orders.show', compact('lokasi'));
+        return view('orders.show', compact('order'));
     }
 
     public function sendInvoice($id)
     {
-        $lokasi = Orders::with('addfee')->find($id);
+        $order = Orders::with('addfee')->find($id);
 
-        $nama = $lokasi->name;
-        $wa = $lokasi->wa;
-        $kategori = $lokasi->panel->category;
-        $barang = $lokasi->panel->type;
-        $hargapermeter = $lokasi->panel ? 'Rp. ' . number_format($lokasi->panel->price, 0, ',', '.') : 'Rp. 0';
-        $lengthwidth = intval($lokasi->length) . ' x ' . intval($lokasi->width) . ' Meter';
-        $hargasementara = $lokasi->result ? 'Rp. ' . number_format($lokasi->result, 0, ',', '.') : 'Rp. 0';
-        $provinsi = $lokasi->provinces->name;
-        $kabupaten = $lokasi->regency;
-        $transportasi = $lokasi->addfee->fee_transport ? 'Rp. ' . number_format($lokasi->addfee->fee_transport, 0, ',', '.') : '-';
-        $pemasangan = $lokasi->addfee->fee_install ? 'Rp. ' . number_format($lokasi->addfee->fee_install, 0, ',', '.') : '-';
-        $jasa = $lokasi->addfee->fee_service ? 'Rp. ' . number_format($lokasi->addfee->fee_service, 0, ',', '.') : '-';
-        $service = $lokasi->addfee->fee_repair ? 'Rp. ' . number_format($lokasi->addfee->fee_repair, 0, ',', '.') : '-';
-        $total = $lokasi->addfee->fee_total ? 'Rp. ' . number_format($lokasi->addfee->fee_total, 0, ',', '.') : '-';
+        $nama = $order->name;
+        $wa = $order->wa;
+        $kategori = $order->panel->category;
+        $barang = $order->panel->type;
+        $hargapermeter = $order->panel ? 'Rp. ' . number_format($order->panel->price, 0, ',', '.') : 'Rp. 0';
+        $lengthwidth = intval($order->length) . ' x ' . intval($order->width) . ' Meter';
+        $hargasementara = $order->result ? 'Rp. ' . number_format($order->result, 0, ',', '.') : 'Rp. 0';
+        $provinsi = $order->provinces->name;
+        $kabupaten = $order->regency;
+        $transportasi = $order->addfee->fee_transport ? 'Rp. ' . number_format($order->addfee->fee_transport, 0, ',', '.') : '-';
+        $pemasangan = $order->addfee->fee_install ? 'Rp. ' . number_format($order->addfee->fee_install, 0, ',', '.') : '-';
+        $jasa = $order->addfee->fee_service ? 'Rp. ' . number_format($order->addfee->fee_service, 0, ',', '.') : '-';
+        $service = $order->addfee->fee_repair ? 'Rp. ' . number_format($order->addfee->fee_repair, 0, ',', '.') : '-';
+        $total = $order->addfee->fee_total ? 'Rp. ' . number_format($order->addfee->fee_total, 0, ',', '.') : '-';
 
         if (substr($wa, 0, 1) === '0') {
             $wa = '+62' . substr($wa, 1);
@@ -170,11 +170,11 @@ class OrdersController extends Controller
 
     public function destroy($id)
     {
-        $lokasi = Orders::findOrFail($id);
-        $lokasi->delete();
+        $order = Orders::findOrFail($id);
+        $order->delete();
 
         return redirect()->route('orders.index')
-            ->with('success', 'Orders deleted successfully');
+            ->with('success', 'Pesanan berhasil dihapus');
     }
 
     public function status(Request $request, $id)
@@ -186,6 +186,6 @@ class OrdersController extends Controller
         $status = Orders::find($id);
         $status->update(['status' => $request->status]);
 
-        return back()->with('success', 'Status Updated successfully.');
+        return back()->with('success', 'Status berhasil diperbarui');
     }
 }
