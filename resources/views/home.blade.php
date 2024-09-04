@@ -3,29 +3,23 @@
 @section('title', 'home')
 
 @section('content')
-<div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s" style="height: 100vh">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 d-flex flex-column justify-content-center">
-                <div class=" left-content show-up header-text wow fadeInLeft" data-wow-duration="1s"
-                    data-wow-delay="1s">
-                    <div class="w-100">
-                        <h2>Dapatkan Produk Berkualitas Bersama Kami</h2>
-                        <p class="opacity-50">Kami bergerak dalam bidang layanan fotografi dan pengadaan vvideotron.
-                            Dengan dedikasi dan komitmen tinggi, kami menyediakan solusi visual berkualitas tinggi yang dirancang
-                            untuk memenuhi kebutuhan anda.
-                        </p>
+<div class="main-banner wow fadeIn" style="background-image: url('{{ asset('assets/images/background.jpg') }}'); height: 100vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 d-flex flex-column justify-content-center">
+                    <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                        <div class="w-100">
+                            <h2>Dapatkan Produk Berkualitas Bersama Kami</h2>
+                            <p>Kami bergerak dalam bidang layanan fotografi dan pengadaan videotron.
+                                Dengan dedikasi dan komitmen tinggi, kami menyediakan solusi visual berkualitas tinggi yang dirancang
+                                untuk memenuhi kebutuhan anda.
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <img src="{{ asset('assets/images/home_31.png') }}" alt="Logo">
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 {{-- service --}}
 <div class="container about" style="padding: 100px 0px">

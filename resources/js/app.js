@@ -11,8 +11,3 @@ import './bootstrap';
 // new Vue({
 //     el: '#app',
 // });
-
-$('.bxslider').bxSlider({
-    adaptiveHeight: true,
-    mode: 'fade'
-  });
