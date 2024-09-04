@@ -84,13 +84,13 @@
                 <div class="row mb-3" style="">
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100 ">
-                            <h4><a href="#">Maintance Problems</a></h4>
+                            <h4>Maintance Problems</h4>
                             <p>Perawatan dan Perbaikan Alat</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100 ">
-                            <h4><a href="#">24/7 Support &amp; Help</a></h4>
+                            <h4>24/7 Support &amp; Help</h4>
                             <p>Siap Membantu Kapanpun Dimanapun</p>
                         </div>
                     </div>
@@ -98,13 +98,13 @@
                 <div class="row" style="">
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100">
-                            <h4><a href="#">Fixing Issues About</a></h4>
+                            <h4>Fixing Issues About</h4>
                             <p>Memperbaiki Masalah dan Kendala</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100">
-                            <h4><a href="#">Installation</a></h4>
+                            <h4>Installation</h4>
                             <p>Pemasangan Alat</p>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="right-image d-flex justify-content-center">
-                        <img src="{{ asset('assets/images/home_31.png') }}" alt="Logo">
+                        <img src="{{ asset('assets/images/cs.jpg') }}" alt="Logo">
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
     <div class="row d-flex justify-content-center">
         <div class="col-md-4">
             <div class="card mx-auto" style="width: 100%">
-                <img src="https://i.pinimg.com/originals/19/eb/43/19eb439307aadf4e339324323b0b6ca6.jpg"
+                <img src="{{ asset('assets/images/p1.jpg') }}"
                     class="card-img-top" alt="...">
                 <div class="card-body">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 72 72">
@@ -165,7 +165,7 @@
         </div>
         <div class="col-md-4">
             <div class="card mx-auto" style="width: 100%">
-                <img src="https://i.pinimg.com/originals/19/eb/43/19eb439307aadf4e339324323b0b6ca6.jpg"
+                <img src="{{ asset('assets/images/p2.jpg') }}"
                     class="card-img-top" alt="...">
                 <div class="card-body">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 72 72">
@@ -199,7 +199,7 @@
         </div>
         <div class="col-md-4">
             <div class="card mx-auto" style="width: 100%">
-                <img src="https://i.pinimg.com/originals/19/eb/43/19eb439307aadf4e339324323b0b6ca6.jpg"
+                <img src="{{ asset('assets/images/p3.jpg') }}"
                     class="card-img-top" alt="...">
                 <div class="card-body">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 72 72">
