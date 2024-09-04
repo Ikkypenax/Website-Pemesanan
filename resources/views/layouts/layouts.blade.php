@@ -14,6 +14,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
+
         * {
             margin: 0;
             padding: 0;
@@ -86,6 +87,8 @@
             cursor: pointer;
         }
 
+
+
         @media (max-width: 768px) {
             nav .navbar .menu {
                 display: none;
@@ -106,33 +109,25 @@
             }
         }
 
+        .order-button {
+            background: none;
+            border: 2px solid currentColor;
+            cursor: pointer;
+            padding: 5px;
+            margin: 12px;
+            border-radius: 15px;
+            transition: background-color 0.3s, color 0.3s;
 
-    /* section {
-        display: flex;
-        height: 100vh;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        color: #96c7e8;
-        font-size: 70px;
-    }
+            #content {
+                transition: all 0.3s;
+            }
 
-    section {
-        display: flex;
-        height: 100vh;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        color: #96c7e8;
-        font-size: 70px;
-    } */
+        }
 
-    footer {
-        background: #022833;
-        color: #C3444F;
-        padding: 20px 0;
-        text-align: center;
-    }
+        .order-button:hover {
+            background-color: #C3444F;
+            color: #022833;
+        }
 
         footer {
             background: #022833;
@@ -185,20 +180,22 @@
 
         /* Form pesanan */
 
-    .card-order {
-        max-width: 600px;
-        margin: auto;
-        margin-top: 130px;
-        margin-bottom: 50px;
-        padding: 20px;
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        .card-order {
+            max-width: 800px;
+            margin: auto;
+            margin-top: 130px;
+            margin-bottom: 50px;
+            border: 1px solid #ddd;
+            padding: 0;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
 
-    .card-order .form-group {
-        margin-bottom: 15px;
-    }
+        .card-order .form-group {
+            margin: 15px;
+        }
 
         .card-order .form-label {
             font-weight: bold;
@@ -231,8 +228,9 @@
 
         .card-order .form-group.row .col {
             flex: 1;
-            min-width: 0;
-            padding-right: 10px;
+            min-width: auto;
+            padding-left: 0;
+            margin-left: 0;
         }
 
         .card-order .form-group.row .col:last-child {
@@ -243,8 +241,11 @@
             background-color: #28a745;
             border: none;
             padding: 10px 20px;
+            margin-right: 15px;
             font-size: 16px;
             border-radius: 5px;
+            width: 25vh;
+            align-self: flex-end;
             color: #fff;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -255,34 +256,98 @@
         }
 
         .card-order #result {
-            font-size: 16px;
+            font-size: 16pt;
             font-weight: bold;
-            color: #28a745;
-            margin-top: 10px;
+            color: green;
         }
 
-        .order-button {
-            background: none;
-            border: 2px solid currentColor;
-            color: #C3444F;
-            font-family: 'Poppins', sans-serif;
-            font-size: 17px;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            padding: 5px, 15px;
-            border-radius: 15px;
-            transition: background-color 0.3s, color 0.3s;
+        .form-header {
+            position: relative;
+            text-align: center;
+        }
 
-            #content {
-                transition: all 0.3s;
+        .form-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .form-content {
+                flex-direction: column;
+            }
+
+            .right-section {
+                align-items: stretch;
+            }
+
+            .btn-success {
+                align-self: stretch;
+            }
+
+            .one-section {
+                flex-direction: column
+            }
+
+            .two-section {
+                flex-direction: column;
             }
 
         }
 
-        .order-button:hover {
-            background-color: #C3444F;
-            color: #022833;
+        .one-section { 
+            display: flex;
+            gap: 8px;
+            margin: 14px; 
+            padding-top: 24px;
+        }
+        
+        .two-section {
+            display: flex;
+            padding: 12px;
+            padding-bottom: 24px;
+            justify-content: space-between;
+        }
+        .left-section,
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-background {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-text {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 10;
+            margin: 0;
+        }
+
+        .text-primary {
+            margin-top: 16px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
         }
 
     </style>
@@ -372,10 +437,10 @@
         });
     </script>
     <script>
-    window.addEventListener('scroll', function() {
-        let scrollPosition = window.pageYOffset;
-        document.querySelector('.main-banner').style.backgroundPositionY = -(scrollPosition * 0.5) + 'px';
-    });
+        window.addEventListener('scroll', function() {
+            let scrollPosition = window.pageYOffset;
+            document.querySelector('.main-banner').style.backgroundPositionY = -(scrollPosition * 0.5) + 'px';
+        });
     </script>
 </body>
 
