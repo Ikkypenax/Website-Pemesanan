@@ -47,6 +47,7 @@
 
         nav .navbar {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             width: 100%;
@@ -85,9 +86,8 @@
             color: white;
             font-size: 24px;
             cursor: pointer;
+            justify-content: center;
         }
-
-
 
         @media (max-width: 768px) {
             nav .navbar .menu {
@@ -100,12 +100,53 @@
                 background: #022833;
             }
 
+            .navbar {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+            }
+
+            .navbar .menu-trigger {
+                display: flex;
+            }
+
             nav .navbar .menu.open {
                 display: flex;
             }
 
-            .menu-trigger {
-                display: block;
+        }
+
+        @media (max-width: 370px) {
+
+            nav .navbar .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #022833;
+            }
+
+            .navbar {
+                flex-direction: column;
+                
+                align-items: center;
+  
+                justify-content: flex-end;
+                padding-bottom: 30px;
+  
+            }
+
+            .navbar .menu-trigger {
+                display: flex;
+
+                position: ab
+                bottom: 10px;
+
+                left: 50%;
+                transform: translateX(-50%);
+                
             }
         }
 
@@ -296,19 +337,20 @@
 
         }
 
-        .one-section { 
+        .one-section {
             display: flex;
             gap: 8px;
-            margin: 14px; 
+            margin: 14px;
             padding-top: 24px;
         }
-        
+
         .two-section {
             display: flex;
             padding: 12px;
             padding-bottom: 24px;
             justify-content: space-between;
         }
+
         .left-section,
         .right-section {
             flex: 1;
@@ -355,7 +397,8 @@
 <body>
     <nav id="navbar">
         <div class="navbar">
-            <div class="logo"><a href="/">Sadjiwa Mitra Sembada</a></div>
+            <div class="logo"><a href="/">Sadjiwa Mitra Sembada</a>
+            </div>
             <a class="menu-trigger">
                 <i class="bi bi-list"></i>
             </a>
