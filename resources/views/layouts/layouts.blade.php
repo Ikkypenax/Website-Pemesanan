@@ -335,14 +335,6 @@
             align-items: center;
         }
 
-        .header-text {
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-            z-index: 10;
-            margin: 0;
-        }
-
         .text-primary {
             margin-top: 16px;
             font-size: 24px;
@@ -350,6 +342,13 @@
             color: #007bff;
         }
 
+        #order .form-header h2 {
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            z-index: 10;
+            margin: 0;
+        }
     </style>
 </head>
 

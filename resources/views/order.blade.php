@@ -4,12 +4,12 @@
 
 @section('content')
 
-    <div class="card-order">
+    <div id="order" class="card-order">
         <div class="form-header">
             <div class="header-background">
                 <img src="{{ asset('assets/images/panel bgg.jpg') }}" class="form-image">
                 <div class="header-overlay">
-                    <h2 class="header-text">Buat Pesanan Sekarang</h2>
+                    <h2>Buat Pesanan Sekarang</h2>
                 </div>
             </div>
         </div>
