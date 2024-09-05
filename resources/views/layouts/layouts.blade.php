@@ -48,6 +48,7 @@
 
         nav .navbar {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             width: 100%;
@@ -86,9 +87,8 @@
             color: white;
             font-size: 24px;
             cursor: pointer;
+            justify-content: center;
         }
-
-
 
         @media (max-width: 768px) {
             nav .navbar .menu {
@@ -298,11 +298,14 @@
         }
 
         .one-section {
+        .one-section {
             display: flex;
             gap: 8px;
             margin: 14px;
+            margin: 14px;
             padding-top: 24px;
         }
+
 
         .two-section {
             display: flex;
@@ -310,6 +313,7 @@
             padding-bottom: 24px;
             justify-content: space-between;
         }
+
         .left-section,
         .right-section {
             flex: 1;
@@ -345,13 +349,21 @@
             color: #007bff;
         }
 
+        #order .form-header h2 {
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            z-index: 10;
+            margin: 0;
+        }
     </style>
 </head>
 
 <body>
     <nav id="navbar">
         <div class="navbar">
-            <div class="logo"><a href="/">Sadjiwa Mitra Sembada</a></div>
+            <div class="logo"><a href="/">Sadjiwa Mitra Sembada</a>
+            </div>
             <a class="menu-trigger">
                 <i class="bi bi-list"></i>
             </a>

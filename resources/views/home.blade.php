@@ -233,6 +233,74 @@
     </div>
 </div>
 
+    <div class="container testi" style="padding: 100px 0px">
+        <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4 class="text-red">Produk Unggulan Yang Kami Tawarkan </h4>
+            <p class="opacity-75">Berikut adalah produk videtron yang sering dan banyak dipesan oleh berbagai EO serta
+                produk yang memiliki kualitas unggulan.
+            </p>
+        </div>
+        <div class="container mt-5">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper h-100">
+                    <div class="swiper-slide h-100">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                    alt="Avatar 1" class="rounded-circle me-3">
+                                <div>
+                                    <p class="card-text">"Testimonial 1: Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit."</p>
+                                    <h5 class="card-title">- Nama Pengguna 1</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                    alt="Avatar 2" class="rounded-circle me-3">
+                                <div>
+                                    <p class="card-text">"Testimonial 2: Sed do eiusmod tempor incididunt ut labore et
+                                        dolore magna aliqua."</p>
+                                    <h5 class="card-title">- Nama Pengguna 2</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                    alt="Avatar 2" class="rounded-circle me-3">
+                                <div>
+                                    <p class="card-text">"Testimonial 2: Sed do eiusmod tempor incididunt ut labore et
+                                        dolore magna aliqua."</p>
+                                    <h5 class="card-title">- Nama Pengguna 2</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                    alt="Avatar 2" class="rounded-circle me-3">
+                                <div>
+                                    <p class="card-text">"Testimonial 2: Sed do eiusmod tempor incididunt ut labore et
+                                        dolore magna aliqua."</p>
+                                    <h5 class="card-title">- Nama Pengguna 2</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tambahkan lebih banyak testimonial sesuai kebutuhan -->
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
 <div class="container testi" style="padding: 100px 0px; background:#f8f8f8">
     <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
         <h4 class="text-red">Produk Unggulan Yang Kami Tawarkan </h4>
@@ -303,4 +371,4 @@
 </div>
 
 
-{{-- @endsection --}}
+    {{-- @endsection --}}
