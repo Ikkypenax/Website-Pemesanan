@@ -3,17 +3,19 @@
 @section('title', 'home')
 
 @section('content')
-<div class="main-banner wow fadeIn" style="background-image: url('{{ asset('assets/images/background.jpg') }}'); height: 100vh;">
+<div class="main-banner wow fadeIn" style="background-image: url('{{ asset('assets/images/bg3.jpeg') }}'); height: 100vh;">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12 d-flex flex-column justify-content-center">
-                    <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="col-md-12 col-sm-12 d-flex flex-column justify-content-center">
+                    <div class="text-center left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
                         <div class="w-100">
-                            <h2>Dapatkan Produk Berkualitas Bersama Kami</h2>
-                            <p>Kami bergerak dalam bidang layanan fotografi dan pengadaan videotron.
-                                Dengan dedikasi dan komitmen tinggi, kami menyediakan solusi visual berkualitas tinggi yang dirancang
+                            <h2>Dapatkan Produk Berkualitas <br> Bersama Kami</h2>
+                            <p>Kami menyediakan solusi visual berkualitas <br> tinggi yang dirancang
                                 untuk memenuhi kebutuhan anda.
                             </p>
+                            <div class="position-relative z-10">
+                                <button class="btn btn-light btn-md">Order Now</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -22,7 +24,7 @@
     </div>
 
 {{-- service --}}
-<div class="container about" style="padding: 100px 0px">
+<div class="container about" style="background-color: #f8f8f8; padding: 100px 0px">
     <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
         <h4 class="text-red">Wujudkan <em>Event Impian</em> Bersama Kami </h4>
         {{-- <img src="{{asset('assets/images/home_31.png')}}" alt="service"> --}}
@@ -34,10 +36,7 @@
     <div class="row" style="">
         <div class="col-md-3 col-sm-12">
             <div class="h-100 service-item d-flex flex-column justify-content-center first-service">
-                <div class="icon">
-                    <div class="star-rating">
-                        &#9733;&#9733;&#9733;&#9733;&#9733; <!-- 5 out of 5 stars -->
-                    </div></i>
+                <div class="icon"><i class="fa-solid fa-thumbs-up"></i>
                 </div>
                 <h4>Jaminan Kualitas</h4>
                 <p class="opacity-50">Kami berkomitmen untuk memberikan produk dan layanan unggulan yang memenuhi
@@ -46,7 +45,7 @@
         </div>
         <div class="col-md-3 col-sm-12">
             <div class="h-100 service-item d-flex flex-column justify-content-center second-service">
-                <div class="icon"></div>
+                <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
                 <h4>Solusi Inovatif</h4>
                 <p class="opacity-50">Tim kami terus menjelajahi teknologi terbaru untuk memberikan solusi yang inovatif
                     dan efektif.</p>
@@ -54,8 +53,8 @@
         </div>
         <div class="col-md-3 col-sm-12">
             <div class="h-100 service-item d-flex flex-column justify-content-center third-service">
-                <div class="icon"></div>
-                <h4>Pendekatan Berpusat pada Pelanggan</h4>
+                <div class="icon"><i class="fa-solid fa-person"></i></div>
+                <h4>Berpusat pada Pelanggan</h4>
                 <p class="opacity-50">Kami memprioritaskan kebutuhan klien kami, menawarkan layanan dan dukungan yang
                     dipersonalisasi
                     sepanjang proses.<a rel="nofollow" href="" target="_blank"></a></p>
@@ -63,7 +62,7 @@
         </div>
         <div class="col-md-3 col-sm-12">
             <div class="h-100 service-item d-flex flex-column justify-content-center fourth-service">
-                <div class="icon"></div>
+                <div class="icon"><i class="fa-regular fa-handshake"></i></div>
                 <h4>Profesional &amp; Berpengalaman</h4>
                 <p class="opacity-50">Tim kami terdiri dari profesional berpengalaman yang bersemangat dengan apa yang
                     mereka lakukan
@@ -74,11 +73,11 @@
 </div>
 
 {{-- about --}}
-<div id="about" class="about-us section" style="padding: 50px 0px;">
+<div id="about" class="about-us section" style="padding: 50px 0px; background: linear-gradient(135deg, #0069b6 0%, #009dae 100%, #7db9e8 100%);;">
     <div class="container">
         <div class="row" style="">
-            <div class="col-md-6 col-sm-12 align-self-center">
-                <div class="section-heading">
+            <div class="col-md-8  col-sm-12 align-self-center">
+                <div class="section-heading" style="color: #fff;">
                     <h4>Apa saja sih yang<em> Kami Tawarkan</em></h4>
                 </div>
                 <div class="row mb-3" style="">
@@ -90,8 +89,8 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100 ">
-                            <h4>24/7 Support &amp; Help</h4>
-                            <p>Siap Membantu Kapanpun Dimanapun</p>
+                            <h4>Support &amp; Help</h4>
+                            <p>Membantu Kapanpun Dimanapun</p>
                         </div>
                     </div>
                 </div>
@@ -110,10 +109,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-4 col-sm-12">
+                <div class="d-flex d-flex justify-content-center align-items-center h-100">
                     <div class="right-image d-flex justify-content-center">
-                        <img src="{{ asset('assets/images/cs.jpg') }}" alt="Logo">
+                        <img class="w-100" src="{{ asset('assets/images/csbg.png') }}" alt="Logo">
                     </div>
                 </div>
             </div>
@@ -234,7 +233,7 @@
     </div>
 </div>
 
-<div class="container testi" style="padding: 100px 0px">
+<div class="container testi" style="padding: 100px 0px; background:#f8f8f8">
     <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
         <h4 class="text-red">Produk Unggulan Yang Kami Tawarkan </h4>
         <p class="opacity-75">Berikut adalah produk videtron yang sering dan banyak dipesan oleh berbagai EO serta
