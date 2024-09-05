@@ -100,7 +100,14 @@
                 width: 100%;
                 background: #003865;
             }
-
+            .navbar{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+            }
+            .navbar.menu-trigger{
+                display: flex
+            }
             nav .navbar .menu.open {
                 display: flex;
             }
@@ -110,6 +117,39 @@
             }
         }
 
+        @media (max-width: 370px) {
+
+        nav .navbar .menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 75px;
+            left: 0;
+            width: 100%;
+            background: #022833;
+        }
+
+        .navbar {
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: flex-end;
+            padding-bottom: 30px;
+
+        }
+
+        .navbar .menu-trigger {
+            display: flex;
+
+            position: ab
+            bottom: 10px;
+
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+}
         .order-button {
             background: #003865;
             border: 2px solid currentColor;
@@ -297,7 +337,6 @@
 
         }
 
-        .one-section {
         .one-section {
             display: flex;
             gap: 8px;
