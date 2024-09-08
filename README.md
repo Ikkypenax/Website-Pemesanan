@@ -68,5 +68,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## CMD
 
-npm run dev -- menjalankan vite
-rm public/storage ; php artisan storage:link -- menghubungkan storage agar gambar dapat ditampilkan 
+npm run dev ; -- menjalankan vite
+rm public/storage ; php artisan storage:link ; -- menghubungkan storage agar gambar dapat ditampilkan 
