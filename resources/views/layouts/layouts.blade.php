@@ -30,7 +30,7 @@
             height: 75px;
             display: flex;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0);
+            background: #fff;
             /* backdrop-filter: blur(10px); */
             /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
             transition: background-color 0.3s, backdrop-filter 0.3s;
@@ -40,7 +40,8 @@
         }
 
         nav.solid {
-            background: #022833;
+            background: #fff;
+            /* opacity: 80%; */
             backdrop-filter: blur(0px);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
@@ -54,7 +55,7 @@
         }
 
         nav .navbar .logo a {
-            color: #C3444F;
+            color: #003865;
             font-size: 27px;
             font-weight: 600;
             text-decoration: none;
@@ -71,14 +72,14 @@
         }
 
         nav .navbar .menu li a {
-            color: #C3444F;
+            color: #003865 ;
             font-size: 17px;
-            font-weight: 500;
+            font-weight: 700;
             text-decoration: none;
         }
 
         nav .navbar .menu li a:hover {
-            color: #05414C;
+            color: #0074c8;
         }
 
         .menu-trigger {
@@ -97,66 +98,65 @@
                 top: 75px;
                 left: 0;
                 width: 100%;
-                background: #022833;
+                background: #003865;
             }
-
-            .navbar {
+            .navbar{
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
             }
-
-            .navbar .menu-trigger {
-                display: flex;
+            .navbar.menu-trigger{
+                display: flex
             }
-
             nav .navbar .menu.open {
                 display: flex;
             }
 
+            .menu-trigger {
+                display: block;
+            }
         }
 
         @media (max-width: 370px) {
 
-            nav .navbar .menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background: #022833;
-            }
-
-            .navbar {
-                flex-direction: column;
-                
-                align-items: center;
-  
-                justify-content: flex-end;
-                padding-bottom: 30px;
-  
-            }
-
-            .navbar .menu-trigger {
-                display: flex;
-
-                position: ab
-                bottom: 10px;
-
-                left: 50%;
-                transform: translateX(-50%);
-                
-            }
+        nav .navbar .menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 75px;
+            left: 0;
+            width: 100%;
+            background: #022833;
         }
 
+        .navbar {
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: flex-end;
+            padding-bottom: 30px;
+
+        }
+
+        .navbar .menu-trigger {
+            display: flex;
+
+            position: ab
+            bottom: 10px;
+
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+}
         .order-button {
-            background: none;
+            background: #003865;
             border: 2px solid currentColor;
             cursor: pointer;
-            padding: 5px;
-            margin: 12px;
-            border-radius: 15px;
+            padding: 6px;
+            /* margin: 12px; */
+            border-radius: 10px;
             transition: background-color 0.3s, color 0.3s;
 
             #content {
@@ -166,12 +166,12 @@
         }
 
         .order-button:hover {
-            background-color: #C3444F;
-            color: #022833;
+            background-color: #0074c8;
+            color: #003865;
         }
 
         footer {
-            background: #022833;
+            background: #fff;
             color: #C3444F;
             padding: 20px 0;
             text-align: center;
@@ -341,8 +341,10 @@
             display: flex;
             gap: 8px;
             margin: 14px;
+            margin: 14px;
             padding-top: 24px;
         }
+
 
         .two-section {
             display: flex;
@@ -377,6 +379,8 @@
             align-items: center;
         }
 
+
+
         .text-primary {
             margin-top: 16px;
             font-size: 24px;
@@ -404,9 +408,9 @@
             </a>
             <ul class="menu">
                 <li><a href="/">Home</a></li>
-                <li><a href="/catalog/list">Catalog</a></li>
+                <li><a href="./catalog/list">Catalog</a></li>
                 <li><a href="/about-us">About</a></li>
-                <li><a href="{{ route('order.create') }}" class="order-button">Order Now</a></li>
+                <li><a href="{{ route('order.create') }}" class="order-button" style="color: #fff;">Order Now</a></li>
             </ul>
         </div>
     </nav>
