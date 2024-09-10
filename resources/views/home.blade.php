@@ -24,11 +24,11 @@
     </div>
 
 {{-- service --}}
-<div class="container about" style="background-color: #f8f8f8; padding: 100px 0px">
+<div class=" about" style="background-color: #f8f8f8; padding: 100px 50px">
     <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
         <h4 class="text-red">Wujudkan <em>Event Impian</em> Bersama Kami </h4>
         {{-- <img src="{{asset('assets/images/home_31.png')}}" alt="service"> --}}
-        <p class="opacity-75">CV. Sadjiwa Mitra Sembada, kami mengutamakan kualitas dalam setiap videotron yang kami
+        <p class="opacity-25" style="">CV. Sadjiwa Mitra Sembada, kami mengutamakan kualitas dalam setiap videotron yang kami
             sediakan.
             Videotron kami menawarkan kejernihan gambar dan warna yang superior.
         </p>
@@ -39,7 +39,7 @@
                 <div class="icon"><i class="fa-solid fa-thumbs-up"></i>
                 </div>
                 <h4>Jaminan Kualitas</h4>
-                <p class="opacity-50">Kami berkomitmen untuk memberikan produk dan layanan unggulan yang memenuhi
+                <p class="opacity-50" style="">Kami berkomitmen untuk memberikan produk dan layanan unggulan yang memenuhi
                     standar tertinggi.</p>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="h-100 service-item d-flex flex-column justify-content-center second-service">
                 <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
                 <h4>Solusi Inovatif</h4>
-                <p class="opacity-50">Tim kami terus menjelajahi teknologi terbaru untuk memberikan solusi yang inovatif
+                <p class="opacity-50" style="">Tim kami terus menjelajahi teknologi terbaru untuk memberikan solusi yang inovatif
                     dan efektif.</p>
             </div>
         </div>
@@ -55,7 +55,7 @@
             <div class="h-100 service-item d-flex flex-column justify-content-center third-service">
                 <div class="icon"><i class="fa-solid fa-person"></i></div>
                 <h4>Berpusat pada Pelanggan</h4>
-                <p class="opacity-50">Kami memprioritaskan kebutuhan klien kami, menawarkan layanan dan dukungan yang
+                <p class="opacity-50" style="">Kami memprioritaskan kebutuhan klien kami, menawarkan layanan dan dukungan yang
                     dipersonalisasi
                     sepanjang proses.<a rel="nofollow" href="" target="_blank"></a></p>
             </div>
@@ -73,24 +73,24 @@
 </div>
 
 {{-- about --}}
-<div id="about" class="about-us section" style="padding: 50px 0px; background: linear-gradient(135deg, #0069b6 0%, #009dae 100%, #7db9e8 100%);;">
+<div id="about" class="about-us section" style="padding: 0px 0px; background: linear-gradient(135deg, #0069b6 0%, #009dae 100%, #7db9e8 100%);;">
     <div class="container">
-        <div class="row" style="">
-            <div class="col-md-8  col-sm-12 align-self-center">
+        <div class="row">
+            <div class="col-md-7 col-sm-12 align-self-center" style="padding:70px 0px">
                 <div class="section-heading" style="color: #fff;">
-                    <h4>Apa saja sih yang<em> Kami Tawarkan</em></h4>
+                    <h2>Apa saja sih yang<em> Kami Tawarkan</em></h2>
                 </div>
                 <div class="row mb-3" style="">
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100 ">
                             <h4>Maintance Problems</h4>
-                            <p>Perawatan dan Perbaikan Alat</p>
+                            <p class="opacity-50">Perawatan dan Perbaikan Alat</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100 ">
                             <h4>Support &amp; Help</h4>
-                            <p>Membantu Kapanpun Dimanapun</p>
+                            <p class="opacity-50">Membantu Kapanpun Dimanapun</p>
                         </div>
                     </div>
                 </div>
@@ -98,19 +98,19 @@
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100">
                             <h4>Fixing Issues About</h4>
-                            <p>Memperbaiki Masalah dan Kendala</p>
+                            <p class="opacity-50">Memperbaiki Masalah dan Kendala</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="box-item p-4 h-100">
                             <h4>Installation</h4>
-                            <p>Pemasangan Alat</p>
+                            <p class="opacity-50">Pemasangan Alat</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="d-flex d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-5 col-sm-12">
+                <div class="d-flex d-flex justify-content-center align-items-end h-100">
                     <div class="right-image d-flex justify-content-center">
                         <img class="w-100" src="{{ asset('assets/images/csbg.png') }}" alt="Logo">
                     </div>
