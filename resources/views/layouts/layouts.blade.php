@@ -395,6 +395,7 @@
             z-index: 10;
             margin: 0;
         }
+
     </style>
 </head>
 
@@ -420,8 +421,8 @@
             @yield('content')
         </div>
     </div>
-
-    <footer>
+    <footer class="border border-top-4 border-danger p-4">
+        
         <div class="footer-content">
             <h3>Sadjiwa Mitra Sembada</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel ligula nunc. Duis interdum lacus sit

@@ -238,7 +238,7 @@
     }
 
     .about-us .box-item {
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07);
+        /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07); */
         background-color: #fff;
         border-radius: 16px;
     }
