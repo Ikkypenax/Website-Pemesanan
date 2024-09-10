@@ -5,7 +5,7 @@
 @section('content')
 <div class="main-banner wow fadeIn" style="background-image: url('{{ asset('assets/images/bg3.jpeg') }}'); height: 100vh;">
         <div class="container">
-            <div class="row">
+            <div class="row" >
                 <div class="col-md-12 col-sm-12 d-flex flex-column justify-content-center">
                     <div class="text-center left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
                         <div class="w-100">
@@ -301,6 +301,7 @@
             </div>
         </div>
     </div>
+
 
 
     {{-- @endsection --}}

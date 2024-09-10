@@ -84,7 +84,7 @@
 
         .menu-trigger {
             display: none;
-            color: white;
+            color: #003865;
             font-size: 24px;
             cursor: pointer;
             justify-content: center;
@@ -94,11 +94,11 @@
             nav .navbar .menu {
                 display: none;
                 flex-direction: column;
-                position: absolute;
+                position: fixed;
                 top: 75px;
                 left: 0;
                 width: 100%;
-                background: #003865;
+                background: #fff;
             }
             .navbar{
                 display: flex;
