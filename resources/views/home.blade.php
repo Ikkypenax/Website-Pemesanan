@@ -233,7 +233,7 @@
     </div>
 </div>
 
-    <div class="container testi" style="padding: 100px 0px">
+<div class="container testi" style="padding: 100px 0px">
         <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4 class="text-red">Produk Unggulan Yang Kami Tawarkan </h4>
             <p class="opacity-75">Berikut adalah produk videtron yang sering dan banyak dipesan oleh berbagai EO serta
