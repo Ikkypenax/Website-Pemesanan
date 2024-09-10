@@ -63,7 +63,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
-        background-color: #f8f8f8;
+        /* background-color: #f8f8f8; */
     }
 
 
@@ -260,10 +260,7 @@
     }
 
 
-    .about-us .right-image {
-        /* position: relative;
-        z-index: 1; */
-    }
+
 
     .about-us:after {
         background-image: url(../images/about-bg.jpg);
