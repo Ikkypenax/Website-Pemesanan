@@ -16,8 +16,9 @@ class CatalogController extends Controller
     public function list()
     {
         $catalog = Catalog::all();
-        return view('catalog.list', compact('catalog'));
+        return view('list', compact('catalog'));
     }
+
 
     public function create()
     {

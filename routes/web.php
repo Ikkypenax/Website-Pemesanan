@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 // Role User
+
 Route::get('/catalog/list', [CatalogController::class, 'list'])->name('catalog.list');
 Route::get('/order', [OrderController::class, 'create'])->name('order.create');
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
