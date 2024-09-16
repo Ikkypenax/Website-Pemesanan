@@ -137,7 +137,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-4">
                 <div class="card mx-auto" style="width: 100%">
-                    <img src="{{ asset('assets/images/p1.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('assets/images/p2.5.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 72 72">
                             <path fill="#FFF" d="M4 51.624h64v7.267H4z" />
@@ -163,14 +163,14 @@
                                 <circle cx="35.996" cy="16.008" r="5" />
                             </g>
                         </svg>
-                        <h5 class="card-title">First Product</h5>
-                        <p class="card-text">Some representative placeholder content for the first product review.</p>
+                        <h5 class="card-title">P1.5 Pro Indoor Qiangli</h5>
+                        <p class="card-text">Solusi visual high-end untuk penggunaan indoor, cocok untuk pusat perbelanjaan mewah dan area resepsi hotel berbintang.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card mx-auto" style="width: 100%">
-                    <img src="{{ asset('assets/images/p2.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('assets/images/p8.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 72 72">
                             <path fill="#FFF" d="M4 51.624h64v7.267H4z" />
@@ -196,14 +196,16 @@
                                 <circle cx="35.996" cy="16.008" r="5" />
                             </g>
                         </svg>
-                        <h5 class="card-title">Second Product</h5>
-                        <p class="card-text">Some representative placeholder content for the second product review.</p>
+                        <h5 class="card-title">P1 Pro Indoor Qiangli</h5>
+                        <p class="card-text">LED display resolusi ultra tinggi untuk penggunaan indoor,
+                            cocok untuk ruang kontrol, studio siaran,
+                            dan area pameran premium dengan kebutuhan visual detail tinggi.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card mx-auto" style="width: 100%">
-                    <img src="{{ asset('assets/images/p3.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('assets/images/p6.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 72 72">
                             <path fill="#FFF" d="M4 51.624h64v7.267H4z" />
@@ -229,8 +231,8 @@
                                 <circle cx="35.996" cy="16.008" r="5" />
                             </g>
                         </svg>
-                        <h5 class="card-title">Third Product</h5>
-                        <p class="card-text">Some representative placeholder content for the third product review.</p>
+                        <h5 class="card-title">P1.2 Pro Indoor Qiangli</h5>
+                        <p class="card-text">Display LED indoor dengan kualitas gambar sangat tajam, ideal untuk ruang rapat eksekutif dan lobi perusahaan besar.</p>
                     </div>
                 </div>
             </div>
