@@ -40,9 +40,9 @@
 
             <div class="card-body pt-0">
                 <div class="table-responsive" id="dataTable" width="100%" cellspacing="0">
-                    <table id="myTable" class="table table-bordered">
+                    <table id="myTable" class="table table-catalog table-bordered border-dark table-hover">
                         <thead>
-                            <tr>
+                            <tr class="table-secondary align-top">
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
@@ -76,7 +76,7 @@
                                             </li>
                                             <li class="list-inline-item">
                                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal1">
+                                                    data-bs-target="#deleteModal{{ $c->id }}">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </li>
@@ -84,7 +84,7 @@
                                     </td>
                                 </tr>
 
-                                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="deleteModal{{ $c->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -98,7 +98,7 @@
                                                     class="action-buttons">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <p>Apakah anda yakin ingin menghapus?</p>
+                                                    <p>Apakah anda yakin ingin menghapus {{ $c->name }} ?</p>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Back</button>

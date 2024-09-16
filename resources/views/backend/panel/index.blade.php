@@ -23,9 +23,9 @@
 
             <div class="card-body pt-0">
                 <div class="table-responsive" id="dataTable" width="100%" cellspacing="0">
-                    <table id="myTable" class="table table-bordered">
+                    <table id="myTable" class="table table-panel table-bordered border-dark table-hover">
                         <thead>
-                            <tr>
+                            <tr class="table-secondary align-top">
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Kategori</th>
@@ -52,7 +52,7 @@
                                             </li>
                                             <li class="list-inline-item">
                                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal">
+                                                    data-bs-target="#deleteModal{{ $p->id }}">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </li>
@@ -60,7 +60,7 @@
                                     </td>
                                 </tr>
 
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="deleteModal{{ $p->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">

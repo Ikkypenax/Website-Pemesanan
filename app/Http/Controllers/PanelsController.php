@@ -10,13 +10,13 @@ class PanelsController extends Controller
     public function index()
     {
         $panel = Panels::all();
-        return view('panel.index', compact('panel'));
+        return view('backend.panel.index', compact('panel'));
     }
 
     public function create()
     {
         $category = ['Indoor', 'Outdoor'];
-        return view('panel.create', compact('category'));
+        return view('backend.panel.create', compact('category'));
     }
 
     public function store(Request $request)
@@ -37,15 +37,10 @@ class PanelsController extends Controller
             ->with('success', 'Barang berhasil ditambahkan.');
     }
 
-    public function show(Panels $panel)
-    {
-        return view('panel.show', compact('panel'));
-    }
-
     public function edit(Panels $panel)
     {
-        $category = ['Indoor', 'Outdoor']; 
-        return view('panel.edit', compact('panel', 'category'));
+        $category = ['Indoor', 'Outdoor'];
+        return view('backend.panel.edit', compact('panel', 'category'));
     }
 
     public function update(Request $request, Panels $panel)

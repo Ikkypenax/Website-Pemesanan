@@ -10,7 +10,7 @@ class CatalogController extends Controller
     public function index()
     {
         $catalog = Catalog::all();
-        return view('catalog.index', compact('catalog'));
+        return view('backend.catalog.index', compact('catalog'));
     }
 
     public function list()
@@ -22,7 +22,7 @@ class CatalogController extends Controller
 
     public function create()
     {
-        return view('catalog.create');
+        return view('backend.catalog.create');
     }
 
     public function store(Request $request)
@@ -49,7 +49,7 @@ class CatalogController extends Controller
     public function edit($id)
     {
         $catalog = Catalog::find($id);
-        return view('catalog.edit', compact('catalog'));
+        return view('backend.catalog.edit', compact('catalog'));
     }
 
     public function update(Request $request, $id)

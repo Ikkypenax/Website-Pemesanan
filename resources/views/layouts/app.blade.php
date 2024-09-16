@@ -18,14 +18,12 @@
 <style>
     .sidebar {
         width: 250px;
-        /* Lebar sidebar */
         background-color: rgb(16, 15, 15);
         transition: width 0.3s ease;
     }
 
     .content-wrapper {
         margin-left: 250px;
-        /* Lebar sidebar */
         transition: margin-left 0.3s ease;
     }
 
@@ -35,6 +33,12 @@
 
     .content-wrapper.toggled {
         margin-left: 0;
+    }
+
+    .table-orders,
+    .table-panel,
+    .table-catalog {
+        color: black;
     }
 
     .table-container {
@@ -52,7 +56,7 @@
     }
 
     .status-prosses {
-        color: #f7b731; 
+        color: #ffb300; 
     }
     .status-approve {
         color: #20bf6b;

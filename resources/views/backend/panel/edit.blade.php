@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="price">Harga:</label>
                         <input type="number" class="form-control" id="price" name="price"
-                            value="{{ $panel->price }}">
+                            value="{{ intval($panel->price) ?? 0 }}">
                     </div>
 
                     <div class="form-group">

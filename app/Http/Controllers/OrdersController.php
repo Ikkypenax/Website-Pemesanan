@@ -13,7 +13,7 @@ class OrdersController extends Controller
     public function index()
     {
         $order = Orders::with(['panel', 'provinces', 'regency', 'addfee'])->orderBy('created_at', 'desc')->get();
-        return view('orders.index', compact('order'));
+        return view('backend.orders.index', compact('order'));
     }
 
     public function create()
@@ -21,7 +21,7 @@ class OrdersController extends Controller
         $panel = Panels::select('category')->distinct()->get();
         $provinces = Provinces::all();
         $regency = Regencies::all();
-        return view('orders.create', compact('panel', 'provinces', 'regency'));
+        return view('backend.orders.create', compact('panel', 'provinces', 'regency'));
     }
 
     public function getType($category_name)
@@ -83,7 +83,7 @@ class OrdersController extends Controller
         $order = Orders::with('addfee')->find($id);
         $panel = Panels::all();
 
-        return view('orders.edit', compact('panel', 'order'));
+        return view('backend.orders.edit', compact('panel', 'order'));
     }
 
     public function update(Request $request, Orders $order)
@@ -121,7 +121,7 @@ class OrdersController extends Controller
     {
         $order = Orders::with('addfee')->find($id);
 
-        return view('orders.show', compact('order'));
+        return view('backend.orders.show', compact('order'));
     }
 
     public function sendInvoice($id)
