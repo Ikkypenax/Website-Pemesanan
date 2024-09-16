@@ -63,16 +63,18 @@
 
         nav .navbar .menu {
             display: flex;
+            padding-top: inherit;
         }
 
         nav .navbar .menu li {
             list-style: none;
             margin: 0 15px;
             margin-top: 15px;
+            6
         }
 
         nav .navbar .menu li a {
-            color: #003865 ;
+            color: #003865;
             font-size: 17px;
             font-weight: 700;
             text-decoration: none;
@@ -100,14 +102,17 @@
                 width: 100%;
                 background: #fff;
             }
-            .navbar{
+
+            .navbar {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
             }
-            .navbar.menu-trigger{
+
+            .navbar.menu-trigger {
                 display: flex
             }
+
             nav .navbar .menu.open {
                 display: flex;
             }
@@ -119,49 +124,47 @@
 
         @media (max-width: 370px) {
 
-        nav .navbar .menu {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 75px;
-            left: 0;
-            width: 100%;
-            background: #022833;
+            nav .navbar .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #022833;
+            }
+
+            .navbar {
+                flex-direction: column;
+
+                align-items: center;
+
+                justify-content: flex-end;
+                padding-bottom: 30px;
+
+            }
+
+            .navbar .menu-trigger {
+                display: flex;
+
+                position: ab bottom: 10px;
+
+                left: 50%;
+                transform: translateX(-50%);
+
+            }
         }
 
-        .navbar {
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: flex-end;
-            padding-bottom: 30px;
-
-        }
-
-        .navbar .menu-trigger {
-            display: flex;
-
-            position: ab
-            bottom: 10px;
-
-            left: 50%;
-            transform: translateX(-50%);
-
-        }
-}
         .order-button {
             background: #003865;
             border: 2px solid currentColor;
             cursor: pointer;
-            padding: 6px;
+            /* padding: 6px; */
             /* margin: 12px; */
             border-radius: 10px;
             transition: background-color 0.3s, color 0.3s;
 
-            #content {
-                transition: all 0.3s;
-            }
+
 
         }
 
@@ -170,54 +173,6 @@
             color: #003865;
         }
 
-        footer {
-            background: #fff;
-            color: #C3444F;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-content h3 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .footer-content p {
-            max-width: 600px;
-            margin: 0 auto 20px;
-            font-size: 1.1em;
-        }
-
-        .socials {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            padding: 0;
-        }
-
-        .socials li {
-            margin: 0 10px;
-        }
-
-        .socials a {
-            color: white;
-            font-size: 1.5em;
-            text-decoration: none;
-        }
-
-        .footer-bottom {
-            margin-top: 20px;
-        }
-
-        .footer-bottom p {
-            margin: 0;
-            font-size: 1em;
-        }
 
         /* Form pesanan */
 
@@ -396,6 +351,56 @@
             margin: 0;
         }
 
+        .footer a {
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer i {
+            font-size: 1.5rem;
+        }
+
+        .footer hr {
+            border-color: #666;
+            height: 1px;
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+
+        .flex-grow-1 {
+            flex-grow: 8;
+            /* Buat garis lebih panjang */
+            height: 1px;
+            /* Tinggi garis */
+        }
+
+        .footer .d-flex {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer .mx-3 {
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+        }
+
+        .footer p {
+            font-size: 20px;
+        }
+
+        .footer p i {
+            margin-right: 5px;
+            /* Tambahkan sedikit jarak antara ikon dan teks */
+        }
+
+        .footer p {
+            font-size: 1rem;
+            /* Ukuran font untuk email, telepon, dan alamat */
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 
@@ -408,35 +413,62 @@
                 <i class="bi bi-list"></i>
             </a>
             <ul class="menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="./catalog/list">Catalog</a></li>
-                <li><a href="/about-us">About</a></li>
-                <li><a href="{{ route('order.create') }}" class="order-button" style="color: #fff;">Order Now</a></li>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="./catalog/list">Catalog</a></li>
+                <li class=""><a href="/about-us">About</a></li>
+                <li class="pb-2"><a href="{{ route('order.create') }}" class="order-button px-2 py-1"
+                        style="color: #fff;">Order Now</a></li>
             </ul>
         </div>
     </nav>
 
     <div id="content">
-        <div class="container">
+        <div class="">
             @yield('content')
         </div>
     </div>
-    <footer class="border border-top-4 border-danger p-4">
-        
-        <div class="footer-content">
-            <h3>Sadjiwa Mitra Sembada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel ligula nunc. Duis interdum lacus sit
-                amet arcu egestas, at sodales orci feugiat.</p>
-            <ul class="socials">
-                <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                <li><a href=""><i class="far fa-envelope"></i></a></li>
-                <li><a href=""><i class="fab fa-whatsapp"></i></a></li>
-            </ul>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2024 Sadjiwa Mitra Sembada</p>
+
+    <footer class="footer bg-dark text-light pt-5 pb-2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 d-flex align-items-center mb-3">
+                    <!-- Garis sebelum icon -->
+                    <hr class="flex-grow-1 border-secondary ">
+
+                    <!-- Social Media Icons -->
+                    <div class="d-flex justify-content-center mx-3">
+                        <a href="#" class="text-light mx-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light mx-2"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-light mx-2"><i class="fab fa-tiktok"></i></a>
+                    </div>
+
+                    <!-- Garis setelah icon -->
+                    <hr class="flex-grow-1 border-secondary m-0">
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <p class="mb-2">Sadjiwa Mitra Sembada.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 mb-4 d-flex justify-content-center align-items-center">
+                    <p class="mx-3 mb-0"><i class="fas fa-envelope"></i> email@example.com</p>
+                    <p class="mx-3 mb-0"><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+                    <p class="mx-3 mb-0"><i class="fas fa-map-marker-alt"></i> Jalan Contoh No. 123, Jakarta, Indonesia</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 d-flex justify-content-center">
+                    <span class="text-light mx-2">Copyright &copy; 2024 CV. Sadjiwa Mitra Sembada.</span>
+                </div>
+            </div>
         </div>
     </footer>
+
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
