@@ -99,7 +99,7 @@
                             <div class="col-lg-12 bg-form-login">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-light mb-4">LOG IN</h1>
+                                        <h3 class="text-light mb-4">LOG IN</h3>
                                     </div>
                                     <form class="user" method="POST" action="{{ route('login.submit') }}">
                                         @csrf

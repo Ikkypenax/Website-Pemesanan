@@ -24,14 +24,12 @@
                     </ul>
                 </div>
             @endif
-
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
             @endif
             @csrf
-
                 <div class="one-section">
                     <div class="left-section">
                         <div class="form-group">
@@ -100,12 +98,9 @@
                     </div>
                     <button type="submit" class="btn btn-success mt-3 mb-3">Pesan</button>
                 </div>
-
             </div>
-
         </form>
     </div>
-
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
