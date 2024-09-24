@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div id="order" class="card-order">
+    <div id="order" class="reveal card-order">
         <div class="form-header">
             <div class="header-background">
                 <img src="{{ asset('assets/images/panel bgg.jpg') }}" class="form-image">

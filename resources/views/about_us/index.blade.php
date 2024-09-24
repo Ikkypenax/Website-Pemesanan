@@ -3,7 +3,7 @@
 @section('title', 'about-us')
 
 @section('content')
-<div class="container py-5 mt-5">
+<div class="reveal container py-5 mt-5">
     <div class="text-center">
         <h1 class="display-6 fw-bold">Tentang Kami</h1>
         <p class="text-muted">CV. Sadjiwa Mitra Sembada</p>
@@ -32,7 +32,7 @@
     {{-- Section: Misi --}}
     <section class="mt-5">
         <h3 class="text-center mb-5">Misi Kami</h3>
-        <div class="row text-center">
+        <div class=" reveal row text-center">
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body">

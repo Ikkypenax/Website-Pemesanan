@@ -3,7 +3,8 @@
 @section('title', 'Galery')
 
 @section('content')
-<div class="section-card">
+
+<div class=" reveal section-card">
     <div class="d-flex flex-wrap" style="padding: 100px 0px;">
         @foreach ($catalog as $c)
         <div class="w-25 card-item px-2 py-2">

@@ -3,8 +3,8 @@
 @section('title', 'home')
 
 @section('content')
-    <div class="main-banner wow fadeIn"
-        style="background-image: url('{{ asset('assets/images/bg3.jpeg') }}'); height: 100vh;">
+    <div class="reveal main-banner wow fadeIn"
+        style="background-image: url('{{ asset('assets/images/hero.png') }}'); height: 100vh;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 d-flex flex-column justify-content-center">
@@ -26,14 +26,12 @@
     </div>
 
     {{-- service --}}
-    <div class=" about" style="background-color: #f8f8f8; padding: 100px 50px">
+    <div class=" reveal about" style="background-color: #f8f8f8; padding: 90px 50px">
         <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h3>Wujudkan <em>Event Impian</em> Bersama Kami </h3>
-            {{-- <img src="{{asset('assets/images/home_31.png')}}" alt="service"> --}}
+            <h2>Wujudkan <em>Event Impian</em> Bersama Kami </h2>
+           <br>
             <p class="opacity-50" style="">CV. Sadjiwa Mitra Sembada, kami mengutamakan kualitas dalam setiap
-                videotron yang kami
-                sediakan.
-                Videotron kami menawarkan kejernihan gambar dan warna yang superior.
+                videotron yang kami sediakan.<br> kami menawarkan kejernihan gambar dan warna yang superior.
             </p>
         </div>
         <div class="row" style="">
@@ -79,57 +77,63 @@
     </div>
 
     {{-- about --}}
-    <div id="about" class="about-us section"
-        style="padding: 0px 0px; background: linear-gradient(135deg, #0069b6 0%, #009dae 100%, #7db9e8 100%);;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 col-sm-12 align-self-center" style="padding:70px 0px">
-                    <div class="section-heading" style="color: #fff;">
-                        <h2>Apa saja sih yang<em> Kami Tawarkan</em></h2>
-                    </div>
-                    <div class="row mb-3" style="">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="box-item p-4 h-100 ">
-                                <h4>Maintance Problems</h4>
-                                <p class="opacity-50">Perawatan dan Perbaikan Alat</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="box-item p-4 h-100 ">
-                                <h4>Support &amp; Help</h4>
-                                <p class="opacity-50">Membantu Kapanpun Dimanapun</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="box-item p-4 h-100">
-                                <h4>Fixing Issues About</h4>
-                                <p class="opacity-50">Memperbaiki Masalah dan Kendala</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="box-item p-4 h-100">
-                                <h4>Installation</h4>
-                                <p class="opacity-50">Pemasangan Alat</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5 col-sm-12">
-                    <div class="d-flex d-flex justify-content-center align-items-end h-100">
-                        <div class="right-image d-flex justify-content-center">
-                            <img class="w-100" src="{{ asset('assets/images/csbg.png') }}" alt="Logo">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="reveal "
+    style="padding: 35px 0px; background: linear-gradient(135deg, #0069b6 0%, #009dae 100%, #7db9e8 100%);">
+   <div class="container">
+       <div class="row align-items-center">
+           <!-- Left Image -->
+           <div class="col-md-5 col-sm-12 text-center">
+               <div class="left-image">
+                   <img class="w-100" src="{{ asset('assets/images/csbg3.png') }}" alt="Logo">
+               </div>
+           </div>
+
+           <!-- Right Content -->
+           <div class="col-md-7 col-sm-12">
+               <div class="section-heading" style="color: #fff;">
+                   <h2>Kami Siap Untuk <em> Membantu Anda </em></h2>
+                   <p class="text-white-50">Kami siap memberikan pelayanan terbaik dan dukungan kepada setiap pelanggan kami.</p>
+               </div>
+
+               <div class="reveal row mb-3">
+                   <div class="col-md-6 col-sm-12 mb-3">
+                       <div class="box-item p-4 h-100 shadow-sm rounded bg-white" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                           <h4 class="text-center"><i class="bi bi-heart-fill" style="color: #ffcc00; font-size: 24px;"></i> Perawatan Panel </h4>
+                           <hr>
+                           <p class="text-center text-secondary"> Membantu dalam perawatan panel anda.</p>
+                       </div>
+                   </div>
+                   <div class="col-md-6 col-sm-12 mb-3">
+                       <div class="box-item p-4 h-100 shadow-sm rounded bg-white">
+                           <h4 class="text-center"><i class="bi bi-lightning-fill" style="color: #ffcc00; font-size: 24px;"></i> Instalasi</h4><hr>
+                           <p class="text-center text-secondary">Siap dalam melakukan Instalasi panel dengan cepat.</p>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="reveal row mb-3">
+                   <div class="col-md-6 col-sm-12 mb-3">
+                       <div class="box-item p-4 h-100 shadow-sm rounded bg-white">
+                           <h4 class="text-center"><i class="bi bi-bar-chart-fill" style="color: #ffcc00; font-size: 24px;"></i> Teknisi 24 Jam</h4><hr>
+                           <p class="text-center text-secondary">Teknisi yang selalu siap sedia untuk membantu anda.</p>
+                       </div>
+                   </div>
+                   <div class="col-md-6 col-sm-12 mb-3">
+                       <div class="box-item p-4 h-100 shadow-sm rounded bg-white">
+                           <h4 class="text-center"><i class="bi bi-emoji-smile-fill" style="color: #ffcc00; font-size: 24px;"></i> Kepuasan</h4><hr>
+                           <p class="text-center text-secondary">Kepuasan pelanggan dan kualitas adalah tujuan utama kita.</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+
     {{-- review --}}
-    <div class="px-5" style="background-color: #f8f8f8; padding: 100px 0px; ">
+    <div class="reveal px-5" style="background-color: #f8f8f8; padding: 95px 0px; ">
         <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4 class="text-red">Produk Unggulan Yang Kami Tawarkan </h4>
+            <h3 class="">Produk Unggulan Yang Kami Tawarkan </h3>
             <p class="opacity-75">Berikut adalah produk videtron yang sering dan banyak dipesan oleh berbagai EO serta
                 produk yang memiliki kualitas unggulan.
             </p>
@@ -239,9 +243,9 @@
         </div>
     </div>
 
-    <div class="px-5" style="padding: 100px 0px; background-color: #f8f8f8;">
+    <div class="px-5" style="padding: 50px 0px; background-color: #f8f8f8;">
         <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4 class="text-red">Dengarkan Konsumen Kita</h4>
+            <h3 class="">Dengarkan Konsumen Kita</h3>
             <p class="opacity-75">Berikut adalah review produk videtron yang sering dan banyak dipesan oleh berbagai EO serta
                 produk yang memiliki kualitas unggulan.
             </p>
