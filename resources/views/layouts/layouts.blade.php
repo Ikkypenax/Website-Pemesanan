@@ -172,16 +172,6 @@
                 0 0 30px rgba(0, 71, 255, 0.4);
         }
 
-        .btn-custom .arrow-icon {
-            display: inline-block;
-            transition: transform 0.4s ease;
-            margin-left: 5px;
-        }
-
-        .btn-custom:hover .arrow-icon {
-            transform: translateX(7px);
-        }
-
 
         /* Form pesanan */
 
@@ -361,28 +351,20 @@
         .checkmark-wrapper {
             display: inline-block;
             margin-bottom: 10px;
-            /* Jarak antara ikon dan teks */
         }
 
         .checkmark {
             font-size: 40px;
-            /* Ukuran ikon */
             color: green;
-            /* Warna ikon */
             opacity: 0;
-            /* Mulai dengan transparan */
             transform: scale(0);
-            /* Mulai dari ukuran kecil */
             transition: opacity 0.3s ease, transform 0.3s ease;
-            /* Transisi untuk efek */
         }
 
         /* Efek transisi ketika modal muncul */
         #successModal.show .checkmark {
             opacity: 1;
-            /* Menjadi terlihat */
             transform: scale(1);
-            /* Menjadi ukuran normal */
         }
 
         .footer a {

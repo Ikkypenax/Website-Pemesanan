@@ -17,7 +17,7 @@
                             </p>
                             <div class="position-relative z-10 pt-4">
                                 <a href="{{ route('order.create') }}" class="btn btn-lg rounded-pill btn-custom">
-                                    Order Now <i class="bi bi-arrow-right ml-5 arrow-icon"></i>
+                                    Order Now
                                 </a>                                
                             </div>
                         </div>

@@ -19,7 +19,7 @@
 
             @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Whoops!</strong> Terjadi kesalahan .<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -28,28 +28,7 @@
                 </div>
             @endif
 
-            <!-- Success Modal -->
-            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="successModalLabel">Notifikasi</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <div class="checkmark-wrapper">
-                                <i class="fas fa-check-circle checkmark"></i>
-                            </div>
-                            <div>
-                                <strong>{{ session('success') }}</strong>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="one-section">
                 <div class="left-section">
@@ -124,80 +103,104 @@
                 <button type="button" class="btn btn-success mt-3 mb-3" id="openAlertModal">Pesan</button>
             </div>
 
-            <!-- Alert Modal -->
-            <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="alertModalLabel">Konfirmasi Pesanan</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="h4 text-center mb-1">
-                                            Detail Pesanan
-                                        </div>
-                                        <div class="row">
-                                            <table class="table table-bordered border-dark">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="width: 50%">
-                                                            <strong>Nama:</strong> <span id="alertName"></span>
-                                                        </td>
-                                                        <td style="width: 50%">
-                                                            <strong>Kategori:</strong> <span id="alertCategory"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 50%">
-                                                            <strong>WA:</strong> <span id="alertWa"></span>
-                                                        </td>
-                                                        <td style="width: 50%">
-                                                            <strong>Panel:</strong> <span id="alertPanel"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 50%">
-                                                            <strong>Provinsi:</strong> <span id="alertProvince"></span>
-                                                        </td>
-                                                        <td style="width: 50%">
-                                                            <strong>Panjang:</strong> <span id="alertLength"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 50%">
-                                                            <strong>Kabupaten:</strong> <span id="alertRegency"></span>
-                                                        </td>
-                                                        <td style="width: 50%">
-                                                            <strong>Lebar:</strong> <span id="alertWidth"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2" class="text-center">
-                                                            <strong>Total:</strong> <span id="alertResult"></span>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <strong class="mb-2">*Belum termasuk biaya lainnya</strong>
-                                        </div>
-                                    </div>
-                                </div>
+            
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Notifikasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="checkmark-wrapper">
+                        <i class="fas fa-check-circle checkmark"></i>
+                    </div>
+                    <div>
+                        <strong>{{ session('success') }}</strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="alertModalLabel">Konfirmasi Pesanan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="h4 text-center mb-1">
+                                Detail Pesanan
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-primary" id="confirmOrder">Konfirmasi</button>
+                            <div class="row">
+                                <table class="table table-bordered border-dark">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 50%">
+                                                <strong>Nama:</strong> <span id="alertName"></span>
+                                            </td>
+                                            <td style="width: 50%">
+                                                <strong>Kategori:</strong> <span id="alertCategory"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">
+                                                <strong>WA:</strong> <span id="alertWa"></span>
+                                            </td>
+                                            <td style="width: 50%">
+                                                <strong>Panel:</strong> <span id="alertPanel"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">
+                                                <strong>Provinsi:</strong> <span id="alertProvince"></span>
+                                            </td>
+                                            <td style="width: 50%">
+                                                <strong>Panjang:</strong> <span id="alertLength"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">
+                                                <strong>Kabupaten:</strong> <span id="alertRegency"></span>
+                                            </td>
+                                            <td style="width: 50%">
+                                                <strong>Lebar:</strong> <span id="alertWidth"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center">
+                                                <strong>Total:</strong> <span id="alertResult"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <strong class="mb-2">*Belum termasuk biaya lainnya</strong>
                             </div>
                         </div>
                     </div>
                 </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="confirmOrder">Konfirmasi</button>
+                </div>
+            </div>
+        </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

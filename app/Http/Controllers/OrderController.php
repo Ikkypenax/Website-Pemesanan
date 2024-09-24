@@ -46,13 +46,30 @@ class OrderController extends Controller
     {
         $request->validate([
             "name" => "required",
-            "wa" => "required|numeric",
+            "wa" => "required|numeric|digits_between:10,15",
             'regency' => "required|exists:regencies,id",
             "length" => "required|numeric",
             "width" => "required|numeric",
             "result" => "required|numeric",
             'provinces_id' => "required|exists:provinces,id",
             'panel_id' => "required|exists:panels,id",
+        ], [
+            'name.required' => 'Kolom Nama perlu diisi',
+            'wa.required' => 'Kolom WhatsApp perlu diisi',
+            'wa.numeric' => 'Kolom WhatsApp harus berupa angka',
+            'wa.digits_between' => 'Nomor WhatsApp harus lebih dari 10 angka',
+            'regency.required' => 'Kolom Kabupaten perlu diisi',
+            'regency.exists' => 'Kabupaten tidak valid',
+            'length.required' => 'Kolom Panjang perlu diisi',
+            'length.numeric' => 'Kolom panjang harus berupa angka',
+            'width.required' => 'Kolom Lebar perlu diisi',
+            'width.numeric' => 'Kolom lebar harus berupa angka',
+            'result.required' => 'Kolom Hasil perlu diisi',
+            'result.numeric' => 'Kolom hasil harus berupa angka',
+            'provinces_id.required' => 'Kolom Provinsi perlu diisi',
+            'provinces_id.exists' => 'Provinsi tidak valid',
+            'panel_id.required' => 'Kolom Panel perlu diisi',
+            'panel_id.exists' => 'Panel tidak valid',
         ]);
 
         $regency = Regencies::find($request->input('regency'))->name;
@@ -71,6 +88,6 @@ class OrderController extends Controller
 
 
         session()->flash('success', 'Pesanan telah berhasil dibuat!');
-        return redirect()->back(); 
+        return redirect()->back();
     }
 }
