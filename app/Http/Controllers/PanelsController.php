@@ -47,8 +47,8 @@ class PanelsController extends Controller
     {
         $request->validate([
             'type' => 'required',
-            'price' => 'required|numeric',
             'category' => 'required',
+            'price' => 'required|numeric',
         ]);
 
         $panel->update($request->all());

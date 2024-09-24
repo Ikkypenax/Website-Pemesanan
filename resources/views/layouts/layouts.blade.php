@@ -155,22 +155,31 @@
             }
         }
 
-        .order-button {
-            background: #003865;
-            border: 2px solid currentColor;
-            cursor: pointer;
-            /* padding: 6px; */
-            /* margin: 12px; */
-            border-radius: 10px;
-            transition: background-color 0.3s, color 0.3s;
-
-
-
+        .btn-custom {
+            background-color: transparent;
+            color: #ffffff;
+            padding: 12px 30px;
+            font-size: 18pt;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        .order-button:hover {
-            background-color: #0074c8;
-            color: #003865;
+        .btn-custom:hover {
+            color: #000000;
+            background: linear-gradient(145deg, #00d4ff, #0047ff);
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6),
+                0 0 30px rgba(0, 71, 255, 0.4);
+        }
+
+        .btn-custom .arrow-icon {
+            display: inline-block;
+            transition: transform 0.4s ease;
+            margin-left: 5px;
+        }
+
+        .btn-custom:hover .arrow-icon {
+            transform: translateX(7px);
         }
 
 
@@ -334,8 +343,6 @@
             align-items: center;
         }
 
-
-
         .text-primary {
             margin-top: 16px;
             font-size: 24px;
@@ -349,6 +356,33 @@
             font-weight: bold;
             z-index: 10;
             margin: 0;
+        }
+
+        .checkmark-wrapper {
+            display: inline-block;
+            margin-bottom: 10px;
+            /* Jarak antara ikon dan teks */
+        }
+
+        .checkmark {
+            font-size: 40px;
+            /* Ukuran ikon */
+            color: green;
+            /* Warna ikon */
+            opacity: 0;
+            /* Mulai dengan transparan */
+            transform: scale(0);
+            /* Mulai dari ukuran kecil */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            /* Transisi untuk efek */
+        }
+
+        /* Efek transisi ketika modal muncul */
+        #successModal.show .checkmark {
+            opacity: 1;
+            /* Menjadi terlihat */
+            transform: scale(1);
+            /* Menjadi ukuran normal */
         }
 
         .footer a {
@@ -372,9 +406,7 @@
 
         .flex-grow-1 {
             flex-grow: 8;
-            /* Buat garis lebih panjang */
             height: 1px;
-            /* Tinggi garis */
         }
 
         .footer .d-flex {
@@ -393,12 +425,10 @@
 
         .footer p i {
             margin-right: 5px;
-            /* Tambahkan sedikit jarak antara ikon dan teks */
         }
 
         .footer p {
             font-size: 1rem;
-            /* Ukuran font untuk email, telepon, dan alamat */
             margin-bottom: 0.5rem;
         }
     </style>
@@ -416,8 +446,6 @@
                 <li class=""><a href="/">Home</a></li>
                 <li class=""><a href="./catalog/list">Catalog</a></li>
                 <li class=""><a href="/about-us">About</a></li>
-                <li class="pb-2"><a href="{{ route('order.create') }}" class="order-button px-2 py-1"
-                        style="color: #fff;">Order Now</a></li>
             </ul>
         </div>
     </nav>
@@ -456,7 +484,8 @@
                 <div class="col-md-12 mb-4 d-flex justify-content-center align-items-center">
                     <p class="mx-3 mb-0"><i class="fas fa-envelope"></i> email@example.com</p>
                     <p class="mx-3 mb-0"><i class="fas fa-phone"></i> +62 812-3456-7890</p>
-                    <p class="mx-3 mb-0"><i class="fas fa-map-marker-alt"></i> Jalan Contoh No. 123, Jakarta, Indonesia</p>
+                    <p class="mx-3 mb-0"><i class="fas fa-map-marker-alt"></i> Jalan Contoh No. 123, Jakarta, Indonesia
+                    </p>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -471,6 +500,9 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         new WOW().init();
 

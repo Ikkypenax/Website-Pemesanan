@@ -51,7 +51,7 @@ class OrdersController extends Controller
     {
         $request->validate([
             "name" => "required",
-            "wa" => "required",
+            "wa" => "required|numeric",
             'regency' => "required|exists:regencies,id",
             "length" => "required|numeric",
             "width" => "required|numeric",
@@ -180,7 +180,7 @@ class OrdersController extends Controller
     public function status(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|string|max:255',
+            'status' => 'required|string',
         ]);
 
         $status = Orders::find($id);

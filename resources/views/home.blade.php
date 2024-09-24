@@ -15,8 +15,10 @@
                             <p>Kami menyediakan solusi visual berkualitas <br> tinggi yang dirancang
                                 untuk memenuhi kebutuhan anda.
                             </p>
-                            <div class="position-relative z-10">
-                                <button class="btn btn-primary btn-md">Order Now</button>
+                            <div class="position-relative z-10 pt-4">
+                                <a href="{{ route('order.create') }}" class="btn btn-lg rounded-pill btn-custom">
+                                    Order Now <i class="bi bi-arrow-right ml-5 arrow-icon"></i>
+                                </a>                                
                             </div>
                         </div>
                     </div>
@@ -164,7 +166,8 @@
                             </g>
                         </svg>
                         <h5 class="card-title">P1.5 Pro Indoor Qiangli</h5>
-                        <p class="card-text">Solusi visual high-end untuk penggunaan indoor, cocok untuk pusat perbelanjaan mewah dan area resepsi hotel berbintang.</p>
+                        <p class="card-text">Solusi visual high-end untuk penggunaan indoor, cocok untuk pusat perbelanjaan
+                            mewah dan area resepsi hotel berbintang.</p>
                     </div>
                 </div>
             </div>
@@ -232,7 +235,8 @@
                             </g>
                         </svg>
                         <h5 class="card-title">P1.2 Pro Indoor Qiangli</h5>
-                        <p class="card-text">Display LED indoor dengan kualitas gambar sangat tajam, ideal untuk ruang rapat eksekutif dan lobi perusahaan besar.</p>
+                        <p class="card-text">Display LED indoor dengan kualitas gambar sangat tajam, ideal untuk ruang
+                            rapat eksekutif dan lobi perusahaan besar.</p>
                     </div>
                 </div>
             </div>
@@ -242,7 +246,8 @@
     <div class="px-5" style="padding: 100px 0px; background-color: #f8f8f8;">
         <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h4 class="text-red">Dengarkan Konsumen Kita</h4>
-            <p class="opacity-75">Berikut adalah review produk videtron yang sering dan banyak dipesan oleh berbagai EO serta
+            <p class="opacity-75">Berikut adalah review produk videtron yang sering dan banyak dipesan oleh berbagai EO
+                serta
                 produk yang memiliki kualitas unggulan.
             </p>
         </div>
@@ -255,7 +260,8 @@
                                 <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
                                     alt="Avatar 1" class="rounded-circle me-3">
                                 <div>
-                                    <p class="card-text">"Pelayanan yang sangat memuaskan! Tim bekerja profesional dan hasilnya sangat memuaskan."</p>
+                                    <p class="card-text">"Pelayanan yang sangat memuaskan! Tim bekerja profesional dan
+                                        hasilnya sangat memuaskan."</p>
                                     <h5 class="card-title">- Andi Wijaya</h5>
                                 </div>
                             </div>
@@ -267,7 +273,8 @@
                                 <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
                                     alt="Avatar 2" class="rounded-circle me-3">
                                 <div>
-                                    <p class="card-text">"Sangat profesional dan mudah diajak komunikasi. Hasil kerjanya sesuai dengan ekspektasi."</p>
+                                    <p class="card-text">"Sangat profesional dan mudah diajak komunikasi. Hasil kerjanya
+                                        sesuai dengan ekspektasi."</p>
                                     <h5 class="card-title">- Eka Putri</h5>
                                 </div>
                             </div>
@@ -279,7 +286,8 @@
                                 <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
                                     alt="Avatar 2" class="rounded-circle me-3">
                                 <div>
-                                    <p class="card-text">"Saya sangat puas dengan hasil kerja CV. Sadjiwa Mitra Sembada, terutama dalam hal penyediaan videotron."</p>
+                                    <p class="card-text">"Saya sangat puas dengan hasil kerja CV. Sadjiwa Mitra Sembada,
+                                        terutama dalam hal penyediaan videotron."</p>
                                     <h5 class="card-title">- Budi Santoso</h5>
                                 </div>
                             </div>
@@ -291,7 +299,8 @@
                                 <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
                                     alt="Avatar 2" class="rounded-circle me-3">
                                 <div>
-                                    <p class="card-text">"Tim yang sangat berpengalaman dan hasil kerjanya rapi. Recommended untuk keperluan videotron dan photography."</p>
+                                    <p class="card-text">"Tim yang sangat berpengalaman dan hasil kerjanya rapi.
+                                        Recommended untuk keperluan videotron dan photography."</p>
                                     <h5 class="card-title">- Citra Dewi</h5>
                                 </div>
                             </div>

@@ -46,7 +46,7 @@ class OrderController extends Controller
     {
         $request->validate([
             "name" => "required",
-            "wa" => "required",
+            "wa" => "required|numeric",
             'regency' => "required|exists:regencies,id",
             "length" => "required|numeric",
             "width" => "required|numeric",
@@ -70,7 +70,7 @@ class OrderController extends Controller
         ]);
 
 
-        return redirect()->back()
-            ->with('success', 'Pesanan berhasil dibuat.');
+        session()->flash('success', 'Pesanan telah berhasil dibuat!');
+        return redirect()->back(); 
     }
 }

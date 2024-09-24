@@ -231,6 +231,7 @@
         });
     </script>
 
+    <!-- script table -->
     <script>
         $(document).ready(function() {
             var table = $('#myTable').DataTable({

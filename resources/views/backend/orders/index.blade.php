@@ -119,7 +119,7 @@
                                                     class="action-buttons">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                                    <p>Apakah anda yakin ingin menghapus pesanan <strong>{{ $ord->name }}</strong> ?</p>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Back</button>
