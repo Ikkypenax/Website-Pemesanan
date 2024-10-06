@@ -31,7 +31,7 @@
 
 
         <div class="card shadow mb-0">
-            <div class="card-header d-flex align-items-center justify-content-between py-3">
+            <div class="card-header d-flex align-items-center justify-content-between py-3 mb-2">
                 <h3 class="m-0 font-weight-bold text-primary">Daftar Katalog</h3>
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ route('catalog.create') }}">
                     <i class="bi bi-plus fa-sm text-white-50"></i> Katalog
