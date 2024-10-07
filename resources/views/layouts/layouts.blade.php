@@ -92,7 +92,7 @@
             justify-content: center;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 920px) {
             nav .navbar .menu {
                 display: none;
                 flex-direction: column;
@@ -100,7 +100,8 @@
                 top: 75px;
                 left: 0;
                 width: 100%;
-                background: #fff;
+                height: 180px;
+                background: #eeeeee;
             }
 
             .navbar {
@@ -425,9 +426,10 @@
                 <i class="bi bi-list"></i>
             </a>
             <ul class="menu">
-                <li class=""><a href="/">Home</a></li>
-                <li class=""><a href="./catalog/list">Catalog</a></li>
-                <li class=""><a href="/about-us">About</a></li>
+                <li class=""><a href="/">Beranda</a></li>
+                <li class=""><a href="./catalog/list">Katalog</a></li>
+                <li class=""><a href="/about-us">Tentang Kami</a></li>
+                <li class=""><a href="/order">Pesan Sekarang</a></li>
             </ul>
         </div>
     </nav>
