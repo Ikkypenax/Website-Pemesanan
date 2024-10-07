@@ -14,11 +14,11 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header d-flex align-items-center justify-content-between py-3">
+            <div class="card-header d-flex align-items-center justify-content-between py-3 mb-2">
                 <h3 class="m-0 font-weight-bold text-primary">Daftar Pesanan</h3>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ route('orders.create') }}">
+                {{-- <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ route('orders.create') }}">
                     <i class="bi bi-plus fa-sm text-white-50"></i> Pesanan
-                </a>
+                </a> --}}
             </div>
             <div class="card-body pt-0">
                 <div class="table-responsive">
