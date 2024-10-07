@@ -1,6 +1,6 @@
 @extends('layouts.layouts')
 
-@section('title', 'Order')
+@section('title', 'Pemesanan')
 
 @section('content')
 
@@ -11,7 +11,7 @@
                 <div class="header-overlay">
                     <h2>Buat Pesanan Sekarang</h2>
                 </div>
-            </div>
+            </div> 
         </div>
 
         <form id="orderForm" action="{{ route('order.store') }}" method="POST">
