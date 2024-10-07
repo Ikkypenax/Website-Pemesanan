@@ -1,6 +1,6 @@
 @extends('layouts.layouts')
 
-@section('title', 'about-us')
+@section('title', 'Tentang Kami')
 
 @section('content')
 <div class="reveal container py-5 mt-5">

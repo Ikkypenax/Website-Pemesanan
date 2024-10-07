@@ -1,6 +1,6 @@
 @extends('layouts.layouts')
 
-@section('title', 'home')
+@section('title', 'Beranda')
 
 @section('content')
     <div class="reveal main-banner wow fadeIn"
