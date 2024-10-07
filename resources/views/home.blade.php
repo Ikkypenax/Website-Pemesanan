@@ -3,6 +3,11 @@
 @section('title', 'Beranda')
 
 @section('content')
+
+<head>
+    <link rel="icon" href="{{ asset('sajiwa.ico') }}" type="image/x-icon">
+</head>
+
     <div class="reveal main-banner wow fadeIn"
         style="background-image: url('{{ asset('assets/images/hero.png') }}'); height: 100vh;">
         <div class="container">
