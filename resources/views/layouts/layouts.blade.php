@@ -68,13 +68,12 @@
 
         nav .navbar .menu li {
             list-style: none;
-            margin: 0 15px;
+            margin: 6px 15px;
             margin-top: 15px;
-            6
+            padding-top: 9px;
         }
 
         nav .navbar .menu li a {
-            color: #003865;
             font-size: 17px;
             font-weight: 700;
             text-decoration: none;
@@ -82,6 +81,33 @@
 
         nav .navbar .menu li a:hover {
             color: #0074c8;
+        }
+
+        nav .navbar .menu .nav-button a {
+            color: #003865;
+        }
+        
+        .order-button {
+            background-color: #005a9e;
+            cursor: pointer;
+            border-radius: 10px;
+            max-width: auto;
+            transition: all 0.3s;
+        }
+        .order-button a {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .order-button:hover {
+            background-color: #33aaff;
+            box-shadow: 0px 0px 16px rgba(51, 170, 255, 0.5);
+        }
+
+        nav .navbar .menu .order-button:hover a {
+            color: #000000;
         }
 
         .menu-trigger {
@@ -92,7 +118,7 @@
             justify-content: center;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 950px) {
             nav .navbar .menu {
                 display: none;
                 flex-direction: column;
@@ -100,7 +126,8 @@
                 top: 75px;
                 left: 0;
                 width: 100%;
-                background: #fff;
+                height: 180px;
+                background: #eeeeee;
             }
 
             .navbar {
@@ -155,22 +182,27 @@
             }
         }
 
-        .btn-custom {
+        /* .btn-custom {
             background-color: transparent;
             color: #ffffff;
             padding: 12px 30px;
             font-size: 18pt;
             font-weight: 500;
             transition: all 0.3s ease;
-        }
+        } */
 
         .btn-custom {
             color: #ffffff;
+            padding: 12px 30px;
+            font-size: 18pt;
+            font-weight: 500;
+            transition: all 0.3s ease;
             background: linear-gradient(145deg, #00d4ff, #0047ff);
             border-color: transparent;
             box-shadow: 0 0 15px rgba(0, 212, 255, 0.6),
                 0 0 30px rgba(0, 71, 255, 0.4);
         }
+
         .btn-custom:hover {
             color: #0059ff;
             background: linear-gradient(145deg, #ffffff, #ffffff);
@@ -419,9 +451,10 @@
             font-size: 1rem;
             margin-bottom: 0.5rem;
         }
+
         .footer h2 {
             font-size: 30px;
-            margin-bottom: 32px!important;
+            margin-bottom: 32px !important;
         }
     </style>
 </head>
@@ -435,9 +468,10 @@
                 <i class="bi bi-list"></i>
             </a>
             <ul class="menu">
-                <li class=""><a href="/">Home</a></li>
-                <li class=""><a href="./catalog/list">Catalog</a></li>
-                <li class=""><a href="/about-us">About</a></li>
+                <li class="nav-button"><a href="/">Beranda</a></li>
+                <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
+                <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
+                <li class="order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li>
             </ul>
         </div>
     </nav>
@@ -497,7 +531,8 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8 d-flex justify-content-center">
-                    <span class="text-light mx-2 opacity-50 mb-4">Copyright &copy; 2024 CV. Sadjiwa Mitra Sembada.</span>
+                    <span class="text-light mx-2 opacity-50 mb-4">Copyright &copy; 2024 CV. Sadjiwa Mitra
+                        Sembada.</span>
                 </div>
             </div>
         </div>
