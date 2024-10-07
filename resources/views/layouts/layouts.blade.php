@@ -74,7 +74,6 @@
         }
 
         nav .navbar .menu li a {
-            color: #003865;
             font-size: 17px;
             font-weight: 700;
             text-decoration: none;
@@ -84,6 +83,10 @@
             color: #0074c8;
         }
 
+        nav .navbar .menu .nav-button a {
+            color: #003865;
+        }
+        
         .order-button {
             background-color: #005a9e;
             cursor: pointer;
@@ -91,13 +94,11 @@
             max-width: auto;
             transition: all 0.3s;
         }
-
-        .button-order {
+        .order-button a {
             color: #ffffff;
-            text-decoration: none;
-            display: block;
             font-size: 17px;
             font-weight: 700;
+            text-decoration: none;
         }
 
         .order-button:hover {
@@ -105,7 +106,7 @@
             box-shadow: 0px 0px 16px rgba(51, 170, 255, 0.5);
         }
 
-        .order-button:hover .button-order {
+        nav .navbar .menu .order-button:hover a {
             color: #000000;
         }
 
@@ -467,9 +468,9 @@
                 <i class="bi bi-list"></i>
             </a>
             <ul class="menu">
-                <li class=""><a href="/">Beranda</a></li>
-                <li class=""><a href="./catalog/list">Katalog</a></li>
-                <li class=""><a href="/about-us">Tentang Kami</a></li>
+                <li class="nav-button"><a href="/">Beranda</a></li>
+                <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
+                <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
                 <li class="order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li>
             </ul>
         </div>
