@@ -164,14 +164,20 @@
             transition: all 0.3s ease;
         }
 
-        .btn-custom:hover {
-            color: #000000;
+        .btn-custom {
+            color: #ffffff;
             background: linear-gradient(145deg, #00d4ff, #0047ff);
             border-color: transparent;
             box-shadow: 0 0 15px rgba(0, 212, 255, 0.6),
                 0 0 30px rgba(0, 71, 255, 0.4);
         }
-
+        .btn-custom:hover {
+            color: #0059ff;
+            background: linear-gradient(145deg, #ffffff, #ffffff);
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.911);
+        }
 
         /* Form pesanan */
 
@@ -413,6 +419,10 @@
             font-size: 1rem;
             margin-bottom: 0.5rem;
         }
+        .footer h2 {
+            font-size: 30px;
+            margin-bottom: 32px!important;
+        }
     </style>
 </head>
 
@@ -438,15 +448,28 @@
         </div>
     </div>
 
-    <footer class="footer bg-dark text-light pt-5 pb-2">
+    <footer class="footer text-light pt-5 pb-2" style="background-color: #003865">
         <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h2 class="mb-2">Sadjiwa Mitra Sembada</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center opacity-50">
+                <div class="col-md-12 mb-4 d-flex justify-content-center align-items-center">
+                    <p class="mx-3 mb-0"><i class="fas fa-envelope"></i> email@example.com</p>
+                    <p class="mx-3 mb-0"><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+                    <p class="mx-3 mb-0"><i class="fas fa-map-marker-alt"></i> Jalan Contoh No. 123, Jakarta, Indonesia
+                    </p>
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-md-10 d-flex align-items-center mb-3">
                     <!-- Garis sebelum icon -->
                     <hr class="flex-grow-1 border-secondary ">
 
                     <!-- Social Media Icons -->
-                    <div class="d-flex justify-content-center mx-3">
+                    <div class="d-flex justify-content-center mx-3 opacity-50">
                         <a href="#" class="text-light mx-2"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="text-light mx-2"><i class="fab fa-youtube"></i></a>
@@ -457,22 +480,9 @@
                     <hr class="flex-grow-1 border-secondary m-0">
                 </div>
             </div>
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <p class="mb-2">Sadjiwa Mitra Sembada.</p>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-12 mb-4 d-flex justify-content-center align-items-center">
-                    <p class="mx-3 mb-0"><i class="fas fa-envelope"></i> email@example.com</p>
-                    <p class="mx-3 mb-0"><i class="fas fa-phone"></i> +62 812-3456-7890</p>
-                    <p class="mx-3 mb-0"><i class="fas fa-map-marker-alt"></i> Jalan Contoh No. 123, Jakarta, Indonesia
-                    </p>
-                </div>
-            </div>
             <div class="row justify-content-center">
                 <div class="col-md-8 d-flex justify-content-center">
-                    <span class="text-light mx-2">Copyright &copy; 2024 CV. Sadjiwa Mitra Sembada.</span>
+                    <span class="text-light mx-2 opacity-50 mb-4">Copyright &copy; 2024 CV. Sadjiwa Mitra Sembada.</span>
                 </div>
             </div>
         </div>
