@@ -43,7 +43,8 @@
     <div class="mt-3">
         <a class="btn btn-warning" href="{{ route('orders.printInvoice', $order->id) }}">
             <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
-        </a>
+        </a>\
+        
     </div>
 </div>
 @endsection
