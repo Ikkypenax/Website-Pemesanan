@@ -7,9 +7,13 @@ use App\Models\Panels;
 use App\Models\Provinces;
 use App\Models\Regencies;
 use Illuminate\Http\Request;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 class OrdersController extends Controller
-{   
+{
     public function index()
     {
         $order = Orders::with(['panel', 'provinces', 'regency', 'addfee'])->orderBy('created_at', 'desc')->get();
@@ -124,6 +128,7 @@ class OrdersController extends Controller
         return view('backend.orders.show', compact('order'));
     }
 
+    //invoice teks
     public function sendInvoice($id)
     {
         $order = Orders::with('addfee')->find($id);
@@ -149,13 +154,13 @@ class OrdersController extends Controller
 
         $message = "Detail Pesanan:\n\n"
             . "Nama: $nama\n"
+            . "Provinsi: $provinsi\n"
+            . "Kabupaten: $kabupaten\n"
             . "Kategori: $kategori\n"
             . "Jenis Barang: $barang\n"
             . "Harga Per Meter: $hargapermeter\n"
             . "Panjang x Lebar: $lengthwidth\n"
             . "Harga Sementara: $hargasementara\n\n"
-            . "Provinsi: $provinsi\n"
-            . "Kabupaten: $kabupaten\n"
             . "Biaya Transportasi: $transportasi\n"
             . "Biaya Pemasangan: $pemasangan\n"
             . "Biaya Jasa: $jasa\n"
@@ -167,6 +172,53 @@ class OrdersController extends Controller
 
         return redirect($whatsappUrl);
     }
+
+    //invoice pdf
+    public function showInvoice($id){
+    
+        $order = Orders::with('addfee')->find($id);
+
+    // Inisialisasi opsi DOMPDF
+    $options = new Options();
+    $options->set('isRemoteEnabled', true); // Agar dapat menggunakan asset seperti gambar dari URL
+
+    // Inisialisasi DOMPDF
+    $dompdf = new Dompdf($options);
+
+    // Render view invoice ke HTML
+    $html = view('invoice_template', compact('order'))->render();
+
+    // Load HTML ke DOMPDF
+    $dompdf->loadHtml($html);
+
+    // Set ukuran dan orientasi kertas (misalnya A4 portrait)
+    $dompdf->setPaper('A4', 'portrait');
+
+    // Render PDF
+    $dompdf->render();
+
+    // Simpan file PDF ke folder public
+    $filePath = public_path('invoices/invoice-' . $order->id . '.pdf');
+    file_put_contents($filePath, $dompdf->output());
+
+    // Format nomor WhatsApp menjadi format internasional
+    $wa = $order->wa;
+    if (substr($wa, 0, 1) === '0') {
+        $wa = '+62' . substr($wa, 1);
+    }
+
+    // Kirim link invoice lewat WhatsApp Web
+    $invoiceUrl = url('invoices/invoice-' . $order->id . '.pdf');
+    $message = "Detail Pesanan:\n\n"
+        . "Nama: {$order->name}\n"
+        . "Link Invoice: {$invoiceUrl}";
+
+    // Redirect ke WhatsApp Web dengan pesan yang berisi link invoice
+    $whatsappUrl = "https://web.whatsapp.com/send?phone={$wa}&text=" . urlencode($message);
+
+    return redirect($whatsappUrl);
+    }
+
 
     public function destroy($id)
     {

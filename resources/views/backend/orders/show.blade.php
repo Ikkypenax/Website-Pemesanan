@@ -120,6 +120,11 @@
                             <i class="bi bi-whatsapp"></i> Kirim Invoice ke WhatsApp
                         </a>
                     </div>
+                    <div>
+                        <a class="btn btn-danger" href="{{ route('orders.showInvoice', $order->id) }}">
+                            <i class="bi bi-book"></i> PDF
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

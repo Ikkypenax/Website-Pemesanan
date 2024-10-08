@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::put('/orders/{id}/status', [OrdersController::class, 'status'])->name('orders.status');
     Route::get('orders/{id}/send-invoice', [OrdersController::class, 'sendInvoice'])->name('orders.sendInvoice');
+    Route::get('/invoice/{id}', [OrdersController::class, 'showInvoice'])->name('orders.showInvoice');
+
     
     Route::resource('panel', PanelsController::class);
     

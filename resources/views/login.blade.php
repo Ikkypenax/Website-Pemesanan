@@ -26,7 +26,7 @@
         }
 
         .bg-form-login {
-            background: linear-gradient(to bottom, #7579ff, #b224ef);
+            background-color: #003865;
             border-radius: 10px;
         }
 
@@ -86,7 +86,7 @@
 
 
 <body class="d-flex flex-column justify-content-center position-relative"
-    style="background-image: url('{{ asset('assets/images/panel bg.png') }}'); height: 100vh; background-size: cover; background-position: center -130px;">
+    style="background-image: url('{{ asset('assets/images/panel bgg.jpg') }}'); height: 100vh; background-size: cover; background-position: center -130px;">
 
     <div class="overlay"></div>
 
