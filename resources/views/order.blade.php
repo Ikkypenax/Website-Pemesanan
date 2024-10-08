@@ -31,7 +31,7 @@
 
 
             <div class="one-section">
-                <div class="left-section">
+                <div class="left-section justify-content-between">
                     <div class="form-group-ord">
                         <label for="name" class="form-label-ord">Nama Lengkap</label>
                         <input type="text" class="form-control-ord" id="name" name="name" required
