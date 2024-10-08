@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice #{{ $order->id }}</title>
     <style>
-        /* Gaya CSS seperti sebelumnya */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -13,36 +13,71 @@
             background-color: #f9f9f9;
             color: black;
         }
+
         .invoice-header {
-            background: #007bff;
-            color: #fff;
-            padding: 10px;
+            color: #000000;
             text-align: center;
         }
+
         .table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        .table th, .table td {
+
+        .table th,
+        .table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
+
         .table th {
-            background-color: #007bff;
-            color: white;
+            color: #000000;
         }
-        .button-container {
-            margin-top: 20px;
+
+        .header img {
+            width: 250px;
+            height: auto;
+        }
+
+        .one-section {
             text-align: center;
+            padding: 2px;
+        }
+
+        .img-section {
+            margin-bottom: 10px;
+        }
+
+        .company-logo {
+            width: 320px;
+            height: auto;
         }
     </style>
 </head>
 
 <body>
 
-    <h1 class="invoice-header">Invoice #{{ $order->id }}</h1>
+
+    <div class="one-section">
+        <div class="img-section">
+            <div class="">
+                <img src="data:image/{{ $imageType }};base64,{{ $imageData }}" alt="Logo Sajiwa Mitra Sembada"
+                    class="company-logo">
+            </div>
+        </div>
+        <div class="text-section">
+            <h3>Sajiwa Mitra Sembada</h3>
+            <h4>Multimedia Solusi</h4>
+            <p>Telp: 087839642255</p>
+            <p>Email: sajiwamitrasembada@gmail.com</p>
+        </div>
+    </div>
+<hr>
+
+
+    <h2 class="invoice-header">Invoice #{{ $order->id }}</h2>
     <p>Tanggal: {{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y') }}</p>
 
     <h2 class="invoice">Detail Pesanan</h2>
@@ -77,6 +112,22 @@
                 <td>Rp. {{ number_format($order->result, 0, ',', '.') }}</td>
             </tr>
             <tr>
+                <th>Biaya Transportasi</th>
+                <td>Rp. {{ number_format($order->addfee->fee_transport, 0, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Biaya Pemasangan</th>
+                <td>Rp. {{ number_format($order->addfee->fee_install, 0, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Biaya Jasa</th>
+                <td>Rp. {{ number_format($order->addfee->fee_service, 0, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Biaya Service</th>
+                <td>Rp. {{ number_format($order->addfee->fee_repair, 0, ',', '.') }}</td>
+            </tr>
+            <tr>
                 <th>Total Keseluruhan</th>
                 <td>Rp. {{ number_format($order->addfee->fee_total, 0, ',', '.') }}</td>
             </tr>
@@ -87,10 +138,7 @@
         <p>Terima kasih telah bertransaksi dengan kami!</p>
     </footer>
 
-    <div class="button-container">
-        <button onclick="window.print()">Cetak Invoice</button>
-        <a href="{{ route('orders.downloadInvoice', $order->id) }}" class="btn btn-primary">Unduh Invoice</a>
-    </div>
 
 </body>
+
 </html>
