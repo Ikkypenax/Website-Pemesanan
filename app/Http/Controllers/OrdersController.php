@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Orders;
 use App\Models\Panels;
 use App\Models\Provinces;
+
 use App\Models\Regencies;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrdersController extends Controller
-{   
+{
     public function index()
     {
         $order = Orders::with(['panel', 'provinces', 'regency', 'addfee'])->orderBy('created_at', 'desc')->get();
@@ -167,6 +171,33 @@ class OrdersController extends Controller
 
         return redirect($whatsappUrl);
     }
+    public function printInvoice($id)
+    {
+        // Ambil data pesanan berdasarkan ID
+    $order = Orders::findOrFail($id);
+
+    // Buat PDF dari view invoice
+    $pdf = Pdf::loadView('invoices.invoice', compact('order'));
+
+    // Simpan PDF ke file sementara
+    $filePath = storage_path('app/invoices/invoice_' . $order->id . '.pdf');
+    $pdf->save(storage_path('app/invoices/invoice_' . $order->id . '.pdf'));
+
+
+    // Tampilkan PDF di browser
+    return $pdf->stream('invoice_' . $order->id . '.pdf');
+    }
+    public function downloadInvoice($id)
+{
+    // Ambil data pesanan berdasarkan ID
+    $order = Orders::findOrFail($id);
+
+    // Buat PDF dari view invoice
+    $pdf = Pdf::loadView('invoices.invoice', compact('order'));
+
+    // Download PDF
+    return $pdf->download('invoice_' . $order->id . '.pdf');
+}
 
     public function destroy($id)
     {

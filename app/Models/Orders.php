@@ -21,6 +21,7 @@ class Orders extends Model
         'updated_at',
         'provinces_id',
         'panel_id',
+        'order_code', // Tambahkan kolom order_code
     ];
 
     public function panel()

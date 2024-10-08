@@ -16,12 +16,13 @@
                     <div class="text-center left-content show-up header-text wow fadeInLeft" data-wow-duration="1s"
                         data-wow-delay="1s">
                         <div class="w-100">
-                            <h2> Get Quality Products With Us </h2>
-                            <p>We provide high quality visual solutions designed to meet your needs.
+                            <h2>Dapatkan Produk Berkualitas <br> Bersama Kami</h2>
+                            <p>Kami menyediakan solusi visual berkualitas <br> tinggi yang dirancang
+                                untuk memenuhi kebutuhan anda.
                             </p>
                             <div class="position-relative z-10 pt-4">
                                 <a href="{{ route('order.create') }}" class="btn btn-lg rounded-pill btn-custom">
-                                    Order Now
+                                    Pesan Sekarang
                                 </a>
                             </div>
                         </div>
@@ -36,7 +37,8 @@
         <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
             <h2>Wujudkan <em>Event Impian</em> Bersama Kami </h2>
            <br>
-            <p class="opacity-50" style="">CV. Sadjiwa Mitra Sembada, we prioritize quality in every videotron we provide.<br> We offer superior image clarity and color.
+            <p class="opacity-50" style="">CV. Sadjiwa Mitra Sembada, kami mengutamakan kualitas dalam setiap
+                videotron yang kami sediakan.<br> kami menawarkan kejernihan gambar dan warna yang superior.
             </p>
         </div>
         <div class="row" style="">

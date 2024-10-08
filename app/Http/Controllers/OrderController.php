@@ -74,6 +74,9 @@ class OrderController extends Controller
 
         $regency = Regencies::find($request->input('regency'))->name;
 
+        // Generate unique order code based on current timestamp
+        $orderCode = 'ORD-' . date('YmdHis') . '-' . rand(100, 999);
+
         Orders::create([
             "name" => $request->name,
             "wa" => $request->wa,
@@ -84,10 +87,11 @@ class OrderController extends Controller
             "status" => 'Prosses',
             "provinces_id" => $request->provinces_id,
             "panel_id" => $request->panel_id,
+            "order_code" => $orderCode, // Save the generated order code
         ]);
 
-
-        session()->flash('success', 'Pesanan telah berhasil dibuat!');
+        session()->flash('success', 'Pesanan telah berhasil dibuat dengan kode pemesanan: ' . $orderCode);
         return redirect()->back();
     }
+
 }

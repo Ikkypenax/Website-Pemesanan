@@ -87,7 +87,7 @@
         nav .navbar .menu .nav-button a {
             color: #003865;
         }
-        
+
         .order-button {
             background-color: #005a9e;
             cursor: pointer;
@@ -472,6 +472,7 @@
                 <li class="nav-button"><a href="/">Beranda</a></li>
                 <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
                 <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
+                <li class="nav-button"><a href="/about-us">Cek Pesanan</a></li>
                 <li class="order-button px-3 py-2" ><a href="/order">Pesan Sekarang</a></li>
             </ul>
         </div>
