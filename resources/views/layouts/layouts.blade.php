@@ -248,7 +248,7 @@
             color: #495057;
         }
 
-        .card-order .form-control-plaintext {
+        .card-order .form-control-plaintext-ord {
             padding: 10px;
             font-size: 14px;
             color: #424242;
@@ -553,13 +553,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cek Pesanan</h1>
+                <h1 class="modal-title text-black fs-5" id="exampleModalLabel">Cek Pesanan</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="checkOrderForm" action="{{ route('order.check') }}" method="GET">
                     <div class="mb-3">
-                        <label for="orderCode" class="form-label">Kode Pemesanan</label>
+                        <label for="orderCode" class="form-label text-black">Kode Pemesanan</label>
                         <input type="text" class="form-control" id="orderCode" name="order_code" placeholder="Masukkan Kode Pemesanan" required>
                     </div>
                     @if($errors->has('order_code'))

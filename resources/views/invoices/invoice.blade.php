@@ -11,6 +11,7 @@
             margin: 0;
             padding: 20px;
             background-color: #f9f9f9;
+            color: black;
         }
         .invoice-header {
             background: #007bff;
@@ -38,12 +39,13 @@
         }
     </style>
 </head>
+
 <body>
 
     <h1 class="invoice-header">Invoice #{{ $order->id }}</h1>
     <p>Tanggal: {{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y') }}</p>
 
-    <h2>Detail Pesanan</h2>
+    <h2 class="invoice">Detail Pesanan</h2>
     <table class="table">
         <thead>
             <tr>
