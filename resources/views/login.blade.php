@@ -32,7 +32,7 @@
 
         .form-control-user {
             border: none;
-            border-bottom: 2px solid #ddd;
+            /* border-bottom: 2px solid #ddd; */
             border-radius: 0;
             padding-left: 35px;
             padding-right: 10px;
@@ -49,18 +49,7 @@
             position: relative;
         }
 
-        .icon {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-            pointer-events: none;
-        }
 
-        .input-icon::placeholder {
-            color: #999;
-        }
 
         .btn-login {
             background-color: #ffffff;
@@ -73,7 +62,7 @@
         }
 
         .btn-login:hover {
-            background-color: #cacaca;
+            background-color: #a5a5a5;
             color: black;
         }
 
@@ -115,13 +104,13 @@
                                         @endif
 
                                         <div class="form-group position-relative">
-                                            <input type="email" class="form-control form-control-user input-icon"
+                                            <input type="email" class="form-control form-control-user"
                                                 id="email" name="email" aria-describedby="emailHelp"
                                                 placeholder="Email" required autofocus>
                                             {{-- <i class="fas fa-envelope icon"></i> --}}
                                         </div>
                                         <div class="form-group position-relative">
-                                            <input type="password" class="form-control form-control-user input-icon"
+                                            <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Password" required>
                                             {{-- <i class="fas fa-lock icon"></i> --}}
                                         </div>
@@ -134,7 +123,7 @@
 
                                         <div class="d-flex justify-content-center align-self-center">
                                             <button type="submit" class="btn btn-login ">
-                                                Login
+                                                Submit
                                             </button>
                                         </div>
 

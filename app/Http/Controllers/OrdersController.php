@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Orders;
 use App\Models\Panels;
 use App\Models\Provinces;
+
 use App\Models\Regencies;
 use Illuminate\Http\Request;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Storage;
 
 class OrdersController extends Controller
 {
@@ -172,53 +172,33 @@ class OrdersController extends Controller
 
         return redirect($whatsappUrl);
     }
+    public function printInvoice($id)
+    {
+        // Ambil data pesanan berdasarkan ID
+    $order = Orders::findOrFail($id);
 
-    //invoice pdf
-    public function showInvoice($id){
-    
-        $order = Orders::with('addfee')->find($id);
+    // Buat PDF dari view invoice
+    $pdf = Pdf::loadView('invoices.invoice', compact('order'));
 
-    // Inisialisasi opsi DOMPDF
-    $options = new Options();
-    $options->set('isRemoteEnabled', true); // Agar dapat menggunakan asset seperti gambar dari URL
+    // Simpan PDF ke file sementara
+    $filePath = storage_path('app/invoices/invoice_' . $order->id . '.pdf');
+    $pdf->save(storage_path('app/invoices/invoice_' . $order->id . '.pdf'));
 
-    // Inisialisasi DOMPDF
-    $dompdf = new Dompdf($options);
 
-    // Render view invoice ke HTML
-    $html = view('invoice_template', compact('order'))->render();
-
-    // Load HTML ke DOMPDF
-    $dompdf->loadHtml($html);
-
-    // Set ukuran dan orientasi kertas (misalnya A4 portrait)
-    $dompdf->setPaper('A4', 'portrait');
-
-    // Render PDF
-    $dompdf->render();
-
-    // Simpan file PDF ke folder public
-    $filePath = public_path('invoices/invoice-' . $order->id . '.pdf');
-    file_put_contents($filePath, $dompdf->output());
-
-    // Format nomor WhatsApp menjadi format internasional
-    $wa = $order->wa;
-    if (substr($wa, 0, 1) === '0') {
-        $wa = '+62' . substr($wa, 1);
+    // Tampilkan PDF di browser
+    return $pdf->stream('invoice_' . $order->id . '.pdf');
     }
+    public function downloadInvoice($id)
+{
+    // Ambil data pesanan berdasarkan ID
+    $order = Orders::findOrFail($id);
 
-    // Kirim link invoice lewat WhatsApp Web
-    $invoiceUrl = url('invoices/invoice-' . $order->id . '.pdf');
-    $message = "Detail Pesanan:\n\n"
-        . "Nama: {$order->name}\n"
-        . "Link Invoice: {$invoiceUrl}";
+    // Buat PDF dari view invoice
+    $pdf = Pdf::loadView('invoices.invoice', compact('order'));
 
-    // Redirect ke WhatsApp Web dengan pesan yang berisi link invoice
-    $whatsappUrl = "https://web.whatsapp.com/send?phone={$wa}&text=" . urlencode($message);
-
-    return redirect($whatsappUrl);
-    }
-
+    // Download PDF
+    return $pdf->download('invoice_' . $order->id . '.pdf');
+}
 
     public function destroy($id)
     {

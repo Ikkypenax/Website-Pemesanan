@@ -36,6 +36,7 @@
                                 <th class="align-top">Kabupaten</th>
                                 <th class="align-top">Harga Barang</th>
                                 <th class="align-top">Total</th>
+                                <th class="align-top">Kode Pesanan</th>
                                 <th class="align-top">Status</th>
                                 <th class="align-top">Action</th>
                             </tr>

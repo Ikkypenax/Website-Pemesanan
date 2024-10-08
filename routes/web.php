@@ -31,17 +31,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/getType/{category_name}', [OrdersController::class, 'getType']);
     Route::get('/getPrice/{type}', [OrdersController::class, 'getPrice']);
     Route::post('/getRegencies', [OrdersController::class, 'getRegencies'])->name('getRegencies');
-    
+
     Route::put('/orders/{id}/status', [OrdersController::class, 'status'])->name('orders.status');
     Route::get('orders/{id}/send-invoice', [OrdersController::class, 'sendInvoice'])->name('orders.sendInvoice');
-    Route::get('/invoice/{id}', [OrdersController::class, 'showInvoice'])->name('orders.showInvoice');
+    Route::get('/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');
+    Route::get('/orders/{id}/download-invoice', [OrdersController::class, 'downloadInvoice'])->name('orders.downloadInvoice');
 
-    
     Route::resource('panel', PanelsController::class);
-    
+
     Route::post('fee', [AddfeeController::class, 'store'])->name('fee.store');
     Route::put('/fee/{id}', [AddfeeController::class, 'update'])->name('fee.update');
-    
+
     Route::get('/catalog/create', [CatalogController::class, 'create'])->name('catalog.create');
     Route::post('/catalog', [CatalogController::class, 'store'])->name('catalog.store');
     Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');

@@ -87,7 +87,7 @@
         nav .navbar .menu .nav-button a {
             color: #003865;
         }
-        
+
         .order-button {
             background-color: #005a9e;
             cursor: pointer;
@@ -472,6 +472,7 @@
                 <li class="nav-button"><a href="/">Beranda</a></li>
                 <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
                 <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
+                <li class="nav-button"><a href="/about-us">Cek Pesanan</a></li>
                 <li class="order-button px-3 py-2" ><a href="/order">Pesan Sekarang</a></li>
             </ul>
         </div>
@@ -492,12 +493,27 @@
             </div>
             <div class="row justify-content-center opacity-50">
                 <div class="col-md-12 mb-4 d-flex justify-content-center align-items-center">
-                    <p class="mx-3 mb-0"><i class="fas fa-envelope"></i> email@example.com</p>
-                    <p class="mx-3 mb-0"><i class="fas fa-phone"></i> +62 812-3456-7890</p>
-                    <p class="mx-3 mb-0"><i class="fas fa-map-marker-alt"></i> Jalan Contoh No. 123, Jakarta, Indonesia
+                    <!-- Email -->
+                    <p class="mx-3 mb-0">
+                        <a href="mailto:Sajiwamitrasembada@gmail.com" class="text-light text-decoration-none">
+                            <i class="fas fa-envelope"></i> Sajiwamitrasembada@gmail.com
+                        </a>
+                    </p>
+                    <!-- WhatsApp -->
+                    <p class="mx-3 mb-0">
+                        <a href="https://wa.me/6287839642255" class="text-light text-decoration-none" target="_blank">
+                            <i class="fab fa-whatsapp"></i> +62 878-3964-2255
+                        </a>
+                    </p>
+                    <!-- Address/Map -->
+                    <p class="mx-3 mb-0">
+                        <a href="https://www.google.com/maps/place/Jl.+Laksda+Adisucipto+No.64,+Ambarukmo,+Caturtunggal,+Kec.+Depok,+Kabupaten+Sleman,+Daerah+Istimewa+Yogyakarta+55281/@-7.7834905,110.405933,21z/data=!4m9!1m2!2m1!1sJalan+Laksda+Adisucipto,+No.+26,+Kel.+Caturtunggal!3m5!1s0x2e7a59e89c9584d3:0xa0e9063cea17610e!8m2!3d-7.7835017!4d110.4062328!16s%2Fg%2F11csksf1qg?entry=ttu&g_ep=EgoyMDI0MTAwMi4xIKXMDSoASAFQAw%3D%3D" class="text-light text-decoration-none" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i> Jalan Laksda Adisucipto, No. 26, Kel. Caturtunggal
+                        </a>
                     </p>
                 </div>
             </div>
+
             <div class="row justify-content-center">
                 <div class="col-md-10 d-flex align-items-center mb-3">
                     <!-- Garis sebelum icon -->
@@ -506,7 +522,7 @@
                     <!-- Social Media Icons -->
                     <div class="d-flex justify-content-center mx-3 opacity-50">
                         <a href="#" class="text-light mx-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/wish_nugraha?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="text-light mx-2"><i class="fab fa-youtube"></i></a>
                         <a href="#" class="text-light mx-2"><i class="fab fa-tiktok"></i></a>
                     </div>

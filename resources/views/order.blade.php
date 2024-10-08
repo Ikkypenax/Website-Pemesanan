@@ -11,7 +11,7 @@
                 <div class="header-overlay">
                     <h2>Buat Pesanan Sekarang</h2>
                 </div>
-            </div> 
+            </div>
         </div>
 
         <form id="orderForm" action="{{ route('order.store') }}" method="POST">
@@ -83,7 +83,7 @@
                         <div class="col">
                             <label for="length" class="form-label">Panjang</label>
                             <input type="number" class="form-control" id="length" name="length" required>
-                             
+
                         </div>
                         <div class="col">
                             <label for="width" class="form-label">Lebar</label>
@@ -106,28 +106,29 @@
         </form>
     </div>
 
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Notifikasi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Notifikasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="checkmark-wrapper">
+                    <i class="fas fa-check-circle checkmark"></i>
                 </div>
-                <div class="modal-body text-center">
-                    <div class="checkmark-wrapper">
-                        <i class="fas fa-check-circle checkmark"></i>
-                    </div>
-                    <div>
-                        <strong>{{ session('success') }}</strong>
-                    </div>
+                <div>
+                    <strong>{{ session('success') }}</strong>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Alert Modal -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
