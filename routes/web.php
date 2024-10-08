@@ -33,10 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/getRegencies', [OrdersController::class, 'getRegencies'])->name('getRegencies');
 
     Route::put('/orders/{id}/status', [OrdersController::class, 'status'])->name('orders.status');
-    Route::get('orders/{id}/send-invoice', [OrdersController::class, 'sendInvoice'])->name('orders.sendInvoice');
-    Route::get('/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');
-    Route::get('/orders/{id}/download-invoice', [OrdersController::class, 'downloadInvoice'])->name('orders.downloadInvoice');
-    Route::get('/check-order', [OrderController::class, 'checkOrder'])->name('order.check');
+
 
     Route::resource('panel', PanelsController::class);
 
@@ -59,3 +56,7 @@ Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 Route::get('/getType/{category_name}', [OrderController::class, 'getType']);
 Route::get('/getPrice/{type}', [OrderController::class, 'getPrice']);
 Route::post('/getRegencies', [OrderController::class, 'getRegencies'])->name('getRegencies');
+Route::get('orders/{id}/send-invoice', [OrdersController::class, 'sendInvoice'])->name('orders.sendInvoice');
+Route::get('/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');
+Route::get('/orders/{id}/download-invoice', [OrdersController::class, 'downloadInvoice'])->name('orders.downloadInvoice');
+Route::get('/check-order', [OrderController::class, 'checkOrder'])->name('order.check');

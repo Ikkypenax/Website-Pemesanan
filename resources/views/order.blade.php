@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group-ord">
                         <label for="price" class="form-label-ord">Harga per Meter</label>
-                        <p class="form-control-plaintext" id="price" name="price" data-price="0">-</p>
+                        <p class="form-control-plaintext-ord" id="price" name="price" data-price="0">-</p>
                     </div>
                     <div class="form-group-ord row">
                         <div class="col">
