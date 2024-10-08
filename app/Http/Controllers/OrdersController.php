@@ -128,6 +128,7 @@ class OrdersController extends Controller
         return view('backend.orders.show', compact('order'));
     }
 
+    //invoice teks
     public function sendInvoice($id)
     {
         $order = Orders::with('addfee')->find($id);
@@ -153,13 +154,13 @@ class OrdersController extends Controller
 
         $message = "Detail Pesanan:\n\n"
             . "Nama: $nama\n"
+            . "Provinsi: $provinsi\n"
+            . "Kabupaten: $kabupaten\n"
             . "Kategori: $kategori\n"
             . "Jenis Barang: $barang\n"
             . "Harga Per Meter: $hargapermeter\n"
             . "Panjang x Lebar: $lengthwidth\n"
             . "Harga Sementara: $hargasementara\n\n"
-            . "Provinsi: $provinsi\n"
-            . "Kabupaten: $kabupaten\n"
             . "Biaya Transportasi: $transportasi\n"
             . "Biaya Pemasangan: $pemasangan\n"
             . "Biaya Jasa: $jasa\n"
@@ -167,7 +168,7 @@ class OrdersController extends Controller
             . "Total Biaya Keseluruhan: $total\n";
 
         $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message); // wa web
-        //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message);//aplikasi wa
+        //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); //aplikasi wa
 
         return redirect($whatsappUrl);
     }

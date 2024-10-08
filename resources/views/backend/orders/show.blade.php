@@ -123,6 +123,11 @@
                             <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                         </a>
                     </div>
+                    <div>
+                        <a class="btn btn-danger" href="{{ route('orders.showInvoice', $order->id) }}">
+                            <i class="bi bi-book"></i> PDF
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
