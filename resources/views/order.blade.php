@@ -32,62 +32,62 @@
 
             <div class="one-section">
                 <div class="left-section">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="name" name="name" required
+                    <div class="form-group-ord">
+                        <label for="name" class="form-label-ord">Nama Lengkap</label>
+                        <input type="text" class="form-control-ord" id="name" name="name" required
                             oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
                     </div>
-                    <div class="form-group">
-                        <label for="wa" class="form-label">No. Whatsapp</label>
-                        <input type="text" inputmode="numeric" class="form-control" id="wa" name="wa"
+                    <div class="form-group-ord">
+                        <label for="wa" class="form-label-ord">No. Whatsapp</label>
+                        <input type="text" inputmode="numeric" class="form-control-ord" id="wa" name="wa"
                             required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                     </div>
-                    <div class="form-group">
-                        <label for="provinces" class="form-label">Provinsi</label>
-                        <select class="form-control" id="provinces" name="provinces_id" required>
+                    <div class="form-group-ord">
+                        <label for="provinces" class="form-label-ord">Provinsi</label>
+                        <select class="form-control-ord" id="provinces" name="provinces_id" required>
                             <option value="" selected>Pilih Provinsi</option>
                             @foreach ($provinces as $prov)
                                 <option value="{{ $prov->id }}">{{ $prov->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="regency" class="form-label">Kabupaten</label>
-                        <select name="regency" id="regencies" class="form-control">
+                    <div class="form-group-ord">
+                        <label for="regency" class="form-label-ord">Kabupaten</label>
+                        <select name="regency" id="regencies" class="form-control-ord">
                             <option value="">Pilih Kabupaten</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="right-section">
-                    <div class="form-group">
-                        <label for="category" class="form-label">Kategori</label>
-                        <select class="form-control" id="category" name="category" required>
+                    <div class="form-group-ord">
+                        <label for="category" class="form-label-ord">Kategori</label>
+                        <select class="form-control-ord" id="category" name="category" required>
                             <option value="" selected>Pilih kategori</option>
                             @foreach ($panel as $p)
                                 <option value="{{ $p->category }}">{{ $p->category }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="type" class="form-label">Panel</label>
-                        <select class="form-control" id="type" name="panel_id" required>
+                    <div class="form-group-ord">
+                        <label for="type" class="form-label-ord">Panel</label>
+                        <select class="form-control-ord" id="type" name="panel_id" required>
                             <option value="" selected>Pilih Jenis Panel</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="price" class="form-label">Harga per Meter</label>
+                    <div class="form-group-ord">
+                        <label for="price" class="form-label-ord">Harga per Meter</label>
                         <p class="form-control-plaintext" id="price" name="price" data-price="0">-</p>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group-ord row">
                         <div class="col">
-                            <label for="length" class="form-label">Panjang</label>
-                            <input type="number" class="form-control" id="length" name="length" required>
+                            <label for="length" class="form-label-ord">Panjang</label>
+                            <input type="number" class="form-control-ord" id="length" name="length" required>
 
                         </div>
                         <div class="col">
-                            <label for="width" class="form-label">Lebar</label>
-                            <input type="number" class="form-control" id="width" name="width" required>
+                            <label for="width" class="form-label-ord">Lebar</label>
+                            <input type="number" class="form-control-ord" id="width" name="width" required>
                         </div>
                     </div>
                 </div>

@@ -229,17 +229,17 @@
             overflow: hidden;
         }
 
-        .card-order .form-group {
+        .card-order .form-group-ord {
             margin: 15px;
         }
 
-        .card-order .form-label {
+        .card-order .form-label-ord {
             font-weight: bold;
             color: #333;
             margin-bottom: 5px;
         }
 
-        .card-order .form-control {
+        .card-order .form-control-ord {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
@@ -257,7 +257,7 @@
             background-color: #f8f9fa;
         }
 
-        .card-order .form-group.row {
+        .card-order .form-group .row {
             display: flex;
             flex-wrap: wrap;
         }
