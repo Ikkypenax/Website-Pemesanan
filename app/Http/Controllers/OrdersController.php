@@ -163,7 +163,7 @@ class OrdersController extends Controller
             . "Total Biaya Keseluruhan: $total\n";
 
         $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message); // wa web
-        //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message);//aplikasi wa
+        //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); //aplikasi wa
 
         return redirect($whatsappUrl);
     }
