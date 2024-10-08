@@ -251,7 +251,7 @@
         .card-order .form-control-plaintext {
             padding: 10px;
             font-size: 14px;
-            color: #495057;
+            color: #424242;
             border: 1px solid #ced4da;
             border-radius: 5px;
             background-color: #f8f9fa;

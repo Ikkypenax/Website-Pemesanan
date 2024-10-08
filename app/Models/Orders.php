@@ -36,7 +36,7 @@ class Orders extends Model
 
     public function regency()
     {
-        return $this->belongsTo(Regencies::class, 'regency');
+        return $this->belongsTo(Regencies::class, 'regency')->where('province_id', $this->provinces_id);
     }
 
     public function addfee()

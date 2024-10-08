@@ -102,9 +102,9 @@ class OrderController extends Controller
     if (!$order_code) {
         return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan diperlukan.']);
     }
-
+    $order = Orders::with(['regency', 'provinces'])->where('order_code', $request->order_code)->first();
     // Cari pesanan berdasarkan kode pemesanan
-    $order = Orders::where('order_code', $order_code)->first();
+    // $order = Orders::where('order_code', $order_code)->first();
 
     // Cek apakah pesanan ditemukan
     if ($order) {

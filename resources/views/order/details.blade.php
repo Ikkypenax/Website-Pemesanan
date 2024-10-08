@@ -7,7 +7,7 @@
     <h1>Detail Pesanan</h1>
 
     <div class="alert alert-info">
-        <strong>Hai {{ $order->name }},</strong> pesanan anda telah terdata, harap untuk segera melakukan penyelesaian ya.
+        <strong>Hai {{ $order->name }},</strong> Kode Pemesanan anda <b>{{ $order->order_code }}< telah terdata, harap untuk segera melakukan penyelesaian ya.
     </div>
 
     <table class="table table-bordered">
@@ -28,6 +28,10 @@
             <tr>
                 <td><b>Kabupaten</b></td>
                 <td>{{ optional($order->regency)->name ?? 'Tidak ada' }}</td> <!-- Ganti dengan nama kabupaten sesuai data -->
+            </tr>
+            <tr>
+                <td><b>Total</b></td>
+                <td>{{ $order->result }}</td>
             </tr>
             <tr>
                 <td><b>Status</b></td>
