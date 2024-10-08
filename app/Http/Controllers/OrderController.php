@@ -93,5 +93,25 @@ class OrderController extends Controller
         session()->flash('success', 'Pesanan telah berhasil dibuat dengan kode pemesanan: ' . $orderCode);
         return redirect()->back();
     }
+    public function checkOrder(Request $request)
+{
+    // Ambil kode pemesanan dari query string
+    $order_code = $request->query('order_code');
+
+    // Validasi input
+    if (!$order_code) {
+        return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan diperlukan.']);
+    }
+
+    // Cari pesanan berdasarkan kode pemesanan
+    $order = Orders::where('order_code', $order_code)->first();
+
+    // Cek apakah pesanan ditemukan
+    if ($order) {
+        return view('order.details', ['order' => $order]);
+    } else {
+        return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan tidak ditemukan.']);
+    }
+}
 
 }

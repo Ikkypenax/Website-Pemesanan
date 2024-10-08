@@ -26,7 +26,7 @@
         }
 
         .bg-form-login {
-            background-color: #003865;
+            background-color: #202020;
             border-radius: 10px;
         }
 
@@ -128,6 +128,7 @@
                                         </div>
 
                                     </form>
+
 
                                 </div>
                             </div>

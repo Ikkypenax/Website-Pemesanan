@@ -198,6 +198,19 @@ class OrdersController extends Controller
     // Download PDF
     return $pdf->download('invoice_' . $order->id . '.pdf');
 }
+public function checkOrder(Request $request)
+{
+    $orderCode = $request->input('order_code');
+    $order = Orders::where('order_code', $orderCode)->first();
+
+    if ($order) {
+        // Jika pesanan ditemukan, tampilkan detail pesanan
+        return view('order.details', compact('order'));
+    } else {
+        // Jika tidak ditemukan, kembalikan ke halaman sebelumnya dengan pesan error
+        return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan tidak ditemukan.']);
+    }
+}
 
     public function destroy($id)
     {
