@@ -62,7 +62,7 @@
                                     <td>
                                         {{ isset($ord->addfee->fee_total) ? 'Rp. ' . number_format($ord->addfee->fee_total, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
-
+                                    <td>{{ $ord->order_code}}</td>
                                     <td>
                                         <form action="{{ route('orders.status', $ord->id) }}" method="POST"
                                             id="status-form-{{ $ord->id }}">

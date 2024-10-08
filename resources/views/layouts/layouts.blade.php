@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link href="{{ asset('sb_admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
@@ -95,6 +96,7 @@
             max-width: auto;
             transition: all 0.3s;
         }
+
         .order-button a {
             color: #ffffff;
             font-size: 17px;
@@ -472,8 +474,10 @@
                 <li class="nav-button"><a href="/">Beranda</a></li>
                 <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
                 <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
-                <li class="nav-button"><a href="/about-us">Cek Pesanan</a></li>
-                <li class="order-button px-3 py-2" ><a href="/order">Pesan Sekarang</a></li>
+                <li class="nav-button">
+                    <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Cek Pesanan</a>
+                </li>
+                <li class="order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li>
             </ul>
         </div>
     </nav>
@@ -507,7 +511,8 @@
                     </p>
                     <!-- Address/Map -->
                     <p class="mx-3 mb-0">
-                        <a href="https://www.google.com/maps/place/Jl.+Laksda+Adisucipto+No.64,+Ambarukmo,+Caturtunggal,+Kec.+Depok,+Kabupaten+Sleman,+Daerah+Istimewa+Yogyakarta+55281/@-7.7834905,110.405933,21z/data=!4m9!1m2!2m1!1sJalan+Laksda+Adisucipto,+No.+26,+Kel.+Caturtunggal!3m5!1s0x2e7a59e89c9584d3:0xa0e9063cea17610e!8m2!3d-7.7835017!4d110.4062328!16s%2Fg%2F11csksf1qg?entry=ttu&g_ep=EgoyMDI0MTAwMi4xIKXMDSoASAFQAw%3D%3D" class="text-light text-decoration-none" target="_blank">
+                        <a href="https://www.google.com/maps/place/Jl.+Laksda+Adisucipto+No.64,+Ambarukmo,+Caturtunggal,+Kec.+Depok,+Kabupaten+Sleman,+Daerah+Istimewa+Yogyakarta+55281/@-7.7834905,110.405933,21z/data=!4m9!1m2!2m1!1sJalan+Laksda+Adisucipto,+No.+26,+Kel.+Caturtunggal!3m5!1s0x2e7a59e89c9584d3:0xa0e9063cea17610e!8m2!3d-7.7835017!4d110.4062328!16s%2Fg%2F11csksf1qg?entry=ttu&g_ep=EgoyMDI0MTAwMi4xIKXMDSoASAFQAw%3D%3D"
+                            class="text-light text-decoration-none" target="_blank">
                             <i class="fas fa-map-marker-alt"></i> Jalan Laksda Adisucipto, No. 26, Kel. Caturtunggal
                         </a>
                     </p>
@@ -522,7 +527,8 @@
                     <!-- Social Media Icons -->
                     <div class="d-flex justify-content-center mx-3 opacity-50">
                         <a href="#" class="text-light mx-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/wish_nugraha?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/wish_nugraha?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            class="text-light mx-2"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="text-light mx-2"><i class="fab fa-youtube"></i></a>
                         <a href="#" class="text-light mx-2"><i class="fab fa-tiktok"></i></a>
                     </div>
@@ -540,12 +546,45 @@
         </div>
     </footer>
 
+    <!-- Button trigger modal -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cek Pesanan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="checkOrderForm" action="{{ route('order.check') }}" method="GET">
+                    <div class="mb-3">
+                        <label for="orderCode" class="form-label">Kode Pemesanan</label>
+                        <input type="text" class="form-control" id="orderCode" name="order_code" placeholder="Masukkan Kode Pemesanan" required>
+                    </div>
+                    @if($errors->has('order_code'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('order_code') }}
+                        </div>
+                    @endif
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary" form="checkOrderForm">Cek Pesanan</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('sb_admin2/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('sb_admin2/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('sb_admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('sb_admin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <script>
         new WOW().init();

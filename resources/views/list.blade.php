@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $c->name }}</h5>
                     <p class="card-text">{{ $c->description }}</p>
-                    <p class="card-text"><strong>Refresh Rate:</strong> {{ $c->refreshrate }} Hz</p>
+                    <p class="card-text"><strong>Kecepatan Layar :</strong> {{ $c->refreshrate }} Hz</p>
                 </div>
             </div>
         </div>
