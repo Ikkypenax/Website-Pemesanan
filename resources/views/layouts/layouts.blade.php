@@ -241,7 +241,7 @@
 
         .card-order .form-control {
             width: 100%;
-            padding: 10px;
+            padding: 6px;
             border-radius: 5px;
             border: 1px solid #ced4da;
             font-size: 14px;
