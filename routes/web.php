@@ -60,3 +60,5 @@ Route::get('/getType/{category_name}', [OrderController::class, 'getType']);
 Route::get('/getPrice/{type}', [OrderController::class, 'getPrice']);
 Route::post('/getRegencies', [OrderController::class, 'getRegencies'])->name('getRegencies');
 Route::get('/check-order', [OrderController::class, 'checkOrder'])->name('order.check');
+// Route::get('/orders/{id}/download-invoice', [OrderController::class, 'downloadInvoice'])->name('orders.downloadInvoice');
+Route::get('/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');

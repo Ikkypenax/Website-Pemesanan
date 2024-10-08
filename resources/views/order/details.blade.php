@@ -7,11 +7,10 @@
     <h1>Detail Pesanan</h1>
 
     <div class="alert alert-info">
-        <strong>Hai {{ $order->name }},</strong> Kode Pemesanan anda <b>{{ $order->order_code }}< telah terdata, harap untuk segera melakukan penyelesaian ya.
+        <strong>Hai {{ $order->name }},</strong> Kode Pemesanan anda <b>{{ $order->order_code }}</b> telah terdata, harap untuk segera melakukan penyelesaian ya.
     </div>
 
     <table class="table table-bordered">
-
         <tbody>
             <tr>
                 <td><b>Nama</b></td>
@@ -23,11 +22,11 @@
             </tr>
             <tr>
                 <td><b>Provinsi</b></td>
-                <td>{{ optional($order->provinces)->name ?? 'Tidak ada' }}</td> <!-- Ganti dengan nama provinsi sesuai data -->
+                <td>{{ optional($order->provinces)->name ?? 'Tidak ada' }}</td>
             </tr>
             <tr>
                 <td><b>Kabupaten</b></td>
-                <td>{{ optional($order->regency)->name ?? 'Tidak ada' }}</td> <!-- Ganti dengan nama kabupaten sesuai data -->
+                <td>{{ optional($order->regency)->name ?? 'Tidak ada' }}</td>
             </tr>
             <tr>
                 <td><b>Total</b></td>
@@ -40,7 +39,11 @@
         </tbody>
     </table>
 
-
+    <!-- Tombol untuk mengunduh invoice -->
+    <div class="mt-3">
+        <a class="btn btn-warning" href="{{ route('orders.printInvoice', $order->id) }}">
+            <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
+        </a>
+    </div>
 </div>
 @endsection
-
