@@ -95,9 +95,13 @@
             border-radius: 10px;
             max-width: auto;
             transition: all 0.3s;
+            text-align: left;
+            margin-top: -10px;
+            
         }
 
         .order-button a {
+            display: block;
             color: #ffffff;
             font-size: 17px;
             font-weight: 700;
@@ -121,7 +125,7 @@
             justify-content: center;
         }
 
-        @media (max-width: 950px) {
+        @media (max-width: 1140px) {
             nav .navbar .menu {
                 display: none;
                 flex-direction: column;
@@ -129,7 +133,7 @@
                 top: 75px;
                 left: 0;
                 width: 100%;
-                height: 180px;
+                height: 300px;
                 background: #eeeeee;
             }
 
@@ -185,14 +189,6 @@
             }
         }
 
-        /* .btn-custom {
-            background-color: transparent;
-            color: #ffffff;
-            padding: 12px 30px;
-            font-size: 18pt;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        } */
 
         .btn-custom {
             color: #ffffff;
@@ -477,7 +473,8 @@
                 <li class="nav-button">
                     <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Cek Pesanan</a>
                 </li>
-                <li class="order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li>
+                {{-- <li class="btn order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li> --}}
+                <li><button class="btn order-button px-3 py-2" onclick="window.location.href='/order';"><a href="/order">Pesan Sekarang</a></button></li>
             </ul>
         </div>
     </nav>

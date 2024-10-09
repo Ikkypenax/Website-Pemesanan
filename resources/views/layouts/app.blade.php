@@ -13,6 +13,8 @@
     <link href="{{ asset('sb_admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" /> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
 </head>
 
@@ -109,25 +111,25 @@
                     <strong style="font-size: 20pt; font-weight: bold; color: white">SJM</strong>
                 </h4>
             </li>
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+        
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/dashboard">
                     <i class="bi bi-speedometer2" style="font-size: 17pt"></i>
-                    <span style="font-size: 14pt">Home</span></a>
+                    <span style="font-size: 14pt">Dashboard</span></a>
             </li>
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+        
             <!-- Heading -->
             <div class="sidebar-heading" style="font-size: 8pt">
                 Main Menu
             </div>
-
+        
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="/orders">
@@ -135,34 +137,34 @@
                     <span style="font-size: 12pt">Pesanan</span>
                 </a>
             </li>
-
+        
             <li class="nav-item">
                 <a class="nav-link" href="/panel">
                     <i class="bi bi-boxes" style="font-size: 16pt"></i>
-                    <span style="font-size: 12pt">Barang</span>
+                    <span style="font-size: 12pt">Panel</span>
                 </a>
             </li>
-
+        
             <li class="nav-item">
                 <a class="nav-link" href="/catalog">
                     <i class="bi bi-images" style="font-size: 16pt"></i>
                     <span style="font-size: 12pt">Katalog</span>
                 </a>
             </li>
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-            <div class="mt-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-                        <i class="bi bi-door-open" style="font-size: 16pt"></i>
-                        <span style="font-size: 12pt">Logout</span>
-                    </a>
-                </li>
-            </div>
-
+        
+            <!-- Sticky Logout Button -->
+            <li class="nav-item mt-auto" style="position: sticky; bottom: 0; margin-bottom: 0;">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="bi bi-door-open" style="font-size: 16pt;"></i>
+                    <span style="font-size: 12pt">Logout</span>
+                </a>
+            </li>
+        
         </ul>
+        
 
 
         <!-- Content Wrapper -->
