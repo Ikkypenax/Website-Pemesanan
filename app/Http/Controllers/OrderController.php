@@ -23,7 +23,6 @@ class OrderController extends Controller
         return response()->json($types);
     }
 
-
     public function getRegencies(Request $request)
     {
         $province_id = $request->province_id;
@@ -40,7 +39,6 @@ class OrderController extends Controller
 
         return response()->json($options);
     }
-
 
     public function store(Request $request)
     {
@@ -84,34 +82,36 @@ class OrderController extends Controller
             "length" => $request->length,
             "width" => $request->width,
             "result" => $request->result,
-            "status" => 'Prosses',
+            "status" => 'Proses',
             "provinces_id" => $request->provinces_id,
             "panel_id" => $request->panel_id,
             "order_code" => $orderCode, // Save the generated order code
         ]);
 
-        session()->flash('success', 'Pesanan telah berhasil dibuat dengan kode pemesanan: ' . $orderCode);
+
         return redirect()->back();
     }
+
     public function checkOrder(Request $request)
-{
-    // Ambil kode pemesanan dari query string
-    $order_code = $request->query('order_code');
+    {
+        // Ambil kode pemesanan dari query string
+        $order_code = $request->query('order_code');
 
-    // Validasi input
-    if (!$order_code) {
-        return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan diperlukan.']);
-    }
-    $order = Orders::with(['regency', 'provinces'])->where('order_code', $request->order_code)->first();
-    // Cari pesanan berdasarkan kode pemesanan
-    // $order = Orders::where('order_code', $order_code)->first();
+        // Validasi input
+        if (!$order_code) {
+            return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan diperlukan.']);
+        }
 
-    // Cek apakah pesanan ditemukan
-    if ($order) {
-        return view('order.details', ['order' => $order]);
-    } else {
-        return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan tidak ditemukan.']);
+        // Cari pesanan berdasarkan kode pemesanan
+        $order = Orders::with(['regency', 'provinces'])->where('order_code', $order_code)->first();
+
+        // Cek apakah pesanan ditemukan
+        if ($order) {
+            return view('order.details', ['order' => $order]);
+        } else {
+            return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan tidak ditemukan.']);
+        }
     }
-}
+
 
 }

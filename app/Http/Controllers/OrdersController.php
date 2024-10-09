@@ -172,46 +172,54 @@ class OrdersController extends Controller
 
         return redirect($whatsappUrl);
     }
+
     public function printInvoice($id)
     {
         // Ambil data pesanan berdasarkan ID
-    $order = Orders::findOrFail($id);
+        $order = Orders::findOrFail($id);
 
-    // Buat PDF dari view invoice
-    $pdf = Pdf::loadView('invoices.invoice', compact('order'));
+        $imagePath = public_path('assets/images/Marco.png');
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
 
-    // Simpan PDF ke file sementara
-    $filePath = storage_path('app/invoices/invoice_' . $order->id . '.pdf');
-    $pdf->save(storage_path('app/invoices/invoice_' . $order->id . '.pdf'));
+        // Buat PDF dari view invoice
+        // $pdf = Pdf::loadView('invoices.invoice', compact('order'));
+        $pdf = Pdf::loadView('invoices.invoice', compact('order', 'imageData', 'imageType'));
+
+        // Simpan PDF ke file sementara
+        $filePath = storage_path('app/invoices/invoice_' . $order->id . '.pdf');
+        $pdf->save(storage_path('app/invoices/invoice_' . $order->id . '.pdf'));
 
 
-    // Tampilkan PDF di browser
-    return $pdf->stream('invoice_' . $order->id . '.pdf');
+        // Tampilkan PDF di browser
+        return $pdf->stream('invoice_' . $order->id . '.pdf');
     }
+
     public function downloadInvoice($id)
-{
-    // Ambil data pesanan berdasarkan ID
-    $order = Orders::findOrFail($id);
+    {
+        // Ambil data pesanan berdasarkan ID
+        $order = Orders::findOrFail($id);
 
-    // Buat PDF dari view invoice
-    $pdf = Pdf::loadView('invoices.invoice', compact('order'));
+        // Buat PDF dari view invoice
+        $pdf = Pdf::loadView('invoices.invoice', compact('order'));
 
-    // Download PDF
-    return $pdf->download('invoice_' . $order->id . '.pdf');
-}
-public function checkOrder(Request $request)
-{
-    $orderCode = $request->input('order_code');
-    $order = Orders::where('order_code', $orderCode)->first();
-
-    if ($order) {
-        // Jika pesanan ditemukan, tampilkan detail pesanan
-        return view('order.details', compact('order'));
-    } else {
-        // Jika tidak ditemukan, kembalikan ke halaman sebelumnya dengan pesan error
-        return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan tidak ditemukan.']);
+        // Download PDF
+        return $pdf->download('invoice_' . $order->id . '.pdf');
     }
-}
+
+    public function checkOrder(Request $request)
+    {
+        $orderCode = $request->input('order_code');
+        $order = Orders::where('order_code', $orderCode)->first();
+
+        if ($order) {
+            // Jika pesanan ditemukan, tampilkan detail pesanan
+            return view('order.details', compact('order'));
+        } else {
+            // Jika tidak ditemukan, kembalikan ke halaman sebelumnya dengan pesan error
+            return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan tidak ditemukan.']);
+        }
+    }
 
     public function destroy($id)
     {

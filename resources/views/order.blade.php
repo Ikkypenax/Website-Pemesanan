@@ -31,7 +31,7 @@
 
 
             <div class="one-section">
-                <div class="left-section">
+                <div class="left-section justify-content-between">
                     <div class="form-group-ord">
                         <label for="name" class="form-label-ord">Nama Lengkap</label>
                         <input type="text" class="form-control-ord" id="name" name="name" required
@@ -123,11 +123,14 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <!-- Tombol Cek Pesanan -->
+                {{-- <a href="{{ route('order.detail', session('order_id')) }}" class="btn btn-primary">Cek Pesanan</a> --}}
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
             </div>
         </div>
     </div>
 </div>
+
 
 
     <!-- Alert Modal -->

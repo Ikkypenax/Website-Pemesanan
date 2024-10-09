@@ -22,15 +22,15 @@
             </tr>
             <tr>
                 <td><b>Provinsi</b></td>
-                <td>{{ optional($order->provinces)->name ?? 'Tidak ada' }}</td>
+                <td>{{ ($order->provinces)->name ?? 'Tidak ada' }}</td>
             </tr>
             <tr>
                 <td><b>Kabupaten</b></td>
-                <td>{{ optional($order->regency)->name ?? 'Tidak ada' }}</td>
+                <td>{{ $order->regency ?? 'Tidak ada' }}</td>
             </tr>
             <tr>
                 <td><b>Total</b></td>
-                <td>{{ $order->result }}</td>
+                <td>Rp. {{ number_format($order->result, 0, ',', '.') }}</td>
             </tr>
             <tr>
                 <td><b>Status</b></td>
@@ -40,11 +40,19 @@
     </table>
 
     <!-- Tombol untuk mengunduh invoice -->
-    <div class="mt-3">
+    {{-- <div class="mt-3">
         <a class="btn btn-warning" href="{{ route('orders.printInvoice', $order->id) }}">
             <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
-        </a>\
-        
+        </a>
+    </div> --}}
+    <div class="mt-3">
+        @if($order->status === 'Approve')
+            <a class="btn btn-warning" href="{{ route('orders.printInvoice', $order->id) }}">
+                <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
+            </a>
+        @else
+            <!-- Jika status bukan 'Approved', tombol tidak akan muncul -->
+        @endif
     </div>
 </div>
 @endsection
