@@ -119,7 +119,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/dashboard">
                     <i class="bi bi-speedometer2" style="font-size: 17pt"></i>
-                    <span style="font-size: 14pt">Dashboard</span></a>
+                    <span style="font-size: 12pt">Dashboard</span></a>
             </li>
         
             <!-- Divider -->
