@@ -32,22 +32,25 @@
         }
 
         .table {
-            width: 95%;
+            width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            /* Pastikan tabel berada di tengah */
+            table-layout: fixed;
+            /* Mengatur lebar kolom agar rata */
         }
 
         .table th,
         .table td {
             border: 1px solid #ddd;
             padding: 5px;
-            /* Padding kecil agar data tidak terlalu renggang */
-            font-size: 12px;
-            /* Menggunakan font kecil agar cukup pada A6 */
+            font-size: 11px;
             text-align: left;
+            word-wrap: break-word;
+            /* Mengatasi teks yang terlalu panjang */
         }
+
 
         .table th {
             background-color: #f0f0f0;
@@ -156,7 +159,7 @@
                 <td>Rp. {{ number_format($order->addfee->fee_transport, 0, ',', '.') }}</td>
             </tr>
             <tr>
-                
+
                 <th>Harga Barang</th>
                 <td>Rp. {{ number_format($order->result, 0, ',', '.') }}</td>
             </tr>
@@ -180,19 +183,16 @@
     </table> --}}
 
     <table class="table">
-        <thead>
-
-        </thead>
         <tbody>
             <tr>
                 <th>Nama</th>
                 <th colspan="3">{{ $order->name }}</th>
             </tr>
             <tr>
-                <td>No Hp</td>
-                <td>{{ $order->wa }}</td>
-                <td>Harga Panel</td>
-                <td>Rp.{{ number_format($order->result, 0, ',', '.') }}</td>
+                <td style="width: 17%;">No Hp</td>
+                <td style="width: 28%">{{ $order->wa }}</td>
+                <td style="width: 24%">Harga Panel</td>
+                <td style="width: 31%">Rp.{{ number_format($order->result, 0, ',', '.') }}</td>
             </tr>
             <tr>
                 <td>Kategori</td>
@@ -218,13 +218,11 @@
                 <td>Biaya Service</td>
                 <td>Rp.{{ number_format($order->addfee->fee_repair, 0, ',', '.') }}</td>
             </tr>
-        </tbody>
-        <tfoot>
             <tr>
                 <td colspan="3">Biaya Keseluruhan</td>
                 <td>Rp.{{ number_format($order->addfee->fee_total, 0, ',', '.') }}</td>
             </tr>
-        </tfoot>
+        </tbody>
     </table>
 
 
