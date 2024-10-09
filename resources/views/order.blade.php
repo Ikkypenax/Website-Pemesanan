@@ -124,7 +124,8 @@
             </div>
             <div class="modal-footer">
                 {{-- <a href="{{ route('order.details') }}" class="btn btn-primary">Cek Pesanan</a> --}}
-                <a href="{{ route('order.details', ['order_code' => session('order_code')]) }}" class="btn btn-primary">Cek Pesanan</a>
+                <a href="{{ route('order.details', ['order_code' => $order->order_code]) }}">Lihat Detail Pesanan</a>
+
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
             </div>

@@ -63,6 +63,6 @@ Route::get('/check-order/{order_code}', [OrderController::class, 'show'])->name(
 Route::get('/check-order', [OrderController::class, 'checkOrder'])->name('order.check');
 // Route::get('/orders/{id}/download-invoice', [OrderController::class, 'downloadInvoice'])->name('orders.downloadInvoice');
 Route::get('/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');
-// Route::get('order/detail/{order_code}', [OrderController::class, 'show'])->name('order.detail');
+Route::get('order/detail/{order_code}', [OrderController::class, 'show'])->name('order.detail');
 
 
