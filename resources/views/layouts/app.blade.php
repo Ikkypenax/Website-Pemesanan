@@ -11,7 +11,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="{{ asset('sb_admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" />
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" /> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
 </head>
@@ -57,15 +57,16 @@
     }
 
     .status-prosses {
-        color: #ffb300; 
+        color: #ffb300;
     }
+
     .status-approve {
         color: #20bf6b;
     }
-    .status-reject {
-        color: #eb3b5a; 
-    }
 
+    .status-reject {
+        color: #eb3b5a;
+    }
 </style>
 
 
@@ -217,9 +218,9 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('sb_admin2/js/sb-admin-2.min.js') }}"></script>
 
-    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
@@ -239,13 +240,23 @@
                 lengthMenu: [3, 6, 9, 12],
 
                 "columnDefs": [{
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": 0
-                }],
-
-                
-
+                        "searchable": true,
+                        "targets": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    },
+                    {
+                        "orderable": true,
+                        "targets": 1
+                    },
+                    {
+                        "orderable": false, 
+                        "targets": 0 
+                    },
+                    {
+                        "orderable": false,
+                        "targets": [2, 3, 4, 5, 6, 7, 8, 9, 10,
+                            11]
+                    }
+                ],
                 "language": {
                     "emptyTable": "",
                     "info": "",
@@ -266,6 +277,80 @@
             }).draw();
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi untuk tabel catalog
+            var catalogTable = $('#myTableCatalog').DataTable({
+                lengthMenu: [3, 6, 9, 12],
+                "columnDefs": [{
+                        "searchable": true,
+                        "targets": [1, 2, 3, 4, 5]
+                    },
+                    {
+                        "orderable": true,
+                        "targets": 1
+                    },
+                    {
+                        "orderable": false,
+                        "targets": [0, 2, 3, 4, 5]
+                    }
+                ],
+                "language": {
+                    "emptyTable": "",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "loadingRecords": "",
+                    "processing": "",
+                }
+            });
+    
+            catalogTable.on('order.dt search.dt', function() {
+                catalogTable.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+    
+            // Inisialisasi untuk tabel panel
+            var panelTable = $('#myTablePanel').DataTable({
+                lengthMenu: [3, 6, 9, 12],
+                "columnDefs": [{
+                        "searchable": true,
+                        "targets": [1, 2, 3, 4]
+                    },
+                    {
+                        "orderable": true,
+                        "targets": 1
+                    },
+                    {
+                        "orderable": false,
+                        "targets": [0, 2, 3, 4]
+                    }
+                ],
+                "language": {
+                    "emptyTable": "",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "loadingRecords": "",
+                    "processing": "",
+                }
+            });
+    
+            panelTable.on('order.dt search.dt', function() {
+                panelTable.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+        });
+    </script>
+    
 
 
 
@@ -287,14 +372,14 @@
                 var selectedColor = selectedOption.attr('class').replace('status-', '');
                 $(this).css('color', selectedOption.css('color'));
             });
-    
+
             $('select[name=status]').change(function() {
                 var selectedOption = $(this).find('option:selected');
                 $(this).css('color', selectedOption.css('color'));
             });
         });
     </script>
-    
+
 
 </body>
 

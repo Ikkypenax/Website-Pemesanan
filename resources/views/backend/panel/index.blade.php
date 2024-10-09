@@ -22,8 +22,8 @@
             </div>
 
             <div class="card-body pt-0">
-                <div class="table-responsive" id="dataTable" width="100%" cellspacing="0">
-                    <table id="myTable" class="table table-panel table-bordered border-dark table-hover">
+                <div class="table-responsive" >
+                    <table id="myTablePanel" class="table table-panel table-bordered border-dark table-hover" width="100%" cellspacing="0">
                         <thead>
                             <tr class="table-secondary align-top">
                                 <th>No</th>
