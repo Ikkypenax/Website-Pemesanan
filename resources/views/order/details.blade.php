@@ -40,18 +40,13 @@
     </table>
 
     <!-- Tombol untuk mengunduh invoice -->
-    {{-- <div class="mt-3">
-        <a class="btn btn-warning" href="{{ route('orders.printInvoice', $order->id) }}">
-            <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
-        </a>
-    </div> --}}
     <div class="mt-3">
         @if($order->status === 'Approve')
             <a class="btn btn-warning" href="{{ route('orders.printInvoice', $order->id) }}">
                 <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
             </a>
         @else
-            <!-- Jika status bukan 'Approved', tombol tidak akan muncul -->
+            <p>*Nota pesanan bisa di unduh setelah disetujui</p>
         @endif
     </div>
 </div>

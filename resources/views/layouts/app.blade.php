@@ -25,8 +25,7 @@
         transition: width 0.3s ease;
     }
 
-    .content-wrapper {
-        margin-left: 250px;
+    #content-wrapper {
         transition: margin-left 0.3s ease;
     }
 
@@ -34,9 +33,41 @@
         width: 0;
     }
 
-    .content-wrapper.toggled {
+    #content-wrapper.toggled {
         margin-left: 0;
     }
+
+
+    #sidebarTogglee {
+        background-color: #ffffff;
+        /* Warna background hijau */
+        color: white;
+        /* Warna teks putih */
+        border: none;
+        border-radius: 50%;
+        /* Membuat tombol berbentuk bulat */
+        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+        /* Tambahkan bayangan */
+        cursor: pointer;
+        /* Ubah kursor menjadi pointer */
+        transition: all 0.3s ease;
+        /* Transisi halus saat hover */
+    }
+
+    #sidebarTogglee:hover {
+        background-color: #b0b0b0;
+        /* Warna background lebih gelap saat hover */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        /* Tambahkan bayangan lebih besar */
+        transform: scale(1.1);
+        /* Perbesar tombol saat hover */
+    }
+
+    #sidebarTogglee i {
+        font-size: 16pt;
+        color: black;
+    }
+
 
     .table-orders,
     .table-panel,
@@ -102,34 +133,35 @@
 
 
         <!-- Sidebar -->
-
         <ul class="navbar-nav sidebar sidebar-dark accordion">
 
+
             <!-- Sidebar - Brand -->
-            <li class="nav-item m-2">
-                <h4 class="navbar d-flex align-items-center justify-content-center">
+            <li class="nav-item d-flex justify-content-center">
+                <h4 class="navbar">
                     <strong style="font-size: 20pt; font-weight: bold; color: white">SJM</strong>
                 </h4>
+
             </li>
-        
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-        
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/dashboard">
                     <i class="bi bi-speedometer2" style="font-size: 17pt"></i>
                     <span style="font-size: 12pt">Dashboard</span></a>
             </li>
-        
+
             <!-- Divider -->
             <hr class="sidebar-divider">
-        
+
             <!-- Heading -->
             <div class="sidebar-heading" style="font-size: 8pt">
                 Main Menu
             </div>
-        
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="/orders">
@@ -137,24 +169,24 @@
                     <span style="font-size: 12pt">Pesanan</span>
                 </a>
             </li>
-        
+
             <li class="nav-item">
                 <a class="nav-link" href="/panel">
                     <i class="bi bi-boxes" style="font-size: 16pt"></i>
                     <span style="font-size: 12pt">Panel</span>
                 </a>
             </li>
-        
+
             <li class="nav-item">
                 <a class="nav-link" href="/catalog">
                     <i class="bi bi-images" style="font-size: 16pt"></i>
                     <span style="font-size: 12pt">Katalog</span>
                 </a>
             </li>
-        
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-        
+
             <!-- Sticky Logout Button -->
             <li class="nav-item mt-auto" style="position: sticky; bottom: 0; margin-bottom: 0;">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -162,9 +194,8 @@
                     <span style="font-size: 12pt">Logout</span>
                 </a>
             </li>
-        
         </ul>
-        
+
 
 
         <!-- Content Wrapper -->
@@ -176,9 +207,10 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggle" class="btn btn-link">
-                        <i class="bi bi-list" style="font-size: 16pt"></i>
+                    <button id="sidebarTogglee" style="font-size: 12pt;">
+                        <i class="bi bi-list"></i>
                     </button>
+
                     <!-- Topbar Navbar -->
                     <div class="navbar-nav ml-auto">
 
@@ -210,6 +242,8 @@
     </div>
     <!-- End of Page Wrapper -->
 
+
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('sb_admin2/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -229,8 +263,8 @@
     </script>
 
     <script>
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('toggled');
+        document.getElementById('sidebarTogglee').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('toggled');
             document.getElementById('content-wrapper').classList.toggle('toggled');
         });
     </script>
@@ -250,13 +284,14 @@
                         "targets": 1
                     },
                     {
-                        "orderable": false, 
-                        "targets": 0 
+                        "orderable": false,
+                        "targets": 0
                     },
                     {
                         "orderable": false,
                         "targets": [2, 3, 4, 5, 6, 7, 8, 9, 10,
-                            11]
+                            11
+                        ]
                     }
                 ],
                 "language": {
@@ -306,7 +341,7 @@
                     "processing": "",
                 }
             });
-    
+
             catalogTable.on('order.dt search.dt', function() {
                 catalogTable.column(0, {
                     search: 'applied',
@@ -315,7 +350,7 @@
                     cell.innerHTML = i + 1;
                 });
             }).draw();
-    
+
             // Inisialisasi untuk tabel panel
             var panelTable = $('#myTablePanel').DataTable({
                 lengthMenu: [3, 6, 9, 12],
@@ -341,7 +376,7 @@
                     "processing": "",
                 }
             });
-    
+
             panelTable.on('order.dt search.dt', function() {
                 panelTable.column(0, {
                     search: 'applied',
@@ -352,7 +387,7 @@
             }).draw();
         });
     </script>
-    
+
 
 
 

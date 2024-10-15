@@ -183,7 +183,6 @@ class OrdersController extends Controller
         $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
 
         // Buat PDF dari view invoice
-        // $pdf = Pdf::loadView('invoices.invoice', compact('order'));
         $pdf = Pdf::loadView('invoices.invoice', compact('order', 'imageData', 'imageType'))->setPaper('A6', 'portrait');
 
         // Simpan PDF ke file sementara

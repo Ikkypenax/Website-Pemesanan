@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Orders;
-use App\Models\Panels;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -32,8 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/getRegencies', [OrdersController::class, 'getRegencies'])->name('getRegencies');
 
     Route::put('/orders/{id}/status', [OrdersController::class, 'status'])->name('orders.status');
-    Route::get('orders/{id}/send-invoice', [OrdersController::class, 'sendInvoice'])->name('orders.sendInvoice');
-    Route::get('/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');
+    Route::get('/orders/{id}/send-invoice', [OrdersController::class, 'sendInvoice'])->name('orders.sendInvoice');
+    Route::get('/admin/orders/{id}/print-invoice/{name}', [OrdersController::class, 'printInvoice'])->name('admin.orders.printInvoice');
     Route::get('/orders/{id}/download-invoice', [OrdersController::class, 'downloadInvoice'])->name('orders.downloadInvoice');
 
 
@@ -61,5 +60,5 @@ Route::post('/getRegencies', [OrderController::class, 'getRegencies'])->name('ge
 Route::get('/check-order/{order_code}', [OrderController::class, 'show'])->name('order.details');
 Route::get('/check-order', [OrderController::class, 'checkOrder'])->name('order.check');
 // Route::get('/orders/{id}/download-invoice', [OrderController::class, 'downloadInvoice'])->name('orders.downloadInvoice');
-Route::get('/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');
+Route::get('/user/orders/{id}/print-invoice', [OrdersController::class, 'printInvoice'])->name('orders.printInvoice');
 
