@@ -106,7 +106,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Pilih "Logout" jika anda yakin.</div>
+                <div class="modal-body">Pilih <b>"Logout"</b> jika anda yakin.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">

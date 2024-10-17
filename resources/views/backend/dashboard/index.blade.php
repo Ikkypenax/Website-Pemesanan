@@ -126,7 +126,7 @@
                                     <tbody>
                                         @foreach ($panelType as $type => $count)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td style="">{{ $loop->iteration }}</td>
                                                 <td>{{ $type }}</td>
                                                 <td>{{ $count }}</td>
                                             </tr>
@@ -156,7 +156,7 @@
     </div>
 
     <style>
-        
+        /* Card Pesanan */
         .card-content {
             transition: transform 0.2s;
 
@@ -167,14 +167,15 @@
 
         }
 
+        /* Tabel pesanan panel */
         .table tbody tr {
             transition: transform 0.2s;
 
         }
 
         .table tbody tr:hover {
-            transform: scale(1.05);
-            background-color: rgba(12, 193, 220, 0.723);
+            transform: scale(1.02);
+            background-color: rgba(15, 219, 251, 0.671);
         }
     </style>
 
