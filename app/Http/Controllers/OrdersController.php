@@ -128,7 +128,7 @@ class OrdersController extends Controller
         return view('backend.orders.show', compact('order'));
     }
 
-    //invoice teks
+    // Invoice teks direct ke WA  
     public function sendInvoice($id)
     {
         $order = Orders::with('addfee')->find($id);
@@ -168,7 +168,7 @@ class OrdersController extends Controller
             . "Total Biaya Keseluruhan: $total\n";
 
         $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message); // wa web
-        //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); //aplikasi wa
+        //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); // aplikasi wa
 
         return redirect($whatsappUrl);
     }
@@ -189,8 +189,6 @@ class OrdersController extends Controller
         $filePath = storage_path('app/invoices/invoice_' . $order->id . '.pdf');
         $pdf->save(storage_path('app/invoices/invoice_' . $order->id . '.pdf'));
 
-
-        // Tampilkan PDF di browser
         return $pdf->stream('invoice_' . $order->id . '.pdf');
     }
 

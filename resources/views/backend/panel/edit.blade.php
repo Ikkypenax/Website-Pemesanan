@@ -25,6 +25,7 @@
                 </div>
             @endif
 
+            {{-- Form Edit Panel --}}
             <div class="card-body">
                 <form action="{{ route('panel.update', $panel->id) }}" method="POST">
                     @csrf

@@ -99,7 +99,6 @@ class OrderController extends Controller
     public function show($order_code)
     {
         // Mencari pesanan berdasarkan order_code
-        
         $order = Orders::where('order_code', $order_code)->first();
 
         // Jika pesanan tidak ditemukan, redirect dengan pesan error
@@ -107,7 +106,6 @@ class OrderController extends Controller
             return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
         }
 
-        // Tampilkan halaman detail pesanan dengan data pesanan
         return view('order.details', compact('order'));
     }
 
@@ -121,6 +119,7 @@ class OrderController extends Controller
             return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan diperlukan.']);
         }
         $order = Orders::with(['regency', 'provinces'])->where('order_code', $request->order_code)->first();
+        
         // Cari pesanan berdasarkan kode pemesanan
         // $order = Orders::where('order_code', $order_code)->first();
 

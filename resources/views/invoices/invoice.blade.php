@@ -8,9 +8,8 @@
     <style>
         @page {
             size: A6;
-            /* Mengatur ukuran halaman ke A6 */
             margin: 10mm;
-            /* Memberikan margin standar pada halaman */
+
         }
 
         body {
@@ -19,10 +18,9 @@
             padding: 0;
             color: black;
             width: 100%;
-            /* Menyesuaikan konten dengan ukuran A6 */
             height: 100%;
             box-sizing: border-box;
-            /* Untuk memastikan padding dihitung dalam ukuran total */
+
         }
 
         .invoice-header {
@@ -36,9 +34,8 @@
             border-collapse: collapse;
             margin-top: 10px;
             margin: 0 auto;
-            /* Pastikan tabel berada di tengah */
             table-layout: fixed;
-            /* Mengatur lebar kolom agar rata */
+
         }
 
         .table th,
@@ -48,7 +45,7 @@
             font-size: 11px;
             text-align: left;
             word-wrap: break-word;
-            /* Mengatasi teks yang terlalu panjang */
+
         }
 
 
@@ -58,7 +55,6 @@
 
         .header img {
             width: 100%;
-            /* Memastikan logo menyesuaikan lebar */
             height: auto;
         }
 
@@ -104,6 +100,7 @@
 
 <body>
 
+    {{-- Invoice Tampilan dalam PDF --}}
     <div class="company-info">
         <div class="img-section">
             <img src="data:image/{{ $imageType }};base64,{{ $imageData }}" alt="Logo Sajiwa Mitra Sembada"
@@ -128,60 +125,7 @@
 
     <h2 style="font-size: 14px; margin-bottom: 5px;">Detail Pesanan</h2>
 
-    {{-- <table class="table">
-        <tbody>
-            <tr>
-                <th>Nama</th>
-                <td>{{ $order->name }}</td>
-            </tr>
-            <tr>
-                <th>WA</th>
-                <td>{{ $order->wa }}</td>
-            </tr>
-            <tr>
-                <th>Kategori</th>
-                <td>{{ $order->panel->category }}</td>
-            </tr>
-            <tr>
-                <th>Jenis</th>
-                <td>{{ $order->panel->type }}</td>
-            </tr>
-            <tr>
-                <th>Harga Per Meter</th>
-                <td>Rp. {{ number_format($order->panel->price, 0, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <th>Panjang x Lebar</th>
-                <td>{{ $order->length }} x {{ $order->width }} Meter</td>
-            </tr>
-            <tr>
-                <th>Biaya Transportasi</th>
-                <td>Rp. {{ number_format($order->addfee->fee_transport, 0, ',', '.') }}</td>
-            </tr>
-            <tr>
-
-                <th>Harga Barang</th>
-                <td>Rp. {{ number_format($order->result, 0, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <th>Biaya Pemasangan</th>
-                <td>Rp. {{ number_format($order->addfee->fee_install, 0, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <th>Biaya Jasa</th>
-                <td>Rp. {{ number_format($order->addfee->fee_service, 0, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <th>Biaya Service</th>
-                <td>Rp. {{ number_format($order->addfee->fee_repair, 0, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <th>Total Keseluruhan</th>
-                <td>Rp. {{ number_format($order->addfee->fee_total, 0, ',', '.') }}</td>
-            </tr>
-        </tbody>
-    </table> --}}
-
+    {{-- Tabel Informasi Pesanan --}}
     <table class="table">
         <tbody>
             <tr>

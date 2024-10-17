@@ -19,7 +19,6 @@ class CatalogController extends Controller
         return view('list', compact('catalog'));
     }
 
-
     public function create()
     {
         return view('backend.catalog.create');

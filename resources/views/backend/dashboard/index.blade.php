@@ -7,7 +7,7 @@
     <h2 class="mb-4 font-weight-bold text-primary">Dashboard</h2>
     <div class="row">
         
-        <!-- Card Jumlah Pesanan -->
+        <!-- Card Informasi Jumlah Pesanan -->
         <div class="col-12 col-md-12 mb-4">
             <div class="card shadow h-100">
                 <div class="card-header bg-primary text-white h5">
@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card card-content mb-3 shadow">
-                                <div class="card-header bg-dark text-white">
+                                <div class="card-header bg-primary text-white">
                                     Pesanan Hari Ini
                                 </div>
                                 <div class="card-body text-center">
@@ -29,11 +29,11 @@
 
                         <div class="col-md-4">
                             <div class="card card-content mb-3 shadow">
-                                <div class="card-header bg-warning text-white">
+                                <div class="card-header bg-primary text-white">
                                     Pesanan Bulan Ini
                                 </div>
                                 <div class="card-body text-center">
-                                    <i class="fas fa-calendar-alt fa-2x text-warning"></i>
+                                    <i class="fas fa-calendar-alt fa-2x text-dark"></i>
                                     <h5 class="card-title mt-2 text-dark">{{ $total_order_month }}</h5>
                                 </div>
                             </div>
@@ -41,11 +41,11 @@
 
                         <div class="col-md-4">
                             <div class="card card-content mb-3 shadow">
-                                <div class="card-header bg-info text-white">
+                                <div class="card-header bg-primary text-white">
                                     Pesanan Tahun Ini
                                 </div>
                                 <div class="card-body text-center">
-                                    <i class="fas fa-calendar fa-2x text-info"></i>
+                                    <i class="fas fa-calendar fa-2x text-dark"></i>
                                     <h5 class="card-title mt-2 text-dark">{{ $total_order_year }}</h5>
                                 </div>
                             </div>
@@ -77,11 +77,11 @@
 
                         <div class="col-md-4">
                             <div class="card card-content mb-3 shadow">
-                                <div class="card-header bg-secondary text-white">
+                                <div class="card-header bg-warning text-white">
                                     Pesanan yang Diproses
                                 </div>
                                 <div class="card-body text-center">
-                                    <i class="fas fa-spinner fa-2x text-secondary"></i>
+                                    <i class="fas fa-spinner fa-2x text-warning"></i>
                                     <h5 class="card-title mt-2 text-dark">{{ $processing_orders }}</h5>
                                 </div>
                             </div>
@@ -92,12 +92,14 @@
             </div>
         </div>
 
-        <!-- Card Jumlah Pesanan Barang -->
+        <!-- Jumlah Pesanan Barang -->
         <div class="col-12 col-md-12 mb-4">
             <div class="card shadow h-100">
                 <div class="card-header bg-primary text-white h5">
                     Jumlah Pesanan Panel Bulan Ini
                 </div>
+
+                {{-- Tabel Jumlah Pesanan Barang --}}
                 <div class="card-body">
                     <div class="row">
 

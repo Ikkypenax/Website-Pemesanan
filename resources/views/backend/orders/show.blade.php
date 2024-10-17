@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="table-responsive">
 
-
+                    {{-- Tabel Detail informasi Pesanan --}}
                     <div class="table-container gap-0">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>

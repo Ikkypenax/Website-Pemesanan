@@ -10,6 +10,7 @@
         <strong>Hai {{ $order->name }},</strong> Kode Pemesanan anda <b>{{ $order->order_code }}</b> telah terdata, harap untuk segera melakukan penyelesaian ya.
     </div>
 
+    {{-- Tabel Informasi Pesanan --}}
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -39,7 +40,7 @@
         </tbody>
     </table>
 
-    <!-- Tombol untuk mengunduh invoice -->
+    <!-- Btn Invoice -->
     <div class="mt-3">
         @if($order->status === 'Approve')
             <a class="btn btn-warning" href="{{ route('orders.printInvoice', $order->id) }}">

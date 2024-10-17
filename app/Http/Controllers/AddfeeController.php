@@ -10,7 +10,6 @@ class AddfeeController extends Controller
 {
     public function store(Request $request)
     {
-
         $request->validate([
             "transport" => "required|numeric",
             "install" => "required|numeric",
@@ -19,13 +18,9 @@ class AddfeeController extends Controller
             "order_id" => "required",
         ]);
 
-
         $order = Orders::findOrFail($request->order_id);
-
         $price = $order->result;
-
         $fee_total = $price + $request->transport + $request->install + $request->service + $request->repair;
-
 
         AddFee::create([
             "fee_transport" => $request->transport,
@@ -40,7 +35,6 @@ class AddfeeController extends Controller
             ->with('success', 'Biaya berhasil ditambahkan');
     }
 
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -52,9 +46,7 @@ class AddfeeController extends Controller
         ]);
 
         $order = Orders::findOrFail($request->order_id);
-
         $price = $order->result;
-
         $fee_total = $price + $request->transport + $request->install + $request->service + $request->repair;
 
         $fee = AddFee::where('order_id', $id)->firstOrFail();

@@ -11,7 +11,7 @@
             </div>
         @endif
 
-        <!-- Modal -->
+        <!-- Modal Img Preview -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -38,6 +38,7 @@
                 </a>
             </div>
 
+            {{-- Tabel Daftar Catalog --}}
             <div class="card-body pt-0">
                 <div class="table-responsive">
                     <table id="myTableCatalog" class="table table-catalog table-bordered border-dark table-hover"  width="100%" cellspacing="0">
@@ -84,6 +85,7 @@
                                     </td>
                                 </tr>
 
+                                {{-- Modal Delete Catalog --}}
                                 <div class="modal fade" id="deleteModal{{ $c->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
@@ -120,6 +122,7 @@
         </div>
     </div>
 
+    {{-- Menampilkan gambar --}}
     <script>
         function showImage(imageSrc) {
             // console.log(imageSrc);

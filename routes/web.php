@@ -20,6 +20,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Role Admin
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/catalog/{catalog}', [CatalogController::class, 'destroy'])->name('catalog.destroy');
     Route::put('/catalog/{catalog}', [CatalogController::class, 'update'])->name('catalog.update');
 });
+
 
 // Role User
 

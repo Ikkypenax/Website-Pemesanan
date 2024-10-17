@@ -14,6 +14,7 @@
             </div>
         </div>
 
+        {{-- Form Pesanan --}}
         <form id="orderForm" action="{{ route('order.store') }}" method="POST">
             @csrf
 
@@ -28,9 +29,10 @@
                 </div>
             @endif
 
-
-
+            {{-- Section Pertama --}}
             <div class="one-section">
+
+                {{-- Section Kiri --}}
                 <div class="left-section justify-content-between">
                     <div class="form-group-ord">
                         <label for="name" class="form-label-ord">Nama Lengkap</label>
@@ -59,6 +61,7 @@
                     </div>
                 </div>
 
+                {{-- Section Kanan --}}
                 <div class="right-section">
                     <div class="form-group-ord">
                         <label for="category" class="form-label-ord">Kategori</label>
@@ -93,6 +96,7 @@
                 </div>
             </div>
 
+            {{-- Section Kedua --}}
             <div class="two-section">
                 <div class="p-3">
                     <label for="result" id="result" name="result">Total: Rp. <span id="resultValue">0</span></label>
@@ -109,7 +113,7 @@
 
 
 
-    <!-- Alert Modal -->
+    <!-- Modal - Konfrimasi Pesanan -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -180,7 +184,7 @@
         </div>
     </div>
 
-    <!-- Success Modal -->
+    <!-- Modal - Notifikasi Sukses -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -214,6 +218,7 @@
     <script>
         $(document).ready(function() {
 
+            // Mengambil kabupaten berdasarkan provinsi yang dipilih
             $('#provinces').on('change', function() {
                 var province_id = $(this).val();
                 if (province_id) {
@@ -238,6 +243,7 @@
                 }
             });
 
+            // Mengambil Type Berdasarkan Category yang dipilih
             $('#category').on('change', function() {
                 var category_name = $(this).val();
                 if (category_name) {
@@ -263,6 +269,7 @@
                 }
             });
 
+            // Mengambil dan menyimpan price berdasarkan type yang dipilih untuk menghitung ulang melalui input sebagai trigger
             $('#type').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
                 var price = parseFloat(selectedOption.data('price')) || 0;
@@ -270,6 +277,7 @@
                 $('#length, #width').trigger('input');
             });
 
+            // Menghitung resultValue berdasarkan length, width dan price lalu disimpan pada result_hidden
             $('#length, #width').on('input', function() {
                 var length = parseFloat($('#length').val()) || 0;
                 var width = parseFloat($('#width').val()) || 0;
@@ -279,7 +287,7 @@
                 $('#result_hidden').val(result.toFixed(2));
             });
 
-
+            // Sebelum form di submit , mengambil hasil_hidden dan memastikan dalam format desimal 
             $('form').on('submit', function() {
                 var total = $('#hasil_hidden').val();
                 $('#hasil_hidden').val(parseFloat(total).toFixed(2));
@@ -287,6 +295,7 @@
         });
     </script>
 
+    {{-- Menampilkan Modal Sukses --}}
     <script>
         $(document).ready(function() {
             var successMessage = "{{ session('success') }}";
@@ -296,6 +305,7 @@
         });
     </script>
 
+    {{-- Menampilkan Modal - Konfirmasi Pesanan --}}
     <script>
         document.getElementById('openAlertModal').addEventListener('click', function() {
             document.getElementById('alertName').textContent = document.getElementById('name').value;

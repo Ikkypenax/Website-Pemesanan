@@ -4,6 +4,7 @@
 
 @section('content')
 
+{{-- Card Catalog --}}
 <div class=" reveal section-card">
     <div class="d-flex flex-wrap" style="padding: 100px 0px;">
         @foreach ($catalog as $c)
@@ -22,6 +23,7 @@
     </div>
 </div>
 @endsection
+
 <script>
     function showImage(url) {
         window.open(url, '_blank');

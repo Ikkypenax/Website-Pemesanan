@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-
+            {{-- Form Create Panel --}}
             <div class="card-body">
                 <form action="{{ route('panel.store') }}" method="POST">
                     @csrf
