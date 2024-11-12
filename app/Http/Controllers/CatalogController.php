@@ -29,10 +29,17 @@ class CatalogController extends Controller
 
         $data = $request->validate([
             'name' => 'required',
+            'description' => 'required',
+            'refreshrate' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'name.required' => 'Kolom nama perlu diisi.',
+            'description.required' => 'Kolom deskripsi perlu diisi.',
+            'refreshrate.required' => 'Kolom fresh rate perlu diisi.',
+            'image.required' => 'Kolom gambar perlu diisi.',
         ]);
 
-        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension();
+        $path = $data['name'] . '.' . $data['image']->getClientOriginalExtension();
         $data['image']->storeAs('public/images', $path);
 
         $catalog = new Catalog();
@@ -55,21 +62,32 @@ class CatalogController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required',
+            'refreshrate' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'name.required' => 'Kolom nama perlu diisi.',
+            'description.required' => 'Kolom deskripsi perlu diisi.',
+            'refreshrate.required' => 'Kolom fresh rate perlu diisi.',
+            'image.required' => 'Kolom gambar perlu diisi.',
         ]);
-
-        $path = $data['name'].'.'.$data['image']->getClientOriginalExtension();
-        $data['image']->storeAs('public/images', $path);
 
         $catalog = Catalog::find($id);
         $catalog->name = $request->name;
         $catalog->description = $request->description;
-        $catalog->image = $path;
         $catalog->refreshrate = $request->refreshrate;
+
+        if ($request->hasFile('image')) {
+            $path = $data['name'] . '.' . $data['image']->getClientOriginalExtension();
+            $data['image']->storeAs('public/images', $path);
+            $catalog->image = $path;
+        }
+
         $catalog->save();
 
         return redirect()->route('catalog.index')->with('success', 'Produk berhasil diperbarui');
     }
+
 
     public function destroy($id)
     {

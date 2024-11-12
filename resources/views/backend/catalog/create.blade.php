@@ -25,6 +25,18 @@
             <div class="card-body">
                 <form action="{{ route('catalog.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Ups!</strong> Terjadi kesalahan.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <div class="form-group">
                         <label for="name">Nama:</label>
                         <input type="text" name="name" id="name" class="form-control">
@@ -47,5 +59,5 @@
             </div>
         </div>
     </div>
-    
+
 @endsection

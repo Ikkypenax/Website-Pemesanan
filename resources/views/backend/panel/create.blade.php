@@ -25,13 +25,25 @@
             <div class="card-body">
                 <form action="{{ route('panel.store') }}" method="POST">
                     @csrf
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Ups!</strong> Terjadi kesalahan.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <div class="form-group">
                         <label for="type">Jenis Barang</label>
-                        <input type="text" class="form-control" id="type" name="type" required>
+                        <input type="text" class="form-control" id="type" name="type" >
                     </div>
                     <div class="form-group">
                         <label for="price">Harga</label>
-                        <input type="number" class="form-control" id="price" name="price" required>
+                        <input type="number" class="form-control" id="price" name="price">
                     </div>
                     <div class="form-group">
                         <label for="category">Kategori</label>

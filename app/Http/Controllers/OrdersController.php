@@ -235,6 +235,7 @@ class OrdersController extends Controller
 
         $status = Orders::find($id);
         $status->update(['status' => $request->status]);
+        $status->save();
 
         return back()->with('success', 'Status berhasil diperbarui');
     }

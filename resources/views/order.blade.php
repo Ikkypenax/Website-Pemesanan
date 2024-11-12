@@ -20,7 +20,7 @@
 
             @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> Terjadi kesalahan .<br><br>
+                    <strong>Ups!</strong> Terjadi kesalahan.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -287,10 +287,10 @@
                 $('#result_hidden').val(result.toFixed(2));
             });
 
-            // Sebelum form di submit , mengambil hasil_hidden dan memastikan dalam format desimal 
+            // Sebelum form di submit , mengambil result_hidden dan memastikan dalam format desimal 
             $('form').on('submit', function() {
-                var total = $('#hasil_hidden').val();
-                $('#hasil_hidden').val(parseFloat(total).toFixed(2));
+                var total = $('#result_hidden').val();
+                $('#result_hidden').val(parseFloat(total).toFixed(2));
             });
         });
     </script>
