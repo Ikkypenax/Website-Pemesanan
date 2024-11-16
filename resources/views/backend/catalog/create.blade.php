@@ -21,6 +21,7 @@
                 </div>
             @endif
 
+            {{-- Form Create Catalog --}}
             <div class="card-body">
                 <form action="{{ route('catalog.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf

@@ -89,15 +89,20 @@
             color: #003865;
         }
 
+        /* Btn Pesan Sekarang - Navbar */
         .order-button {
             background-color: #005a9e;
             cursor: pointer;
             border-radius: 10px;
             max-width: auto;
             transition: all 0.3s;
+            text-align: left;
+            margin-top: -10px;
+
         }
 
         .order-button a {
+            display: block;
             color: #ffffff;
             font-size: 17px;
             font-weight: 700;
@@ -121,7 +126,8 @@
             justify-content: center;
         }
 
-        @media (max-width: 950px) {
+        /* responsive */
+        @media (max-width: 1140px) {
             nav .navbar .menu {
                 display: none;
                 flex-direction: column;
@@ -129,7 +135,7 @@
                 top: 75px;
                 left: 0;
                 width: 100%;
-                height: 180px;
+                height: 300px;
                 background: #eeeeee;
             }
 
@@ -185,15 +191,7 @@
             }
         }
 
-        /* .btn-custom {
-            background-color: transparent;
-            color: #ffffff;
-            padding: 12px 30px;
-            font-size: 18pt;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        } */
-
+        /* Btn Pesan Sekarang - Hero */
         .btn-custom {
             color: #ffffff;
             padding: 12px 30px;
@@ -215,7 +213,6 @@
         }
 
         /* Form pesanan */
-
         .card-order {
             max-width: 800px;
             margin: auto;
@@ -309,29 +306,6 @@
             display: block;
         }
 
-        @media (max-width: 768px) {
-            .form-content {
-                flex-direction: column;
-            }
-
-            .right-section {
-                align-items: stretch;
-            }
-
-            .btn-success {
-                align-self: stretch;
-            }
-
-            .one-section {
-                flex-direction: column
-            }
-
-            .two-section {
-                flex-direction: column;
-            }
-
-        }
-
         .one-section {
             display: flex;
             gap: 8px;
@@ -339,7 +313,6 @@
             margin: 14px;
             padding-top: 24px;
         }
-
 
         .two-section {
             display: flex;
@@ -372,6 +345,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-content {
+                flex-direction: column;
+            }
+
+            .right-section {
+                align-items: stretch;
+            }
+
+            .btn-success {
+                align-self: stretch;
+            }
+
+            .one-section {
+                flex-direction: column
+            }
+
+            .two-section {
+                flex-direction: column;
+            }
+
         }
 
         .text-primary {
@@ -408,6 +405,7 @@
             transform: scale(1);
         }
 
+        /* Footer */
         .footer a {
             text-decoration: none;
         }
@@ -475,13 +473,17 @@
                 <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
                 <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
                 <li class="nav-button">
-                    <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Cek Pesanan</a>
+                    <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Cek
+                        Pesanan</a>
                 </li>
-                <li class="order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li>
+                {{-- <li class="btn order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li> --}}
+                <li><button class="btn order-button px-3 py-2" onclick="window.location.href='/order';"><a
+                            href="/order">Pesan Sekarang</a></button></li>
             </ul>
         </div>
     </nav>
 
+    {{-- Halaman Content --}}
     <div id="content">
         <div class="">
             @yield('content')
@@ -521,7 +523,7 @@
 
             <div class="row justify-content-center">
                 <div class="col-md-10 d-flex align-items-center mb-3">
-                    <!-- Garis sebelum icon -->
+
                     <hr class="flex-grow-1 border-secondary ">
 
                     <!-- Social Media Icons -->
@@ -533,8 +535,8 @@
                         <a href="#" class="text-light mx-2"><i class="fab fa-tiktok"></i></a>
                     </div>
 
-                    <!-- Garis setelah icon -->
                     <hr class="flex-grow-1 border-secondary m-0">
+
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -546,38 +548,38 @@
         </div>
     </footer>
 
-    <!-- Button trigger modal -->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title text-black fs-5" id="exampleModalLabel">Cek Pesanan</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="checkOrderForm" action="{{ route('order.check') }}" method="GET">
-                    <div class="mb-3">
-                        <label for="orderCode" class="form-label text-black">Kode Pemesanan</label>
-                        <input type="text" class="form-control" id="orderCode" name="order_code" placeholder="Masukkan Kode Pemesanan" required>
-                    </div>
-                    @if($errors->has('order_code'))
-                        <div class="alert alert-danger">
-                            {{ $errors->first('order_code') }}
+    <!-- Modal Cek Pesanan -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title text-black fs-5" id="exampleModalLabel">Cek Pesanan</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="checkOrderForm" action="{{ route('order.check') }}" method="GET">
+                        <div class="mb-3">
+                            <label for="orderCode" class="form-label text-black">Kode Pemesanan</label>
+                            <input type="text" class="form-control" id="orderCode" name="order_code"
+                                placeholder="Masukkan Kode Pemesanan" required>
                         </div>
-                    @endif
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary" form="checkOrderForm">Cek Pesanan</button>
+                        @if ($errors->has('order_code'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('order_code') }}
+                            </div>
+                        @endif
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary" form="checkOrderForm">Cek Pesanan</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
+    {{-- Core Javascript --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -585,6 +587,7 @@
     <script src="{{ asset('sb_admin2/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
 
     <script>
         new WOW().init();
@@ -602,8 +605,10 @@
             }
         });
     </script>
+    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
     <script>
         var swiper = new Swiper('.mySwiper', {
             grabCursor: true,

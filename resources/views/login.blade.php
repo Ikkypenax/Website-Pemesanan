@@ -49,8 +49,6 @@
             position: relative;
         }
 
-
-
         .btn-login {
             background-color: #ffffff;
             border: none;
@@ -73,12 +71,10 @@
 </head>
 
 
-
 <body class="d-flex flex-column justify-content-center position-relative"
     style="background-image: url('{{ asset('assets/images/panel bgg.jpg') }}'); height: 100vh; background-size: cover; background-position: center -130px;">
 
     <div class="overlay"></div>
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-12 col-md-9 ">
@@ -90,6 +86,8 @@
                                     <div class="text-center">
                                         <h3 class="text-light mb-4">LOG IN</h3>
                                     </div>
+
+                                    {{-- Form Login --}}
                                     <form class="user" method="POST" action="{{ route('login.submit') }}">
                                         @csrf
 
@@ -107,12 +105,10 @@
                                             <input type="email" class="form-control form-control-user"
                                                 id="email" name="email" aria-describedby="emailHelp"
                                                 placeholder="Email" required autofocus>
-                                            {{-- <i class="fas fa-envelope icon"></i> --}}
                                         </div>
                                         <div class="form-group position-relative">
                                             <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Password" required>
-                                            {{-- <i class="fas fa-lock icon"></i> --}}
                                         </div>
 
                                         <div class="form-group form-check text-left">
@@ -129,23 +125,21 @@
 
                                     </form>
 
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
+{{-- 
     <script src="{{ asset('sb_admin2/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('sb_admin2/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('sb_admin2/js/sb-admin-2.min.js') }}"></script> --}}
+
 </body>
 
 </html>

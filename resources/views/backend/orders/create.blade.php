@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-
+            {{-- Form Create Pesanan --}}
             <div class="card-body">
                 <form action="{{ route('orders.store') }}" method="POST">
                     @csrf
@@ -104,7 +104,10 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    
     <script>
+        // Mengambil type berdasarkan kategori
         $(document).ready(function() {
             $('#category').on('change', function() {
                 var category_name = $(this).val();
@@ -131,6 +134,7 @@
                 }
             });
 
+            // Mengambil price berdasarkan type, dan menyimpan ke input  
             $('#type').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
                 var price = parseFloat(selectedOption.data('price')) || 0;
@@ -138,6 +142,7 @@
                 $('#length, #width').trigger('input');
             });
 
+            // 
             $('#length, #width').on('input', function() {
                 var length = parseFloat($('#length').val()) || 0;
                 var width = parseFloat($('#width').val()) || 0;

@@ -12,7 +12,6 @@
             </div>
         @endif
 
-        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header d-flex align-items-center justify-content-between py-3 mb-2">
                 <h3 class="m-0 font-weight-bold text-primary">Daftar Pesanan</h3>
@@ -20,6 +19,8 @@
                     <i class="bi bi-plus fa-sm text-white-50"></i> Pesanan
                 </a> --}}
             </div>
+
+            {{-- Tabel Daftar Pesanan --}}
             <div class="card-body pt-0">
                 <div class="table-responsive">
                     <table class="table table-bordered border-dark table-hover table-orders w-auto" id="myTable" cellspacing="0" style="table-layout: auto">
@@ -106,6 +107,7 @@
                                     </td>
                                 </tr>
 
+                                {{-- Modal Delete Pesanan --}}
                                 <div class="modal fade" id="deleteModal{{ $ord->id }}" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">

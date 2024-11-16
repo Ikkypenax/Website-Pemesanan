@@ -5,7 +5,6 @@
 @section('content')
 
 
-    {{-- Tabel pesanan --}}
     <div class="container mt-3">
 
         @if ($message = Session::get('success'))
@@ -38,7 +37,7 @@
                         </div>
                     @endif
 
-
+                    {{-- Tabel Edit Pesanan --}}
                     <div class="table-container-edit">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -166,7 +165,7 @@
 
 
 
-    <!-- + Tambah Biaya-->
+    <!-- Modal Tambah Biaya-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -206,7 +205,7 @@
         </div>
     </div>
 
-    <!-- + Edit Biaya -->
+    <!-- Modal Edit Biaya -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
