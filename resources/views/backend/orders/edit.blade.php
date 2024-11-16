@@ -178,19 +178,19 @@
                         @csrf
                         <div>
                             <label for="transport">Biaya Transportasi:</label>
-                            <input class="form-control" type="number" name="transport" id="transport">
+                            <input class="form-control" type="number" name="transport" id="transport" required>
                         </div>
                         <div>
                             <label for="install">Biaya Pemasangan:</label>
-                            <input class="form-control" type="number" name="install" id="install">
+                            <input class="form-control" type="number" name="install" id="install" required>
                         </div>
                         <div>
                             <label for="service">Biaya Jasa:</label>
-                            <input class="form-control" type="number" name="service" id="service">
+                            <input class="form-control" type="number" name="service" id="service" required>
                         </div>
                         <div>
                             <label for="repair">Biaya Service:</label>
-                            <input class="form-control" type="number" name="repair" id="repair">
+                            <input class="form-control" type="number" name="repair" id="repair" required>
                         </div>
                         <div>
                             <input type="hidden" name="order_id" value="{{ $order->id }}" id="order_id">
@@ -219,23 +219,23 @@
                         @method('PUT')
                         <div>
                             <label for="transport">Biaya Transportasi:</label>
-                            <input class="form-control" type="text" name="transport" id="transport"
-                                value="{{ intval($order->addfee->fee_transport ?? 0) }}">
+                            <input class="form-control" type="number" name="transport" id="transport" required
+                                value="{{ intval($order->addfee->fee_transport ?? 0) }}" >
                         </div>
                         <div>
                             <label for="install">Biaya Pemasangan:</label>
-                            <input class="form-control" type="text" name="install" id="install"
-                                value="{{ intval($order->addfee->fee_install ?? 0) }}">
+                            <input class="form-control" type="number" name="install" id="install" required
+                                value="{{ intval($order->addfee->fee_install ?? 0) }}" >
                         </div>
                         <div>
                             <label for="service">Biaya Jasa:</label>
-                            <input class="form-control" type="text" name="service" id="service"
-                                value="{{ intval($order->addfee->fee_service ?? 0) }}">
+                            <input class="form-control" type="number" name="service" id="service" required
+                                value="{{ intval($order->addfee->fee_service ?? 0) }}" >
                         </div>
                         <div>
                             <label for="repair">Biaya Service:</label>
-                            <input class="form-control" type="text" name="repair" id="repair"
-                                value="{{ intval($order->addfee->fee_repair ?? 0) }}">
+                            <input class="form-control" type="number" name="repair" id="repair" required
+                                value="{{ intval($order->addfee->fee_repair ?? 0) }}" >
                         </div>
                         <div>
                             <input type="hidden" name="fee_total" value="" id="fee_total">

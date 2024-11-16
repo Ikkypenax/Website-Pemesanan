@@ -70,3 +70,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 npm run dev ; -- menjalankan vite
 rm public/storage ; php artisan storage:link ; -- menghubungkan storage agar gambar dapat ditampilkan 
+composer require barryvdh/laravel-dompdf; --untuk menampilkan html ke pdf

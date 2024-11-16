@@ -23,8 +23,12 @@ class PanelsController extends Controller
     {
         $request->validate([
             'type' => 'required',
-            'category' => 'required',
             'price' => 'required|numeric',
+            'category' => 'required',
+        ], [
+            'type.required' => 'Kolom jenis barang perlu diisi.',
+            'price.required' => 'Kolom harga perlu diisi.',
+            'category.required' => 'Kolom kategori perlu diisi.',
         ]);
 
         Panels::create([
@@ -49,9 +53,15 @@ class PanelsController extends Controller
             'type' => 'required',
             'category' => 'required',
             'price' => 'required|numeric',
+        ], [
+            'type.required' => 'Kolom jenis perlu diisi.',
+            'category.required' => 'Kolom kategori perlu diisi.',
+            'price.required' => 'Kolom harga perlu diisi.',
         ]);
 
         $panel->update($request->all());
+        $panel->save();
+        
         return redirect()->route('panel.index')
             ->with('success', 'Barang berhasil diperbarui.');
     }

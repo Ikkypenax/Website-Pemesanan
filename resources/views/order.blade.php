@@ -15,12 +15,13 @@
         </div>
 
         {{-- Form Pesanan --}}
+        {{-- Form Pesanan --}}
         <form id="orderForm" action="{{ route('order.store') }}" method="POST">
             @csrf
 
             @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> Terjadi kesalahan .<br><br>
+                    <strong>Ups!</strong> Terjadi kesalahan.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -30,7 +31,10 @@
             @endif
 
             {{-- Section Pertama --}}
+            {{-- Section Pertama --}}
             <div class="one-section">
+
+                {{-- Section Kiri --}}
 
                 {{-- Section Kiri --}}
                 <div class="left-section justify-content-between">
@@ -61,6 +65,7 @@
                     </div>
                 </div>
 
+                {{-- Section Kanan --}}
                 {{-- Section Kanan --}}
                 <div class="right-section">
                     <div class="form-group-ord">
@@ -97,6 +102,7 @@
             </div>
 
             {{-- Section Kedua --}}
+            {{-- Section Kedua --}}
             <div class="two-section">
                 <div class="p-3">
                     <label for="result" id="result" name="result">Total: Rp. <span id="resultValue">0</span></label>
@@ -113,6 +119,7 @@
 
 
 
+    <!-- Modal - Konfrimasi Pesanan -->
     <!-- Modal - Konfrimasi Pesanan -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -185,6 +192,7 @@
     </div>
 
     <!-- Modal - Notifikasi Sukses -->
+    <!-- Modal - Notifikasi Sukses -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -219,6 +227,7 @@
         $(document).ready(function() {
 
             // Mengambil kabupaten berdasarkan provinsi yang dipilih
+            // Mengambil kabupaten berdasarkan provinsi yang dipilih
             $('#provinces').on('change', function() {
                 var province_id = $(this).val();
                 if (province_id) {
@@ -243,6 +252,7 @@
                 }
             });
 
+            // Mengambil Type Berdasarkan Category yang dipilih
             // Mengambil Type Berdasarkan Category yang dipilih
             $('#category').on('change', function() {
                 var category_name = $(this).val();
@@ -270,6 +280,7 @@
             });
 
             // Mengambil dan menyimpan price berdasarkan type yang dipilih untuk menghitung ulang melalui input sebagai trigger
+            // Mengambil dan menyimpan price berdasarkan type yang dipilih untuk menghitung ulang melalui input sebagai trigger
             $('#type').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
                 var price = parseFloat(selectedOption.data('price')) || 0;
@@ -277,6 +288,7 @@
                 $('#length, #width').trigger('input');
             });
 
+            // Menghitung resultValue berdasarkan length, width dan price lalu disimpan pada result_hidden
             // Menghitung resultValue berdasarkan length, width dan price lalu disimpan pada result_hidden
             $('#length, #width').on('input', function() {
                 var length = parseFloat($('#length').val()) || 0;
@@ -287,14 +299,15 @@
                 $('#result_hidden').val(result.toFixed(2));
             });
 
-            // Sebelum form di submit , mengambil hasil_hidden dan memastikan dalam format desimal 
+            // Sebelum form di submit , mengambil hasil_hidden dan memastikan dalam format desimal
             $('form').on('submit', function() {
-                var total = $('#hasil_hidden').val();
-                $('#hasil_hidden').val(parseFloat(total).toFixed(2));
+                var total = $('#result_hidden').val();
+                $('#result_hidden').val(parseFloat(total).toFixed(2));
             });
         });
     </script>
 
+    {{-- Menampilkan Modal Sukses --}}
     {{-- Menampilkan Modal Sukses --}}
     <script>
         $(document).ready(function() {
@@ -305,6 +318,7 @@
         });
     </script>
 
+    {{-- Menampilkan Modal - Konfirmasi Pesanan --}}
     {{-- Menampilkan Modal - Konfirmasi Pesanan --}}
     <script>
         document.getElementById('openAlertModal').addEventListener('click', function() {

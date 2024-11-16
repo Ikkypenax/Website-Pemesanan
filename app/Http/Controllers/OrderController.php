@@ -50,7 +50,7 @@ class OrderController extends Controller
             'regency' => "required|exists:regencies,id",
             "length" => "required|numeric",
             "width" => "required|numeric",
-            "result" => "required|numeric",
+            "result" => "nullable|numeric",
             'provinces_id' => "required|exists:provinces,id",
             'panel_id' => "required|exists:panels,id",
         ], [
@@ -64,8 +64,6 @@ class OrderController extends Controller
             'length.numeric' => 'Kolom panjang harus berupa angka',
             'width.required' => 'Kolom Lebar perlu diisi',
             'width.numeric' => 'Kolom lebar harus berupa angka',
-            'result.required' => 'Kolom Hasil perlu diisi',
-            'result.numeric' => 'Kolom hasil harus berupa angka',
             'provinces_id.required' => 'Kolom Provinsi perlu diisi',
             'provinces_id.exists' => 'Provinsi tidak valid',
             'panel_id.required' => 'Kolom Panel perlu diisi',
