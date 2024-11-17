@@ -141,7 +141,7 @@
                     <div class="swiper-slide h-100">
                         <div class="card">
                             <div class="card-body">
-                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                <img src="https://cdn2.iconfinder.com/data/icons/flat-style-svg-icons-part-1/512/users_group_people_friends-512.png"
                                     alt="Avatar 1" class="rounded-circle me-3">
                                 <div>
                                     <p class="card-text">"Pelayanan yang sangat memuaskan! Tim bekerja profesional dan
@@ -154,7 +154,7 @@
                     <div class="swiper-slide">
                         <div class="card">
                             <div class="card-body">
-                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                <img src="https://www.pngrepo.com/png/33585/180/woman.png"
                                     alt="Avatar 2" class="rounded-circle me-3">
                                 <div>
                                     <p class="card-text">"Sangat profesional dan mudah diajak komunikasi. Hasil kerjanya
@@ -167,7 +167,7 @@
                     <div class="swiper-slide">
                         <div class="card">
                             <div class="card-body">
-                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                <img src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG-File.png"
                                     alt="Avatar 2" class="rounded-circle me-3">
                                 <div>
                                     <p class="card-text">"Saya sangat puas dengan hasil kerja CV. Sadjiwa Mitra Sembada,
@@ -180,7 +180,7 @@
                     <div class="swiper-slide">
                         <div class="card">
                             <div class="card-body">
-                                <img src="https://i.pinimg.com/originals/85/39/12/8539121611693888d68bef623138b3db.jpg"
+                                <img src="https://tse3.mm.bing.net/th?id=OIP.0petdFlwvJs_bDZzovF3PQHaIu&pid=Api&P=0&h=180"
                                     alt="Avatar 2" class="rounded-circle me-3">
                                 <div>
                                     <p class="card-text">"Tim yang sangat berpengalaman dan hasil kerjanya rapi.
