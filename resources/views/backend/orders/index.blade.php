@@ -23,7 +23,8 @@
             {{-- Tabel Daftar Pesanan --}}
             <div class="card-body pt-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered border-dark table-hover table-orders w-auto" id="myTable" cellspacing="0" style="table-layout: auto">
+                    <table class="table table-bordered border-dark table-hover table-orders w-auto" id="myTable"
+                        cellspacing="0" style="table-layout: auto">
                         <thead>
                             <tr class="table-secondary">
                                 <th class="align-top">No</th>
@@ -63,8 +64,8 @@
                                     <td>
                                         {{ isset($ord->addfee->fee_total) ? 'Rp. ' . number_format($ord->addfee->fee_total, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
-                                    <td>{{ $ord->order_code}}</td>
-                                    <td>
+                                    <td>{{ $ord->order_code }}</td>
+                                    {{-- <td>
                                         <form action="{{ route('orders.status', $ord->id) }}" method="POST"
                                             id="status-form-{{ $ord->id }}">
                                             @csrf
@@ -80,7 +81,47 @@
                                                     {{ $ord->status == 'Reject' ? 'selected' : '' }}>Reject</option>
                                             </select>
                                         </form>
+                                    </td> --}}
+                                    <td>
+                                        <form action="{{ route('orders.status', $ord->id) }}" method="POST"
+                                            id="status-form-{{ $ord->id }}">
+                                            @csrf
+                                            @method('PUT')
+                                            <select name="status" class="form-control" style="width: 100px;"
+                                                onchange="checkAdditionalFee({{ $ord->id }}, {{ $ord->addfee ? 'true' : 'false' }});"
+                                                id="status-select-{{ $ord->id }}">
+                                                <option value="Prosses" class="status-prosses"
+                                                    {{ $ord->status == 'Prosses' ? 'selected' : '' }}>Prosses</option>
+                                                <option value="Approve" class="status-approve"
+                                                    {{ $ord->status == 'Approve' ? 'selected' : '' }}>Approve</option>
+                                                <option value="Reject" class="status-reject"
+                                                    {{ $ord->status == 'Reject' ? 'selected' : '' }}>Reject</option>
+                                                <option value="Finish" class="status-finish"
+                                                    {{ $ord->status == 'Finish' ? 'selected' : '' }}>Finish</option>
+                                            </select>
+                                        </form>
                                     </td>
+                                    <div class="modal fade" id="warningModal-{{ $ord->id }}" tabindex="-1"
+                                        aria-labelledby="warningLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="warningLabel">Peringatan</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Anda harus menambahkan biaya tambahan terlebih dahulu sebelum mengubah
+                                                    status pesanan.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <td>
                                         <ul class="list-inline mb-0">
@@ -122,7 +163,9 @@
                                                     class="action-buttons">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <p>Apakah anda yakin ingin menghapus pesanan <strong>{{ $ord->name }}</strong> ?</p>
+                                                    <p>Apakah anda yakin ingin menghapus pesanan
+                                                        <strong>{{ $ord->name }}</strong> ?
+                                                    </p>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Back</button>
@@ -140,6 +183,25 @@
             </div>
         </div>
     </div>
+    <script>
+        function checkAdditionalFee(orderId, hasAdditionalFee) {
+            const selectElement = document.getElementById(`status-select-${orderId}`);
+            const selectedValue = selectElement.value;
 
+            // Daftar status yang membutuhkan biaya tambahan
+            const restrictedStatuses = ['Approve', 'Finish'];
+
+            // Periksa apakah status baru memerlukan biaya tambahan tetapi belum ada
+            if (!hasAdditionalFee && restrictedStatuses.includes(selectedValue)) {
+                const modalId = `#warningModal-${orderId}`;
+                $(modalId).modal('show');
+                // Kembalikan dropdown ke status sebelumnya
+                selectElement.value = "{{ $ord->status }}";
+            } else {
+                // Submit form jika kondisi terpenuhi
+                document.getElementById(`status-form-${orderId}`).submit();
+            }
+        }
+    </script>
 
 @endsection

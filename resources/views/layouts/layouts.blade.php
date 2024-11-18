@@ -605,10 +605,10 @@
             }
         });
     </script>
-    
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    
+
     <script>
         var swiper = new Swiper('.mySwiper', {
             grabCursor: true,
@@ -641,6 +641,8 @@
             document.querySelector('.main-banner').style.backgroundPositionY = -(scrollPosition * 0.5) + 'px';
         });
     </script>
+
+
 </body>
 
 </html>

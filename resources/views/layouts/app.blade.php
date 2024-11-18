@@ -90,6 +90,9 @@
     .status-reject {
         color: #eb3b5a;
     }
+    /* .status-finish {
+        color: #002fff;
+    } */
 </style>
 
 
@@ -205,7 +208,7 @@
                     </div>
 
                 </nav>
-                
+
                 <!-- Halaman Content -->
                 <div class="container-fluid">
                     @yield('content')

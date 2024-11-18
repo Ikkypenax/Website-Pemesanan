@@ -128,7 +128,7 @@ class OrdersController extends Controller
         return view('backend.orders.show', compact('order'));
     }
 
-    // Invoice teks direct ke WA  
+    // Invoice teks direct ke WA
     public function sendInvoice($id)
     {
         $order = Orders::with('addfee')->find($id);
@@ -227,16 +227,39 @@ class OrdersController extends Controller
             ->with('success', 'Pesanan berhasil dihapus');
     }
 
+    // public function status(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'status' => 'required|string',
+    //     ]);
+
+    //     $status = Orders::find($id);
+    //     $status->update(['status' => $request->status]);
+    //     $status->save();
+
+    //     return back()->with('success', 'Status berhasil diperbarui');
+    // }
     public function status(Request $request, $id)
     {
+        // Validasi input status
         $request->validate([
             'status' => 'required|string',
         ]);
 
-        $status = Orders::find($id);
-        $status->update(['status' => $request->status]);
-        $status->save();
+        // Temukan pesanan berdasarkan ID
+        $order = Orders::findOrFail($id);
 
-        return back()->with('success', 'Status berhasil diperbarui');
+        // Daftar status yang memerlukan biaya tambahan
+        $restrictedStatuses = ['Approve', 'Finish'];
+
+        // Periksa apakah status baru memerlukan biaya tambahan, tetapi belum ada
+        if (in_array($request->status, $restrictedStatuses) && !$order->addfee) {
+            return back()->withErrors('Anda harus menambahkan biaya tambahan terlebih dahulu sebelum mengubah status menjadi "' . $request->status . '".');
+        }
+
+        // Update status jika validasi terpenuhi
+        $order->update(['status' => $request->status]);
+
+        return back()->with('success', 'Status berhasil diperbarui!');
     }
 }

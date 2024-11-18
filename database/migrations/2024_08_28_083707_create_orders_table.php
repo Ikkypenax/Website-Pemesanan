@@ -17,14 +17,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('wa');
             $table->string('regency');
-            $table->decimal('length', 15, 2); 
-            $table->decimal('width', 15, 2); 
+            $table->decimal('length', 15, 2);
+            $table->decimal('width', 15, 2);
             $table->decimal('result', 15, 2);
-            $table->enum('status', ['Prosses', 'Approve', 'Reject']);
+            $table->enum('status', ['Prosses', 'Approve', 'Reject', 'Finish']);
             $table->timestamps();
             $table->char('provinces_id', 2);
             $table->bigInteger('panel_id')->unsigned();
-        
+
             $table->foreign('provinces_id')->references('id')
             ->on('provinces')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('panel_id')->references('id')

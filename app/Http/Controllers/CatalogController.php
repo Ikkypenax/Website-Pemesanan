@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Panels;
 use App\Models\Catalog;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class CatalogController extends Controller
     public function list()
     {
         $catalog = Catalog::all();
-        return view('list', compact('catalog'));
+        $panels = Panels::all();
+        return view('list', compact('catalog', 'panels'));
     }
 
     public function create()
