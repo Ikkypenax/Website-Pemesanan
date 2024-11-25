@@ -10,27 +10,26 @@
     </div>
 
     {{-- Section: Profil Perusahaan --}}
-    <section class="mt-5">
+    {{-- <section class="mt-5">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h2 class="mb-4">Profil Perusahaan</h2>
                 <p class="lead text-muted">CV. Sadjiwa Mitra Sembada bergerak di bidang fotografi dan pengadaan videotron, dengan fokus utama pada pengadaan videotron berkualitas tinggi untuk berbagai kebutuhan.</p>
             </div>
             <div class="col-md-6 text-center">
-                {{-- Image Placeholder --}}
                 <img src="{{ asset('assets/images/about.jpg') }}" alt="Company Profile" class="img-fluid rounded shadow-sm" style="max-height: 300px; object-fit: cover;">
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- Section: Visi --}}
-    <section class="mt-5 text-center">
+    {{-- <section class="mt-5 text-center">
         <h3 class="mb-4">Visi</h3>
         <p class="lead">"Menjadi perusahaan terdepan dalam pengadaan videotron dan layanan fotografi yang berkualitas dan terpercaya di Indonesia"</p>
-    </section>
+    </section> --}}
 
     {{-- Section: Misi --}}
-    <section class="mt-5">
+    {{-- <section class="mt-5">
         <h3 class="text-center mb-5">Misi Kami</h3>
         <div class=" reveal row text-center">
             <div class="col-md-3 col-sm-6 mb-4">
@@ -70,6 +69,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 </div>
 @endsection

@@ -90,6 +90,7 @@
     .status-reject {
         color: #eb3b5a;
     }
+
     /* .status-finish {
         color: #002fff;
     } */
@@ -129,10 +130,11 @@
 
             <!-- Sidebar - Brand SJM -->
             <li class="nav-item d-flex justify-content-center">
-                <h4 class="navbar">
-                    <strong style="font-size: 20pt; font-weight: bold; color: white">SJM</strong>
-                </h4>
-
+                <a href="/">
+                    <h4 class="navbar">
+                        <strong style="font-size: 20pt; font-weight: bold; color: white">SJM</strong>
+                    </h4>
+                </a>
             </li>
 
             <hr class="sidebar-divider my-0">
@@ -172,6 +174,16 @@
                     <span style="font-size: 12pt">Katalog</span>
                 </a>
             </li>
+
+            @if (Auth::user()->role === 'superadmin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('superadmin.index') }}">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Manajemen Admin</span>
+                    </a>
+                </li>
+            @endif
+
 
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -234,6 +246,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     {{-- Script Sidebar --}}
     <script>
@@ -269,7 +283,7 @@
                     }
                 ],
                 "language": {
-                    "emptyTable": "",
+                    "emptyTable": "Pesanan Kosong",
                     "info": "",
                     "infoEmpty": "",
                     "infoFiltered": "",
@@ -286,8 +300,46 @@
                     cell.innerHTML = i + 1;
                 });
             }).draw();
+
+            var table = $('#myTableAdmin').DataTable({
+                lengthMenu: [3, 6, 9, 12],
+
+                "columnDefs": [{
+                        "searchable": true,
+                        "targets": [1, 2]
+                    },
+                    {
+                        "orderable": true,
+                        "targets": 1
+                    },
+                    {
+                        "orderable": false,
+                        "targets": [0, 3]
+                    }
+
+                ],
+                "language": {
+                    "emptyTable": "Admin Tidak ada",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "loadingRecords": "",
+                    "processing": "",
+                }
+            });
+            admintable.on('order.dt search.dt', function() {
+                admintable.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
         });
     </script>
+
+
+
     <script>
         $(document).ready(function() {
             var catalogTable = $('#myTableCatalog').DataTable({
@@ -386,6 +438,9 @@
             });
         });
     </script>
+
+    
+
 
 </body>
 

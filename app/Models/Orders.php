@@ -21,6 +21,7 @@ class Orders extends Model
         'updated_at',
         'provinces_id',
         'panel_id',
+        'user_id',
         'order_code', // Tambahkan kolom order_code
     ];
 
@@ -42,5 +43,10 @@ class Orders extends Model
     public function addfee()
     {
         return $this->hasOne(AddFee::class, 'order_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_id');
     }
 }

@@ -472,14 +472,49 @@
                 <li class="nav-button"><a href="/">Beranda</a></li>
                 <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
                 <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
-                <li class="nav-button">
-                    <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Cek
-                        Pesanan</a>
-                </li>
+                @auth
+                    <li class="nav-button">
+                        @if (Auth::user()->role === 'user')
+                            {{-- Ganti 'user' dengan role yang diinginkan --}}
+                            <a href="{{ route('order.check') }}">Cek Pesanan</a>
+                        @endif
+                    </li>
+                @endauth
+
+                @guest
+
+                @endguest
+
+                {{-- <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Cek
+                        Pesanan</a> --}}
                 {{-- <li class="btn order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li> --}}
-                <li><button class="btn order-button px-3 py-2" onclick="window.location.href='/order';"><a
-                            href="/order">Pesan Sekarang</a></button></li>
+                <li><button class="btn order-button px-2 py-2"><a
+                            href="{{ auth()->check() ? route('order.create') : route('login.user') }}">Pesan
+                            Sekarang</a>
+                    </button>
+                </li>
+                @auth
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 10px;">
+                        <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <span class="ms-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                        <div class="dropdown-divider"></div>
+                        <form action="{{ route('logout.user') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                @endauth
+                @guest
+
+                @endguest
             </ul>
+
         </div>
     </nav>
 
@@ -550,7 +585,8 @@
 
 
     <!-- Modal Cek Pesanan -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -577,37 +613,18 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Core Javascript --}}
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('sb_admin2/js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('sb_admin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-
-    <script>
-        new WOW().init();
-
-        document.querySelector('.menu-trigger').addEventListener('click', function() {
-            document.querySelector('.menu').classList.toggle('open');
-        });
-
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('solid');
-            } else {
-                navbar.classList.remove('solid');
-            }
-        });
-    </script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
         var swiper = new Swiper('.mySwiper', {
@@ -635,6 +652,25 @@
             }
         });
     </script>
+
+    <script>
+        new WOW().init();
+
+        document.querySelector('.menu-trigger').addEventListener('click', function() {
+            document.querySelector('.menu').classList.toggle('open');
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('solid');
+            } else {
+                navbar.classList.remove('solid');
+            }
+        });
+    </script>
+
+
     <script>
         window.addEventListener('scroll', function() {
             let scrollPosition = window.pageYOffset;

@@ -1,59 +1,67 @@
 @extends('layouts.app')
 
-@section('title', 'List Barang')
+@section('title', 'List Admin')
 
 @section('content')
 
-    <div class="container-fluid">
-
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success mt-2">
-                {{ $message }}
-            </div>
-        @endif
+        {{-- <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($admins as $admin)
+            <tr>
+                <td>{{ $admin->name }}</td>
+                <td>{{ $admin->email }}</td>
+                <td>
+                    <form action="{{ route('superadmin.destroy', $admin->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div> --}}
 
         <div class="card shadow mb-4">
             <div class="card-header d-flex align-items-center justify-content-between py-3 mb-2">
-                <h3 class="m-0 font-weight-bold text-primary">Daftar Barang</h3>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ route('panel.create') }}">
-                    <i class="bi bi-plus fa-sm text-white-50"></i> Barang
+                <h3 class="m-0 font-weight-bold text-primary">Daftar Admin</h3>
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ route('superadmin.create') }}">
+                    <i class="bi bi-plus fa-sm text-white-50"></i> Admin
                 </a>
             </div>
 
-            {{-- Tabel Daftar Panel --}}
             <div class="card-body pt-0">
                 <div class="table-responsive">
-                    <table id="myTablePanel" class="table table-panel table-bordered border-dark table-hover" width="100%"
+                    <table id="myTableAdmin" class="table table-admin table-bordered border-dark table-hover" width="100%"
                         cellspacing="0">
                         <thead>
                             <tr class="table-secondary align-top">
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
+                                <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($panel as $p)
+                            @foreach ($admins as $admin)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td data-label="Nama">{{ $p->type }}</td>
-                                    <td data-label="Kategori">{{ $p->category }}</td>
-                                    <td data-label="Harga">
-                                        {{ $p->price ? 'Rp. ' . number_format($p->price, 0, ',', '.') : 'Rp. 0' }}
-                                    </td>
+                                    <td data-label="Nama">{{ $admin->name }}</td>
+                                    <td data-label="Email">{{ $admin->email }}</td>
                                     <td>
                                         <ul class="list-inline mb-0">
-                                            <li class="list-inline-item mb-1 mr-0">
-                                                <a href="{{ route('panel.edit', $p->id) }}" class="btn btn-warning btn-sm">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                            </li>
                                             <li class="list-inline-item">
                                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal{{ $p->id }}">
+                                                    data-bs-target="#deleteModal{{ $admin->id }}">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </li>
@@ -62,7 +70,7 @@
                                 </tr>
 
                                 {{-- Modal Delete Panel --}}
-                                <div class="modal fade" id="deleteModal{{ $p->id }}" tabindex="-1"
+                                <div class="modal fade" id="deleteModal{{ $admin->id }}" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -72,12 +80,12 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('panel.destroy', $p->id) }}" method="POST"
+                                                <form action="{{ route('superadmin.destroy', $admin->id) }}" method="POST"
                                                     class="action-buttons">
                                                     @csrf
                                                     @method('DELETE')
                                                     <p>Apakah anda yakin ingin menghapus barang
-                                                        <strong>{{ $p->type }}</strong> ?</p>
+                                                        <strong>{{ $admin->email }}</strong> ?</p>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Back</button>
@@ -94,6 +102,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
-@endsection
+    @endsection

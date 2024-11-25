@@ -7,6 +7,8 @@
     <title>Login</title>
     <link href="{{ asset('sb_admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoYz1HBrWlR6GAIoP5/5N32j5pUUqJ81osKXUnV5p2EeSfW" crossorigin="anonymous">
 
     <style>
         .overlay {
@@ -67,6 +69,15 @@
         .form-check-label {
             color: #555;
         }
+
+        a.text-register {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        a.text-register:hover {
+            color: #007bff;
+        }
     </style>
 </head>
 
@@ -88,7 +99,7 @@
                                     </div>
 
                                     {{-- Form Login --}}
-                                    <form class="user" action="{{ route('login.submit') }}" method="POST">
+                                    <form class="user" method="POST" action="{{ route('user.submit') }}">
                                         @csrf
 
                                         @if ($errors->any())
@@ -108,6 +119,13 @@
                                         @endif
 
 
+                                        @if (session('success'))
+                                            <div class="alert alert-success">
+                                                {{ session('success') }}
+                                            </div>
+                                        @endif
+
+
                                         <div class="form-group position-relative">
                                             <input type="email" class="form-control form-control-user" id="email"
                                                 name="email" aria-describedby="emailHelp" placeholder="Email" required
@@ -119,11 +137,16 @@
                                         </div>
 
 
-                                        <div class="d-flex justify-content-center align-self-center">
-                                            <button type="submit" class="btn btn-login ">
+
+                                        <div class="d-flex flex-column align-items-center">
+                                            <button type="submit" class="btn btn-login mb-3 mt-2">
                                                 Submit
                                             </button>
+                                            <a href="{{ route('register') }}" class="text-register">
+                                                Belum Punya Akun?
+                                            </a>
                                         </div>
+
 
                                     </form>
 
@@ -135,6 +158,10 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76A8f2xhZp6h1c4ABfOBYYCfcRDk4I4Rs3zUUib+q68Kz7Xi1ro1eZ7BrxE/NBT" crossorigin="anonymous">
+    </script>
 
 </body>
 

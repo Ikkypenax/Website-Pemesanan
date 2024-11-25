@@ -14,11 +14,27 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-        $p = Hash::make("admin123");
         User::create([
-            'name'=> 'admin',
-            'email'=> 'admin@gmail.com',
-            'password'=> $p,
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+        ]);
+
+        // Menambahkan user dengan role superadmin
+        User::create([
+            'name' => 'Superadmin User',
+            'email' => 'superadmin@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'superadmin',
+        ]);
+
+        // Menambahkan user dengan role user biasa
+        User::create([
+            'name' => 'Normal User',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'user',
         ]);
     }
 }

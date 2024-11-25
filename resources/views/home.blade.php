@@ -21,7 +21,8 @@
                                 untuk memenuhi kebutuhan anda.
                             </p>
                             <div class="position-relative z-10 pt-4">
-                                <a href="{{ route('order.create') }}" class="btn btn-lg rounded-pill btn-custom">
+                                <a href="{{ auth()->check() ? route('order.create') : route('login.user') }}" 
+                                    class="btn btn-lg rounded-pill btn-custom">
                                     Pesan Sekarang
                                 </a>
                             </div>
@@ -127,6 +128,8 @@
 </div>
 
 
+
+    
 
     <div class="px-5" style="padding: 50px 0px; background-color: #f8f8f8;">
         <div class="section-heading text-black wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('order_code')->unique()->after('id')->nullable();
+            $table->string('order_code')->unique()->nullable();
             $table->string('name');
             $table->string('wa');
             $table->string('regency');
@@ -23,8 +23,11 @@ return new class extends Migration
             $table->enum('status', ['Prosses', 'Approve', 'Reject', 'Finish']);
             $table->timestamps();
             $table->char('provinces_id', 2);
-            $table->bigInteger('panel_id')->unsigned();
+            $table->bigInteger('panel_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
 
+            $table->foreign('user_id')->references('id')
+            ->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('provinces_id')->references('id')
             ->on('provinces')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('panel_id')->references('id')

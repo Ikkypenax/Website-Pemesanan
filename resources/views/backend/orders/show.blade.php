@@ -122,6 +122,9 @@
                         <a class="btn btn-warning" href="{{ route('admin.orders.printInvoice', ['id' => $order->id, 'name' => $order->panel->id]) }}">
                             <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                         </a>
+                        <a class="btn btn-primary" href="{{ route('orders.waInvoice', $order->id) }}">
+                            <i class="bi bi-whatsapp"></i> Kirim Pdf Invoice ke WhatsApp
+                        </a>
                                                 
                     </div>
                 </div>

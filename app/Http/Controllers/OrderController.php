@@ -7,6 +7,7 @@ use App\Models\Panels;
 use App\Models\Provinces;
 use App\Models\Regencies;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -73,7 +74,7 @@ class OrderController extends Controller
         $regency = Regencies::find($request->input('regency'))->name;
 
         // Generate unique order code based on current timestamp
-        $orderCode = 'ORD-' . date('YmdHis') . '-' . rand(100, 999);
+        $orderCode = 'ORD-' . date('His') . '-' . rand(1, 99);
 
         $order = Orders::create([
             "name" => $request->name,
@@ -85,7 +86,8 @@ class OrderController extends Controller
             "status" => 'Prosses',
             "provinces_id" => $request->provinces_id,
             "panel_id" => $request->panel_id,
-            "order_code" => $orderCode, // Save the generated order code
+            "user_id" => $request->user_id,
+            "order_code" => $orderCode,
         ]);
 
         session()->put('order_code', $order->order_code);
@@ -94,18 +96,18 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
-    public function show($order_code)
-    {
-        // Mencari pesanan berdasarkan order_code
-        $order = Orders::where('order_code', $order_code)->first();
+    // public function show($order_code)
+    // {
+    //     // Mencari pesanan berdasarkan order_code
+    //     $order = Orders::where('order_code', $order_code)->first();
 
-        // Jika pesanan tidak ditemukan, redirect dengan pesan error
-        if (!$order) {
-            return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
-        }
+    //     // Jika pesanan tidak ditemukan, redirect dengan pesan error
+    //     if (!$order) {
+    //         return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
+    //     }
 
-        return view('order.details', compact('order'));
-    }
+    //     return view('order.details', compact('order'));
+    // }
 
     public function checkOrder(Request $request)
     {
@@ -117,7 +119,7 @@ class OrderController extends Controller
             return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan diperlukan.']);
         }
         $order = Orders::with(['regency', 'provinces'])->where('order_code', $request->order_code)->first();
-        
+
         // Cari pesanan berdasarkan kode pemesanan
         // $order = Orders::where('order_code', $order_code)->first();
 
@@ -129,5 +131,12 @@ class OrderController extends Controller
         }
     }
 
-    
+
+    public function show()
+    {
+        $user = Auth::user(); // Dapatkan pengguna yang login
+        $orders = Orders::where('user_id', $user->id)->orderBy('created_at', 'desc')->get(); // Ambil pesanan sesuai user_id
+
+        return view('order.details', compact('orders', 'user'));
+    }
 }

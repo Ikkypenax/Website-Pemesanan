@@ -6,15 +6,35 @@
 
     <h2 class="mb-4 font-weight-bold text-primary">Dashboard</h2>
     <div class="row">
-        
+
         <!-- Card Informasi Jumlah Pesanan -->
         <div class="col-12 col-md-12 mb-4">
             <div class="card shadow h-100">
                 <div class="card-header bg-primary text-white h5">
-                    Jumlah Pesanan
+                    Informasi Pesanan
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="card card-content mb-3 shadow">
+                                <div class="card-header bg-info text-white">
+                                    Total Pemasukan Tahun ini
+                                </div>
+                                <div class="card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <canvas id="feeYearChart" width="400" height="70"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- <div class="card-body text-center">
+                                    <i class="fas fa-wallet fa-2x text-info"></i>
+                                    <h5 class="card-title mt-2 text-dark">Rp
+                                        {{ number_format($total_fee_finished, 0, ',', '.') }}</h5>
+                                </div> --}}
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="card card-content mb-3 shadow">
                                 <div class="card-header bg-primary text-white">
@@ -86,6 +106,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                 </div>
@@ -179,6 +200,47 @@
         }
     </style>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('feeYearChart').getContext('2d');
 
+            // Data dari controller (total_fee_finished per bulan)
+            const feesPerMonth = @json($feesPerMonth);
+
+            // Pisahkan bulan dan nilai fee menjadi dua array
+            const labels = Object.keys(feesPerMonth); // ['January', 'February', 'March', ...]
+            const data = Object.values(feesPerMonth); // [150000, 200000, 180000, ...]
+
+            // Buat grafik
+            const feeYearChart = new Chart(ctx, {
+                type: 'line', // Jenis grafik (line, bar, dll.)
+                data: {
+                    labels: labels, // Bulan
+                    datasets: [{
+                        label: 'Total Fee (Rp)',
+                        data: data, // Data fee
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true // Y-axis dimulai dari 0
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
 @endsection

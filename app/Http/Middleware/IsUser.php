@@ -6,16 +6,16 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsUser
 {
     public function handle(Request $request, Closure $next)
     {
-        $allowedRoles = ['admin', 'superadmin']; // Role yang diperbolehkan
+        $allowedRoles = ['user']; // Role yang diperbolehkan
 
         if (Auth::check() && in_array(Auth::user()->role, $allowedRoles)) {
             return $next($request);
         }
 
-        return redirect('/login')->with('error', 'Akses ditolak');
+        return redirect('/login-user')->with('error', 'Akses ditolak');
     }
 }

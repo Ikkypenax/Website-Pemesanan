@@ -19,7 +19,7 @@
         <form id="orderForm" action="{{ route('order.store') }}" method="POST">
             @csrf
 
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Ups!</strong> Terjadi kesalahan.<br><br>
                     <ul>
@@ -28,7 +28,7 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif --}}
 
             {{-- Section Pertama --}}
             {{-- Section Pertama --}}
@@ -40,13 +40,15 @@
                 <div class="left-section justify-content-between">
                     <div class="form-group-ord">
                         <label for="name" class="form-label-ord">Nama Lengkap</label>
-                        <input type="text" class="form-control-ord" id="name" name="name" required
-                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
+                        <input type="text" class="form-control-ord" id="name" name="name"
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" required>
+                        <span id="nameError" class="error-message" style="color: red;"></span>
                     </div>
                     <div class="form-group-ord">
                         <label for="wa" class="form-label-ord">No. Whatsapp</label>
                         <input type="text" inputmode="numeric" class="form-control-ord" id="wa" name="wa"
                             required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                        <span id="waError" class="error-message" style="color: red;"></span>
                     </div>
                     <div class="form-group-ord">
                         <label for="provinces" class="form-label-ord">Provinsi</label>
@@ -56,12 +58,14 @@
                                 <option value="{{ $prov->id }}">{{ $prov->name }}</option>
                             @endforeach
                         </select>
+                        <span id="provinceError" class="error-message" style="color: red;"></span>
                     </div>
                     <div class="form-group-ord">
                         <label for="regency" class="form-label-ord">Kabupaten</label>
                         <select name="regency" id="regencies" class="form-control-ord">
                             <option value="">Pilih Kabupaten</option>
                         </select>
+                        <span id="regencyError" class="error-message" style="color: red;"></span>
                     </div>
                 </div>
 
@@ -76,26 +80,30 @@
                                 <option value="{{ $p->category }}">{{ $p->category }}</option>
                             @endforeach
                         </select>
+                        <span id="categoryError" class="error-message" style="color: red;"></span>
                     </div>
                     <div class="form-group-ord">
                         <label for="type" class="form-label-ord">Panel</label>
                         <select class="form-control-ord" id="type" name="panel_id" required>
                             <option value="" selected>Pilih Jenis Panel</option>
                         </select>
+                        <span id="typeError" class="error-message" style="color: red;"></span>
                     </div>
                     <div class="form-group-ord">
                         <label for="price" class="form-label-ord">Harga per Meter</label>
                         <p class="form-control-plaintext-ord" id="price" name="price" data-price="0">-</p>
+                        <span id="priceError" class="error-message" style="color: red;"></span>
                     </div>
                     <div class="form-group-ord row">
                         <div class="col">
                             <label for="length" class="form-label-ord">Panjang</label>
                             <input type="number" class="form-control-ord" id="length" name="length" required>
-
+                            <span id="lengthError" class="error-message" style="color: red;"></span>
                         </div>
                         <div class="col">
                             <label for="width" class="form-label-ord">Lebar</label>
                             <input type="number" class="form-control-ord" id="width" name="width" required>
+                            <span id="widthError" class="error-message" style="color: red;"></span>
                         </div>
                     </div>
                 </div>
@@ -105,9 +113,11 @@
             {{-- Section Kedua --}}
             <div class="two-section">
                 <div class="p-3">
-                    <label for="result" id="result" name="result">Total: Rp. <span id="resultValue">0</span></label>
+                    <label for="result" id="result" name="result">Total: Rp. <span
+                            id="resultValue">0</span></label>
                     <input type="hidden" id="result_hidden" name="result">
                     <h6 class="mt-2 mb-0">*Belum termasuk biaya lainnya</h6>
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                 </div>
                 <button type="button" class="btn btn-success mt-3 mb-3" id="openAlertModal">Pesan</button>
             </div>
@@ -193,35 +203,39 @@
 
     <!-- Modal - Notifikasi Sukses -->
     <!-- Modal - Notifikasi Sukses -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Notifikasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <div class="checkmark-wrapper">
-                    <i class="fas fa-check-circle checkmark"></i>
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Notifikasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div>
-                    <strong>{{ session('success') }}</strong>
+                <div class="modal-body text-center">
+                    <div class="checkmark-wrapper">
+                        <i class="fas fa-check-circle checkmark"></i>
+                    </div>
+                    <div>
+                        <strong>{{ session('success') }}</strong>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                @if (session('order_code'))
-                    <a href="{{ route('order.details', ['order_code' => session('order_code')]) }}" class="btn btn-primary">Cek Pesanan</a>
-                @else
-                    <button class="btn btn-secondary" disabled>Cek Pesanan</button>
-                @endif
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                <div class="modal-footer">
+                    @if (session('order_code'))
+                        <a href="{{ route('order.details', ['order_code' => session('order_code')]) }}"
+                            class="btn btn-primary" onclick="copyOrderCode()">Salin & Cek Pesanan</a>
+                    @else
+                        <button class="btn btn-secondary" disabled>Cek Pesanan</button>
+                    @endif
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script>
         $(document).ready(function() {
@@ -322,18 +336,86 @@
     {{-- Menampilkan Modal - Konfirmasi Pesanan --}}
     <script>
         document.getElementById('openAlertModal').addEventListener('click', function() {
-            document.getElementById('alertName').textContent = document.getElementById('name').value;
-            document.getElementById('alertWa').textContent = document.getElementById('wa').value;
+            let isValid = true; // Flag untuk validasi
+            const name = document.getElementById('name').value.trim();
+            const wa = document.getElementById('wa').value.trim();
+            const provinces = document.getElementById('provinces').selectedIndex;
+            const regencies = document.getElementById('regencies').selectedIndex;
+            const category = document.getElementById('category').selectedIndex;
+            const type = document.getElementById('type').selectedIndex;
+            const length = document.getElementById('length').value.trim();
+            const width = document.getElementById('width').value.trim();
+
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(function(el) {
+                el.textContent = '';
+            });
+
+            // Validasi setiap input
+            if (!name) {
+                isValid = false;
+                document.getElementById('nameError').textContent = 'Nama tidak boleh kosong.';
+            }
+            if (!wa) {
+                isValid = false;
+                document.getElementById('waError').textContent = 'Nomor WA tidak boleh kosong.';
+            }
+            if (provinces <= 0) {
+                isValid = false;
+                document.getElementById('provinceError').textContent = 'Pilih provinsi.';
+            }
+            if (regencies <= 0) {
+                isValid = false;
+                document.getElementById('regencyError').textContent = 'Pilih kabupaten/kota.';
+            }
+            if (category <= 0) {
+                isValid = false;
+                document.getElementById('categoryError').textContent = 'Pilih kategori.';
+            }
+            if (type <= 0) {
+                isValid = false;
+                document.getElementById('typeError').textContent = 'Pilih tipe.';
+            }
+            if (!length) {
+                isValid = false;
+                document.getElementById('lengthError').textContent = 'Panjang tidak boleh kosong.';
+            }
+            if (!width) {
+                isValid = false;
+                document.getElementById('widthError').textContent = 'Lebar tidak boleh kosong.';
+            }
+
+            // Jika form kosong, tampilkan peringatan
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Data Tidak Lengkap',
+                    text: 'Harap lengkapi semua data yang diperlukan sebelum melanjutkan!',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#d33',
+                    background: '#fffbe6',
+                    customClass: {
+                        title: 'my-title',
+                        popup: 'my-popup'
+                    }
+                });
+                return;
+            }
+
+
+            // Jika valid, tampilkan modal
+            document.getElementById('alertName').textContent = name;
+            document.getElementById('alertWa').textContent = wa;
             document.getElementById('alertProvince').textContent = document.getElementById('provinces').options[
-                document.getElementById('provinces').selectedIndex].text;
-            document.getElementById('alertRegency').textContent = document.getElementById('regencies').options[
-                document.getElementById('regencies').selectedIndex]?.text || 'N/A';
+                provinces].text;
+            document.getElementById('alertRegency').textContent = regencies > 0 ?
+                document.getElementById('regencies').options[regencies].text :
+                'N/A';
             document.getElementById('alertCategory').textContent = document.getElementById('category').options[
-                document.getElementById('category').selectedIndex].text;
-            document.getElementById('alertPanel').textContent = document.getElementById('type').options[document
-                .getElementById('type').selectedIndex].text;
-            document.getElementById('alertLength').textContent = document.getElementById('length').value;
-            document.getElementById('alertWidth').textContent = document.getElementById('width').value;
+                category].text;
+            document.getElementById('alertPanel').textContent = document.getElementById('type').options[type].text;
+            document.getElementById('alertLength').textContent = length;
+            document.getElementById('alertWidth').textContent = width;
             var totalResult = $('#resultValue').text();
             document.getElementById('alertResult').textContent = totalResult;
 
@@ -345,6 +427,18 @@
             $('#alertModal').modal('hide');
             document.getElementById('orderForm').submit();
         });
+    </script>
+
+
+    <script>
+        function copyOrderCode() {
+            var orderCode = '{{ session('order_code') }}'; // Ambil kode pesanan dari session
+            navigator.clipboard.writeText(orderCode).then(function() {
+                alert("Kode pesanan telah disalin: " + orderCode);
+            }).catch(function(err) {
+                alert("Gagal menyalin kode pesanan: " + err);
+            });
+        }
     </script>
 
 @endsection

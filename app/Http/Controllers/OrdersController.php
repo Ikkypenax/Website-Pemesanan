@@ -262,4 +262,41 @@ class OrdersController extends Controller
 
         return back()->with('success', 'Status berhasil diperbarui!');
     }
+
+    // Invoice link PDF direct ke wa
+    public function waInvoice($id)
+    {
+        $order = Orders::with(['addfee', 'panel'])->findOrFail($id);
+
+        $imagePath = public_path('assets/images/Marco.png');
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
+
+        $pdf = Pdf::loadView('invoices.invoice', compact('order', 'imageData', 'imageType'))->setPaper('A6', 'portrait');
+
+        $filePath = storage_path('app/public/invoices/invoice_' . $order->id . '.pdf');
+        $pdf->save($filePath);
+
+        // Buat URL untuk unduhan PDF
+        // $pdfUrl = asset('storage/invoices/invoice_' . $order->id . '.pdf'); // Asset
+        $pdfUrl = url('storage/invoices/invoice_' . $order->id . '.pdf'); // URL
+
+        $wa = $order->wa;
+        if (substr($wa, 0, 1) === '0') {
+            $wa = '+62' . substr($wa, 1);
+        }
+
+        $message = "Halo {$order->name},\n"
+            . "Berikut adalah invoice pesanan Anda:\n\n"
+            . "📄 Download PDF: $pdfUrl \n\n"
+            . "💳 *Silakan melakukan DP/Pelunasan melalui nomor rekening berikut:* \n"
+            . "_Bank ABC - 1234567890 a.n. W.N_ \n\n"
+            . "Terima kasih telah bertransaksi dengan kami!";
+
+        // Tautan WhatsApp
+        $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message); // WA Web
+        // $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); // Apl WA
+
+        return redirect($whatsappUrl);
+    }
 }
