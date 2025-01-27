@@ -13,13 +13,18 @@ class Panels extends Model
         'type',
         'category',
         'price',
+        'rental',
     ];
 
     public $timestamps = false;
 
     public function orders()
     {
-
         return $this->belongsTo(Orders::class, 'panel_id');
+    }
+
+    public function rents()
+    {
+        return $this->belongsTo(Rents::class, 'panel_id');
     }
 }

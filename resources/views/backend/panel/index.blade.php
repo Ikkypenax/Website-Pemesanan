@@ -31,6 +31,7 @@
                                 <th>Nama</th>
                                 <th>Kategori</th>
                                 <th>Harga</th>
+                                <th>Sewa</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -43,6 +44,9 @@
                                     <td data-label="Kategori">{{ $p->category }}</td>
                                     <td data-label="Harga">
                                         {{ $p->price ? 'Rp. ' . number_format($p->price, 0, ',', '.') : 'Rp. 0' }}
+                                    </td>
+                                    <td data-label="Sewa">
+                                        {{ $p->rental ? 'Rp. ' . number_format($p->rental, 0, ',', '.') : 'Rp. 0' }}
                                     </td>
                                     <td>
                                         <ul class="list-inline mb-0">

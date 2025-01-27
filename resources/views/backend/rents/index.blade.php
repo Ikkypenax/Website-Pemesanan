@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'List Pesanan')
+@section('title', 'List Sewa')
 
 @section('content')
+
     <div class="container-fluid">
         <!-- Success Message -->
         @if ($message = Session::get('success'))
@@ -13,76 +14,86 @@
 
         <div class="card shadow mb-4">
             <div class="card-header d-flex align-items-center justify-content-between py-3 mb-2">
-                <h3 class="m-0 font-weight-bold text-primary">Daftar Pesanan</h3>
+                <h3 class="m-0 font-weight-bold text-primary">Daftar Sewa</h3>
             </div>
 
-            @if ($order->isEmpty())
+            @if ($rent->isEmpty())
                 <p class="text-center text-muted">Tidak ada pesanan yang tersedia.</p>
             @else
                 <div class="card-body pt-0">
                     <div class="table-responsive">
-                        <table class="table table-bordered border-dark table-hover table-orders w-auto" id="myTable"
-                            cellspacing="0" style="table-layout: auto">
+                        <table id="myTableRent" class="table table-rent table-bordered border-dark table-hover" width="100%"
+                            cellspacing="0">
                             <thead>
-                                <tr class="table-secondary">
-                                    <!-- Kolom Tabel -->
+                                <tr class="table-secondary align-top">
                                     <th>No</th>
+                                    <th>Kode Pesanan</th>
                                     <th>Nama</th>
                                     <th>Wa</th>
                                     <th>Jenis</th>
-                                    <th>P x L</th>
-                                    <th>Harga Per Meter</th>
+                                    {{-- <th>P x L</th> --}}
+                                    <th>Support Genset</th>
+                                    <th>Tanggal</th>
+                                    {{-- <th>Jam</th> --}}
                                     <th>Kabupaten</th>
-                                    <th>Harga Barang</th>
+                                    <th>Harga Sewa</th>
                                     <th>Total</th>
-                                    <th>Kode Pesanan</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($order as $ord)
+                                @foreach ($rent as $ren)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ord->name }}</td>
-                                        <td>{{ $ord->wa }}</td>
+                                        <td>{{ $ren->rent_code }}</td>
+                                        <td>{{ $ren->nama }}</td>
+                                        <td>{{ $ren->wa }}</td>
                                         {{-- <td>{{ $ord->panel->category ?? 'kosong' }}</td> --}}
-                                        <td>{{ $ord->panel->type ?? 'kosong' }}</td>
-                                        <td>{{ intval($ord->length) }} x {{ intval($ord->width) }}</td>
-                                        <td>{{ $ord->panel->price ? 'Rp. ' . number_format($ord->panel->price, 0, ',', '.') : 'Rp. 0' }}
-                                        </td>
+                                        <td>{{ $ren->panel->type ?? 'kosong' }}</td>
+                                        {{-- <td>{{ intval($ren->panjang) }} x {{ intval($ren->lebar) }}</td> --}}
+                                        @if ($ren->genset == 1)
+                                            <td>IYA</td>
+                                        @elseif ($ren->genset == 0)
+                                            <td>TIDAK</td>
+                                        @endif
+
+                                        {{-- <td>{{ $ren->tgl_sewa }} sampai {{ $ren->tgl_selesai }}</td> --}}
+                                        <td>{{ \Carbon\Carbon::parse($ren->tgl_sewa)->format('d-m-Y') }} s/d 
+                                             {{ \Carbon\Carbon::parse($ren->tgl_selesai)->format('d-m-Y') }}</td>
+
+                                        {{-- <td>{{ $ren->mulai }}-{{ $ren->selesai }}</td> --}}
                                         {{-- <td>{{ $ord->provinces->name ?? 'kosong' }}</td> --}}
-                                        <td>{{ $ord->regency ?? 'kosong' }}</td>
+                                        <td>{{ $ren->kabupaten ?? 'kosong' }}</td>
 
                                         <td>
-                                            {{ $ord->result ? 'Rp. ' . number_format($ord->result, 0, ',', '.') : 'Rp. 0' }}
+                                            {{ $ren->total ? 'Rp. ' . number_format($ren->total, 0, ',', '.') : 'Rp. 0' }}
                                         </td>
 
                                         <td>
-                                            {{ isset($ord->addfee->fee_total) ? 'Rp. ' . number_format($ord->addfee->fee_total, 0, ',', '.') : 'Rp. 0' }}
+                                            {{ isset($ren->feerent->fee_total) ? 'Rp. ' . number_format($ren->feerent->fee_total, 0, ',', '.') : 'Rp. 0' }}
                                         </td>
-                                        <td>{{ $ord->order_code }}</td>
+
 
                                         <td>
-                                            <form action="{{ route('orders.status', $ord->id) }}" method="POST"
-                                                id="status-form-{{ $ord->id }}">
+                                            <form action="{{ route('rent.status', $ren->id) }}" method="POST"
+                                                id="status-form-{{ $ren->id }}">
                                                 @csrf
                                                 @method('PUT')
                                                 <select name="status" class="form-control" style="width: 100px;"
-                                                    onchange="checkAdditionalFee({{ $ord->id }}, {{ $ord->addfee ? 'true' : 'false' }});"
-                                                    id="status-select-{{ $ord->id }}">
-                                                    @foreach ($ord->getStatusOptions() as $value => $label)
+                                                    onchange="checkAdditionalFee({{ $ren->id }}, {{ $ren->feerent ? 'true' : 'false' }});"
+                                                    id="status-select-{{ $ren->id }}">
+                                                    @foreach ($ren->getStatusOptions() as $value => $label)
                                                         <option value="{{ $value }}"
                                                             class="status-{{ strtolower($value) }}"
-                                                            {{ $ord->status == $value ? 'selected' : '' }}>
+                                                            {{ $ren->status == $value ? 'selected' : '' }}>
                                                             {{ $label }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </form>
                                         </td>
-
-                                        {{-- <div class="modal fade" id="warningModal-{{ $ord->id }}" tabindex="-1"
+                                        {{-- <div class="modal fade" id="warningModal-{{ $ren->id }}" tabindex="-1"
                                             aria-labelledby="warningLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -110,20 +121,20 @@
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item mb-1 mr-0">
                                                     <a class="btn btn-primary btn-sm"
-                                                        href="{{ route('orders.edit', $ord->id) }}">
+                                                        href="{{ route('rent.edit', $ren->id) }}">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item mb-1 mr-0">
                                                     <a class="btn btn-secondary btn-sm"
-                                                        href="{{ route('orders.show', $ord->id) }}">
+                                                        href="{{ route('rent.show', $ren->id) }}">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#deleteModal{{ $ord->id }}">
+                                                        data-bs-target="#deleteModal{{ $ren->id }}">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </li>
@@ -133,7 +144,7 @@
                                     </tr>
 
                                     {{-- Modal Delete Pesanan --}}
-                                    <div class="modal fade" id="deleteModal{{ $ord->id }}" tabindex="-1"
+                                    <div class="modal fade" id="deleteModal{{ $ren->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -143,12 +154,12 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ route('orders.destroy', $ord->id) }}" method="POST"
+                                                    <form action="{{ route('rent.destroy', $ren->id) }}" method="POST"
                                                         class="action-buttons">
                                                         @csrf
                                                         @method('DELETE')
                                                         <p>Apakah anda yakin ingin menghapus pesanan
-                                                            <strong>{{ $ord->name }}</strong> ?
+                                                            <strong>{{ $ren->nama }}</strong> ?
                                                         </p>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -169,10 +180,10 @@
         </div>
     </div>
 
-    @if (!$order->isEmpty())
+    @if (!$rent->isEmpty())
         <script>
-            function checkAdditionalFee(orderId, hasAdditionalFee) {
-                const selectElement = document.getElementById(`status-select-${orderId}`);
+            function checkAdditionalFee(rentId, hasAdditionalFee) {
+                const selectElement = document.getElementById(`status-select-${rentId}`);
                 if (!selectElement) return; // Jika elemen tidak ditemukan, hentikan fungsi
 
                 const selectedValue = selectElement.value;
@@ -180,12 +191,13 @@
                 // Daftar status yang memerlukan biaya tambahan
                 const restrictedStatuses = ['Approve', 'Finish'];
 
+                // Mengecek apakah biaya tambahan sudah ada
                 if (!hasAdditionalFee && restrictedStatuses.includes(selectedValue)) {
-                    const modalId = `#warningModal-${orderId}`;
+                    const modalId = `#warningModal-${rentId}`;
                     $(modalId).modal('show');
-                    selectElement.value = "{{ isset($ord) ? $ord->status : '' }}"; // Pastikan nilai sebelumnya di-set ulang
+                    selectElement.value = "{{ isset($ren) ? $ren->status : '' }}"; // Pastikan nilai sebelumnya di-set ulang
                 } else {
-                    const formElement = document.getElementById(`status-form-${orderId}`);
+                    const formElement = document.getElementById(`status-form-${rentId}`);
                     if (formElement) {
                         formElement.submit();
                     }

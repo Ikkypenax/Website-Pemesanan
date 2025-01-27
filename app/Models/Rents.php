@@ -5,24 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class Rents extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'wa',
-        'regency',
-        'length',
-        'width',
-        'result',
-        'status',
         'created_at',
         'updated_at',
+        'rent_code',
+        'nama',
+        'wa',
+        'tgl_sewa',
+        'tgl_selesai',
+        'mulai',
+        'selesai',
+        'kabupaten',
+        'keterangan',
+        'panjang',
+        'lebar',
+        'genset',
+        'level',
+        'total',
+        'status',
         'provinces_id',
         'panel_id',
-        'user_id',
-        'order_code', // Tambahkan kolom order_code
     ];
 
     public function panel()
@@ -37,17 +43,12 @@ class Orders extends Model
 
     public function regency()
     {
-        return $this->belongsTo(Regencies::class, 'regency')->where('province_id', $this->provinces_id);
+        return $this->belongsTo(Regencies::class, 'kabupaten')->where('province_id', $this->provinces_id);
     }
 
-    public function addfee()
+    public function feerent()
     {
-        return $this->hasOne(AddFee::class, 'order_id');
-    }
-
-    public function user()
-    {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->hasOne(FeeRent::class, 'rent_id');
     }
 
     public function getStatusOptions()
@@ -58,7 +59,7 @@ class Orders extends Model
         ];
 
         // Tambahkan opsi jika fee_total > 0
-        if ($this->addfee && $this->addfee->fee_total > 0) {
+        if ($this->feerent && $this->feerent->fee_total > 0) {
             $options['Approve'] = 'Approve';
             $options['Finish'] = 'Finish';
         }

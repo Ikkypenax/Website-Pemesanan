@@ -24,9 +24,11 @@ class PanelsController extends Controller
         $request->validate([
             'type' => 'required',
             'price' => 'required|numeric',
+            'rental' => 'required|numeric',
             'category' => 'required',
         ], [
             'type.required' => 'Kolom jenis barang perlu diisi.',
+            'rental.required' => 'Kolom sewa perlu diisi.',
             'price.required' => 'Kolom harga perlu diisi.',
             'category.required' => 'Kolom kategori perlu diisi.',
         ]);
@@ -35,6 +37,7 @@ class PanelsController extends Controller
             'type' => $request->type,
             'category' => $request->category,
             'price' => $request->price,
+            'rental' => $request->rental,
         ]);
 
         return redirect()->route('panel.index')
@@ -53,9 +56,11 @@ class PanelsController extends Controller
             'type' => 'required',
             'category' => 'required',
             'price' => 'required|numeric',
+            'rental' => 'required|numeric',
         ], [
             'type.required' => 'Kolom jenis perlu diisi.',
             'category.required' => 'Kolom kategori perlu diisi.',
+            'rental.required' => 'Kolom sewa perlu diisi.',
             'price.required' => 'Kolom harga perlu diisi.',
         ]);
 

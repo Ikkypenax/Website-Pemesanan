@@ -46,6 +46,10 @@
                         <input type="number" class="form-control" id="price" name="price">
                     </div>
                     <div class="form-group">
+                        <label for="rental">Sewa</label>
+                        <input type="number" class="form-control" id="rental" name="rental">
+                    </div>
+                    <div class="form-group">
                         <label for="category">Kategori</label>
                         <select id="category" name="category" class="form-control">
                             <option value="" selected>Pilih kategori</option>

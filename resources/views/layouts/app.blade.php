@@ -162,6 +162,13 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/rent">
+                    <i class="bi bi-card-list" style="font-size: 16pt"></i>
+                    <span style="font-size: 12pt">Sewa</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/panel">
                     <i class="bi bi-boxes" style="font-size: 16pt"></i>
                     <span style="font-size: 12pt">Panel</span>
@@ -261,7 +268,7 @@
     <script>
         $(document).ready(function() {
             var table = $('#myTable').DataTable({
-                lengthMenu: [3, 6, 9, 12],
+                lengthMenu: [4, 8, 12, 16],
 
                 "columnDefs": [{
                         "searchable": true,
@@ -292,14 +299,7 @@
                 }
             });
 
-            table.on('order.dt search.dt', function() {
-                table.column(0, {
-                    search: 'applied',
-                    order: 'applied'
-                }).nodes().each(function(cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-            }).draw();
+            
 
             var table = $('#myTableAdmin').DataTable({
                 lengthMenu: [3, 6, 9, 12],
@@ -327,8 +327,34 @@
                     "processing": "",
                 }
             });
-            admintable.on('order.dt search.dt', function() {
-                admintable.column(0, {
+
+            var rentTable = $('#myTableRent').DataTable({ 
+                lengthMenu: [4, 8, 12, 16],
+                "columnDefs": [{
+                        "searchable": true,
+                        "targets": [1, 2, 3, 4, 5, 6, 7]
+                    },
+                    {
+                        "orderable": true,
+                        "targets": [1, 2, 6]
+                    },
+                    {
+                        "orderable": false,
+                        "targets": [0, 3, 4, 5, 7, 8, 9, 10, 11]
+                    }
+                ],
+                "language": {
+                    "emptyTable": "Kosong",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "loadingRecords": "",
+                    "processing": "",
+                }
+            });
+
+            table.on('order.dt search.dt', function() {
+                table.column(0, {
                     search: 'applied',
                     order: 'applied'
                 }).nodes().each(function(cell, i) {
@@ -367,15 +393,6 @@
                 }
             });
 
-            catalogTable.on('order.dt search.dt', function() {
-                catalogTable.column(0, {
-                    search: 'applied',
-                    order: 'applied'
-                }).nodes().each(function(cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-            }).draw();
-
             var panelTable = $('#myTablePanel').DataTable({
                 lengthMenu: [3, 6, 9, 12],
                 "columnDefs": [{
@@ -401,8 +418,8 @@
                 }
             });
 
-            panelTable.on('order.dt search.dt', function() {
-                panelTable.column(0, {
+            Table.on('order.dt search.dt', function() {
+                Table.column(0, {
                     search: 'applied',
                     order: 'applied'
                 }).nodes().each(function(cell, i) {
@@ -439,7 +456,7 @@
         });
     </script>
 
-    
+
 
 
 </body>

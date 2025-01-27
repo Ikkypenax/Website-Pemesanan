@@ -21,7 +21,11 @@
                                 untuk memenuhi kebutuhan anda.
                             </p>
                             <div class="position-relative z-10 pt-4">
-                                <a href="{{ auth()->check() ? route('order.create') : route('login.user') }}" 
+                                {{-- <a href="{{ auth()->check() ? route('order.create') : route('login.user') }}" 
+                                    class="btn btn-lg rounded-pill btn-custom">
+                                    Pesan Sekarang
+                                </a> --}}
+                                <a href="{{ route('order.create') }}" 
                                     class="btn btn-lg rounded-pill btn-custom">
                                     Pesan Sekarang
                                 </a>

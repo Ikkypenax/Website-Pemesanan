@@ -101,7 +101,7 @@
 
         }
 
-        .order-button a {
+        .order-button {
             display: block;
             color: #ffffff;
             font-size: 17px;
@@ -114,7 +114,34 @@
             box-shadow: 0px 0px 16px rgba(51, 170, 255, 0.5);
         }
 
-        nav .navbar .menu .order-button:hover a {
+        .rent-button {
+            background-color: #02cc16;
+            cursor: pointer;
+            border-radius: 10px;
+            max-width: auto;
+            transition: all 0.3s;
+            text-align: left;
+            margin-top: -10px;
+        }
+
+        .rent-button {
+            display: block;
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .rent-button:hover {
+            background-color: #33ff4b;
+            box-shadow: 0px 0px 16px rgba(51, 255, 71, 0.5);
+        }
+
+        nav .navbar .menu .order-button:hover {
+            color: #000000;
+        }
+
+        nav .navbar .menu .rent-button:hover {
             color: #000000;
         }
 
@@ -127,7 +154,7 @@
         }
 
         /* responsive */
-        @media (max-width: 1140px) {
+        @media (max-width: 1200px) {
             nav .navbar .menu {
                 display: none;
                 flex-direction: column;
@@ -135,7 +162,7 @@
                 top: 75px;
                 left: 0;
                 width: 100%;
-                height: 300px;
+                height: 370px;
                 background: #eeeeee;
             }
 
@@ -294,6 +321,12 @@
             color: green;
         }
 
+        .card-order #total {
+            font-size: 16pt;
+            font-weight: bold;
+            color: green;
+        }
+
         .form-header {
             position: relative;
             text-align: center;
@@ -345,6 +378,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            transform: scale(1.6);
+            margin: 7px 6px;
         }
 
         /* Responsive */
@@ -472,10 +512,22 @@
                 <li class="nav-button"><a href="/">Beranda</a></li>
                 <li class="nav-button"><a href="./catalog/list">Katalog</a></li>
                 <li class="nav-button"><a href="/about-us">Tentang Kami</a></li>
-                @auth
+                <li class="nav-button"><a href="#" type="button" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Cek
+                        Pesanan</a></li>
+                </li>
+                <li>
+                    <a class="btn rent-button px-2 py-2" href="{{ route('rent.create') }}">Sewa
+                        Sekarang</a>
+                </li>
+                <li>
+                    <a class="btn order-button px-2 py-2" href="{{ route('order.create') }}">Pesan
+                        Sekarang</a>
+                </li>
+                {{-- @auth
                     <li class="nav-button">
                         @if (Auth::user()->role === 'user')
-                            {{-- Ganti 'user' dengan role yang diinginkan --}}
+                            
                             <a href="{{ route('order.check') }}">Cek Pesanan</a>
                         @endif
                     </li>
@@ -483,17 +535,16 @@
 
                 @guest
 
-                @endguest
+                @endguest --}}
 
-                {{-- <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Cek
-                        Pesanan</a> --}}
+
                 {{-- <li class="btn order-button px-3 py-2"><a href="/order">Pesan Sekarang</a></li> --}}
-                <li><button class="btn order-button px-2 py-2"><a
+                {{-- <li><button class="btn order-button px-2 py-2"><a
                             href="{{ auth()->check() ? route('order.create') : route('login.user') }}">Pesan
                             Sekarang</a>
-                    </button>
-                </li>
-                @auth
+                    </button> --}}
+
+                {{-- @auth
                     <a class="nav-link dropdown-toggle d-flex align-items-center" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 10px;">
                         <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
@@ -512,7 +563,7 @@
                 @endauth
                 @guest
 
-                @endguest
+                @endguest --}}
             </ul>
 
         </div>
@@ -585,8 +636,7 @@
 
 
     <!-- Modal Cek Pesanan -->
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -596,13 +646,13 @@
                 <div class="modal-body">
                     <form id="checkOrderForm" action="{{ route('order.check') }}" method="GET">
                         <div class="mb-3">
-                            <label for="orderCode" class="form-label text-black">Kode Pemesanan</label>
-                            <input type="text" class="form-control" id="orderCode" name="order_code"
-                                placeholder="Masukkan Kode Pemesanan" required>
+                            <label for="orderCode" class="form-label text-black">Kode</label>
+                            <input type="text" class="form-control" id="orderCode" name="code"
+                                placeholder="Masukkan Kode Pemesanan atau Kode Sewa" required>
                         </div>
-                        @if ($errors->has('order_code'))
+                        @if ($errors->has('error'))
                             <div class="alert alert-danger">
-                                {{ $errors->first('order_code') }}
+                                {{ $errors->first('error') }}
                             </div>
                         @endif
                     </form>
@@ -613,7 +663,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     {{-- Core Javascript --}}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

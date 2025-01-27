@@ -83,7 +83,6 @@ class OrdersController extends Controller
 
     public function edit($id)
     {
-
         $order = Orders::with('addfee')->find($id);
         $panel = Panels::all();
 
@@ -133,6 +132,7 @@ class OrdersController extends Controller
     {
         $order = Orders::with('addfee')->find($id);
 
+        $kode = $order->order_code;
         $nama = $order->name;
         $wa = $order->wa;
         $kategori = $order->panel->category;
@@ -152,23 +152,65 @@ class OrdersController extends Controller
             $wa = '+62' . substr($wa, 1);
         }
 
-        $message = "Detail Pesanan:\n\n"
-            . "Nama: $nama\n"
-            . "Provinsi: $provinsi\n"
-            . "Kabupaten: $kabupaten\n"
-            . "Kategori: $kategori\n"
-            . "Jenis Barang: $barang\n"
-            . "Harga Per Meter: $hargapermeter\n"
-            . "Panjang x Lebar: $lengthwidth\n"
-            . "Harga Sementara: $hargasementara\n\n"
-            . "Biaya Transportasi: $transportasi\n"
-            . "Biaya Pemasangan: $pemasangan\n"
-            . "Biaya Jasa: $jasa\n"
-            . "Biaya Service: $service\n"
-            . "Total Biaya Keseluruhan: $total\n";
+        $message = "Halo {$order->name}, ini detail pemesanan anda\n"
+            . "Kode Pesanan = \" $kode \"\n\n"
+            . "Nama\t\t\t\t: $nama\n"
+            . "Provinsi\t\t\t\t: $provinsi\n"
+            . "Kabupaten\t\t\t: $kabupaten\n"
+            . "Kategori\t\t\t\t: $kategori\n"
+            . "Jenis Barang\t\t\t: $barang\n"
+            . "Harga Per Meter\t\t: $hargapermeter\n"
+            . "Panjang x Lebar\t\t: $lengthwidth\n"
+            . "Harga Sementara\t\t: $hargasementara\n\n"
+            . "Biaya Tambahan antara lain\n"
+            . "Biaya Transportasi\t\t: $transportasi\n"
+            . "Biaya Pemasangan\t\t: $pemasangan\n"
+            . "Biaya Jasa\t\t\t: $jasa\n"
+            . "Biaya Service\t\t\t: $service\n\n"
+            . "Total Biaya Keseluruhan\t: $total\n\n"
+            . "💳 *Silakan melakukan DP/Pelunasan melalui nomor rekening berikut:* \n"
+            . "_Bank ABC - 1234567890 a.n. W.N_ \n\n"
+            . "Terima kasih telah bertransaksi dengan kami!";;
 
         $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message); // wa web
         //  $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); // aplikasi wa
+
+        return redirect($whatsappUrl);
+    }
+
+    // Invoice link PDF direct ke wa
+    public function waInvoice($id)
+    {
+        $order = Orders::with(['addfee', 'panel'])->findOrFail($id);
+
+        $imagePath = public_path('assets/images/Marco.png');
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
+
+        $pdf = Pdf::loadView('invoices.invoice', compact('order', 'imageData', 'imageType'))->setPaper('A6', 'portrait');
+
+        $filePath = storage_path('app/public/invoices/invoice_' . $order->id . '.pdf');
+        $pdf->save($filePath);
+
+        // Buat URL untuk unduhan PDF
+        // $pdfUrl = asset('storage/invoices/invoice_' . $order->id . '.pdf'); // Asset
+        $pdfUrl = url('storage/invoices/invoice_' . $order->id . '.pdf'); // URL
+
+        $wa = $order->wa;
+        if (substr($wa, 0, 1) === '0') {
+            $wa = '+62' . substr($wa, 1);
+        }
+
+        $message = "Halo {$order->name},\n"
+            . "Berikut adalah invoice pesanan Anda:\n\n"
+            . "📄 Download PDF: $pdfUrl \n\n"
+            . "💳 *Silakan melakukan DP/Pelunasan melalui nomor rekening berikut:* \n"
+            . "_Bank ABC - 1234567890 a.n. W.N_ \n\n"
+            . "Terima kasih telah bertransaksi dengan kami!";
+
+        // Tautan WhatsApp
+        $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message); // WA Web
+        // $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); // Apl WA
 
         return redirect($whatsappUrl);
     }
@@ -227,76 +269,42 @@ class OrdersController extends Controller
             ->with('success', 'Pesanan berhasil dihapus');
     }
 
-    // public function status(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'status' => 'required|string',
-    //     ]);
-
-    //     $status = Orders::find($id);
-    //     $status->update(['status' => $request->status]);
-    //     $status->save();
-
-    //     return back()->with('success', 'Status berhasil diperbarui');
-    // }
     public function status(Request $request, $id)
     {
-        // Validasi input status
         $request->validate([
             'status' => 'required|string',
         ]);
 
-        // Temukan pesanan berdasarkan ID
-        $order = Orders::findOrFail($id);
+        $status = Orders::find($id);
+        $status->update(['status' => $request->status]);
+        $status->save();
 
-        // Daftar status yang memerlukan biaya tambahan
-        $restrictedStatuses = ['Approve', 'Finish'];
-
-        // Periksa apakah status baru memerlukan biaya tambahan, tetapi belum ada
-        if (in_array($request->status, $restrictedStatuses) && !$order->addfee) {
-            return back()->withErrors('Anda harus menambahkan biaya tambahan terlebih dahulu sebelum mengubah status menjadi "' . $request->status . '".');
-        }
-
-        // Update status jika validasi terpenuhi
-        $order->update(['status' => $request->status]);
-
-        return back()->with('success', 'Status berhasil diperbarui!');
+        return back()->with('success', 'Status berhasil diperbarui');
     }
 
-    // Invoice link PDF direct ke wa
-    public function waInvoice($id)
-    {
-        $order = Orders::with(['addfee', 'panel'])->findOrFail($id);
+    // public function status(Request $request, $id)
+    // {
+    //     // Validasi input status
+    //     $request->validate([
+    //         'status' => 'required|string',
+    //     ]);
 
-        $imagePath = public_path('assets/images/Marco.png');
-        $imageData = base64_encode(file_get_contents($imagePath));
-        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
+    //     // Temukan pesanan berdasarkan ID
+    //     $order = Orders::findOrFail($id);
 
-        $pdf = Pdf::loadView('invoices.invoice', compact('order', 'imageData', 'imageType'))->setPaper('A6', 'portrait');
+    //     // Daftar status yang memerlukan biaya tambahan
+    //     $restrictedStatuses = ['Approve', 'Finish'];
 
-        $filePath = storage_path('app/public/invoices/invoice_' . $order->id . '.pdf');
-        $pdf->save($filePath);
+    //     $hasAdditionalFee = $order->addfee && $order->addfee->fee_total > 0;
 
-        // Buat URL untuk unduhan PDF
-        // $pdfUrl = asset('storage/invoices/invoice_' . $order->id . '.pdf'); // Asset
-        $pdfUrl = url('storage/invoices/invoice_' . $order->id . '.pdf'); // URL
+    //     // Periksa apakah status baru memerlukan biaya tambahan, tetapi belum ada
+    //     if (in_array($request->status, $restrictedStatuses) && !$hasAdditionalFee) {
+    //         return back()->withErrors('Anda harus menambahkan biaya tambahan terlebih dahulu sebelum mengubah status menjadi "' . $request->status . '".');
+    //     }
 
-        $wa = $order->wa;
-        if (substr($wa, 0, 1) === '0') {
-            $wa = '+62' . substr($wa, 1);
-        }
+    //     // Update status jika validasi terpenuhi
+    //     $order->update(['status' => $request->status]);
 
-        $message = "Halo {$order->name},\n"
-            . "Berikut adalah invoice pesanan Anda:\n\n"
-            . "📄 Download PDF: $pdfUrl \n\n"
-            . "💳 *Silakan melakukan DP/Pelunasan melalui nomor rekening berikut:* \n"
-            . "_Bank ABC - 1234567890 a.n. W.N_ \n\n"
-            . "Terima kasih telah bertransaksi dengan kami!";
-
-        // Tautan WhatsApp
-        $whatsappUrl = "https://web.whatsapp.com/send?phone=$wa&text=" . urlencode($message); // WA Web
-        // $whatsappUrl = "whatsapp://send?phone=$wa&text=" . urlencode($message); // Apl WA
-
-        return redirect($whatsappUrl);
-    }
+    //     return back()->with('success', 'Status berhasil diperbarui!');
+    // }
 }

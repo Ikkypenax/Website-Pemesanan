@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rents;
 use App\Models\Orders;
 use App\Models\Panels;
 use App\Models\Provinces;
@@ -23,7 +24,6 @@ class OrderController extends Controller
         $types = Panels::where('category', $category_name)->get();
         return response()->json($types);
     }
-
 
     public function getRegencies(Request $request)
     {
@@ -86,7 +86,7 @@ class OrderController extends Controller
             "status" => 'Prosses',
             "provinces_id" => $request->provinces_id,
             "panel_id" => $request->panel_id,
-            "user_id" => $request->user_id,
+            // "user_id" => $request->user_id,
             "order_code" => $orderCode,
         ]);
 
@@ -94,49 +94,68 @@ class OrderController extends Controller
 
         session()->flash('success', 'Pesanan telah berhasil dibuat dengan kode pemesanan: ' . $orderCode);
         return redirect()->back();
+        // return redirect()->route('order.details', ['type' => 'order', 'code' => $order->order_code]);
     }
 
-    // public function show($order_code)
-    // {
-    //     // Mencari pesanan berdasarkan order_code
-    //     $order = Orders::where('order_code', $order_code)->first();
 
-    //     // Jika pesanan tidak ditemukan, redirect dengan pesan error
-    //     if (!$order) {
-    //         return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
-    //     }
+    public function show($code)
+    {
+        // Deteksi tipe berdasarkan prefix kode
+        if (str_starts_with($code, 'ORD-')) {
+            $data = Orders::where('order_code', $code)->first();
+            $type = 'order';
+        } elseif (str_starts_with($code, 'REN-')) {
+            $data = Rents::where('rent_code', $code)->first();
+            $type = 'rent';
+        } else {
+            return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
+        }
 
-    //     return view('order.details', compact('order'));
-    // }
+        // Pastikan data ditemukan
+        if (!$data) {
+            return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
+        }
+
+        return view('order.details', compact('data', 'type'));
+    }
+
 
     public function checkOrder(Request $request)
     {
-        // Ambil kode pemesanan dari query string
-        $order_code = $request->query('order_code');
+        // Ambil kode dari input
+        $code = $request->query('code');
 
         // Validasi input
-        if (!$order_code) {
-            return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan diperlukan.']);
+        if (!$code) {
+            return redirect()->back()->withErrors(['error' => 'Kode diperlukan.']);
         }
-        $order = Orders::with(['regency', 'provinces'])->where('order_code', $request->order_code)->first();
 
-        // Cari pesanan berdasarkan kode pemesanan
-        // $order = Orders::where('order_code', $order_code)->first();
-
-        // Cek apakah pesanan ditemukan
-        if ($order) {
-            return view('order.details', ['order' => $order]);
+        if (str_starts_with($code, 'ORD-')) {
+            $data = Orders::where('order_code', $code)->first();
+            $type = 'order';
+        } elseif (str_starts_with($code, 'REN-')) {
+            $data = Rents::where('rent_code', $code)->first();
+            $type = 'rent';
         } else {
-            return redirect()->back()->withErrors(['order_code' => 'Kode pemesanan tidak ditemukan.']);
+            return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
         }
+
+        // Pastikan data ditemukan
+        if (!$data) {
+            return redirect()->route('home')->with('error', 'Pesanan tidak ditemukan');
+        }
+
+        // Jika ditemukan, arahkan ke view yang sesuai
+        // return view('order.details', compact('order', 'rent'));
+        return view('order.details', compact('data', 'type'));
     }
 
 
-    public function show()
-    {
-        $user = Auth::user(); // Dapatkan pengguna yang login
-        $orders = Orders::where('user_id', $user->id)->orderBy('created_at', 'desc')->get(); // Ambil pesanan sesuai user_id
+    // public function show()
+    // {
+    //     $user = Auth::user(); // Dapatkan pengguna yang login
+    //     $orders = Orders::where('user_id', $user->id)->orderBy('created_at', 'desc')->get(); // Ambil pesanan sesuai user_id
 
-        return view('order.details', compact('orders', 'user'));
-    }
+    //     return view('order.details', compact('orders', 'user'));
+    // }
 }

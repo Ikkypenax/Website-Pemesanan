@@ -115,11 +115,11 @@
     <hr>
 
     <div class="invoice-header">
-        <h2 style="margin-bottom: 2px; margin-top: 2px">Invoice #{{ $order->id }}</h2>
+        <h2 style="margin-bottom: 2px; margin-top: 2px">Invoice #{{ $order->order_code }}</h2>
     </div>
 
     <div class="invoice-info">
-        <p style="margin-top: 8px; margin-bottom: 14px;">Tanggal:
+        <p style="margin-top: 8px; margin-bottom: 14px;">Tanggal :
             {{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y') }}</p>
     </div>
 
